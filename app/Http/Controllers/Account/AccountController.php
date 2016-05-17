@@ -20,7 +20,8 @@ class AccountController extends Controller
         // dd($request);
         
         $user->find(auth()->user()->id)->update([
-            'name' => $request->input('name'),
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
             'location' => $request->input('location'),
             'website' => $request->input('website'),
             'about' => $request->input('about'),
