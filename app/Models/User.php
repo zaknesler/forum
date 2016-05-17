@@ -8,14 +8,13 @@ class User extends Authenticatable
 {
     protected $fillable = [
         'username',
-        'name',
+        'email',
+        'first_name',
+        'last_name',
         'location',
         'website',
-        'image_uuid',
         'about',
-        'admin',
-        'active',
-        'email',
+        'image_uuid',
         'password',
     ];
 
@@ -30,8 +29,19 @@ class User extends Authenticatable
 
     public function getNameOrUsername()
     {
-        if ($this->name) {
-            return $this->name;
+        if ($this->first_name && $this->last_name) {
+            return $this->first_name . ' ' . $this->last_name;
+        } else if ($this->first_name && !$this->last_name) {
+            return $this->first_name;
+        } else {
+            return $this->username;
+        }
+    }
+
+    public function getFullNameOrUsername()
+    {
+        if ($this->first_name && $this->last_name) {
+            return $this->first_name . ' ' . $this->last_name;
         } else {
             return $this->username;
         }
