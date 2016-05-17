@@ -10,7 +10,9 @@ I hope to have the following functionality (strikethrough signifies completion):
   - ~~Location~~
   - ~~Website~~
   - ~~Biography~~
-  - User profile image (Uploadcare)
+  - User profile image
+    - Uploadcare upload
+    - Gravatar fallback
 - User permissions / groups
 - Forum posts
   - Categories
