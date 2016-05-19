@@ -10,8 +10,8 @@ I hope to have the following functionality (strikethrough signifies completion):
   - ~~Location~~
   - ~~Website~~
   - ~~Biography~~
-  - User profile image
-    - Uploadcare upload
+  - ~~User profile image~~
+    - ~~Uploadcare upload~~
     - ~~Gravatar fallback~~
 - ~~User permissions / groups~~
   - ~~Using [entrust](https://github.com/Zizaco/entrust)~~
