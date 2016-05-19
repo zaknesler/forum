@@ -10,6 +10,30 @@
                 <div class="panel-heading">Sign up</div>
                 <div class="panel-body">
                     <form action="{{ route('auth.register') }}" method="post">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
+                                    <label for="first_name">First name</label>
+                                    <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Alex" value="{{ old('first_name') }}">
+                                    @if ($errors->has('first_name'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('first_name') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
+                                    <label for="last_name">Last name</label>
+                                    <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Smith" value="{{ old('last_name') }}">
+                                    @if ($errors->has('last_name'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('last_name') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email">E-mail</label>
                             <input type="email" class="form-control" name="email" id="email" placeholder="you{{'@'}}domain.com" value="{{ old('email') }}">
@@ -27,30 +51,6 @@
                                     <strong>{{ $errors->first('username') }}</strong>
                                 </span>
                             @endif
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
-                                    <label for="first_name">First name</label>
-                                    <input type="text" class="form-control" name="first_name" id="first_name" value="{{ old('first_name') }}">
-                                    @if ($errors->has('first_name'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('first_name') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="col-xs-6">
-                                <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
-                                    <label for="last_name">Last name</label>
-                                    <input type="text" class="form-control" name="last_name" id="last_name" value="{{ old('last_name') }}">
-                                    @if ($errors->has('last_name'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('last_name') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
                         </div>
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password">Password</label>
