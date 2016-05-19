@@ -65,6 +65,11 @@
                             {!! csrf_field() !!}
                             <button type="submit" class="btn btn-primary btn-block">Create account</button>
                         </div>
+                        <div class="form-group">
+                            <div class="pull-left">
+                                <a href="{{ route('auth.login') }}">Sign in</a>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

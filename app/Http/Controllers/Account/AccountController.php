@@ -26,6 +26,12 @@ class AccountController extends Controller
             'about' => $request->input('about'),
         ]);
 
+        if ($request->input('about')) {
+            $user->find(auth()->user()->id)->update([
+                'image_uuid' => $request->input('image'),
+            ]);
+        }
+
         notify()->flash('Your profile settings have been updated.', 'success', [
             'timer' => 2000,
         ]);

@@ -36,7 +36,12 @@
                             <button type="submit" class="btn btn-primary btn-block">Sign in</button>
                         </div>
                         <div class="form-group">
-                            <a href="{{ route('auth.password.email') }}">Forgot password</a>
+                            <div class="pull-left">
+                                <a href="{{ route('auth.register') }}">Sign up</a>
+                            </div>
+                            <div class="pull-right">
+                                <a href="{{ route('auth.password.email') }}">Forgot password</a>
+                            </div>
                         </div>
                     </form>
                 </div>

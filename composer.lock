@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0ca1fc26d294085d6d237f674eed4596",
-    "content-hash": "05f88d9a7776b357b0d9b77310bb24fa",
+    "hash": "236d4c43751d0abba4de7da066de356f",
+    "content-hash": "8cfd0e00a736ad8fadcbd6c42fe2aa69",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -200,6 +200,52 @@
                 "string"
             ],
             "time": "2015-11-06 14:35:42"
+        },
+        {
+            "name": "inwave/laravel-uploadcare",
+            "version": "1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/InWave/laravel-uploadcare.git",
+                "reference": "933670ec4a982173bb55a80c96ee72662304b535"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/InWave/laravel-uploadcare/zipball/933670ec4a982173bb55a80c96ee72662304b535",
+                "reference": "933670ec4a982173bb55a80c96ee72662304b535",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": ">=5.1.0",
+                "laravelcollective/html": ">=5.1.0",
+                "php": ">=5.4.0",
+                "uploadcare/uploadcare-php": ">=v1.1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Inwave\\LaravelUploadcare": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Clément Salaün",
+                    "email": "clem@32b6.com",
+                    "homepage": "http://32b6.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel Serviceprovider for Uploadcare",
+            "homepage": "https://github.com/InWave/laravel-uploadcare.git",
+            "keywords": [
+                "laravel",
+                "uploadcare"
+            ],
+            "time": "2016-01-28 18:04:31"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -474,6 +520,60 @@
                 "laravel"
             ],
             "time": "2016-05-17 13:24:40"
+        },
+        {
+            "name": "laravelcollective/html",
+            "version": "v5.2.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LaravelCollective/html.git",
+                "reference": "3a312d39ffe37da0f57b602618b61fd07c1fcec5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/3a312d39ffe37da0f57b602618b61fd07c1fcec5",
+                "reference": "3a312d39ffe37da0f57b602618b61fd07c1fcec5",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/http": "5.2.*",
+                "illuminate/routing": "5.2.*",
+                "illuminate/session": "5.2.*",
+                "illuminate/support": "5.2.*",
+                "illuminate/view": "5.2.*",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "illuminate/database": "5.2.*",
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Collective\\Html\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                },
+                {
+                    "name": "Adam Engebretson",
+                    "email": "adam@laravelcollective.com"
+                }
+            ],
+            "description": "HTML and Form Builders for the Laravel Framework",
+            "homepage": "http://laravelcollective.com",
+            "time": "2016-01-27 22:29:54"
         },
         {
             "name": "league/flysystem",
@@ -1767,6 +1867,53 @@
                 "dump"
             ],
             "time": "2016-04-25 11:17:47"
+        },
+        {
+            "name": "uploadcare/uploadcare-php",
+            "version": "v1.5.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/uploadcare/uploadcare-php.git",
+                "reference": "5773818bfd287f8645edf370266217f95ae05b15"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/uploadcare/uploadcare-php/zipball/5773818bfd287f8645edf370266217f95ae05b15",
+                "reference": "5773818bfd287f8645edf370266217f95ae05b15",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Uploadcare": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Uploadcare, LLC",
+                    "email": "hello@uploadcare.com"
+                }
+            ],
+            "description": "Uploadcare API binding for PHP",
+            "homepage": "https://uploadcare.com",
+            "keywords": [
+                "cdn",
+                "cloud",
+                "files",
+                "image management",
+                "upload",
+                "uploadcare"
+            ],
+            "time": "2016-05-12 10:14:36"
         },
         {
             "name": "vlucas/phpdotenv",

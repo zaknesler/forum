@@ -157,6 +157,8 @@ return [
         Forum\Providers\RouteServiceProvider::class,
         Codecourse\Notify\NotifyServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
+        Inwave\LaravelUploadcare\LaravelUploadcareServiceProvider::class,
 
     ],
 
@@ -208,6 +210,9 @@ return [
          * Application Class Aliases...
          */
         'Entrust' => Zizaco\Entrust\EntrustFacade::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
+        'Uploadcare' => Inwave\LaravelUploadcare\Facades\Uploadcare::class,
 
     ],
 
