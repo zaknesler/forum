@@ -17,7 +17,6 @@ class AccountController extends Controller
     
     public function postProfile(UserProfileFormRequest $request, User $user)
     {
-        // dd($request);
         
         $user->find(auth()->user()->id)->update([
             'first_name' => $request->input('first_name'),
@@ -25,6 +24,10 @@ class AccountController extends Controller
             'location' => $request->input('location'),
             'website' => $request->input('website'),
             'about' => $request->input('about'),
+        ]);
+
+        notify()->flash('Your profile settings have been updated.', 'success', [
+            'timer' => 2000,
         ]);
 
         return redirect()->route('account.settings.profile');

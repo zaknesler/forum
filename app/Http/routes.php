@@ -2,6 +2,13 @@
 
 Route::get('', 'HomeController@index')->name('home');
 
+Route::get('role', function () {
+    $admin = new Forum\Models\Role();
+    $admin->name = 'user';
+    $admin->display_name = 'User';
+    $admin->save();
+});
+
 Route::group(['middleware' => ['guest']], function () {
     Route::get('auth/sign-up', 'Auth\AuthController@getRegister')->name('auth.register');
     Route::post('auth/sign-up', 'Auth\AuthController@postRegister');

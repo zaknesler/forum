@@ -2,10 +2,13 @@
 
 namespace Forum\Models;
 
+use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    use EntrustUserTrait;
+    
     protected $fillable = [
         'username',
         'email',

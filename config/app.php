@@ -155,6 +155,8 @@ return [
         Forum\Providers\AuthServiceProvider::class,
         Forum\Providers\EventServiceProvider::class,
         Forum\Providers\RouteServiceProvider::class,
+        Codecourse\Notify\NotifyServiceProvider::class,
+        Zizaco\Entrust\EntrustServiceProvider::class,
 
     ],
 
@@ -201,6 +203,11 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        /*
+         * Application Class Aliases...
+         */
+        'Entrust' => Zizaco\Entrust\EntrustFacade::class,
 
     ],
 
