@@ -49,4 +49,15 @@ class User extends Authenticatable
             return $this->username;
         }
     }
+
+    public function avatarUrl(array $options = [])
+    {
+        $size = array_get($options, 'size', 45);
+
+        if ($this->image_uuid) {
+            return 'https://ucarecdn.com/' . $this->image_uuid . '/-/scale_crop/1024x1024/center/-/quality/lighter/-/progressive/yes/-/resize/' . $size . '/';
+        }
+
+        return 'https://www.gravatar.com/avatar/' . md5(strtolower($this->email)) . '?s=' . $size . '&d=identicon';
+    }
 }
