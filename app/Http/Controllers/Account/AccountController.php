@@ -17,8 +17,9 @@ class AccountController extends Controller
     
     public function postProfile(UserProfileFormRequest $request, User $user)
     {
-        
-        $user->find(auth()->user()->id)->update([
+        $current = $user->find(auth()->user()->id);
+
+        $current->update([
             'first_name' => $request->input('first_name'),
             'last_name' => $request->input('last_name'),
             'location' => $request->input('location'),
@@ -26,9 +27,9 @@ class AccountController extends Controller
             'about' => $request->input('about'),
         ]);
 
-        if ($request->input('about')) {
-            $user->find(auth()->user()->id)->update([
-                'image_uuid' => $request->input('image'),
+        if ($request->input('image')) {
+            $current->update([
+                'image_uuid' => \Uploadcare::getFile($request->input('image'))->getUuid(),
             ]);
         }
 
