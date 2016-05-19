@@ -16,7 +16,7 @@
                                     <div class="col-xs-6">
                                         <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
                                             <label for="first_name">First name</label>
-                                            <input type="text" class="form-control" name="first_name" id="first_name" value="{{ Auth::user()->first_name }}">
+                                            <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Alex" value="{{ Auth::user()->first_name }}">
                                             @if ($errors->has('first_name'))
                                                 <span class="help-block">
                                                     <strong>{{ $errors->first('first_name') }}</strong>
@@ -28,7 +28,7 @@
                                     <div class="col-xs-6">
                                         <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
                                             <label for="last_name">Last name</label>
-                                            <input type="text" class="form-control" name="last_name" id="last_name" value="{{ Auth::user()->last_name }}">
+                                            <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Smith" value="{{ Auth::user()->last_name }}">
                                             @if ($errors->has('last_name'))
                                                 <span class="help-block">
                                                     <strong>{{ $errors->first('last_name') }}</strong>

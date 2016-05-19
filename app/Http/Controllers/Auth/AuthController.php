@@ -39,7 +39,9 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
 
-        $user->roles()->attach(4);
+        $role = Role::where('name', env('FORUM_DEFAULT_ROLE', 'user'))->first();
+
+        $user->roles()->attach($role->id);
 
         return $user;
     }

@@ -77,5 +77,6 @@
             });
         @endif
     </script>
+    @yield('footer')
 </body>
 </html>
