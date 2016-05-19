@@ -12,9 +12,9 @@ I hope to have the following functionality (strikethrough signifies completion):
   - ~~Biography~~
   - User profile image
     - Uploadcare upload
-    - ~~~Gravatar fallback~~~
-- ~~~User permissions / groups~~~
-  - ~~~Using [entrust](https://github.com/Zizaco/entrust)~~~
+    - ~~Gravatar fallback~~
+- ~~User permissions / groups~~
+  - ~~Using [entrust](https://github.com/Zizaco/entrust)~~
 - Forum posts
   - Categories
     - Category create/edit/delete ***(admin feature)***
