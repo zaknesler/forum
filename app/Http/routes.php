@@ -2,13 +2,6 @@
 
 Route::get('', 'HomeController@index')->name('home');
 
-Route::get('sections', 'Forum\SectionController@index')->name('forum.section.all');
-Route::get('section/{id}', 'Forum\SectionController@show')->name('forum.section.show');
-
-Route::get('topics', 'Forum\TopicController@all')->name('forum.topic.all');
-Route::get('topic/new', 'Forum\TopicController@index')->name('forum.topic.new');
-Route::get('topic/{id}', 'Forum\TopicController@show')->name('forum.topic.show');
-
 /**
  * Guest routes
  */
@@ -37,7 +30,14 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('account/settings/profile', 'Account\AccountController@getProfile')->name('account.settings.profile');
     Route::post('account/settings/profile', 'Account\AccountController@postProfile');
 
-    Route::post('topic/new', 'Forum\TopicController@store');
+    Route::get('sections', 'Forum\SectionController@index')->name('forum.section.all');
+    Route::get('section/{id}', 'Forum\SectionController@show')->name('forum.section.show');
+
+    Route::get('topics', 'Forum\TopicController@all')->name('forum.topic.all');
+    Route::get('topic/{id}', 'Forum\TopicController@show')->name('forum.topic.show');
+
+    Route::get('topic', 'Forum\TopicController@index')->name('forum.topic.new');
+    Route::post('topic', 'Forum\TopicController@store');
 
     Route::post('topic/{topic}/post', 'Forum\PostController@store');
 });

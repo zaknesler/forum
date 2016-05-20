@@ -33,9 +33,11 @@
             </div>
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ route('forum.topic.new') }}">New topic</a></li>
-                    <li><a href="{{ route('forum.section.all') }}">Sections</a></li>
-                    <li><a href="{{ route('forum.topic.all') }}">Topics</a></li>
+                    @if (Auth::user())
+                        <li><a href="{{ route('forum.topic.new') }}">New topic</a></li>
+                        <li><a href="{{ route('forum.section.all') }}">Sections</a></li>
+                        <li><a href="{{ route('forum.topic.all') }}">Topics</a></li>
+                    @endif
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (Auth::guest())
