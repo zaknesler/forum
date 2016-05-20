@@ -1,0 +1,19 @@
+.well.white
+    background: #ecf0f1;
+}
+
+pre, code {
+    border: 0;
+}
+
+.topic {
+    line-height: 30px;
+}
+
+.fa-btn {
+    margin-right: 6px;
+}
+
+textarea {
+    resize: vertical;
+}

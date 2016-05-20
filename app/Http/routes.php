@@ -39,5 +39,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('topic', 'Forum\TopicController@index')->name('forum.topic.new');
     Route::post('topic', 'Forum\TopicController@store');
 
-    Route::post('topic/{topic}/post', 'Forum\PostController@store');
+    Route::post('topic/{topic}/post', 'Forum\PostController@store')->name('forum.topic.reply');
 });

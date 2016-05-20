@@ -29,17 +29,12 @@ class TopicController extends Controller
 
     public function show($id, Topic $topic)
     {
-        $show = $topic->find($id);
+        $show = $topic->findOrFail($id);
 
-        if (!$show) {
-            notify()->flash('That topic was not found.', 'error', [
-                'timer' => 2000,
-            ]);
-
-            return redirect()->route('forum.topic.all');
-        }
-
-        return view('forum.topic.show')->withTopic($show);
+        return view('forum.topic.show', [
+            'topic' => $show,
+            'posts' => $show->posts()->get()
+        ]);
     }
 
     public function store(CreateTopicFormRequest $request)

@@ -21,6 +21,11 @@ class Topic extends Model
         return $query->orderBy('created_at', 'desc');
     }
 
+    public function replyCount()
+    {
+        return $this->posts()->count();
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
