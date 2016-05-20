@@ -6,7 +6,7 @@ use Forum\Models\User;
 use Forum\Http\Requests;
 use Illuminate\Http\Request;
 use Forum\Http\Controllers\Controller;
-use Forum\Http\Requests\UserProfileFormRequest;
+use Forum\Http\Requests\Account\UpdateProfileFormRequest;
 
 class AccountController extends Controller
 {
@@ -15,7 +15,7 @@ class AccountController extends Controller
         return view('account.settings.profile');
     }
     
-    public function postProfile(UserProfileFormRequest $request, User $user)
+    public function postProfile(UpdateProfileFormRequest $request, User $user)
     {
         $current = $user->find(auth()->user()->id);
 

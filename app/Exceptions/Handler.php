@@ -44,13 +44,7 @@ class Handler extends ExceptionHandler
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $e)
-    {
-        if ($this->isHttpException($e)) {
-            if ($e->getStatusCode() == 404) {
-                return redirect()->route('home');
-            }
-        }
-        
+    {       
         return parent::render($request, $e);
     }
 }

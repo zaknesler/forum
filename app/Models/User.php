@@ -60,4 +60,9 @@ class User extends Authenticatable
 
         return 'https://www.gravatar.com/avatar/' . md5(strtolower($this->email)) . '?s=' . $size . '&d=identicon';
     }
+
+    public function topics()
+    {
+        return $this->hasMany(Topic::class);
+    }
 }

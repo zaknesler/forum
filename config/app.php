@@ -159,6 +159,7 @@ return [
         Zizaco\Entrust\EntrustServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Inwave\LaravelUploadcare\LaravelUploadcareServiceProvider::class,
+        GrahamCampbell\Markdown\MarkdownServiceProvider::class,
 
     ],
 
@@ -213,6 +214,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Uploadcare' => Inwave\LaravelUploadcare\Facades\Uploadcare::class,
+        'Markdown' => GrahamCampbell\Markdown\MarkdownServiceProvider::class,
 
     ],
 

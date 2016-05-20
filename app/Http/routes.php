@@ -2,12 +2,16 @@
 
 Route::get('', 'HomeController@index')->name('home');
 
-Route::get('role', function () {
-    $admin = new Forum\Models\Role();
-    $admin->name = 'user';
-    $admin->display_name = 'User';
-    $admin->save();
-});
+Route::get('sections', 'Forum\SectionController@index')->name('forum.section.all');
+Route::get('section/{id}', 'Forum\SectionController@show')->name('forum.section.show');
+
+Route::get('topics', 'Forum\TopicController@all')->name('forum.topic.all');
+Route::get('topic/new', 'Forum\TopicController@index')->name('forum.topic.new');
+Route::get('topic/{id}', 'Forum\TopicController@show')->name('forum.topic.show');
+
+/**
+ * Guest routes
+ */
 
 Route::group(['middleware' => ['guest']], function () {
     Route::get('auth/sign-up', 'Auth\AuthController@getRegister')->name('auth.register');
@@ -23,11 +27,17 @@ Route::group(['middleware' => ['guest']], function () {
     Route::post('password/reset/{token}', 'Auth\PasswordController@postReset');
 });
 
+/**
+ * Authenticated routes
+ */
+
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('home', 'HomeController@home')->name('auth.home');
+    Route::get('auth/sign-out', 'Auth\AuthController@logout')->name('auth.logout');
 
     Route::get('account/settings/profile', 'Account\AccountController@getProfile')->name('account.settings.profile');
     Route::post('account/settings/profile', 'Account\AccountController@postProfile');
 
-    Route::get('auth/sign-out', 'Auth\AuthController@logout')->name('auth.logout');
+    Route::post('topic/new', 'Forum\TopicController@store');
+
+    Route::post('topic/{topic}/post', 'Forum\PostController@store');
 });

@@ -10,10 +10,6 @@
     <link rel="stylesheet" href="https://bootswatch.com/flatly/bootstrap.css">
     <link rel="stylesheet" href="{{ asset('css/sweetalert.css') }}">
     <style>
-        body {
-            font-family: 'Lato';
-        }
-
         .fa-btn {
             margin-right: 6px;
         }
@@ -36,11 +32,11 @@
                 <a class="navbar-brand" href="{{ route('home') }}">{{ env('APP_NAME') }}</a>
             </div>
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                @if (Auth::user())
-                    <ul class="nav navbar-nav">
-                        <li><a href="{{ route('auth.home') }}">Home</a></li>
-                    </ul>
-                @endif
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ route('forum.topic.new') }}">New topic</a></li>
+                    <li><a href="{{ route('forum.section.all') }}">Sections</a></li>
+                    <li><a href="{{ route('forum.topic.all') }}">Topics</a></li>
+                </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (Auth::guest())
                         <li><a href="{{ route('auth.register') }}">Sign up</a></li>
@@ -52,6 +48,7 @@
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ route('account.settings.profile') }}"><i class="fa fa-btn fa-pencil"></i>Edit account</a></li>
+                                <li role="separator" class="divider"></li>
                                 <li><a href="{{ route('auth.logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>
