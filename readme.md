@@ -21,9 +21,12 @@ This is the checklist of functionality I wish to have for this project. A strike
     - ~~Gravatar fallback~~
 - ~~User permissions / groups~~
   - ~~Using [entrust](https://github.com/Zizaco/entrust)~~
-- Forum posts
-  - Sections
-    - Section create/edit/delete **(admin feature)**
-    - Section selection
+- Topic creation
+  - ~~Markdown~~
+    - ~~Using [Laravel-Markdown](https://github.com/GrahamCampbell/Laravel-Markdown)~~
+  - ~~Sections~~
+    - ~~View all sections~~
+    - ~~Section selection~~
+  - Topic replies (posts)
+  - ~~View all posted topics~~
   - Locked to specific user groups
-- ...
