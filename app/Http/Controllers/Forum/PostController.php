@@ -10,6 +10,13 @@ use Forum\Http\Requests\Forum\CreatePostFormRequest;
 
 class PostController extends Controller
 {
+    /**
+     * Store the user's reply to a thread.
+     * 
+     * @param  CreatePostFormRequest
+     * @param  Topic
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(CreatePostFormRequest $request, Topic $topic)
     {
         $topic->posts()->create([

@@ -10,6 +10,12 @@ use Forum\Http\Requests\Forum\CreatePostFormRequest;
 
 class SectionController extends Controller
 {
+    /**
+     * 
+     * 
+     * @param  Section
+     * @return \Illuminate\Http\Response
+     */
     public function index(Section $section)
     {
         $sections = $section->get();
@@ -17,17 +23,16 @@ class SectionController extends Controller
         return view('forum.section.all')->withSections($sections);
     }
 
+    /**
+     * Show the topics that are present in a specific section.
+     * 
+     * @param  integer
+     * @param  Section
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function show($id, Section $section)
     {
-        $show = $section->find($id);
-
-        if (!$show) {
-            notify()->flash('That section was not found.', 'error', [
-                'timer' => 2000,
-            ]);
-
-            return redirect()->route('forum.section.all');
-        }
+        $show = $section->findOrFail($id);
 
         return view('forum.section.show', [
             'section' => $show,

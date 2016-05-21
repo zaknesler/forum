@@ -10,11 +10,23 @@ use Forum\Http\Requests\Account\UpdateProfileFormRequest;
 
 class AccountController extends Controller
 {
+    /**
+     * Get request to update the user's profile settings.
+     * 
+     * @return view
+     */
     public function getProfile()
     {
         return view('account.settings.profile');
     }
     
+    /**
+     * Post request to update the user's profile settings.
+     * 
+     * @param  UpdateProfileFormRequest
+     * @param  User
+     * @return redirect
+     */
     public function postProfile(UpdateProfileFormRequest $request, User $user)
     {
         $current = $user->find(auth()->user()->id);
