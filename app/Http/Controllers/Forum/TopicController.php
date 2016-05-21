@@ -33,7 +33,7 @@ class TopicController extends Controller
      */
     public function all(Topic $topic)
     {
-        $topics = $topic->get();
+        $topics = $topic->latestFirst()->paginate(25);
 
         return view('forum.topic.all')->withTopics($topics);
     }
@@ -47,10 +47,11 @@ class TopicController extends Controller
     public function show($id, Topic $topic)
     {
         $show = $topic->findOrFail($id);
+        $posts = $show->posts()->latestFirst()->get();
 
         return view('forum.topic.show', [
             'topic' => $show,
-            'posts' => $show->posts()->get()
+            'posts' => $posts,
         ]);
     }
 

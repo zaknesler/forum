@@ -58,7 +58,7 @@ class User extends Authenticatable
             return 'https://ucarecdn.com/' . $this->image_uuid . '/-/scale_crop/1024x1024/center/-/quality/lighter/-/progressive/yes/-/resize/' . $size . '/';
         }
 
-        return 'https://www.gravatar.com/avatar/' . md5(strtolower($this->email)) . '?s=' . $size . '&d=identicon';
+        return 'https://www.gravatar.com/avatar/' . md5(strtolower($this->email)) . '?s=' . $size . '&d=mm';
     }
 
     public function topics()

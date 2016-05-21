@@ -13,6 +13,11 @@ class Section extends Model
         'description',
     ];
 
+    public function topicCount()
+    {
+        return $this->topics()->count();
+    }
+
     public function topics()
     {
         return $this->hasMany(Topic::class);

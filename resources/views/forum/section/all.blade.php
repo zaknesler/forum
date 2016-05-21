@@ -2,15 +2,26 @@
 
 @section('content')
 <div class="container">
-    <h3>All sections</h3>
-    <div class="well">
-        @if ($sections->count())
-            @foreach ($sections as $section)
-                <h3><a href="{{ route('forum.section.show', ['id' => $section->id]) }}">{{ $section->title }}</a></h3>
-            @endforeach
-        @else
-            <h4>No sections to show.</h4>
-        @endif
+    <div class="row">
+        <div class="col-md-12">
+            <h3>All sections</h3>
+            @if ($sections->count())
+                <ul class="list-group">
+                    @foreach ($sections as $section)
+                        <a class="list-group-item" href="{{ route('forum.section.show', ['id' => $section->id]) }}">
+                            <h4>
+                            <span class="label label-primary pull-right">{{ $section->topicCount() }} topics</span>
+                            {{ $section->title }}
+                            </h4>
+                        </a>
+                    @endforeach
+                </ul>
+                {{ $sections->render() }}
+            @else
+                <hr>
+                <p>No sections to show.</p>
+            @endif
+        </div>
     </div>
 </div>
 @endsection

@@ -2,20 +2,25 @@
 
 @section('content')
 <div class="container">
-    <p><a href="{{ route('forum.section.all') }}">Back to all sections</a></p>
-
-    @if ($section)
-        <h1>{{ $section->title }} <small>all topics</small></h1>
-
-        <div class="well">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>{{ $section->title }} <small>all topics</small></h3>
             @if ($topics->count())
-                @foreach ($topics as $topic)
-                    <h3><a href="{{ route('forum.topic.show', ['id' => $topic->id]) }}">{{ $topic->title }}</a></h3>
-                @endforeach
+                <ul class="list-group">
+                    @foreach ($topics as $topic)
+                        <a class="list-group-item" href="{{ route('forum.topic.show', ['id' => $topic->id]) }}">
+                            <h4>
+                            <span class="label label-primary pull-right">{{ $topic->replyCount() }} replies</span>
+                            {{ $topic->title }}
+                            </h4>
+                        </a>
+                    @endforeach
+                </ul>
             @else
-            <p>No topics under this section.</p>
+                <hr>
+                <p>No topics under this section.</p>
             @endif
         </div>
-    @endif
+    </div>
 </div>
 @endsection

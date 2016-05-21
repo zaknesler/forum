@@ -1,19 +1,11 @@
-// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 // @import "thirdparty/fontawesome";
-@import "thirdparty/flatly";
+@import "thirdparty/theme";
 @import "thirdparty/highlight";
 @import "thirdparty/sweetalert";
 
 pre, code {
     border: 0;
-}
-
-.topic {
-    line-height: 30px;
-}
-
-.fa-btn {
-    margin-right: 6px;
 }
 
 textarea {

@@ -17,7 +17,7 @@ class SectionController extends Controller
      */
     public function index(Section $section)
     {
-        $sections = $section->get();
+        $sections = $section->paginate(25);
 
         return view('forum.section.all')->withSections($sections);
     }

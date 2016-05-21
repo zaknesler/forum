@@ -9,14 +9,23 @@
         {!! $topic->body !!}
     </div>
     
-    @if ($topic->posts->count())
+    @if ($posts->count())
         <hr>
-        @foreach ($topic->posts as $post)
-        <div class="topic_reply">
-            <h5>{{ $post->created_at->diffForHumans() }} by <a href="#">{{ $post->user->username }}</a></h5>
-            {!! $post->body !!}
-        </div>
+        <h4>Comments</h4>
+        @foreach ($posts as $post)
+            <div class="media">
+                <div class="media-left">
+                    <a href="#"><img src="{{ $post->user->avatarUrl(['size' => 50]) }}" alt="User avatar" class="media-object"></a>
+                </div>
+                <div class="media-body">
+                    <div class="media-heading">
+                        <a href="#">{{ $post->user->username }}</a> - {{ $post->created_at->diffForHumans() }}
+                    </div>
+                    {!! $post->body !!}
+                </div>
+            </div>
         @endforeach
+        
     @endif
 
     <hr>
