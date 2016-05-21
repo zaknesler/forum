@@ -6,24 +6,25 @@ This is the checklist of functionality I wish to have for this project. A strike
 - Front-end:
   - ~~Bootstrap 3~~
   - Migrating to Foundation (ughh)
-- ~~Base Laravel 5.2 Authentication~~
-- ~~Customised base Laravel 5.2 Authentication~~
-- ~~User profile customisation~~
-  - ~~First / Last name~~
-  - ~~Location~~
-  - ~~Website url~~
-  - ~~Biography~~
-  - ~~User profile upload~~
-    - ~~Uploadcare service~~
-    - ~~Gravatar fallback~~
-- ~~User permissions / groups~~
-  - ~~Using [entrust](https://github.com/Zizaco/entrust)~~
-- Topic creation
-  - ~~Markdown~~
-    - ~~Using [Laravel-Markdown](https://github.com/GrahamCampbell/Laravel-Markdown)~~
-  - ~~Sections~~
-    - ~~View all sections~~
-    - ~~Section selection~~
-  - Topic replies (posts)
-  - ~~View all posted topics~~
-  - Locked to specific user groups
+- Back-end: 
+  - ~~Base Laravel 5.2 Authentication~~
+  - ~~Customised base Laravel 5.2 Authentication~~
+  - ~~User profile customisation~~
+    - ~~First / Last name~~
+    - ~~Location~~
+    - ~~Website url~~
+    - ~~Biography~~
+    - ~~User profile upload~~
+      - ~~Uploadcare service~~
+      - ~~Gravatar fallback~~
+  - ~~User permissions / groups~~
+    - ~~Using [entrust](https://github.com/Zizaco/entrust)~~
+  - Topic creation
+    - ~~Markdown~~
+      - ~~Using [Laravel-Markdown](https://github.com/GrahamCampbell/Laravel-Markdown)~~
+    - ~~Sections~~
+      - ~~View all sections~~
+      - ~~Section selection~~
+    - Topic replies (posts)
+    - ~~View all posted topics~~
+    - Locked to specific user groups
