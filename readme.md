@@ -14,8 +14,8 @@ This is the checklist of functionality I wish to have for this project. A strike
     - ~~Stylesheets~~
       - ~~Bootstrap 3~~
       - ~~Flatly theme~~
-    - ~~Highlight~~
-    - ~~SweetAlert~~
+      - ~~Highlight~~
+      - ~~SweetAlert~~
 - Back-end: 
   - ~~Base Laravel 5.2 Authentication~~
   - ~~Customised base Laravel 5.2 Authentication~~
