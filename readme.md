@@ -6,6 +6,8 @@ This is the checklist of functionality I wish to have for this project. A strike
 - Front-end:
   - ~~Bootstrap 3~~
   - Migrating to Foundation (ughh)
+  - ~~Highlight.js~~
+  - ~~SweetAlert~~
 - Back-end: 
   - ~~Base Laravel 5.2 Authentication~~
   - ~~Customised base Laravel 5.2 Authentication~~
