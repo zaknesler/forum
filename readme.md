@@ -5,6 +5,7 @@ This is a very simple Laravel 5.2 forum that I am working on. It is for personal
 This is the checklist of functionality I wish to have for this project. A strikethrough signifies completion.
 - Front-end:
   - ~~Javascript (mostly handled by Gulp)~~
+    - ~~jQuery (google hosted)~~
     - ~~Bootstrap~~
     - ~~Uploadcare~~
     - ~~Highlight~~
