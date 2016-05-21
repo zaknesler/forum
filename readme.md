@@ -27,6 +27,6 @@ This is the checklist of functionality I wish to have for this project. A strike
     - ~~Sections~~
       - ~~View all sections~~
       - ~~Section selection~~
-    - Topic replies (posts)
+    - !!Topic replies (posts)!!
     - ~~View all posted topics~~
     - Locked to specific user groups
