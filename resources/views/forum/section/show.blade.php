@@ -10,7 +10,7 @@
                     @foreach ($topics as $topic)
                         <a class="list-group-item" href="{{ route('forum.topic.show', ['id' => $topic->id]) }}">
                             <h4>
-                            <span class="label label-primary pull-right">{{ $topic->replyCount() }} replies</span>
+                            <span class="label label-primary pull-right">{{ $topic->replyCountText() }}</span>
                             {{ $topic->title }}
                             </h4>
                         </a>

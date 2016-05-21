@@ -13,6 +13,17 @@ class Section extends Model
         'description',
     ];
 
+    public function topicCountText()
+    {
+        $count = $this->topicCount();
+
+        if ($count == 1) {
+            return $count . ' topic';
+        }
+
+        return $count . ' topics';
+    }
+
     public function topicCount()
     {
         return $this->topics()->count();

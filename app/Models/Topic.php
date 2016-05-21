@@ -21,6 +21,17 @@ class Topic extends Model
         return $query->orderBy('created_at', 'desc');
     }
 
+    public function replyCountText()
+    {
+        $count = $this->replyCount();
+
+        if ($count == 1) {
+            return $count . ' reply';
+        }
+
+        return $count . ' replies';
+    }
+
     public function replyCount()
     {
         return $this->posts()->count();
