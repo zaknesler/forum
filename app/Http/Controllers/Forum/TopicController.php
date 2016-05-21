@@ -14,7 +14,7 @@ use Forum\Http\Requests\Forum\CreateTopicFormRequest;
 class TopicController extends Controller
 {
     /**
-     * Get the page to create a new topic.
+     * Get the view to create a new topic.
      * @param  Topic    $topic    Topic model injection.
      * @param  Section  $section  Section model injection.
      * @return \Illuminate\Http\Response
@@ -27,7 +27,7 @@ class TopicController extends Controller
     }
     
     /**
-     * Get the page that displays all of the topics.
+     * Get the view that displays all of the topics.
      * @param  Topic  $topic  Topic model injection.
      * @return \Illuminate\Http\Response
      */
