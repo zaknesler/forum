@@ -12,9 +12,8 @@ class PostController extends Controller
 {
     /**
      * Store the user's reply to a thread.
-     * 
-     * @param  CreatePostFormRequest
-     * @param  Topic
+     * @param  CreatePostFormRequest  Form request for validation.
+     * @param  Topic                  Topic model injection.
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(CreatePostFormRequest $request, Topic $topic)

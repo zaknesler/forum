@@ -1,10 +1,10 @@
 <?php
 
-namespace Forum\Http\Requests;
+namespace Forum\Http\Requests\Account;
 
 use Forum\Http\Requests\Request;
 
-class UserProfileFormRequest extends Request
+class UpdateProfileFormRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.

@@ -11,9 +11,8 @@ use Forum\Http\Requests\Account\UpdateProfileFormRequest;
 class AccountController extends Controller
 {
     /**
-     * Get request to update the user's profile settings.
-     * 
-     * @return view
+     * Get the view to update user's profile settings.
+     * @return \Illuminate\Http\Response
      */
     public function getProfile()
     {
@@ -22,10 +21,9 @@ class AccountController extends Controller
     
     /**
      * Post request to update the user's profile settings.
-     * 
-     * @param  UpdateProfileFormRequest
-     * @param  User
-     * @return redirect
+     * @param  UpdateProfileFormRequest  Form request for validation.
+     * @param  User                      User model injection.
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function postProfile(UpdateProfileFormRequest $request, User $user)
     {
@@ -45,7 +43,8 @@ class AccountController extends Controller
             ]);
         }
 
-        notify()->flash('Your profile settings have been updated.', 'success', [
+        notify()->flash('Success', 'success', [
+            'text' => 'Your profile settings have been updated.',
             'timer' => 2000,
         ]);
 

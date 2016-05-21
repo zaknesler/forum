@@ -11,9 +11,8 @@ use Forum\Http\Requests\Forum\CreatePostFormRequest;
 class SectionController extends Controller
 {
     /**
-     * 
-     * 
-     * @param  Section
+     * Get the view to show all sections.
+     * @param  Section  Section model injection.
      * @return \Illuminate\Http\Response
      */
     public function index(Section $section)
@@ -24,11 +23,10 @@ class SectionController extends Controller
     }
 
     /**
-     * Show the topics that are present in a specific section.
-     * 
-     * @param  integer
-     * @param  Section
-     * @return \Illuminate\Http\RedirectResponse
+     * Get the view to show all topics under a specific section.
+     * @param  integer  Section identifier.
+     * @param  Section  Section model injection.
+     * @return \Illuminate\Http\Response
      */
     public function show($id, Section $section)
     {

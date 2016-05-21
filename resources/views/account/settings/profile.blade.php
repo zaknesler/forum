@@ -92,13 +92,3 @@
     </div>
 </div>
 @endsection
-
-@section('footer')
-    <script>
-        UPLOADCARE_LOCALE = "en";
-        UPLOADCARE_LIVE = false;
-        UPLOADCARE_TABS = "file url";
-        UPLOADCARE_PUBLIC_KEY = "{{ env('UPLOADCARE_PUBLIC_KEY') }}";
-    </script>
-    <script src="https://ucarecdn.com/widget/2.8.2/uploadcare/uploadcare.full.min.js" charset="UTF-8"></script>
-@endsection

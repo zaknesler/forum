@@ -13,6 +13,12 @@ use Forum\Http\Requests\Forum\CreateTopicFormRequest;
 
 class TopicController extends Controller
 {
+    /**
+     * Get the page to create a new topic.
+     * @param  Topic    $topic    Topic model injection.
+     * @param  Section  $section  Section model injection.
+     * @return \Illuminate\Http\Response
+     */
     public function index(Topic $topic, Section $section)
     {
         $sections = $section->get();
@@ -20,6 +26,11 @@ class TopicController extends Controller
         return view('forum.topic.new')->withSections($sections);
     }
     
+    /**
+     * Get the page that displays all of the topics.
+     * @param  Topic  $topic  Topic model injection.
+     * @return \Illuminate\Http\Response
+     */
     public function all(Topic $topic)
     {
         $topics = $topic->get();
@@ -27,6 +38,12 @@ class TopicController extends Controller
         return view('forum.topic.all')->withTopics($topics);
     }
 
+    /**
+     * Get the view that displays a single topic with its replies.
+     * @param  integer  $id     Topic identifier.
+     * @param  Topic    $topic  Topic model injection.
+     * @return \Illuminate\Http\Response
+     */
     public function show($id, Topic $topic)
     {
         $show = $topic->findOrFail($id);
@@ -37,6 +54,11 @@ class TopicController extends Controller
         ]);
     }
 
+    /**
+     * Store the new topic in database.
+     * @param  CreateTopicFormRequest  $request  Form request for validation.
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(CreateTopicFormRequest $request)
     {
         $topic = $request->user()->topics()->create([
