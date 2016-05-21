@@ -12,8 +12,8 @@ class PostController extends Controller
 {
     /**
      * Store the user's reply to a thread.
-     * @param  CreatePostFormRequest  Form request for validation.
-     * @param  Topic                  Topic model injection.
+     * @param  CreatePostFormRequest  $request  Form request for validation.
+     * @param  Topic                  $topic    Topic model injection.
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(CreatePostFormRequest $request, Topic $topic)
@@ -21,6 +21,11 @@ class PostController extends Controller
         $topic->posts()->create([
             'body' => $request->input('body'),
             'user_id' => $request->user()->id,
+        ]);
+
+        notify()->flash('Success', 'success', [
+            'text' => 'Your post has been added.',
+            'timer' => 2000,
         ]);
 
         return redirect()->route('forum.topic.show', ['id' => $topic->id]);

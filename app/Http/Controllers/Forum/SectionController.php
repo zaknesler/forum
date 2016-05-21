@@ -12,7 +12,7 @@ class SectionController extends Controller
 {
     /**
      * Get the view to show all sections.
-     * @param  Section  Section model injection.
+     * @param  Section  $section  Section model injection.
      * @return \Illuminate\Http\Response
      */
     public function index(Section $section)
@@ -24,11 +24,12 @@ class SectionController extends Controller
 
     /**
      * Get the view to show all topics under a specific section.
-     * @param  integer  Section identifier.
-     * @param  Section  Section model injection.
+     * @param  string   $slug     Section slug.
+     * @param  integer  $id       Section identifier.
+     * @param  Section  $section  Section model injection.
      * @return \Illuminate\Http\Response
      */
-    public function show($id, Section $section)
+    public function show($slug, $id, Section $section)
     {
         $show = $section->findOrFail($id);
 

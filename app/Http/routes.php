@@ -31,10 +31,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('account/settings/profile', 'Account\AccountController@postProfile');
 
     Route::get('sections', 'Forum\SectionController@index')->name('forum.section.all');
-    Route::get('section/{id}', 'Forum\SectionController@show')->name('forum.section.show');
+    Route::get('section/{slug}/{id}', 'Forum\SectionController@show')->name('forum.section.show');
 
     Route::get('topics', 'Forum\TopicController@all')->name('forum.topic.all');
-    Route::get('topic/{id}', 'Forum\TopicController@show')->name('forum.topic.show');
+    Route::get('topic/{slug}/{id}', 'Forum\TopicController@show')->name('forum.topic.show');
 
     Route::get('topic', 'Forum\TopicController@index')->name('forum.topic.new');
     Route::post('topic', 'Forum\TopicController@store');

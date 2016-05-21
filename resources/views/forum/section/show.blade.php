@@ -8,7 +8,7 @@
             @if ($topics->count())
                 <ul class="list-group">
                     @foreach ($topics as $topic)
-                        <a class="list-group-item" href="{{ route('forum.topic.show', ['id' => $topic->id]) }}">
+                        <a class="list-group-item" href="{{ route('forum.topic.show', ['slug' => $topic->slug, 'id' => $topic->id]) }}">
                             <h4>
                             <span class="label label-primary pull-right">{{ $topic->replyCountText() }}</span>
                             {{ $topic->title }}

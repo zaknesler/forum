@@ -40,11 +40,12 @@ class TopicController extends Controller
 
     /**
      * Get the view that displays a single topic with its replies.
+     * @param  string   $slug   Topic slug.
      * @param  integer  $id     Topic identifier.
      * @param  Topic    $topic  Topic model injection.
      * @return \Illuminate\Http\Response
      */
-    public function show($id, Topic $topic)
+    public function show($slug, $id, Topic $topic)
     {
         $show = $topic->findOrFail($id);
         $posts = $show->posts()->latestFirst()->get();
@@ -67,6 +68,11 @@ class TopicController extends Controller
             'slug' => str_slug($request->input('title')),
             'body' => Markdown::convertToHtml($request->input('body')),
             'section_id' => $request->input('section_id'),
+        ]);
+
+        notify()->flash('Success', 'success', [
+            'text' => 'Your topic has been added.',
+            'timer' => 2000,
         ]);
 
         return redirect()->route('forum.topic.show', [

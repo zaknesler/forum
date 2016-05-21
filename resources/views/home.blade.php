@@ -14,7 +14,7 @@
                             @foreach ($section->topics()->get() as $topic)
                                 <li class="list-group-item"><h4>
                                     <span class="label label-primary pull-right">{{ $topic->replyCountText() }}</span>
-                                    <a href="{{ route('forum.topic.show', ['id' => $topic->id]) }}">{{ $topic->title }}</a>
+                                    <a href="{{ route('forum.topic.show', ['slug' => $topic->slug, 'id' => $topic->id]) }}">{{ $topic->title }}</a>
                                     <small>by {{ $topic->user->username }}</small>
                                 </h4></li>
                             @endforeach
