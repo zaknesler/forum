@@ -30,6 +30,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('account/settings/profile', 'Account\AccountController@getProfile')->name('account.settings.profile');
     Route::post('account/settings/profile', 'Account\AccountController@postProfile');
 
+    Route::get('@{username}', 'User\UserController@profile')->name('user.profile');
+
     Route::get('section/{slug}', 'Forum\SectionController@show')->name('forum.section.show');
 
     Route::get('topic/{slug}/{id}', 'Forum\TopicController@show')->name('forum.topic.show');

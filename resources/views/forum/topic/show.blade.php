@@ -6,7 +6,7 @@
         <div class="row">
             <h3 class="col-md-9">{{ $topic->title }}</h3>
             <div class="col-md-3 text-right">
-                <h3><small>{{ $topic->created_at->diffForHumans() }} by <a href="#">{{ $topic->user->username }}</a></small></h3>
+                <h3><small>{{ $topic->created_at->diffForHumans() }} by <a href="{{ route('user.profile', ['username' => $topic->user->username]) }}">{{ $topic->user->username }}</a></small></h3>
             </div>
         </div>
         <hr>
@@ -19,11 +19,11 @@
         @foreach ($posts as $post)
             <div class="media">
                 <div class="media-left">
-                    <a href="#"><img src="{{ $post->user->avatarUrl(['size' => 50]) }}" alt="User avatar" class="media-object"></a>
+                    <a href="{{ route('user.profile', ['username' => $post->user->username]) }}"><img src="{{ $post->user->avatarUrl(['size' => 50]) }}" alt="User avatar" class="media-object"></a>
                 </div>
                 <div class="media-body">
                     <div class="media-heading">
-                        <strong><a href="#">{{ $post->user->username }}</a> posted {{ $post->created_at->diffForHumans() }}</strong>
+                        <strong><a href="{{ route('user.profile', ['username' => $post->user->username]) }}">{{ $post->user->username }}</a> posted {{ $post->created_at->diffForHumans() }}</strong>
                     </div>
                     {!! $post->body !!}
                 </div>

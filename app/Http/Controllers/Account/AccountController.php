@@ -29,6 +29,15 @@ class AccountController extends Controller
     {
         $current = $user->find(auth()->user()->id);
 
+        if (!$request->input('first_name') && $request->input('last_name')) {
+            notify()->flash('Error', 'error', [
+                'text' => 'A first name is required if the last name is set.',
+                'timer' => 5000,
+            ]);
+
+            return redirect()->back();
+        }
+
         $current->update([
             'first_name' => $request->input('first_name'),
             'last_name' => $request->input('last_name'),

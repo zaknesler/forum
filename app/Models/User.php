@@ -50,6 +50,13 @@ class User extends Authenticatable
         }
     }
 
+    public function getFullName()
+    {
+        if ($this->first_name && $this->last_name) {
+            return $this->first_name . ' ' . $this->last_name;
+        }
+    }
+
     public function avatarUrl(array $options = [])
     {
         $size = array_get($options, 'size', 45);
