@@ -31,7 +31,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('account/settings/profile', 'Account\AccountController@postProfile');
 
     Route::get('sections', 'Forum\SectionController@index')->name('forum.section.all');
-    Route::get('section/{slug}/{id}', 'Forum\SectionController@show')->name('forum.section.show');
+    Route::get('section/{slug}', 'Forum\SectionController@show')->name('forum.section.show');
 
     Route::get('topics', 'Forum\TopicController@all')->name('forum.topic.all');
     Route::get('topic/{slug}/{id}', 'Forum\TopicController@show')->name('forum.topic.show');
@@ -39,5 +39,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('topic', 'Forum\TopicController@index')->name('forum.topic.new');
     Route::post('topic', 'Forum\TopicController@store');
 
-    Route::post('topic/{topic}/post', 'Forum\PostController@store')->name('forum.topic.reply');
+    Route::post('topic/{topic}/post', 'Forum\PostController@store')->name('forum.topic.post');
+});
+
+Route::group(['prefix' => 'moderate', 'middleware' => ['ability:owner|admin,remove-topic']], function () {
+    Route::get('destroy/topic/{id}', 'Moderation\AdminController@destroyTopic')->name('moderation.destroy.topic');
 });

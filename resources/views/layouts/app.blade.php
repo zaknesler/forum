@@ -21,12 +21,6 @@
                 <a class="navbar-brand" href="{{ route('home') }}">{{ env('APP_NAME') }}</a>
             </div>
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <ul class="nav navbar-nav">
-                    @if (Auth::user())
-                        <li><a href="{{ route('forum.section.all') }}">Sections</a></li>
-                        <li><a href="{{ route('forum.topic.all') }}">Topics</a></li>
-                    @endif
-                </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (Auth::guest())
                         <li><a href="{{ route('auth.register') }}">Sign up</a></li>
@@ -37,9 +31,9 @@
                                 {{ Auth::user()->getNameOrUsername() }} <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ route('account.settings.profile') }}">Edit account</a></li>
+                                <li><a href="{{ route('account.settings.profile') }}"><i class="fa fa-btn fa-pencil-square-o"></i> Edit account</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="{{ route('auth.logout') }}">Logout</a></li>
+                                <li><a href="{{ route('auth.logout') }}"><i class="fa fa-btn fa-sign-out"></i> Logout</a></li>
                             </ul>
                         </li>
                     @endif
@@ -47,9 +41,7 @@
             </div>
         </div>
     </nav>
-
     @yield('content')
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script>

@@ -17,7 +17,7 @@ class SectionController extends Controller
      */
     public function index(Section $section)
     {
-        $sections = $section->paginate(25);
+        $sections = $section->paginate(10);
 
         return view('forum.section.all')->withSections($sections);
     }
@@ -29,13 +29,13 @@ class SectionController extends Controller
      * @param  Section  $section  Section model injection.
      * @return \Illuminate\Http\Response
      */
-    public function show($slug, $id, Section $section)
+    public function show($slug, Section $section)
     {
-        $show = $section->findOrFail($id);
+        $show = $section->where('slug', $slug)->firstOrFail();
 
         return view('forum.section.show', [
             'section' => $show,
-            'topics' => $show->topics()->get(),
+            'topics' => $show->topics()->paginate(10),
         ]);
     }
 }

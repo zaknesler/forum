@@ -19,3 +19,22 @@ $factory->define(Forum\Models\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(Forum\Models\Topic::class, function (Faker\Generator $faker) {
+    $title = $faker->sentence(7);
+
+    return [
+        'section_id' => $faker->numberBetween(1, 4),
+        'user_id' => $faker->numberBetween(1, 2),
+        'title' => $title,
+        'slug' => str_slug($title),
+        'body' => $faker->text(500),
+    ];
+});
+
+$factory->define(Forum\Models\Post::class, function (Faker\Generator $faker) {
+    return [
+        'user_id' => $faker->numberBetween(1, 2),
+        'body' => $faker->text(500),
+    ];
+});

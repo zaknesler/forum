@@ -33,7 +33,7 @@ class TopicController extends Controller
      */
     public function all(Topic $topic)
     {
-        $topics = $topic->latestFirst()->paginate(25);
+        $topics = $topic->latestFirst()->paginate(10);
 
         return view('forum.topic.all')->withTopics($topics);
     }
@@ -76,6 +76,7 @@ class TopicController extends Controller
         ]);
 
         return redirect()->route('forum.topic.show', [
+            'slug' => $topic->slug,
             'id' => $topic->id,
         ]);
     }

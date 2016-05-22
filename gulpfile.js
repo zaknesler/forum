@@ -20,6 +20,7 @@ elixir(function(mix) {
         'thirdparty/highlight.js',
         'thirdparty/sweetalert.js',
         'thirdparty/uploadcare.js',
+        'thirdparty/fortawesome.js',
         'app.js',
     ], 'public/js/app.js');
 });

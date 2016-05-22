@@ -14,9 +14,9 @@ class HomeController extends Controller
      */
     public function index(Section $section)
     {
-        $sections = $section->get();
-
         if (auth()->user()) {
+            $sections = $section->paginate(25);
+
             return view('home')->withSections($sections);
         }
 

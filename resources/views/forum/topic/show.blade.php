@@ -3,9 +3,14 @@
 @section('content')
 <div class="container">    
     <div class="topic">
-        <h2>{{ $topic->title }}</h2>
-        <h4>{{ $topic->created_at->diffForHumans() }} by <a href="#">{{ $topic->user->username }}</a></h4>
+        <div class="row">
+            <h3 class="col-md-9">{{ $topic->title }}</h3>
+            <div class="col-md-3 text-right">
+                <h3><small>{{ $topic->created_at->diffForHumans() }} by <a href="#">{{ $topic->user->username }}</a></small></h3>
+            </div>
+        </div>
         <hr>
+
         {!! $topic->body !!}
     </div>
     
@@ -19,7 +24,7 @@
                 </div>
                 <div class="media-body">
                     <div class="media-heading">
-                        <a href="#">{{ $post->user->username }}</a> - {{ $post->created_at->diffForHumans() }}
+                        {{ $post->created_at->diffForHumans() }} by <a href="#">{{ $post->user->username }}</a>
                     </div>
                     {!! $post->body !!}
                 </div>
@@ -31,28 +36,24 @@
     <hr>
 
     <div class="topic__post">
-        <div class="row">
-            <div class="col-sm-8">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Post a reply</div>
-                    <div class="panel-body">
-                        <form action="{{ route('forum.topic.reply', ['id' => $topic->id]) }}" method="post" autocomplete="off">
-                            <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
-                                <label for="body">Body</label>
-                                <textarea class="form-control" name="body" id="body" rows="10" placeholder="Reply to this topic">{{ old('body') }}</textarea>
-                                @if ($errors->has('body'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('body') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                            <div class="form-group">
-                                {!! csrf_field() !!}
-                                <button type="submit" class="btn btn-primary">Reply</button>
-                            </div>
-                        </form>
+        <div class="panel panel-default">
+            <div class="panel-heading">Post a reply</div>
+            <div class="panel-body">
+                <form action="{{ route('forum.topic.post', ['id' => $topic->id]) }}" method="post" autocomplete="off">
+                    <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
+                        <textarea class="form-control" name="body" id="body" rows="10" placeholder="Reply to this topic">{{ old('body') }}</textarea>
+                        <p class="text-right">Markdown is supported</p>
+                        @if ($errors->has('body'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('body') }}</strong>
+                            </span>
+                        @endif
                     </div>
-                </div>
+                    <div class="form-group">
+                        {!! csrf_field() !!}
+                        <button type="submit" class="btn btn-primary">Reply</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

@@ -6,9 +6,12 @@ use Forum\Models\Post;
 use Forum\Models\User;
 use Forum\Models\Section;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Topic extends Model
 {
+    use SoftDeletes;
+    
     protected $fillable = [
         'title',
         'slug',

@@ -9,9 +9,12 @@
                 <ul class="list-group">
                     @foreach ($topics as $topic)
                         <li class="list-group-item"><h4>
+                            @ability ('owner,admin', 'remove-topic')
+                            <a class="label label-danger pull-right" href="{{ route('moderation.destroy.topic', ['id' => $topic->id]) }}"><i class="fa fa-times"></i></a>
+                            @endability
                             <span class="label label-primary pull-right">{{ $topic->replyCountText() }}</span>
                             <a href="{{ route('forum.topic.show', ['slug' => $topic->slug, 'id' => $topic->id]) }}">{{ $topic->title }}</a>
-                            <small>by {{ $topic->user->username }}</small>
+                            <small>by {{ $topic->user->username }}</small>                            
                         </h4></li>
                     @endforeach
                 </ul>

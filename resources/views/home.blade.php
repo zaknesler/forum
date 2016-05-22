@@ -1,34 +1,29 @@
 @extends('layouts.app')
 
-@section('title', 'Home')
-
 @section('content')
 <div class="container">
+    <h3>Browse sections</h3>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-10">            
             @if ($sections->count())
-                @foreach ($sections as $section)
-                    <h3>{{ $section->title }} <small>all topics</small></h3>
-                    @if ($section->topicCount())
-                        <ul class="list-group">
-                            @foreach ($section->topics()->get() as $topic)
-                                <li class="list-group-item"><h4>
-                                    <span class="label label-primary pull-right">{{ $topic->replyCountText() }}</span>
-                                    <a href="{{ route('forum.topic.show', ['slug' => $topic->slug, 'id' => $topic->id]) }}">{{ $topic->title }}</a>
-                                    <small>by {{ $topic->user->username }}</small>
-                                </h4></li>
-                            @endforeach
-                        </ul>
-                    @else
-                        <ul class="list-group">
-                            <li class="list-group-item">No topics under this section.</li>
-                        </ul>
-                    @endif
-                @endforeach
+                <ul class="list-group">
+                    @foreach ($sections as $section)
+                        <a class="list-group-item" href="{{ route('forum.section.show', ['slug' => $section->slug]) }}">
+                            <h4>
+                            <span class="label label-primary pull-right">{{ $section->topicCount() }} topics</span>
+                            {{ $section->title }}
+                            </h4>
+                        </a>
+                    @endforeach
+                </ul>
+                {{ $sections->render() }}
             @else
                 <hr>
                 <p>No sections to show.</p>
             @endif
+        </div>
+        <div class="col-md-2">
+            <a href="{{ route('forum.topic.new') }}" class="btn btn-info btn-block">Create topic</a>
         </div>
     </div>
 </div>
