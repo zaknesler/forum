@@ -4,8 +4,8 @@
 <div class="container">    
     <div class="topic">
         <div class="row">
-            <h3 class="col-md-9">{{ $topic->title }}</h3>
-            <div class="col-md-3 text-right">
+            <h3 class="col-xs-12 col-sm-8 col-md-9">{{ $topic->title }}</h3>
+            <div class="col-xs-12 col-sm-4 col-md-3 text-right">
                 <h3><small>{{ $topic->created_at->diffForHumans() }} by <a href="{{ route('user.profile', ['username' => $topic->user->username]) }}">{{ $topic->user->username }}</a></small></h3>
             </div>
         </div>
@@ -23,7 +23,7 @@
                 </div>
                 <div class="media-body">
                     <div class="media-heading">
-                        <strong><a href="{{ route('user.profile', ['username' => $post->user->username]) }}">{{ $post->user->username }}</a> posted {{ $post->created_at->diffForHumans() }}</strong>
+                        <a href="{{ route('user.profile', ['username' => $post->user->username]) }}">{{ $post->user->username }}</a> {{ $post->created_at->diffForHumans() }}
                     </div>
                     {!! $post->body !!}
                 </div>
