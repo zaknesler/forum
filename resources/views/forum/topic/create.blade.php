@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Post new topic</div>
                 <div class="panel-body">
-                    <form action="{{ route('forum.topic.new') }}" method="post" autocomplete="off">
+                    <form action="{{ route('forum.topic.create') }}" method="post" autocomplete="off">
                         <div class="form-group{{ $errors->has('section_id') ? ' has-error' : '' }}">
                             <label for="section_id">Section</label>
                             <select class="form-control" name="section_id" id="section_id">
@@ -42,7 +42,7 @@
                         </div>
                         <div class="form-group">
                             {!! csrf_field() !!}
-                            <button type="submit" class="btn btn-primary">Post topic</button>
+                            <button type="submit" class="btn btn-primary">Create topic</button>
                         </div>
                     </form>
                 </div>

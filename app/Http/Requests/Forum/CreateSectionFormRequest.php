@@ -4,7 +4,7 @@ namespace Forum\Http\Requests\Forum;
 
 use Forum\Http\Requests\Request;
 
-class GetTopicsFormRequest extends Request
+class CreateSectionFormRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,8 @@ class GetTopicsFormRequest extends Request
     public function rules()
     {
         return [
-            'section_id' => 'required|exists:sections,id',
+            'title' => 'required|max:255',
+            'slug' => 'required|max:255|unique:sections',
         ];
     }
 }

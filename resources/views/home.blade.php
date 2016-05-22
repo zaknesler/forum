@@ -23,7 +23,7 @@
             @endif
         </div>
         <div class="col-md-2">
-            <a href="{{ route('forum.topic.new') }}" class="btn btn-info btn-block">Create topic</a>
+            <a href="{{ route('forum.topic.create') }}" class="btn btn-info btn-block">Create topic</a>
         </div>
     </div>
 </div>

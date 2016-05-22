@@ -21,15 +21,24 @@
                 <a class="navbar-brand" href="{{ route('home') }}">{{ env('APP_NAME') }}</a>
             </div>
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                @ability ('moderator,admin,owner', 'moderation-dropdown')
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Moderation <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ route('moderation.section.all') }}">All sections</a></li>
+                                <li><a href="{{ route('moderation.topic.all') }}">All topics</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                @endability
                 <ul class="nav navbar-nav navbar-right">
                     @if (Auth::guest())
                         <li><a href="{{ route('auth.register') }}">Sign up</a></li>
                         <li><a href="{{ route('auth.login') }}">Sign in</a></li>
                     @else
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->getNameOrUsername() }} <span class="caret"></span>
-                            </a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->getFullNameOrUsername() }} <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ route('account.settings.profile') }}"><i class="fa fa-btn fa-pencil-square-o"></i> Edit account</a></li>
                                 <li role="separator" class="divider"></li>
