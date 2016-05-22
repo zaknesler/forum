@@ -10,23 +10,6 @@ use Forum\Http\Controllers\Controller;
 class TopicController extends Controller
 {
     /**
-     * Get the view to show all topics under a specific section.
-     * @param  string   $slug     Section slug.
-     * @param  integer  $id       Section identifier.
-     * @param  Section  $section  Section model injection.
-     * @return \Illuminate\Http\Response
-     */
-    public function show($slug, Section $section)
-    {
-        $show = $section->where('slug', $slug)->firstOrFail();
-
-        return view('moderation.section.show', [
-            'section' => $show,
-            'topics' => $show->topics()->paginate(10),
-        ]);
-    }
-
-    /**
      * Mark topic as deleted (using soft deletes).
      * @param  integer  $id    Topic identifier.
      * @param  Topic   $topic  Topic model injection.
@@ -36,8 +19,14 @@ class TopicController extends Controller
     {
         $destroy = $topic->findOrFail($id);
 
+        /**
+         * When the database is migrated, the tables
+         * are inter-connected with an option to
+         * 'cascade' when deleted. This means that if
+         * we delete the parent row value, Eloquent will
+         * go through and delete all of its children automatically.
+         */
         $destroy->delete();
-        $destroy->posts()->delete();
 
         return redirect()->back();
     }

@@ -6,24 +6,39 @@ use Forum\Http\Requests;
 use Forum\Models\Section;
 use Illuminate\Http\Request;
 use Forum\Http\Controllers\Controller;
+use Forum\Http\Requests\Forum\CreateSectionFormRequest;
 
 class SectionController extends Controller
 {
     /**
-     * Get the view to show all topics under a specific section.
-     * @param  string   $slug     Section slug.
-     * @param  integer  $id       Section identifier.
-     * @param  Section  $section  Section model injection.
+     * Get the view to create a new section.
      * @return \Illuminate\Http\Response
      */
-    public function show($slug, Section $section)
+    public function create()
     {
-        $show = $section->where('slug', $slug)->firstOrFail();
+        return view('moderation.section.create');
+    }
 
-        return view('moderation.section.show', [
-            'section' => $show,
-            'topics' => $show->topics()->paginate(10),
+    /**
+     * Create new section.
+     * @param  CreateSectionFormRequest  $request  Form request for validation
+     * @param  Section                   $section  Section model injection.
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(CreateSectionFormRequest $request, Section $section)
+    {
+        $section->create([
+            'title' => $request->input('title'),
+            'slug' => $request->input('slug'),
+            'description' => $request->input('description'),
         ]);
+
+        notify()->flash('Success', 'success', [
+            'text' => 'Section has been created.',
+            'timer' => 2000,
+        ]);
+
+        return redirect()->route('home');
     }
 
     /**
@@ -37,7 +52,6 @@ class SectionController extends Controller
         $destroy = $section->findOrFail($id);
 
         $destroy->delete();
-        $destroy->topics()->delete();
 
         return redirect()->back();
     }

@@ -34,22 +34,17 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('topic/{slug}/{id}', 'Forum\TopicController@show')->name('forum.topic.show');
 
-    Route::get('topic/create', 'Forum\TopicController@index')->name('forum.topic.create');
-    Route::post('topic/create', 'Forum\TopicController@store');
+    Route::get('topic/create/{section_id?}', 'Forum\TopicController@create')->name('forum.topic.create');
+    Route::post('topic/create/{section_id?}', 'Forum\TopicController@store');
 
     Route::post('topic/{topic}/post', 'Forum\PostController@store')->name('forum.topic.post');
 });
 
-Route::group(['prefix' => 'moderation', 'middleware' => ['ability:owner|admin,remove-topic']], function () {
-    Route::get('sections', 'Forum\SectionController@all')->name('moderation.section.all');
-
-    Route::get('topics', 'Forum\TopicController@all')->name('moderation.topic.all');
+Route::group(['prefix' => 'moderation', 'middleware' => ['role:owner|admin']], function () {
     Route::get('topic/destroy/{id}', 'Moderation\TopicController@destroy')->name('moderation.topic.destroy');
 
-    Route::get('section/{slug}', 'Moderation\SectionController@show')->name('moderation.section.show');
-
-    Route::get('section/create', 'Forum\SectionController@create')->name('moderation.section.create');
-    Route::post('section/create', 'Forum\SectionController@store');
+    Route::get('section/create', 'Moderation\SectionController@create')->name('moderation.section.create');
+    Route::post('section/create', 'Moderation\SectionController@store');
 
     Route::get('section/destroy/{id}', 'Moderation\SectionController@destroy')->name('moderation.section.destroy');
 });

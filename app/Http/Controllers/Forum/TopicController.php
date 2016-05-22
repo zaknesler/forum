@@ -19,11 +19,13 @@ class TopicController extends Controller
      * @param  Section  $section  Section model injection.
      * @return \Illuminate\Http\Response
      */
-    public function index(Topic $topic, Section $section)
+    public function create(Request $request, Topic $topic, Section $section)
     {
         $sections = $section->get();
 
-        return view('forum.topic.create')->withSections($sections);
+        $id = $request['section_id'];
+
+        return view('forum.topic.create')->withSections($sections)->withId($id);
     }
     
     /**

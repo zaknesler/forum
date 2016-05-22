@@ -10,7 +10,6 @@
             </div>
         </div>
         <hr>
-
         {!! $topic->body !!}
     </div>
     
@@ -24,7 +23,7 @@
                 </div>
                 <div class="media-body">
                     <div class="media-heading">
-                        <strong>{{ $post->created_at->diffForHumans() }} by <a href="#">{{ $post->user->username }}</a></strong>
+                        <strong><a href="#">{{ $post->user->username }}</a> posted {{ $post->created_at->diffForHumans() }}</strong>
                     </div>
                     {!! $post->body !!}
                 </div>

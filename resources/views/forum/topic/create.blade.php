@@ -12,7 +12,7 @@
                             <label for="section_id">Section</label>
                             <select class="form-control" name="section_id" id="section_id">
                                 @foreach ($sections as $section)
-                                    <option value="{{ $section->id }}">{{ $section->title }}</option>
+                                    <option value="{{ $section->id }}" @if ($id == $section->id) selected @endif>{{ $section->title }}</option>
                                 @endforeach
                             </select>
                             @if ($errors->has('section_id'))
