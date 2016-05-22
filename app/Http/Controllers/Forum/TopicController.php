@@ -15,9 +15,9 @@ class TopicController extends Controller
 {
     /**
      * Get the view to create a new topic.
-     * @param   Topic    $topic    Topic model injection.
-     * @param   Section  $section  Section model injection.
-     * @return  \Illuminate\Http\Response
+     * @param  Topic    $topic    Topic model injection.
+     * @param  Section  $section  Section model injection.
+     * @return \Illuminate\Http\Response
      */
     public function index(Topic $topic, Section $section)
     {
@@ -28,8 +28,8 @@ class TopicController extends Controller
     
     /**
      * Get the view that displays all of the topics.
-     * @param   Topic  $topic  Topic model injection.
-     * @return  \Illuminate\Http\Response
+     * @param  Topic  $topic  Topic model injection.
+     * @return \Illuminate\Http\Response
      */
     public function all(Topic $topic)
     {
@@ -40,10 +40,10 @@ class TopicController extends Controller
 
     /**
      * Get the view that displays a single topic with its replies.
-     * @param   string   $slug   Topic slug.
-     * @param   integer  $id     Topic identifier.
-     * @param   Topic    $topic  Topic model injection.
-     * @return  \Illuminate\Http\Response
+     * @param  string   $slug   Topic slug.
+     * @param  integer  $id     Topic identifier.
+     * @param  Topic    $topic  Topic model injection.
+     * @return \Illuminate\Http\Response
      */
     public function show($slug, $id, Topic $topic)
     {
@@ -58,8 +58,8 @@ class TopicController extends Controller
 
     /**
      * Store the new topic in database.
-     * @param   CreateTopicFormRequest  $request  Form request for validation.
-     * @return  \Illuminate\Http\RedirectResponse
+     * @param  CreateTopicFormRequest  $request  Form request for validation.
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(CreateTopicFormRequest $request)
     {
@@ -79,21 +79,5 @@ class TopicController extends Controller
             'slug' => $topic->slug,
             'id' => $topic->id,
         ]);
-    }
-
-    /**
-     * Mark topic as deleted (using soft deletes).
-     * @param   integer  $id    Topic identifier.
-     * @param   Topic   $topic  Topic model injection.
-     * @return  \Illuminate\Http\RedirectResponse
-     */
-    public function destroy($id, Topic $topic)
-    {
-        $destroy = $topic->findOrFail($id);
-
-        $destroy->delete();
-        $destroy->posts()->delete();
-
-        return redirect()->back();
     }
 }

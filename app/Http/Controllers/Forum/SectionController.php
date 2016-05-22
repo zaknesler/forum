@@ -12,8 +12,8 @@ class SectionController extends Controller
 {
     /**
      * Get the view to show all sections.
-     * @param   Section  $section  Section model injection.
-     * @return  \Illuminate\Http\Response
+     * @param  Section  $section  Section model injection.
+     * @return \Illuminate\Http\Response
      */
     public function all(Section $section)
     {
@@ -24,10 +24,10 @@ class SectionController extends Controller
 
     /**
      * Get the view to show all topics under a specific section.
-     * @param   string   $slug     Section slug.
-     * @param   integer  $id       Section identifier.
-     * @param   Section  $section  Section model injection.
-     * @return  \Illuminate\Http\Response
+     * @param  string   $slug     Section slug.
+     * @param  integer  $id       Section identifier.
+     * @param  Section  $section  Section model injection.
+     * @return \Illuminate\Http\Response
      */
     public function show($slug, Section $section)
     {
@@ -41,7 +41,7 @@ class SectionController extends Controller
 
     /**
      * Get the view to create a new section.
-     * @return  \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -50,9 +50,9 @@ class SectionController extends Controller
 
     /**
      * Create new section.
-     * @param   CreateSectionFormRequest  $request  Form request for validation
-     * @param   Section                   $section  Section model injection.
-     * @return  \Illuminate\Http\RedirectResponse
+     * @param  CreateSectionFormRequest  $request  Form request for validation
+     * @param  Section                   $section  Section model injection.
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(CreateSectionFormRequest $request, Section $section)
     {
@@ -68,21 +68,5 @@ class SectionController extends Controller
         ]);
 
         return redirect()->route('home');
-    }
-
-    /**
-     * Mark section as deleted (using soft deletes).
-     * @param   integer  $id       Section identifier.
-     * @param   Section  $section  Section model injection.
-     * @return  \Illuminate\Http\RedirectResponse
-     */
-    public function destroy($id, Section $section)
-    {
-        $destroy = $section->findOrFail($id);
-
-        $destroy->delete();
-        $destroy->topics()->delete();
-
-        return redirect()->back();
     }
 }

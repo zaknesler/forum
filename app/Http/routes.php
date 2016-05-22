@@ -44,10 +44,12 @@ Route::group(['prefix' => 'moderation', 'middleware' => ['ability:owner|admin,re
     Route::get('sections', 'Forum\SectionController@all')->name('moderation.section.all');
 
     Route::get('topics', 'Forum\TopicController@all')->name('moderation.topic.all');
-    Route::get('topic/destroy/{id}', 'Forum\TopicController@destroy')->name('moderation.topic.destroy');
+    Route::get('topic/destroy/{id}', 'Moderation\TopicController@destroy')->name('moderation.topic.destroy');
+
+    Route::get('section/{slug}', 'Moderation\SectionController@show')->name('moderation.section.show');
 
     Route::get('section/create', 'Forum\SectionController@create')->name('moderation.section.create');
     Route::post('section/create', 'Forum\SectionController@store');
-    Route::get('section/destroy/{id}', 'Forum\SectionController@destroy')->name('moderation.section.destroy');
 
+    Route::get('section/destroy/{id}', 'Moderation\SectionController@destroy')->name('moderation.section.destroy');
 });

@@ -4,7 +4,7 @@
 <div class="container">
     <h3>All sections</h3>
     <div class="row">
-        <div class="col-md-10">            
+        <div class="col-md-10">
             @if ($sections->count())
                 <ul class="list-group">
                     @foreach ($sections as $section)
@@ -13,7 +13,7 @@
                             <a class="label label-danger pull-right" href="{{ route('moderation.section.destroy', ['id' => $section->id]) }}"><i class="fa fa-times"></i></a>
                             @endability
                             <span class="label label-primary pull-right">{{ $section->topicCountText() }}</span>
-                            <a href="{{ route('forum.section.show', ['slug' => $section->slug]) }}">{{ $section->title }}</a>
+                            <a href="{{ route('moderation.section.show', ['slug' => $section->slug]) }}">{{ $section->title }}</a>
                         </h4></li>
                     @endforeach
                 </ul>

@@ -30,7 +30,7 @@
                         </div>
                         <div class="form-group">
                             <div class="checkbox">
-                                <label><input type="checkbox" name="remember">Remember me</label>
+                                <label><input type="checkbox" name="remember">Keep me logged in</label>
                             </div>
                         </div>
                         <div class="form-group">

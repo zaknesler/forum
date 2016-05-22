@@ -33,7 +33,6 @@
                         <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
                             <label for="body">Body</label>
                             <textarea class="form-control" name="body" id="body" rows="10">{{ old('body') }}</textarea>
-                            <p class="text-right">Markdown is supported</p>
                             @if ($errors->has('body'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('body') }}</strong>
