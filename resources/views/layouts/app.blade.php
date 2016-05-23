@@ -50,6 +50,11 @@
         </div>
     </nav>
     @yield('content')
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted">&copy; Zak Nesler, <?=date('Y')?></p>
+        </div>
+    </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
