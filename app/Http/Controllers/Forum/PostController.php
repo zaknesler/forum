@@ -2,6 +2,7 @@
 
 namespace Forum\Http\Controllers\Forum;
 
+use Forum\Models\Post;
 use Forum\Models\Topic;
 use Forum\Http\Requests;
 use Illuminate\Http\Request;
@@ -33,5 +34,20 @@ class PostController extends Controller
             'id' => $topic->id,
             'slug' => $topic->slug,
         ]);
+    }
+
+    /**
+     * Mark post as deleted.
+     * @param  integer  $id    Post identifier.
+     * @param  Post     $post  Post model injection.
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy($id, Post $post)
+    {
+        $destroy = $post->findOrFail($id);
+
+        $destroy->delete();
+
+        return redirect()->back();
     }
 }

@@ -11,6 +11,19 @@
         </div>
         <hr>
         {!! $topic->body !!}
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="text-right">
+                    <a href="#" class="btn btn-info btn-xs">Report</a>
+                    @ability ('admin,owner', 'edit-topic')
+                    <a href="#" class="btn btn-warning btn-xs">Edit</a>
+                    @endability
+                    @ability ('admin,owner', 'destroy-topic')
+                    <a href="{{ route('moderation.topic.destroy', ['id' => $topic->id]) }}" class="btn btn-danger btn-xs">Delete</a>
+                    @endability
+                </div>
+            </div>
+        </div>
     </div>
     
     @if ($posts->count())
@@ -24,6 +37,9 @@
                 <div class="media-body">
                     <div class="media-heading">
                         <a href="{{ route('user.profile', ['username' => $post->user->username]) }}">{{ $post->user->username }}</a> {{ $post->created_at->diffForHumans() }}
+                        @ability ('admin,owner', 'destroy-post')
+                        <a href="{{ route('moderation.post.destroy', ['id' => $post->id]) }}" class="label label-danger"><i class="fa fa-times"></i></a>
+                        @endability
                     </div>
                     {!! $post->body !!}
                 </div>

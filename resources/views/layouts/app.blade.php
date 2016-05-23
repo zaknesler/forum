@@ -52,7 +52,11 @@
     @yield('content')
     <footer class="footer">
         <div class="container">
-            <p class="text-muted">&copy; Zak Nesler, <?=date('Y')?></p>
+            <div class="row">
+                <div class="col-xs-12">
+                    <p class="text-muted">&copy; Zak Nesler, <?=date('Y')?></p>
+                </div>
+            </div>
         </div>
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>

@@ -82,4 +82,26 @@ class TopicController extends Controller
             'id' => $topic->id,
         ]);
     }
+
+    /**
+     * Mark topic as deleted.
+     * @param  integer  $id     Topic identifier.
+     * @param  Topic    $topic  Topic model injection.
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy($id, Topic $topic)
+    {
+        $destroy = $topic->findOrFail($id);
+
+        /**
+         * When the database is migrated, the tables
+         * are inter-connected with an option to
+         * 'cascade' when deleted. This means that if
+         * we delete the parent row value, Eloquent will
+         * go through and delete all of its children automatically.
+         */
+        $destroy->delete();
+
+        return redirect()->route('home');
+    }
 }
