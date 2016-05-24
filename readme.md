@@ -42,7 +42,7 @@ This is the checklist of functionality I wish to have for this project. A strike
       - Edit section (permissions required)
       - Locked to specific user groups
     - ~~Topic replies (posts)~~
-      - ~~Delete posts (permissions required)~
+      - ~~Delete posts (permissions required)~~
       - Edit posts (permissions required)
     - ~~Topic deletion (permissions required)~~
     - ~~View all posted topics~~
