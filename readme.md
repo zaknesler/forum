@@ -33,19 +33,19 @@ This is the checklist of functionality I wish to have for this project. A strike
     - ~~User list~~
     - Edit user info
     - Suspend/Unsuspend users (using soft deletes, most likely)
-  - Topic creation
+  - ~~Sections~~
+    - ~~View all sections~~
+    - ~~Create~~
     - ~~Delete~~
-    - Edit
-    - Report
-    - ~~Post creation (replying)~~
+    - ~~Edit~~
+    - Locked to specific user groups
+      - Topic creation
       - ~~Delete~~
       - Edit
       - Report
-    - ~~Using Markdown~~
-      - ~~With [Laravel Markdown](https://github.com/GrahamCampbell/Laravel-Markdown)~~
-    - ~~Sections~~
-      - ~~View all sections~~
-      - ~~Create~~
-      - ~~Delete~~
-      - ~~Edit~~
-      - Locked to specific user groups
+      - ~~Post creation (replying)~~
+        - ~~Delete~~
+        - Edit
+        - Report
+      - ~~Using Markdown~~
+        - ~~With [Laravel Markdown](https://github.com/GrahamCampbell/Laravel-Markdown)~~
