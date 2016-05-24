@@ -46,7 +46,7 @@ Route::group(['prefix' => 'moderation', 'middleware' => ['role:owner|admin']], f
     Route::get('section/create', 'Forum\SectionController@create')->name('moderation.section.create');
     Route::post('section/create', 'Forum\SectionController@store');
 
-    Route::get('post/destroy/{id}', 'Forum\PostController@destroy')->name('moderation.post.destroy');
-    Route::get('topic/destroy/{id}', 'Forum\TopicController@destroy')->name('moderation.topic.destroy');
-    Route::get('section/destroy/{id}', 'Forum\SectionController@destroy')->name('moderation.section.destroy');
+    Route::get('post/{id}/destroy', 'Forum\PostController@destroy')->name('moderation.post.destroy');
+    Route::get('topic/{id}/destroy', 'Forum\TopicController@destroy')->name('moderation.topic.destroy');
+    Route::get('section/{id}/destroy', 'Forum\SectionController@destroy')->name('moderation.section.destroy');
 });
