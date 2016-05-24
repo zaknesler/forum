@@ -3,8 +3,8 @@
 This is a very simple Laravel 5.2 forum that I am working on. It is for personal-use only, so the features and functionality are limited to my own abilities and creativity. (For just starting out with Laravel, I think I am doing pretty well.)
 
 This is the checklist of functionality I wish to have for this project. A strikethrough signifies completion.
-- Front-end:
-  - ~~Javascript (mostly handled by Gulp)~~
+- Front-end (Javascript and Stylesheets handled by gulp):
+  - ~~Javascript~~
     - ~~jQuery (google hosted)~~
     - ~~Bootstrap~~
     - ~~Uploadcare~~
@@ -13,7 +13,8 @@ This is the checklist of functionality I wish to have for this project. A strike
   - ~~Stylesheets~~
     - ~~Bootstrap 3~~
       - ~~Flatly theme~~
-    - ~~Highlight~~
+        - ~~Customised theme~~
+    - ~~Highlight.js~~
     - ~~SweetAlert~~
 - Back-end: 
   - ~~Base Laravel 5.2 Authentication~~
@@ -28,12 +29,17 @@ This is the checklist of functionality I wish to have for this project. A strike
       - ~~Gravatar fallback~~
   - ~~User permissions / groups~~
     - ~~Using [entrust](https://github.com/Zizaco/entrust)~~
+  - User list
+    - Edit user info
+    - Suspend/Unsuspend users (using soft deletes, most likely)
   - Topic creation
     - ~~Markdown~~
-      - ~~Using [Laravel-Markdown](https://github.com/GrahamCampbell/Laravel-Markdown)~~
+      - ~~Using [Laravel Markdown](https://github.com/GrahamCampbell/Laravel-Markdown)~~
     - ~~Sections~~
       - ~~View all sections~~
-      - ~~Section selection~~
+      - ~~Create section (permissions required)~~
+      - Locked to specific user groups~~
     - ~~Topic replies (posts)~~
+    - ~~Topic deletion (permissions required)
     - ~~View all posted topics~~
     - Locked to specific user groups
