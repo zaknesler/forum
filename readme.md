@@ -40,7 +40,7 @@ This is the checklist of functionality I wish to have for this project. A strike
     - ~~Delete~~
     - ~~Edit~~
     - Locked to specific user groups
-      - Topic creation
+    - Topic creation
       - ~~Delete~~
       - ~~Edit~~
       - Report
