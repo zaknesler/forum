@@ -31,6 +31,7 @@ This is the checklist of functionality I wish to have for this project. A strike
     - ~~Using [entrust](https://github.com/Zizaco/entrust)~~
   - User management
     - ~~User list~~
+    - ~~User profile~~
     - Edit user info
     - Suspend/Unsuspend users (using soft deletes, most likely)
   - ~~Sections~~
@@ -41,7 +42,7 @@ This is the checklist of functionality I wish to have for this project. A strike
     - Locked to specific user groups
       - Topic creation
       - ~~Delete~~
-      - Edit
+      - ~~Edit~~
       - Report
       - ~~Post creation (replying)~~
         - ~~Delete~~
