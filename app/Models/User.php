@@ -57,6 +57,11 @@ class User extends Authenticatable
         }
     }
 
+    public function getFirstNameOrUsername()
+    {
+        return isset($this->first_name) ? $this->first_name : $this->username;
+    }
+
     public function avatarUrl(array $options = [])
     {
         $size = array_get($options, 'size', 45);

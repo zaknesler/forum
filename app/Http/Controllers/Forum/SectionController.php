@@ -6,7 +6,7 @@ use Forum\Http\Requests;
 use Forum\Models\Section;
 use Illuminate\Http\Request;
 use Forum\Http\Controllers\Controller;
-use Forum\Http\Requests\Forum\CreateSectionFormRequest;
+use Forum\Http\Requests\Forum\EditSectionFormRequest;
 
 class SectionController extends Controller
 {
@@ -46,6 +46,43 @@ class SectionController extends Controller
     public function create()
     {
         return view('moderation.section.create');
+    }
+
+    /**
+     * Get the view to edit an existing section.
+     * @param  integer  $id       Section identifier.
+     * @param  Section  $section  Section model identifier.
+     * @return \Illuminate\Http\Response
+     */
+    public function getEdit($id, Section $section)
+    {
+        $edit = $section->findOrFail($id);
+
+        return view('moderation.section.edit')->withSection($edit);
+    }
+
+    /**
+     * Post section edit.
+     * @param  integer  $id       Section identifier.
+     * @param  Section  $section  Section model identifier.
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function postEdit($id, EditSectionFormRequest $request, Section $section)
+    {
+        $current = $section->findOrFail($id);
+
+        $current->update([
+            'title' => $request->input('title'),
+            'slug' => $request->input('slug'),
+            'description' => $request->input('description'),
+        ]);
+
+        notify()->flash('Success', 'success', [
+            'text' => 'Section has been updated.',
+            'timer' => 2000,
+        ]);
+
+        return redirect()->route('home');
     }
 
     /**

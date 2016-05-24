@@ -1,8 +1,7 @@
 <?php
 
-Route::get('', 'HomeController@index')->name('home');
-
-/**
+Route::get('', 'HomeController@index')->name('home')
+;/**
  * Guest routes
  */
 
@@ -43,6 +42,11 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::group(['prefix' => 'moderation', 'middleware' => ['role:owner|admin']], function () {
+    Route::get('user/list', 'User\UserController@all')->name('moderation.user.list');
+
+    Route::get('section/{id}/edit', 'Forum\SectionController@getEdit')->name('moderation.section.edit');
+    Route::post('section/{id}/edit', 'Forum\SectionController@postEdit');
+
     Route::get('section/create', 'Forum\SectionController@create')->name('moderation.section.create');
     Route::post('section/create', 'Forum\SectionController@store');
 
