@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@extends('title', $topic->title)
+@section('title', $topic->title)
 
 @section('content')
 <div class="container">    
