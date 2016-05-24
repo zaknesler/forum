@@ -17,7 +17,7 @@ class Section extends Model
     {
         $count = $this->topicCount();
 
-        if ($count <= 1) {
+        if ($count == 1) {
             return $count . ' topic';
         }
 

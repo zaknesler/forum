@@ -25,7 +25,7 @@ class Topic extends Model
     {
         $count = $this->replyCount();
 
-        if ($count <= 1) {
+        if ($count == 1) {
             return $count . ' reply';
         }
 
