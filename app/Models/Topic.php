@@ -13,6 +13,7 @@ class Topic extends Model
         'title',
         'slug',
         'body',
+        'raw_body',
         'section_id',
     ];
 

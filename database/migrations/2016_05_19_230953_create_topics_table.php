@@ -19,6 +19,7 @@ class CreateTopicsTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->text('body');
+            $table->text('raw_body');
             $table->timestamps();
             $table->softDeletes();
 

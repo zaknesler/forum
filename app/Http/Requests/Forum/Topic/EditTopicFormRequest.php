@@ -1,10 +1,10 @@
 <?php
 
-namespace Forum\Http\Requests\Forum;
+namespace Forum\Http\Requests\Forum\Topic;
 
 use Forum\Http\Requests\Request;
 
-class CreateTopicFormRequest extends Request
+class EditTopicFormRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.

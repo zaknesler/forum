@@ -33,6 +33,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('section/{slug}', 'Forum\SectionController@show')->name('forum.section.show');
 
+    Route::get('topic/{id}/edit', 'Forum\TopicController@getEdit')->name('forum.topic.edit');
+    Route::post('topic/{id}/edit', 'Forum\TopicController@postEdit');
+
     Route::get('topic/{slug}/{id}', 'Forum\TopicController@show')->name('forum.topic.show');
 
     Route::get('topic/create/{section_id?}', 'Forum\TopicController@create')->name('forum.topic.create');

@@ -15,3 +15,11 @@ textarea {
 code {
   font-size: 80%;
 }
+
+dl.spaced > dd {
+    margin-bottom: 16px;
+}
+
+dl.spaced > dd:last-child {
+    margin-bottom: 0;
+}

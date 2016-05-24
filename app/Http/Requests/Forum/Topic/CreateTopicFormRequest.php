@@ -1,10 +1,10 @@
 <?php
 
-namespace Forum\Http\Requests\Forum;
+namespace Forum\Http\Requests\Forum\Topic;
 
 use Forum\Http\Requests\Request;
 
-class CreateSectionFormRequest extends Request
+class CreateTopicFormRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,9 @@ class CreateSectionFormRequest extends Request
     public function rules()
     {
         return [
-            'title' => 'required|max:255',
-            'slug' => 'required|max:255|unique:sections',
+            'title' => 'required',
+            'body' => 'required',
+            'section_id' => 'required|exists:sections,id',
         ];
     }
 }

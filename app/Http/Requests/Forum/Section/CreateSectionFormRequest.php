@@ -1,10 +1,10 @@
 <?php
 
-namespace Forum\Http\Requests\Forum;
+namespace Forum\Http\Requests\Forum\Section;
 
 use Forum\Http\Requests\Request;
 
-class EditSectionFormRequest extends Request
+class CreateSectionFormRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,7 @@ class EditSectionFormRequest extends Request
     {
         return [
             'title' => 'required|max:255',
-            'slug' => 'required|max:255|unique:sections,slug,' . $this->id,
+            'slug' => 'required|max:255|unique:sections',
         ];
     }
 }
