@@ -38,8 +38,11 @@ This is the checklist of functionality I wish to have for this project. A strike
     - ~~Sections~~
       - ~~View all sections~~
       - ~~Create section (permissions required)~~
-      - Locked to specific user groups~~
+      - ~~Delete section (permissions required)~~
+      - Edit section (permissions required)
+      - Locked to specific user groups
     - ~~Topic replies (posts)~~
-    - ~~Topic deletion (permissions required)
+      - ~~Delete posts (permissions required)~
+      - Edit posts (permissions required)
+    - ~~Topic deletion (permissions required)~~
     - ~~View all posted topics~~
-    - Locked to specific user groups
