@@ -9,7 +9,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Reset password</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('auth.password.reset', ['token' => $token ]) }}">
+                    <form action="{{ route('auth.password.reset', ['token' => $token ]) }}" method="post">
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email">Email</label>
                             <input type="email" class="form-control" name="email" id="email" value="{{ old('email') }}">
