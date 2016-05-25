@@ -50,6 +50,9 @@ Route::group(['prefix' => 'moderation', 'middleware' => ['role:owner|admin']], f
     Route::get('section/{id}/edit', 'Forum\SectionController@getEdit')->name('moderation.section.edit');
     Route::post('section/{id}/edit', 'Forum\SectionController@postEdit');
 
+    Route::get('user/{id}/edit', 'User\UserController@getEdit')->name('moderation.user.edit');
+    Route::post('user/{id}/edit', 'User\UserController@postEdit');
+
     Route::get('section/create', 'Forum\SectionController@create')->name('moderation.section.create');
     Route::post('section/create', 'Forum\SectionController@store');
 
