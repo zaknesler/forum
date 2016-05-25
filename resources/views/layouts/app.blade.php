@@ -41,9 +41,10 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->getFullNameOrUsername() }} <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ route('account.settings.profile') }}"><i class="fa fa-btn fa-pencil-square-o"></i> Edit account</a></li>
+                                <li><a href="{{ route('user.profile', ['username' => Auth::user()->username]) }}">Profile</a></li>
+                                <li><a href="{{ route('account.settings.profile') }}">Edit account</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="{{ route('auth.logout') }}"><i class="fa fa-btn fa-sign-out"></i> Logout</a></li>
+                                <li><a href="{{ route('auth.logout') }}">Logout</a></li>
                             </ul>
                         </li>
                     @endif

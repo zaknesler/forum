@@ -10,7 +10,7 @@
                     @foreach ($users as $user)
                         <li class="list-group-item"><h4>
                             @ability ('owner,admin', 'user-edit')
-                            <a class="label label-warning pull-right" href="{{ route('moderation.user.edit', ['id' => $user->id]) }}"><i class="fa fa-pencil-square-o"></i></a>
+                            <a class="label label-warning pull-right" href="{{ route('moderation.user.edit', ['id' => $user->id]) }}">Edit</a>
                             @endability
                             <a href="{{ route('user.profile', ['username' => $user->username]) }}">{{ $user->username }}</a>
                         </h4></li>

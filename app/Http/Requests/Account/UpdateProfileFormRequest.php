@@ -24,11 +24,11 @@ class UpdateProfileFormRequest extends Request
     public function rules()
     {
         return [
+            'about' => 'max:300',
             'first_name' => 'max:32',
             'last_name' => 'max:32',
             'location' => 'max:64',
             'website' => 'url',
-            'about' => 'max:255',
         ];
     }
 }
