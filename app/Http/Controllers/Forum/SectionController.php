@@ -7,6 +7,7 @@ use Forum\Models\Section;
 use Illuminate\Http\Request;
 use Forum\Http\Controllers\Controller;
 use Forum\Http\Requests\Forum\Section\EditSectionFormRequest;
+use Forum\Http\Requests\Forum\Section\CreateSectionFormRequest;
 
 class SectionController extends Controller
 {

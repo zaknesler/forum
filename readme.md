@@ -46,7 +46,6 @@ This is the checklist of functionality I wish to have for this project. A strike
       - Report
       - ~~Post creation (replying)~~
         - ~~Delete~~
-        - Edit
         - Report
       - ~~Using Markdown~~
         - ~~With [Laravel Markdown](https://github.com/GrahamCampbell/Laravel-Markdown)~~
