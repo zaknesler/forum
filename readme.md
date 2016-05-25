@@ -29,20 +29,23 @@ This is the checklist of functionality I wish to have for this project. A strike
       - ~~Gravatar fallback~~
   - ~~User permissions / groups~~
     - ~~Using [entrust](https://github.com/Zizaco/entrust)~~
-  - User list
+  - User management
+    - ~~User list~~
+    - ~~User profile~~
     - Edit user info
     - Suspend/Unsuspend users (using soft deletes, most likely)
-  - Topic creation
-    - ~~Markdown~~
-      - ~~Using [Laravel Markdown](https://github.com/GrahamCampbell/Laravel-Markdown)~~
-    - ~~Sections~~
-      - ~~View all sections~~
-      - ~~Create section (permissions required)~~
-      - ~~Delete section (permissions required)~~
-      - Edit section (permissions required)
-      - Locked to specific user groups
-    - ~~Topic replies (posts)~~
-      - ~~Delete posts (permissions required)~~
-      - Edit posts (permissions required)
-    - ~~Topic deletion (permissions required)~~
-    - ~~View all posted topics~~
+  - ~~Sections~~
+    - ~~View all sections~~
+    - ~~Create~~
+    - ~~Delete~~
+    - ~~Edit~~
+    - Locked to specific user groups
+    - Topic creation
+      - ~~Delete~~
+      - ~~Edit~~
+      - Report
+      - ~~Post creation (replying)~~
+        - ~~Delete~~
+        - Report
+      - ~~Using Markdown~~
+        - ~~With [Laravel Markdown](https://github.com/GrahamCampbell/Laravel-Markdown)~~

@@ -12,8 +12,15 @@
                             @ability ('owner,admin', 'section-destroy')
                             <a class="label label-danger pull-right" href="{{ route('moderation.section.destroy', ['id' => $section->id]) }}"><i class="fa fa-times"></i></a>
                             @endability
+                            @ability ('owner,admin', 'section-edit')
+                            <a class="label label-warning pull-right" href="{{ route('moderation.section.edit', ['id' => $section->id]) }}"><i class="fa fa-pencil-square-o"></i></a>
+                            @endability
                             <span class="label label-primary pull-right">{{ $section->topicCountText() }}</span>
                             <a href="{{ route('forum.section.show', ['slug' => $section->slug]) }}">{{ $section->title }}</a>
+                            @if ($section->description)
+                                <br />
+                                <small>{{ $section->description }}</small>
+                            @endif
                         </h4></li>
                     @endforeach
                 </ul>

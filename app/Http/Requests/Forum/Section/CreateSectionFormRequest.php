@@ -1,6 +1,6 @@
 <?php
 
-namespace Forum\Http\Requests\Forum;
+namespace Forum\Http\Requests\Forum\Section;
 
 use Forum\Http\Requests\Request;
 

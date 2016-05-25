@@ -8,7 +8,7 @@ use Forum\Http\Requests;
 use Illuminate\Http\Request;
 use Forum\Http\Controllers\Controller;
 use GrahamCampbell\Markdown\Facades\Markdown;
-use Forum\Http\Requests\Forum\CreatePostFormRequest;
+use Forum\Http\Requests\Forum\Post\CreatePostFormRequest;
 
 class PostController extends Controller
 {

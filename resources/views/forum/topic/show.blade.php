@@ -17,10 +17,10 @@
             <div class="col-xs-12">
                 <div class="text-right">
                     <a href="#" class="btn btn-info btn-xs">Report</a>
-                    @ability ('admin,owner', 'edit-topic')
-                    <a href="#" class="btn btn-warning btn-xs">Edit</a>
-                    @endability
-                    @ability ('admin,owner', 'destroy-topic')
+                    @if ((Auth::user()->id == $topic->user->id) || Auth::user()->ability('admin,owner', 'topic-edit'))
+                    <a href="{{ route('forum.topic.edit', ['id' => $topic->id]) }}" class="btn btn-warning btn-xs">Edit</a>
+                    @endif
+                    @ability ('admin,owner', 'topic-destroy')
                     <a href="{{ route('moderation.topic.destroy', ['id' => $topic->id]) }}" class="btn btn-danger btn-xs">Delete</a>
                     @endability
                 </div>

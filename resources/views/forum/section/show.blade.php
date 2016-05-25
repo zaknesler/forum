@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'All topics for '. $section->title)
+@section('title', 'All topics for ' . $section->title)
 
 @section('content')
 <div class="container">
@@ -13,6 +13,9 @@
                         <li class="list-group-item"><h4>
                             @ability ('owner,admin', 'topic-destroy')
                             <a class="label label-danger pull-right" href="{{ route('moderation.topic.destroy', ['id' => $topic->id]) }}"><i class="fa fa-times"></i></a>
+                            @endability
+                            @ability ('owner,admin', 'topic-edit')
+                            <a class="label label-warning pull-right" href="{{ route('forum.topic.edit', ['id' => $topic->id]) }}"><i class="fa fa-pencil-square-o"></i></a>
                             @endability
                             <span class="label label-primary pull-right">{{ $topic->replyCountText() }}</span>
                             <a href="{{ route('forum.topic.show', ['slug' => $topic->slug, 'id' => $topic->id]) }}">{{ $topic->title }}</a>

@@ -9,32 +9,30 @@
         <p>{{ $user->about }}</p>
         <hr>
         <div class="row">
-            <div class="col-xs-9">
-                @if ($user->location)
-                    <p>
-                        <i class="fa fa-location-arrow profile-icon" title="Location"></i>
-                        {{ $user->location }}
-                    </p>
-                @endif
-                <p>
-                    <i class="fa fa-clock-o profile-icon" title="Member since"></i>
-                    {{ $user->created_at->diffForHumans() }}
-                </p>
-                @if ($user->website)
-                    <p>
-                        <i class="fa fa-link profile-icon" title="Website"></i>
-                        <a href="{{ $user->website }}">{{ $user->website }}</a>
-                    </p>
-                @endif
+            <div class="col-xs-8">
+                <h4>
+                    <dl class="spaced">
+                        @if ($user->location)
+                            <dt>Location</dt>
+                            <dd>{{ $user->location }}</dd>
+                        @endif
 
-                @ability ('moderator,admin,owner', 'can-see-users-email')
-                <p>
-                    <i class="fa fa-envelope-o profile-icon" title="User email"></i>
-                    {{ $user->email }}
-                </p>
-                @endability
+                        <dt>Joined</dt>
+                        <dd>{{ $user->created_at->diffForHumans() }}</dd>
+
+                        @if ($user->website)
+                            <dt>Website</dt>
+                            <dd><a href="{{ $user->website }}">{{ $user->website }}</a></dd>
+                        @endif
+
+                        @ability ('moderator,admin,owner', 'can-see-users-email')
+                            <dt>Email</dt>
+                            <dd>{{ $user->email }}</dd>
+                        @endability
+                    </dl>
+                </h4>
             </div>
-            <div class="col-xs-3">
+            <div class="col-xs-4">
                 <div class="text-right">
                     <img src="{{ $user->avatarUrl(['size' => 250]) }}" alt="User image" class="img-responsive img-circle">
                 </div>
