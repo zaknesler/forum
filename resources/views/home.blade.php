@@ -25,10 +25,10 @@
             @endif
         </div>
         <div class="col-md-2">
-            @ability ('admin,owner', 'section-create')
+            @role (['admin', 'owner'])
             <a href="{{ route('moderation.section.create') }}" class="btn btn-warning btn-block">Create section</a>
             <hr>
-            @endability
+            @endrole
             <a href="{{ route('forum.topic.create') }}" class="btn btn-info btn-block">Create topic</a>
         </div>
     </div>

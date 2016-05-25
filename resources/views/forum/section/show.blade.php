@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'All topics for ' . $section->title)
+@section('title', $section->title)
 
 @section('content')
 <div class="container">
@@ -23,13 +23,13 @@
             @endif
         </div>
         <div class="col-md-2">
-            @ability ('owner,admin', 'section-edit')
+            @role (['admin', 'owner'])
             <a class="btn btn-warning btn-block" href="{{ route('moderation.section.edit', ['id' => $section->id]) }}">Edit section</a>
-            @endability
-            @ability ('owner,admin', 'section-destroy')
+            @endrole
+            @role (['admin', 'owner'])
             <a class="btn btn-danger btn-block" href="{{ route('moderation.section.destroy', ['id' => $section->id]) }}">Delete section</a>
             <hr>
-            @endability            
+            @endrole
             <a class="btn btn-info btn-block" href="{{ route('forum.topic.create') }}?section_id={{ $section->id }}">Create topic</a>
         </div>
     </div>

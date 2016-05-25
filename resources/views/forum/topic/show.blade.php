@@ -17,12 +17,12 @@
             <div class="col-xs-12">
                 <div class="text-right">
                     <a href="#" class="btn btn-info btn-xs">Report</a>
-                    @if ((Auth::user()->id == $topic->user->id) || Auth::user()->ability('admin,owner', 'topic-edit'))
+                    @if ((Auth::user()->id == $topic->user->id) || Auth::user()->hasRole(['admin','owner']))
                     <a href="{{ route('forum.topic.edit', ['id' => $topic->id]) }}" class="btn btn-warning btn-xs">Edit</a>
                     @endif
-                    @ability ('admin,owner', 'topic-destroy')
+                    @role (['admin', 'owner'])
                     <a href="{{ route('moderation.topic.destroy', ['id' => $topic->id]) }}" class="btn btn-danger btn-xs">Delete</a>
-                    @endability
+                    @endrole
                 </div>
             </div>
         </div>
@@ -39,9 +39,9 @@
                 <div class="media-body">
                     <div class="media-heading">
                         <a href="{{ route('user.profile', ['username' => $post->user->username]) }}">{{ $post->user->username }}</a> {{ $post->created_at->diffForHumans() }}
-                        @ability ('admin,owner', 'destroy-post')
+                        @role (['admin', 'owner'])
                         <a href="{{ route('moderation.post.destroy', ['id' => $post->id]) }}" class="label label-danger"><i class="fa fa-times"></i></a>
-                        @endability
+                        @endrole
                     </div>
                     {!! $post->body !!}
                 </div>

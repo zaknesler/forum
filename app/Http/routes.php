@@ -46,9 +46,11 @@ Route::group(['middleware' => ['auth']], function () {
 /**
  * Moderation routes
  */
-Route::group(['prefix' => 'moderation', 'middleware' => ['role:owner|admin']], function () {
+Route::group(['prefix' => 'moderation', 'middleware' => ['role:moderator|admin|owner']], function () {
     Route::get('user/list', 'User\UserController@all')->name('moderation.user.list');
+});
 
+Route::group(['prefix' => 'moderation', 'middleware' => ['role:owner|admin']], function () {
     Route::get('section/{id}/edit', 'Forum\SectionController@getEdit')->name('moderation.section.edit');
     Route::post('section/{id}/edit', 'Forum\SectionController@postEdit');
 

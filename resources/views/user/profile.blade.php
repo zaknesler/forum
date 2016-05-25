@@ -16,19 +16,16 @@
                             <dt>Location</dt>
                             <dd>{{ $user->location }}</dd>
                         @endif
-
                         <dt>Joined</dt>
                         <dd>{{ $user->created_at->diffForHumans() }}</dd>
-
                         @if ($user->website)
                             <dt>Website</dt>
                             <dd><a href="{{ $user->website }}">{{ $user->website }}</a></dd>
                         @endif
-
-                        @ability ('moderator,admin,owner', 'can-see-users-email')
+                        @role (['moderator', 'admin', 'owner'])
                             <dt>Email</dt>
                             <dd>{{ $user->email }}</dd>
-                        @endability
+                        @endrole
                     </dl>
                 </h4>
             </div>

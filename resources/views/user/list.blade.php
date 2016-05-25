@@ -9,9 +9,9 @@
                 <ul class="list-group">
                     @foreach ($users as $user)
                         <li class="list-group-item"><h4>
-                            @ability ('owner,admin', 'user-edit')
+                            @role (['admin', 'owner'])
                             <a class="label label-warning pull-right" href="{{ route('moderation.user.edit', ['id' => $user->id]) }}">Edit</a>
-                            @endability
+                            @endrole
                             <a href="{{ route('user.profile', ['username' => $user->username]) }}">{{ $user->username }}</a>
                         </h4></li>
                     @endforeach
