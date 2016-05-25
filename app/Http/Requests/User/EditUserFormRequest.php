@@ -29,7 +29,7 @@ class EditUserFormRequest extends Request
             'last_name' => 'max:32',
             'location' => 'max:64',
             'website' => 'url',
-            'about' => 'max:128',
+            'about' => 'max:255',
         ];
     }
 }
