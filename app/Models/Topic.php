@@ -5,6 +5,7 @@ namespace Forum\Models;
 use Forum\Models\Post;
 use Forum\Models\User;
 use Forum\Models\Section;
+use Forum\Models\TopicReport;
 use Illuminate\Database\Eloquent\Model;
 
 class Topic extends Model
@@ -20,6 +21,11 @@ class Topic extends Model
     public function scopeLatestFirst($query)
     {
         return $query->orderBy('created_at', 'desc');
+    }
+
+    public function scopeReported($query)
+    {
+        return $this->reports()->count();
     }
 
     public function replyCountText()
@@ -51,5 +57,10 @@ class Topic extends Model
     public function posts()
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function reports()
+    {
+        return $this->hasMany(TopicReport::class);
     }
 }

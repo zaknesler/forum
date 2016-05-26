@@ -4,6 +4,14 @@
 @import "thirdparty/highlight";
 @import "thirdparty/sweetalert";
 
+body {
+    background: darken(#fff, 4%);
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
 pre, code {
     border: 0;
 }
@@ -22,4 +30,67 @@ dl.spaced > dd {
 
 dl.spaced > dd:last-child {
     margin-bottom: 0;
+}
+
+.list-inline > li {
+    padding-left: 0;
+
+    &:last-child {
+        padding-right: 0;
+    }
+}
+
+.topic-title {
+    font-size: 24px;
+    line-height: 24px;
+    padding-top: 15px;
+    padding-bottom: 30px;
+}
+
+.general-title {
+    font-size: 24px;
+    line-height: 24px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    &.small {
+        line-height: 18px;
+        font-size: 18px;
+    }
+}
+
+.box {
+    padding: 15px;
+    border-radius: 4px;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05);
+    background: #fff;
+    margin-bottom: 15px;
+}
+
+.topic-container {
+    margin-bottom: 21px;
+
+    & .head {
+        line-height: 24px;
+        padding-bottom: 5px;
+    }
+
+    & .border {
+        border-radius: 4px;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05);
+        background: #fff;
+    }
+
+    & .body {
+        padding: 15px;
+    }
+
+    & .foot {
+        padding: 15px;
+        border-top: 1px solid darken(#fff, 4%);
+
+        & ul.list-inline {
+            margin-bottom: 0;
+        }
+    }
 }

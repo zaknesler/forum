@@ -44,6 +44,9 @@
                         <div class="form-group">
                             {!! csrf_field() !!}
                             <button type="submit" class="btn btn-primary">Update topic</button>
+                            @role (['admin', 'owner'])
+                            <a class="btn btn-danger pull-right" href="{{ route('moderation.topic.destroy', ['id' => $topic->id]) }}">Delete</a>
+                            @endrole
                         </div>
                     </form>
                 </div>

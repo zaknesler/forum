@@ -6,6 +6,7 @@ use Forum\Models\Topic;
 use Forum\Http\Requests;
 use Forum\Models\Section;
 use Illuminate\Http\Request;
+use Forum\Models\TopicReport;
 use Forum\Http\Controllers\Controller;
 use GrahamCampbell\Markdown\Facades\Markdown;
 use Forum\Http\Requests\Forum\Topic\CreateTopicFormRequest;
@@ -51,6 +52,7 @@ class TopicController extends Controller
             'title' => $request->input('title'),
             'slug' => str_slug($request->input('title')),
             'body' => Markdown::convertToHtml($request->input('body')),
+            'raw_body' => $request->input('body'),
         ]);
 
         notify()->flash('Success', 'success', [

@@ -1,6 +1,9 @@
 <?php
 
 Route::get('', 'HomeController@index')->name('home');
+Route::get('section/{slug}', 'Forum\SectionController@show')->name('forum.section.show');
+Route::get('topic/{slug}/{id}', 'Forum\TopicController@show')->name('forum.topic.show');
+
 
 /**
  * Guest routes
@@ -30,12 +33,11 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('@{username}', 'User\UserController@profile')->name('user.profile');
 
-    Route::get('section/{slug}', 'Forum\SectionController@show')->name('forum.section.show');
+    Route::get('report/post/{id}', 'Report\PostReportController@report')->name('forum.post.report');
+    Route::get('report/topic/{id}', 'Report\TopicReportController@report')->name('forum.topic.report');
 
-    Route::get('topic/{id}/edit', 'Forum\TopicController@getEdit')->name('forum.topic.edit');
-    Route::post('topic/{id}/edit', 'Forum\TopicController@postEdit');
-
-    Route::get('topic/{slug}/{id}', 'Forum\TopicController@show')->name('forum.topic.show');
+    Route::get('edit/topic/{id}', 'Forum\TopicController@getEdit')->name('forum.topic.edit');
+    Route::post('edit/topic/{id}', 'Forum\TopicController@postEdit');
 
     Route::get('topic/create/{section_id?}', 'Forum\TopicController@create')->name('forum.topic.create');
     Route::post('topic/create/{section_id?}', 'Forum\TopicController@store');
@@ -48,6 +50,8 @@ Route::group(['middleware' => ['auth']], function () {
  */
 Route::group(['prefix' => 'moderation', 'middleware' => ['role:moderator|admin|owner']], function () {
     Route::get('user/list', 'User\UserController@all')->name('moderation.user.list');
+
+    Route::get('reports', 'Report\ReportController@all')->name('moderation.reports');
 });
 
 Route::group(['prefix' => 'moderation', 'middleware' => ['role:owner|admin']], function () {

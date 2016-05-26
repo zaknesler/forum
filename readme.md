@@ -32,7 +32,8 @@ This is the checklist of functionality I wish to have for this project. A strike
   - User management
     - ~~User list~~
     - ~~User profile~~
-    - Edit user info
+    - ~~Edit user info~~
+      - ~~Change user role~~
     - Suspend/Unsuspend users (using soft deletes, most likely)
   - ~~Sections~~
     - ~~View all sections~~
@@ -43,9 +44,9 @@ This is the checklist of functionality I wish to have for this project. A strike
     - Topic creation
       - ~~Delete~~
       - ~~Edit~~
-      - Report
+      - ~~Report~~
       - ~~Post creation (replying)~~
         - ~~Delete~~
-        - Report
+        - ~~Report~~
       - ~~Using Markdown~~
         - ~~With [Laravel Markdown](https://github.com/GrahamCampbell/Laravel-Markdown)~~

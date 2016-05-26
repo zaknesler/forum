@@ -22,6 +22,10 @@ class UserController extends Controller
     {
         $find = $user->where('username', $username)->first();
 
+        if (!$find) {
+            return abort(404);
+        }
+
         return view('user.profile')->withUser($find);
     }
 
@@ -93,9 +97,17 @@ class UserController extends Controller
             'timer' => 2000,
         ]);
 
-        return redirect()->route('user.profile', ['username' => $current->username]);
+        return redirect()->back();
     }
 
+    /**
+     * Update user's role.
+     * @param  integer                    $id      User identifier.
+     * @param  UpdateUserRoleFormRequest  $request Form request for validation.
+     * @param  User                       $user    User model injection.
+     * @param  Role                       $role    Role model injection.
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function updateRole($id, UpdateUserRoleFormRequest $request, User $user, Role $role)
     {
         $current = $user->findOrFail($id);
@@ -109,6 +121,6 @@ class UserController extends Controller
             'timer' => 2000,
         ]);
 
-        return redirect()->route('user.edit');
+        return redirect()->back();
     }
 }

@@ -28,6 +28,7 @@
                             <ul class="dropdown-menu" role="menu">
                                 @role (['moderator', 'admin', 'owner'])
                                 <li><a href="{{ route('moderation.user.list') }}">User list</a></li>
+                                <li><a href="{{ route('moderation.reports') }}">Reports</a></li>
                                 @endrole
                             </ul>
                         </li>
@@ -52,7 +53,9 @@
             </div>
         </div>
     </nav>
-    @yield('content')
+    <div class="page-content">
+        @yield('content')
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
