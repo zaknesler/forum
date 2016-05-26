@@ -20,7 +20,7 @@ class SectionController extends Controller
     {
         $sections = $section->paginate(10);
 
-        return view('moderation.section.all')->withSections($sections);
+        return view('forum.section.all')->withSections($sections);
     }
 
     /**
@@ -46,7 +46,7 @@ class SectionController extends Controller
      */
     public function create()
     {
-        return view('moderation.section.create');
+        return view('forum.section.create');
     }
 
     /**
@@ -59,7 +59,7 @@ class SectionController extends Controller
     {
         $edit = $section->findOrFail($id);
 
-        return view('moderation.section.edit')->withSection($edit);
+        return view('forum.section.edit')->withSection($edit);
     }
 
     /**
@@ -119,6 +119,11 @@ class SectionController extends Controller
         $destroy = $section->findOrFail($id);
 
         $destroy->delete();
+
+        notify()->flash('Success', 'success', [
+            'text' => 'Section has been deleted.',
+            'timer' => 2000,
+        ]);
 
         return redirect()->route('home');
     }

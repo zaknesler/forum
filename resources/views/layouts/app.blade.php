@@ -21,18 +21,18 @@
                 <a class="navbar-brand" href="{{ route('home') }}">{{ env('APP_NAME') }}</a>
             </div>
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                @ability ('moderator,admin,owner', 'moderation-dropdown')
+                @role (['moderator', 'admin', 'owner'])
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Moderation <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                @ability ('moderator,admin,owner', 'moderation-user-list')
+                                @role (['moderator', 'admin', 'owner'])
                                 <li><a href="{{ route('moderation.user.list') }}">User list</a></li>
-                                @endability
+                                @endrole
                             </ul>
                         </li>
                     </ul>
-                @endability
+                @endrole
                 <ul class="nav navbar-nav navbar-right">
                     @if (Auth::guest())
                         <li><a href="{{ route('auth.register') }}">Sign up</a></li>
@@ -41,9 +41,10 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->getFullNameOrUsername() }} <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ route('account.settings.profile') }}"><i class="fa fa-btn fa-pencil-square-o"></i> Edit account</a></li>
+                                <li><a href="{{ route('user.profile', ['username' => Auth::user()->username]) }}">Profile</a></li>
+                                <li><a href="{{ route('account.settings.profile') }}">Edit account</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="{{ route('auth.logout') }}"><i class="fa fa-btn fa-sign-out"></i> Logout</a></li>
+                                <li><a href="{{ route('auth.logout') }}">Logout</a></li>
                             </ul>
                         </li>
                     @endif

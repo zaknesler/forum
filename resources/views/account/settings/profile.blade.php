@@ -62,7 +62,7 @@
                             <div class="col-md-6">
                                 <div class="form-group{{ $errors->has('about') ? ' has-error' : '' }}">
                                     <label for="about">About you</label>
-                                    <textarea name="about" class="form-control" id="about" maxlength="240" cols="10" rows="4">{{ Auth::user()->about }}</textarea>
+                                    <textarea name="about" class="form-control" id="about" maxlength="300" cols="10" rows="4">{{ Auth::user()->about }}</textarea>
                                     @if ($errors->has('about'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('about') }}</strong>

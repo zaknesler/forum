@@ -2,11 +2,13 @@
 
 namespace Forum\Http\Controllers\User;
 
+use Forum\Models\Role;
 use Forum\Models\User;
 use Forum\Http\Requests;
 use Illuminate\Http\Request;
 use Forum\Http\Controllers\Controller;
 use Forum\Http\Requests\User\EditUserFormRequest;
+use Forum\Http\Requests\User\UpdateUserRoleFormRequest;
 
 class UserController extends Controller
 {
@@ -41,11 +43,15 @@ class UserController extends Controller
      * @param  user     $user  User model identifier.
      * @return \Illuminate\Http\Response
      */
-    public function getEdit($id, User $user)
+    public function getEdit($id, User $user, Role $role)
     {
         $edit = $user->findOrFail($id);
+        $roles = $role->get();
 
-        return view('user.edit')->withUser($edit);
+        return view('user.edit', [
+            'user' => $edit,
+            'roles' => $roles,
+        ]);
     }
 
     /**
@@ -54,7 +60,7 @@ class UserController extends Controller
      * @param  User     $user  User model identifier.
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function postEdit($id, EditUserFormRequest $request, User $user)
+    public function postEdit($id, EditUserFormRequest $request, User $user, Role $role)
     {
         $current = $user->findOrFail($id);
 
@@ -88,5 +94,21 @@ class UserController extends Controller
         ]);
 
         return redirect()->route('user.profile', ['username' => $current->username]);
+    }
+
+    public function updateRole($id, UpdateUserRoleFormRequest $request, User $user, Role $role)
+    {
+        $current = $user->findOrFail($id);
+        $role = $role->findOrFail($request->role);
+
+        $current->detachRoles($current->roles);
+        $current->attachRole($role);
+
+        notify()->flash('Success', 'success', [
+            'text' => 'User role has been changed',
+            'timer' => 2000,
+        ]);
+
+        return redirect()->route('user.edit');
     }
 }

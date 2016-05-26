@@ -1,10 +1,10 @@
 <?php
 
-Route::get('', 'HomeController@index')->name('home')
-;/**
+Route::get('', 'HomeController@index')->name('home');
+
+/**
  * Guest routes
  */
-
 Route::group(['middleware' => ['guest']], function () {
     Route::get('auth/sign-up', 'Auth\AuthController@getRegister')->name('auth.register');
     Route::post('auth/sign-up', 'Auth\AuthController@postRegister');
@@ -22,7 +22,6 @@ Route::group(['middleware' => ['guest']], function () {
 /**
  * Authenticated routes
  */
-
 Route::group(['middleware' => ['auth']], function () {
     Route::get('auth/sign-out', 'Auth\AuthController@logout')->name('auth.logout');
 
@@ -44,14 +43,21 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('topic/{topic}/post', 'Forum\PostController@store')->name('forum.topic.post');
 });
 
-Route::group(['prefix' => 'moderation', 'middleware' => ['role:owner|admin']], function () {
+/**
+ * Moderation routes
+ */
+Route::group(['prefix' => 'moderation', 'middleware' => ['role:moderator|admin|owner']], function () {
     Route::get('user/list', 'User\UserController@all')->name('moderation.user.list');
+});
 
+Route::group(['prefix' => 'moderation', 'middleware' => ['role:owner|admin']], function () {
     Route::get('section/{id}/edit', 'Forum\SectionController@getEdit')->name('moderation.section.edit');
     Route::post('section/{id}/edit', 'Forum\SectionController@postEdit');
 
     Route::get('user/{id}/edit', 'User\UserController@getEdit')->name('moderation.user.edit');
     Route::post('user/{id}/edit', 'User\UserController@postEdit');
+
+    Route::post('user/{id}/edit/role', 'User\UserController@updateRole')->name('moderation.user.edit.role');
 
     Route::get('section/create', 'Forum\SectionController@create')->name('moderation.section.create');
     Route::post('section/create', 'Forum\SectionController@store');

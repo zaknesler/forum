@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'All topics for ' . $section->title)
+@section('title', $section->title)
 
 @section('content')
 <div class="container">
@@ -11,12 +11,6 @@
                 <ul class="list-group">
                     @foreach ($topics as $topic)
                         <li class="list-group-item"><h4>
-                            @ability ('owner,admin', 'topic-destroy')
-                            <a class="label label-danger pull-right" href="{{ route('moderation.topic.destroy', ['id' => $topic->id]) }}"><i class="fa fa-times"></i></a>
-                            @endability
-                            @ability ('owner,admin', 'topic-edit')
-                            <a class="label label-warning pull-right" href="{{ route('forum.topic.edit', ['id' => $topic->id]) }}"><i class="fa fa-pencil-square-o"></i></a>
-                            @endability
                             <span class="label label-primary pull-right">{{ $topic->replyCountText() }}</span>
                             <a href="{{ route('forum.topic.show', ['slug' => $topic->slug, 'id' => $topic->id]) }}">{{ $topic->title }}</a>
                         </h4></li>
@@ -29,7 +23,14 @@
             @endif
         </div>
         <div class="col-md-2">
-            <a href="{{ route('forum.topic.create') }}?section_id={{ $section->id }}" class="btn btn-info btn-block">Create topic</a>
+            @role (['admin', 'owner'])
+            <a class="btn btn-warning btn-block" href="{{ route('moderation.section.edit', ['id' => $section->id]) }}">Edit section</a>
+            @endrole
+            @role (['admin', 'owner'])
+            <a class="btn btn-danger btn-block" href="{{ route('moderation.section.destroy', ['id' => $section->id]) }}">Delete section</a>
+            <hr>
+            @endrole
+            <a class="btn btn-info btn-block" href="{{ route('forum.topic.create') }}?section_id={{ $section->id }}">Create topic</a>
         </div>
     </div>
 </div>

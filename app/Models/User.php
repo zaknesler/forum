@@ -2,6 +2,7 @@
 
 namespace Forum\Models;
 
+use Forum\Models\Role;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -71,6 +72,11 @@ class User extends Authenticatable
         }
 
         return 'https://www.gravatar.com/avatar/' . md5(strtolower($this->email)) . '?s=' . $size . '&d=mm';
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
     }
 
     public function topics()

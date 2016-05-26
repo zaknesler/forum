@@ -46,8 +46,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        dd($e);
-        //return redirect()->route('home');
-        //return parent::render($request, $e);
+        //dd($e);
+        return parent::render($request, $e);
     }
 }

@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-sm-8 col-sm-offset-2">
+        <div class="col-sm-8">
             <div class="panel panel-default">
                 <div class="panel-heading">Edit user</div>
                 <div class="panel-body">
@@ -21,7 +21,6 @@
                                         </span>
                                     @endif
                                 </div>
-
                                 <div class="row">
                                     <div class="col-xs-6">
                                         <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
@@ -33,8 +32,7 @@
                                                 </span>
                                             @endif
                                         </div>
-                                    </div>
-                                    
+                                    </div>                                    
                                     <div class="col-xs-6">
                                         <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
                                             <label for="last_name">Last name</label>
@@ -47,7 +45,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="form-group{{ $errors->has('location') ? ' has-error' : '' }}">
                                     <label for="location">Location</label>
                                     <input type="text" class="form-control" name="location" id="location" placeholder="London, England" value="{{ $user->location }}">
@@ -57,7 +54,6 @@
                                         </span>
                                     @endif
                                 </div>
-
                                 <div class="form-group{{ $errors->has('website') ? ' has-error' : '' }}">
                                     <label for="website">Website url</label>
                                     <input type="url" class="form-control" name="website" id="website" placeholder="https://google.com" value="{{ $user->website }}">
@@ -67,12 +63,11 @@
                                         </span>
                                     @endif
                                 </div>
-                            </div>
-                            
+                            </div>                            
                             <div class="col-md-6">
                                 <div class="form-group{{ $errors->has('about') ? ' has-error' : '' }}">
                                     <label for="about">About you</label>
-                                    <textarea name="about" class="form-control" id="about" maxlength="240" cols="10" rows="4">{{ $user->about }}</textarea>
+                                    <textarea name="about" class="form-control" id="about" maxlength="300" cols="10" rows="4">{{ $user->about }}</textarea>
                                     @if ($errors->has('about'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('about') }}</strong>
@@ -90,10 +85,35 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="form-group">
                             {!! csrf_field() !!}
                             <button type="submit" class="btn btn-primary">Update user</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">User actions</div>
+                <div class="panel-body">
+                    <form action="{{ route('moderation.user.edit.role', ['id' => $user->id]) }}" method="post" autocomplete="off">
+                        <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
+                            <label for="role">User role</label>
+                            <select class="form-control" name="role" id="role">
+                                @foreach ($roles as $role)
+                                    <option value="{{ $role->id }}" @if (($user->roles->first()->id == $role->id) || (old('role') == $role->id)) selected @endif>{{ $role->display_name }}</option>
+                                @endforeach
+                            </select>
+                            @if ($errors->has('role'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('role') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            {!! csrf_field() !!}
+                            <button type="submit" class="btn btn-primary">Change role</button>
                         </div>
                     </form>
                 </div>

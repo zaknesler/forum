@@ -48,6 +48,11 @@ class PostController extends Controller
 
         $destroy->delete();
 
+        notify()->flash('Success', 'success', [
+            'text' => 'Post has been deleted.',
+            'timer' => 2000,
+        ]);
+
         return redirect()->back();
     }
 }
