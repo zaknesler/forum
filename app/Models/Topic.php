@@ -23,6 +23,17 @@ class Topic extends Model
         return $query->orderBy('created_at', 'desc');
     }
 
+    public function reportCountText()
+    {
+        $count = $this->reportCount();
+
+        if ($count == 1) {
+            return $count . ' report';
+        }
+
+        return $count . ' reports';
+    }
+
     public function replyCountText()
     {
         $count = $this->replyCount();
@@ -37,6 +48,11 @@ class Topic extends Model
     public function replyCount()
     {
         return $this->posts()->count();
+    }
+
+    public function reportCount()
+    {
+        return $this->reports()->count();
     }
 
     public function user()

@@ -49,7 +49,7 @@ class UserController extends Controller
      */
     public function getEdit($id, User $user, Role $role)
     {
-        $edit = $user->findOrFail($id);
+        $edit = $user->with('roles')->findOrFail($id);
         $roles = $role->get();
 
         return view('user.edit', [

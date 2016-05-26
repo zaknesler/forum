@@ -3,6 +3,7 @@
 namespace Forum\Models;
 
 use Forum\Models\Post;
+use Forum\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class PostReport extends Model
@@ -18,5 +19,10 @@ class PostReport extends Model
     public function posts()
     {
         return $this->belongsTo(Post::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

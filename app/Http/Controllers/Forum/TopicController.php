@@ -24,8 +24,9 @@ class TopicController extends Controller
     public function getEdit($id, Topic $topic, Section $section)
     {
         $edit = $topic->findOrFail($id);
+        $user = auth()->user();
 
-        if ((auth()->user()->id == $edit->user->id) || (auth()->user()->hasRole(['admin', 'owner']))) {
+        if (($user->id == $edit->user->id) || ($user->hasRole(['admin', 'owner']))) {
             $sections = $section->get();
 
             return view('forum.topic.edit', [

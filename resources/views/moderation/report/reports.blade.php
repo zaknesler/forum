@@ -4,15 +4,14 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <div class="general-title">Reported topics</div>
+            <div class="general-title">Topics</div>
             @if ($topics->count())
                 <ul class="list-group">
                 @foreach ($topics as $topic)
-                    @if ($topic->reports()->count())
                     <li class="list-group-item">
+                        <span class="label label-primary pull-right">{{ $topic->reports->count() }}</span>
                         <a href="{{ route('forum.topic.show', ['slug' => $topic->slug, 'id' => $topic->id]) }}">{{ $topic->title }}</a>
                     </li>
-                    @endif
                 @endforeach
                 </ul>
             @else
@@ -22,15 +21,14 @@
             @endif
         </div>
         <div class="col-md-6">
-            <div class="general-title">Reported posts</div>
+            <div class="general-title">Posts</div>
             @if ($posts->count())
                 <ul class="list-group">
                 @foreach ($posts as $post)
-                    @if ($post->reports()->count())
                     <li class="list-group-item">
-                        <a href="{{ route('forum.topic.show', ['slug' => $post->topic->slug, 'id' => $post->topic->id]) }}#post-{{ $post->id }}">{{ $post->topic->title }} / {{ $post->id }}</a>
+                        <span class="label label-primary pull-right">{{ $post->reports->count() }}</span>
+                        <div class="text-muted"><a href="{{ route('forum.topic.show', ['slug' => $post->topic->slug, 'id' => $post->topic->id]) }}#post-{{ $post->id }}">{{ $post->topic->title }}</a> - post {{ $post->id }}</div>
                     </li>
-                    @endif
                 @endforeach
                 </ul>
             @else

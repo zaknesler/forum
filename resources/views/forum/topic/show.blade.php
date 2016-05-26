@@ -19,7 +19,11 @@
             @if (Auth::user())
             <div class="foot">
                 <div class="pull-left">
+                    @if (Auth::user()->hasRole(['moderator','admin','owner']) && $topic->reports->count())
+                    <a href="{{ route('forum.topic.report.destroy', ['id' => $topic->id]) }}">Clear</a>
+                    @else
                     <a href="{{ route('forum.topic.report', ['id' => $topic->id]) }}">Report</a>
+                    @endif
                 </div>
                 @role (['moderator','admin','owner'])
                 <div class="pull-right">
@@ -54,10 +58,14 @@
                         {!! $post->body !!}
                     </div>
                     @if (Auth::user())
-                    <div class="foot">                        
+                    <div class="foot">
                         <div class="pull-left">
+                            @if (Auth::user()->hasRole(['moderator','admin','owner']) && $post->reports->count())
+                            <a href="{{ route('forum.post.report.destroy', ['id' => $post->id]) }}">Clear</a>
+                            @else
                             <a href="{{ route('forum.post.report', ['id' => $post->id]) }}">Report</a>
-                        </div>                        
+                            @endif
+                        </div>
                         <div class="pull-right">
                             @role (['admin', 'owner'])
                             <a href="{{ route('moderation.post.destroy', ['id' => $post->id]) }}">Delete</a></li>

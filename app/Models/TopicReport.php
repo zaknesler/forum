@@ -2,6 +2,7 @@
 
 namespace Forum\Models;
 
+use Forum\Models\User;
 use Forum\Models\Topic;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,5 +19,10 @@ class TopicReport extends Model
     public function topics()
     {
         return $this->belongsTo(Topic::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

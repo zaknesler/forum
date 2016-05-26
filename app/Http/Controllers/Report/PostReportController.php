@@ -34,4 +34,24 @@ class PostReportController extends Controller
 
         return redirect()->back();
     }
+
+    /**
+     * Remove all reports.
+     * @param  integer  $id    Post identifier.
+     * @param  Post     $post  Post model injection.
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy($id, Post $post)
+    {
+        $toDestroy = $post->findOrFail($id);
+
+        $toDestroy->reports()->delete();
+
+        notify()->flash('Success', 'success', [
+            'text' => 'Reports have been cleared.',
+            'timer' => 2000,
+        ]);
+
+        return redirect()->back();
+    }
 }

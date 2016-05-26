@@ -63,6 +63,9 @@ Route::group(['prefix' => 'moderation', 'middleware' => ['role:owner|admin']], f
 
     Route::post('user/{id}/edit/role', 'User\UserController@updateRole')->name('moderation.user.edit.role');
 
+    Route::get('report/post/{id}/destroy', 'Report\PostReportController@destroy')->name('forum.post.report.destroy');
+    Route::get('report/topic/{id}/destroy', 'Report\TopicReportController@destroy')->name('forum.topic.report.destroy');
+
     Route::get('section/create', 'Forum\SectionController@create')->name('moderation.section.create');
     Route::post('section/create', 'Forum\SectionController@store');
 
