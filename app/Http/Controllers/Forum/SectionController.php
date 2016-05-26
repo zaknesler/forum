@@ -120,6 +120,11 @@ class SectionController extends Controller
 
         $destroy->delete();
 
+        notify()->flash('Success', 'success', [
+            'text' => 'Section has been deleted.',
+            'timer' => 2000,
+        ]);
+
         return redirect()->route('home');
     }
 }

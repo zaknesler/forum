@@ -71,6 +71,15 @@ class TopicController extends Controller
     {
         $sections = $section->get();
 
+        if (!$sections->count()) {
+            notify()->flash('Oops..', 'error', [
+                'text' => 'No sections available.',
+                'timer' => 2000,
+            ]);
+
+            return redirect()->route('home');
+        }
+
         $id = $request['section_id'];
 
         return view('forum.topic.create')->withSections($sections)->withId($id);
@@ -150,6 +159,11 @@ class TopicController extends Controller
          * go through and delete all of its children automatically.
          */
         $destroy->delete();
+
+        notify()->flash('Success', 'success', [
+            'text' => 'Topic has been deleted.',
+            'timer' => 2000,
+        ]);
 
         return redirect()->route('home');
     }
