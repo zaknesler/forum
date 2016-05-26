@@ -8,9 +8,11 @@
             @if ($topics->count())
                 <ul class="list-group">
                 @foreach ($topics as $topic)
-                <li class="list-group-item">
-                    <a href="{{ route('forum.topic.show', ['slug' => $topic->slug, 'id' => $topic->id]) }}">{{ $topic->title }}</a>
-                </li>
+                    @if ($topic->reports()->count())
+                    <li class="list-group-item">
+                        <a href="{{ route('forum.topic.show', ['slug' => $topic->slug, 'id' => $topic->id]) }}">{{ $topic->title }}</a>
+                    </li>
+                    @endif
                 @endforeach
                 </ul>
             @else
@@ -24,9 +26,11 @@
             @if ($posts->count())
                 <ul class="list-group">
                 @foreach ($posts as $post)
-                <li class="list-group-item">
-                    <a href="{{ route('forum.topic.show', ['slug' => $post->topic->slug, 'id' => $post->topic->id]) }}#post-{{ $post->id }}">{{ $post->topic->title }} / {{ $post->id }}</a>
-                </li>
+                    @if ($post->reports()->count())
+                    <li class="list-group-item">
+                        <a href="{{ route('forum.topic.show', ['slug' => $post->topic->slug, 'id' => $post->topic->id]) }}#post-{{ $post->id }}">{{ $post->topic->title }} / {{ $post->id }}</a>
+                    </li>
+                    @endif
                 @endforeach
                 </ul>
             @else

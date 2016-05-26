@@ -16,12 +16,12 @@ class ReportController extends Controller
      */
     public function all(Post $post, Topic $topic)
     {
-        $reportedTopics = $topic->reported()->get();
-        $reportedPosts = $post->reported()->get();
+        $topics = $topic->get();
+        $posts = $post->get();           
 
         return view('moderation.report.reports', [
-            'topics' => $reportedTopics,
-            'posts' => $reportedPosts,
+            'topics' => $topics,
+            'posts' => $posts,
         ]);
     }
 }

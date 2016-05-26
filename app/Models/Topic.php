@@ -23,11 +23,6 @@ class Topic extends Model
         return $query->orderBy('created_at', 'desc');
     }
 
-    public function scopeReported($query)
-    {
-        return $this->reports()->count();
-    }
-
     public function replyCountText()
     {
         $count = $this->replyCount();

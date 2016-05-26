@@ -15,11 +15,6 @@ class Post extends Model
         'topic_id',
     ];
 
-    public function scopeReported($query)
-    {
-        return $this->reports()->count();
-    }
-
     public function scopeLatestFirst($query)
     {
         return $query->orderBy('created_at', 'desc');
