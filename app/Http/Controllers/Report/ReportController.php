@@ -16,8 +16,8 @@ class ReportController extends Controller
      */
     public function all(Post $post, Topic $topic)
     {
-        $topics = $topic->get();
-        $posts = $post->with('reports.user')->get();
+        $topics = $topic->has('reports')->get();
+        $posts = $post->has('reports')->with('reports.user')->get();
 
         return view('moderation.report.reports', [
             'topics' => $topics,
