@@ -4,7 +4,11 @@
 <div class="container">
     <h3>All sections</h3>
     <div class="row">
+        @if (Auth::user())
         <div class="col-md-10">
+        @else
+        <div class="col-md-12">
+        @endif
             @if ($sections->count())
                 <ul class="list-group">
                     @foreach ($sections as $section)
@@ -24,6 +28,7 @@
                 <p>No sections to show.</p>
             @endif
         </div>
+        @if (Auth::user())
         <div class="col-md-2">
             @role (['admin', 'owner'])
             <a href="{{ route('moderation.section.create') }}" class="btn btn-warning btn-block">Create section</a>
@@ -32,6 +37,7 @@
             <a href="{{ route('forum.topic.create') }}" class="btn btn-info btn-block">Create topic</a>
             @endif
         </div>
+        @endif
     </div>
 </div>
 @endsection

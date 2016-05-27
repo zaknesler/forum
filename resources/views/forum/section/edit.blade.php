@@ -40,6 +40,9 @@
                         <div class="form-group">
                             {!! csrf_field() !!}
                             <button type="submit" class="btn btn-primary">Save changes</button>
+                            @role (['admin', 'owner'])
+                            <a class="btn btn-danger pull-right" href="{{ route('moderation.section.destroy', ['id' => $section->id]) }}">Delete</a>
+                            @endrole
                         </div>
                     </form>
                 </div>

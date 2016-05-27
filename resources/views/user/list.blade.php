@@ -4,7 +4,7 @@
 <div class="container">
     <h3>All users</h3>
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-12">
             @if ($users->count())
                 <ul class="list-group">
                     @foreach ($users as $user)
