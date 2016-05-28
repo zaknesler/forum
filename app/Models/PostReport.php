@@ -2,14 +2,10 @@
 
 namespace Forum\Models;
 
-use Forum\Models\Post;
-use Forum\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class PostReport extends Model
 {
-    protected $table = 'post_reports';
-
     protected $fillable = [
         'reason',
         'post_id',

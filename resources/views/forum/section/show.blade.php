@@ -16,7 +16,6 @@
                     @foreach ($topics as $topic)
                         <li class="list-group-item"><h4>
                             <span class="label label-primary pull-right">{{ $topic->replyCountText() }}</span>
-                            <!-- <span class="label label-info pull-right">New</span> -->
                             <a href="{{ route('forum.topic.show', ['slug' => $topic->slug, 'id' => $topic->id]) }}">{{ $topic->title }}</a>
                             <br />
                             <small class="text-muted">

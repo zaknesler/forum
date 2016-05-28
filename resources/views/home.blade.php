@@ -24,8 +24,9 @@
                 </ul>
                 {{ $sections->render() }}
             @else
-                <hr>
-                <p>No sections to show.</p>
+                <div class="box">
+                    <p>No topics to show.</p>
+                </div>
             @endif
         </div>
         @if (Auth::user())

@@ -2,7 +2,6 @@
 
 namespace Forum\Models;
 
-use Forum\Models\Role;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 

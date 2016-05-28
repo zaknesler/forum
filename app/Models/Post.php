@@ -2,9 +2,6 @@
 
 namespace Forum\Models;
 
-use Forum\Models\User;
-use Forum\Models\Topic;
-use Forum\Models\PostReport;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model

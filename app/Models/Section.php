@@ -2,7 +2,6 @@
 
 namespace Forum\Models;
 
-use Forum\Models\Topic;
 use Illuminate\Database\Eloquent\Model;
 
 class Section extends Model
