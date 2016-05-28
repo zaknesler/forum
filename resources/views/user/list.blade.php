@@ -18,8 +18,9 @@
                 </ul>
                 {{ $users->render() }}
             @else
-                <hr>
-                <p>No registered users.</p>
+                <div class="box">
+                    <p>No registered users.</p>
+                </div>
             @endif
         </div>
     </div>

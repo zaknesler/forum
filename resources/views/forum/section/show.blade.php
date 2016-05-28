@@ -26,8 +26,9 @@
                 </ul>
                 {{ $topics->render() }}
             @else
-                <hr>
-                <p>No topics under this section.</p>
+                <div class="box">
+                    <p>No topics under this section.</p>
+                </div>
             @endif
         </div>
         @if (Auth::user())
