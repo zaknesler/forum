@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-sm-8">
+        <div class="col-md-8">
             <div class="general-title small">Update user settings</div>
             <div class="box">
                 <form action="{{ route('moderation.user.edit', ['id' => $user->id]) }}" method="post" autocomplete="off">

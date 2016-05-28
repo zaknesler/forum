@@ -36,7 +36,7 @@ class SectionController extends Controller
 
         return view('forum.section.show', [
             'section' => $show,
-            'topics' => $show->topics()->paginate(10),
+            'topics' => $show->topics()->with('user')->paginate(10),
         ]);
     }
 

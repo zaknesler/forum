@@ -20,6 +20,22 @@ class Post extends Model
         return $query->orderBy('created_at', 'desc');
     }
 
+    public function reportCountText()
+    {
+        $count = $this->reportCount();
+
+        if ($count == 1) {
+            return $count . ' report';
+        }
+
+        return $count . ' reports';
+    }
+
+    public function reportCount()
+    {
+        return $this->reports()->count();
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

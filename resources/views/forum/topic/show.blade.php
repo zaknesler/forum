@@ -18,17 +18,17 @@
             </div>
             @if (Auth::user())
             <div class="foot">
-                <div class="pull-left">
-                    @if (Auth::user()->hasRole(['moderator','admin','owner']) && $topic->reports->count())
-                    <a href="{{ route('forum.topic.report.destroy', ['id' => $topic->id]) }}">Clear</a>
-                    @else
-                    <a href="{{ route('forum.topic.report', ['id' => $topic->id]) }}">Report</a>
-                    @endif
-                </div>
                 @role (['moderator','admin','owner'])
-                <div class="pull-right">
+                <div class="pull-left">
                     @if ((Auth::user()->id == $topic->user->id) || Auth::user()->hasRole(['moderator','admin','owner']))
                     <a href="{{ route('forum.topic.edit', ['id' => $topic->id]) }}">Edit</a>
+                    @endif
+                </div>
+                <div class="pull-right">
+                    @if (Auth::user()->hasRole(['moderator','admin','owner']) && $topic->reports->count())
+                    <a href="{{ route('forum.topic.report.destroy', ['id' => $topic->id]) }}">Clear</a>
+                    @elseif (!(Auth::user()->id == $topic->user->id))
+                    <a href="{{ route('forum.topic.report', ['id' => $topic->id]) }}">Report</a>
                     @endif
                 </div>
                 @endrole

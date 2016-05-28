@@ -30,8 +30,8 @@
                 </h4>
             </div>
             <div class="col-xs-4">
-                <div class="text-right">
-                    <img src="{{ $user->avatarUrl(['size' => 250]) }}" alt="User image" class="img-responsive img-circle">
+                <div class="pull-right">
+                    <img src="{{ $user->avatarUrl(['size' => 250]) }}" alt="User image" class="img-responsive">
                 </div>
             </div>
         </div>
