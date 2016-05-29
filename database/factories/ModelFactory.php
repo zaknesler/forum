@@ -38,3 +38,11 @@ $factory->define(Forum\Models\Post::class, function (Faker\Generator $faker) {
         'body' => $faker->text(500),
     ];
 });
+
+$factory->define(Forum\Models\Role::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word,
+        'display_name' => $faker->word,
+        'description' => $faker->sentence,
+    ];
+});

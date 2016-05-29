@@ -1,5 +1,6 @@
 <?php
 
+use Forum\Models\Role;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,8 +12,32 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        factory(Forum\Models\Topic::class, 250)->create()->each( function($u) {
-            $u->posts()->save(factory(Forum\Models\Post::class)->make());
-        });
+        factory(Role::class)->create([
+            'id' => 1,
+            'name' => 'owner',
+            'display_name' => 'Owner',
+            'description' => null,
+        ]);
+
+        factory(Role::class)->create([
+            'id' => 2,
+            'name' => 'admin',
+            'display_name' => 'Admin',
+            'description' => null,
+        ]);
+
+        factory(Role::class)->create([
+            'id' => 3,
+            'name' => 'moderator',
+            'display_name' => 'Moderator',
+            'description' => null,
+        ]);
+
+        factory(Role::class)->create([
+            'id' => 4,
+            'name' => 'user',
+            'display_name' => 'User',
+            'description' => null,
+        ]);
     }
 }

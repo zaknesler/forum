@@ -5,7 +5,11 @@
 @section('content')
 <div class="container">
     <div class="row">
+        @if (auth()->user()->hasRole(['admin', 'owner']))
         <div class="col-md-8">
+        @else
+        <div class="col-md-8 col-md-offset-2">
+        @endif
             <div class="general-title small">Update user settings</div>
             <div class="box">
                 <form action="{{ route('moderation.user.edit', ['id' => $user->id]) }}" method="post" autocomplete="off">
@@ -95,6 +99,7 @@
         <div class="col-md-4">
             <div class="general-title small">User actions</div>
             <div class="box">
+                @role (['owner'])
                 <form action="{{ route('moderation.user.edit.role', ['id' => $user->id]) }}" method="post" autocomplete="off">
                     <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
                         <label for="role">User role</label>
@@ -114,6 +119,7 @@
                         <button type="submit" class="btn btn-primary">Change role</button>
                     </div>
                 </form>
+                @endrole
             </div>
         </div>
         @endrole

@@ -110,16 +110,18 @@ class UserController extends Controller
      */
     public function updateRole($id, UpdateUserRoleFormRequest $request, User $user, Role $role)
     {
-        $current = $user->findOrFail($id);
-        $role = $role->findOrFail($request->role);
+        if (auth()->user()->hasRole(['owner'])) {
+            $current = $user->findOrFail($id);
+            $role = $role->findOrFail($request->role);
 
-        $current->detachRoles($current->roles);
-        $current->attachRole($role);
+            $current->detachRoles($current->roles);
+            $current->attachRole($role);
 
-        notify()->flash('Success', 'success', [
-            'text' => 'User role has been changed',
-            'timer' => 2000,
-        ]);
+            notify()->flash('Success', 'success', [
+                'text' => 'User role has been changed',
+                'timer' => 2000,
+            ]);
+        }
 
         return redirect()->back();
     }
