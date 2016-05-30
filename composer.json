@@ -11,7 +11,8 @@
         "zizaco/entrust": "5.2.x-dev",
         "inwave/laravel-uploadcare": "^1.4",
         "laravelcollective/html": "^5.2",
-        "graham-campbell/markdown": "^6.1"
+        "graham-campbell/markdown": "^6.1",
+        "bogardo/mailgun": "4.0.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

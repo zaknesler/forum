@@ -83,9 +83,7 @@ class TopicController extends Controller
             return redirect()->route('home');
         }
 
-        $id = $request['section_id'];
-
-        return view('forum.topic.create')->withSections($sections)->withId($id);
+        return view('forum.topic.create')->withSections($sections)->withId($request['section_id']);
     }
     
     /**

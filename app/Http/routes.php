@@ -4,7 +4,6 @@ Route::get('', 'HomeController@index')->name('home');
 Route::get('section/{slug}', 'Forum\SectionController@show')->name('forum.section.show');
 Route::get('topic/{slug}/{id}', 'Forum\TopicController@show')->name('forum.topic.show');
 
-
 /**
  * Guest routes
  */

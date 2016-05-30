@@ -160,6 +160,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Inwave\LaravelUploadcare\LaravelUploadcareServiceProvider::class,
         GrahamCampbell\Markdown\MarkdownServiceProvider::class,
+        Bogardo\Mailgun\MailgunServiceProvider::class,
 
     ],
 
@@ -215,6 +216,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Uploadcare' => Inwave\LaravelUploadcare\Facades\Uploadcare::class,
         'Markdown' => GrahamCampbell\Markdown\MarkdownServiceProvider::class,
+        'Mailgun' => Bogardo\Mailgun\MailgunServiceProvider::class,
 
     ],
 
