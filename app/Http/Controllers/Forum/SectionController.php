@@ -20,7 +20,9 @@ class SectionController extends Controller
     {
         $sections = $section->paginate(10);
 
-        return view('forum.section.all')->withSections($sections);
+        return view('forum.section.all', [
+            'sections' => $sections,    
+        ]);
     }
 
     /**
@@ -59,7 +61,9 @@ class SectionController extends Controller
     {
         $edit = $section->findOrFail($id);
 
-        return view('forum.section.edit')->withSection($edit);
+        return view('forum.section.edit', [
+            'section' => $edit,    
+        ]);
     }
 
     /**
