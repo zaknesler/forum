@@ -61,7 +61,10 @@ class TopicController extends Controller
             'timer' => 2000,
         ]);
 
-        return redirect()->route('forum.topic.show', ['slug' => $current->slug, 'id' => $current->id]);
+        return redirect()->route('forum.topic.show', [
+            'slug' => $current->slug,
+            'id' => $current->id
+        ]);
     }
 
     /**
@@ -83,7 +86,10 @@ class TopicController extends Controller
             return redirect()->route('home');
         }
 
-        return view('forum.topic.create')->withSections($sections)->withId($request['section_id']);
+        return view('forum.topic.create', [
+            'sections' => $sections,
+            'id' => $request['section_id'],
+        ]);
     }
     
     /**
@@ -95,7 +101,9 @@ class TopicController extends Controller
     {
         $topics = $topic->latestFirst()->paginate(10);
 
-        return view('moderation.topic.all')->withTopics($topics);
+        return view('moderation.topic.all', [
+            'topics' => $topics,    
+        ]);
     }
 
     /**
