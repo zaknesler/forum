@@ -26,7 +26,9 @@ class UserController extends Controller
             return abort(404);
         }
 
-        return view('user.profile')->withUser($find);
+        return view('user.profile', [
+            'user' => $find,    
+        ]);
     }
 
     /**
@@ -38,7 +40,9 @@ class UserController extends Controller
     {
         $users = $user->paginate(25);
 
-        return view('user.list')->withUsers($users);
+        return view('user.list', [
+            'users' => $users,    
+        ]);
     }
 
     /**
