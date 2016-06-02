@@ -1,5 +1,3 @@
-[![Feature Requests](http://feathub.com/zaknes/forum?format=svg)](http://feathub.com/zaknes/forum)
-
 # Laravel 5.2 Forum
 
 This is a very simple Laravel 5.2 forum that I am working on. It is for personal-use only, so the features and functionality are limited to my own abilities and creativity. (For just starting out with Laravel, I think I am doing pretty well.)
@@ -31,6 +29,9 @@ php artisan migrate --seed
 **And that's about it. The rest is on the actual website. Enjoy!**
 
 -- Just a reminder that this is my first Laravel project so I am probably doing lots of things wrong. If you could correct anything here, please do! I really appreciate feedback and support!
+
+## Feature requests
+[![Feature Requests](http://feathub.com/zaknes/forum?format=svg)](http://feathub.com/zaknes/forum)
 
 ## Checklist
 
