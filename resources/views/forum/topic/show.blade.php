@@ -98,6 +98,8 @@
             </div>
         </form>
     </div>
+    @else
+        <p class="text-muted">To reply to this topic, please <a href="{{ route('auth.login') }}">sign in</a> or <a href="{{ route('auth.register') }}">sign up</a>.</p>
     @endif
 </div>
 @endsection

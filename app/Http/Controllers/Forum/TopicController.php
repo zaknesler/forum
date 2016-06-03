@@ -15,59 +15,6 @@ use Forum\Http\Requests\Forum\Topic\EditTopicFormRequest;
 class TopicController extends Controller
 {
     /**
-     * Get the view to edit an existing topic.
-     * @param  integer  $id       Topic identifier.
-     * @param  Topic    $topic    Topic model identifier.
-     * @param  Section  $section  Section model identifier.
-     * @return \Illuminate\Http\Response
-     */
-    public function getEdit($id, Topic $topic, Section $section)
-    {
-        $edit = $topic->findOrFail($id);
-        $user = auth()->user();
-
-        if (($user->id == $edit->user->id) || ($user->hasRole(['admin', 'owner']))) {
-            $sections = $section->get();
-
-            return view('forum.topic.edit', [
-                'topic' => $edit,
-                'sections' => $sections,
-            ]);
-        } else {
-            return redirect()->route('home');
-        }        
-    }
-
-    /**
-     * Post section edit.
-     * @param  integer  $id     Topic identifier.
-     * @param  Topic    $topic  Topic model identifier.
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function postEdit($id, EditTopicFormRequest $request, Topic $topic)
-    {
-        $current = $topic->findOrFail($id);
-
-        $current->update([
-            'section_id' => $request->input('section_id'),
-            'title' => $request->input('title'),
-            'slug' => str_slug($request->input('title')),
-            'body' => Markdown::convertToHtml($request->input('body')),
-            'raw_body' => $request->input('body'),
-        ]);
-
-        notify()->flash('Success', 'success', [
-            'text' => 'Topic has been updated.',
-            'timer' => 2000,
-        ]);
-
-        return redirect()->route('forum.topic.show', [
-            'slug' => $current->slug,
-            'id' => $current->id
-        ]);
-    }
-
-    /**
      * Get the view to create a new topic.
      * @param  Topic    $topic    Topic model injection.
      * @param  Section  $section  Section model injection.

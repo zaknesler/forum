@@ -28,7 +28,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('auth/sign-out', 'Auth\AuthController@logout')->name('auth.logout');
 
     Route::get('account/settings/profile', 'Account\ProfileController@index')->name('account.settings.profile');
-    Route::post('account/settings/profile', 'Account\ProfileController@store');
+    Route::post('account/settings/profile', 'Account\ProfileController@update');
 
     Route::get('account/settings/password', 'Account\PasswordController@index')->name('account.settings.password');
     Route::post('account/settings/password', 'Account\PasswordController@update');
@@ -38,8 +38,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('report/post/{id}', 'Report\PostReportController@report')->name('forum.post.report');
     Route::get('report/topic/{id}', 'Report\TopicReportController@report')->name('forum.topic.report');
 
-    Route::get('edit/topic/{id}', 'Forum\TopicController@getEdit')->name('forum.topic.edit');
-    Route::post('edit/topic/{id}', 'Forum\TopicController@postEdit');
+    Route::get('edit/topic/{id}', 'Forum\EditTopicController@index')->name('forum.topic.edit');
+    Route::post('edit/topic/{id}', 'Forum\EditTopicController@update');
 
     Route::get('topic/create/{section_id?}', 'Forum\TopicController@create')->name('forum.topic.create');
     Route::post('topic/create/{section_id?}', 'Forum\TopicController@store');
@@ -51,19 +51,19 @@ Route::group(['middleware' => ['auth']], function () {
  * Moderation routes
  */
 Route::group(['prefix' => 'moderation', 'middleware' => ['role:moderator|admin|owner']], function () {
-    Route::get('user/list', 'User\UserController@all')->name('moderation.user.list');
+    Route::get('user/list', 'User\UserController@index')->name('moderation.user.list');
 
-    Route::get('reports', 'Report\ReportController@all')->name('moderation.reports');
+    Route::get('reports', 'Report\ReportController@index')->name('moderation.reports');
 });
 
 Route::group(['prefix' => 'moderation', 'middleware' => ['role:owner|admin']], function () {
-    Route::get('section/{id}/edit', 'Forum\SectionController@getEdit')->name('moderation.section.edit');
-    Route::post('section/{id}/edit', 'Forum\SectionController@postEdit');
+    Route::get('section/{id}/edit', 'Forum\EditSectionController@index')->name('moderation.section.edit');
+    Route::post('section/{id}/edit', 'Forum\EditSectionController@update');
 
     Route::get('user/{id}/edit', 'User\EditController@index')->name('moderation.user.edit');
     Route::post('user/{id}/edit', 'User\EditController@update');
 
-    Route::post('user/{id}/edit/role', 'User\UserController@updateRole')->name('moderation.user.edit.role');
+    Route::post('user/{id}/edit/role', 'User\RoleController@update')->name('moderation.user.edit.role');
 
     Route::get('report/post/{id}/destroy', 'Report\PostReportController@destroy')->name('forum.post.report.destroy');
     Route::get('report/topic/{id}/destroy', 'Report\TopicReportController@destroy')->name('forum.topic.report.destroy');

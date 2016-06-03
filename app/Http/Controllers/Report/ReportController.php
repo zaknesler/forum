@@ -14,7 +14,7 @@ class ReportController extends Controller
      * Lists all reported topics and posts.
      * @return \Illuminate\Http\Response
      */
-    public function all(Post $post, Topic $topic)
+    public function index(Post $post, Topic $topic)
     {
         $topics = $topic->has('reports')->with('reports.user')->get();
         $posts = $post->has('reports')->with('reports.user')->get();

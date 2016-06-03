@@ -12,7 +12,7 @@
         @endif
             <div class="general-title small">Update user settings</div>
             <div class="box">
-                <form action="{{ route('moderation.user.edit', ['id' => $user->id]) }}" method="post" autocomplete="off">
+                <form action="{{ route('moderation.user.edit', ['id' => $user->id]) }}" method="post" autocomplete="off" id="has-upload">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">

@@ -8,7 +8,7 @@
         <div class="col-sm-8">
             <div class="general-title small">Update profile settings</div>
             <div class="box">
-                <form action="{{ route('account.settings.profile') }}" method="post" autocomplete="off">
+                <form action="{{ route('account.settings.profile') }}" method="post" autocomplete="off" id="has-upload">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="row">

@@ -25,7 +25,7 @@ class ProfileController extends Controller
      * @param  User                      User model injection.
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(UpdateProfileFormRequest $request, User $user)
+    public function update(UpdateProfileFormRequest $request, User $user)
     {
         $current = $user->find(auth()->user()->id);
 
