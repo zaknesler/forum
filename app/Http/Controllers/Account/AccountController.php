@@ -14,7 +14,7 @@ class AccountController extends Controller
      * Get the view to update user's profile settings.
      * @return \Illuminate\Http\Response
      */
-    public function getProfile()
+    public function index()
     {
         return view('account.settings.profile');
     }
@@ -25,7 +25,7 @@ class AccountController extends Controller
      * @param  User                      User model injection.
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function postProfile(UpdateProfileFormRequest $request, User $user)
+    public function store(UpdateProfileFormRequest $request, User $user)
     {
         $current = $user->find(auth()->user()->id);
 

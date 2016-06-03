@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-sm-8 col-sm-offset-2">
+        <div class="col-sm-8">
             <div class="general-title small">Update profile settings</div>
             <div class="box">
                 <form action="{{ route('account.settings.profile') }}" method="post" autocomplete="off">
@@ -83,6 +83,44 @@
                     <div class="form-group">
                         {!! csrf_field() !!}
                         <button type="submit" class="btn btn-primary">Update profile</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="general-title small">Change password</div>
+            <div class="box">
+                <form action="{{ route('account.settings.password') }}" method="post" autocomplete="off">
+                    <div class="form-group{{ $errors->has('old_password') ? ' has-error' : '' }}">
+                        <label for="old_password">Old password</label>
+                        <input type="password" class="form-control" name="old_password" id="old_password">
+                        @if ($errors->has('old_password'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('old_password') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                        <label for="password">New password</label>
+                        <input type="password" class="form-control" name="password" id="password">
+                        @if ($errors->has('password'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('password') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                    <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+                        <label for="password_confirmation">Confirm new password</label>
+                        <input type="password" class="form-control" name="password_confirmation" id="password_confirmation">
+                        @if ($errors->has('password_confirmation'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('password_confirmation') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        {!! csrf_field() !!}
+                        <button type="submit" class="btn btn-primary">Change password</button>
                     </div>
                 </form>
             </div>

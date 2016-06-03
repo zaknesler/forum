@@ -27,8 +27,11 @@ Route::group(['middleware' => ['guest']], function () {
 Route::group(['middleware' => ['auth']], function () {
     Route::get('auth/sign-out', 'Auth\AuthController@logout')->name('auth.logout');
 
-    Route::get('account/settings/profile', 'Account\AccountController@getProfile')->name('account.settings.profile');
-    Route::post('account/settings/profile', 'Account\AccountController@postProfile');
+    Route::get('account/settings/profile', 'Account\AccountController@index')->name('account.settings.profile');
+    Route::post('account/settings/profile', 'Account\AccountController@store');
+
+    Route::get('account/settings/password', 'Account\Password\PasswordController@index')->name('account.settings.password');
+    Route::post('account/settings/password', 'Account\Password\PasswordController@update');
 
     Route::get('@{username}', 'User\UserController@profile')->name('user.profile');
 
