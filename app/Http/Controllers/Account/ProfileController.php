@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Forum\Http\Controllers\Controller;
 use Forum\Http\Requests\Account\UpdateProfileFormRequest;
 
-class AccountController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Get the view to update user's profile settings.
