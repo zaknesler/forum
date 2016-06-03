@@ -18,7 +18,7 @@ class EditController extends Controller
        * @param  user     $user  User model identifier.
        * @return \Illuminate\Http\Response
        */
-    public function getEdit($id, User $user, Role $role)
+    public function index($id, User $user, Role $role)
     {
         $edit = $user->with('roles')->findOrFail($id);
         $roles = $role->get();
@@ -35,7 +35,7 @@ class EditController extends Controller
      * @param  User     $user  User model identifier.
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function postEdit($id, EditUserFormRequest $request, User $user, Role $role)
+    public function update($id, EditUserFormRequest $request, User $user, Role $role)
     {
         $current = $user->findOrFail($id);
   
