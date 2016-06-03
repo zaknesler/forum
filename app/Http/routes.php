@@ -60,8 +60,8 @@ Route::group(['prefix' => 'moderation', 'middleware' => ['role:owner|admin']], f
     Route::get('section/{id}/edit', 'Forum\SectionController@getEdit')->name('moderation.section.edit');
     Route::post('section/{id}/edit', 'Forum\SectionController@postEdit');
 
-    Route::get('user/{id}/edit', 'User\UserController@getEdit')->name('moderation.user.edit');
-    Route::post('user/{id}/edit', 'User\UserController@postEdit');
+    Route::get('user/{id}/edit', 'User\EditController@index')->name('moderation.user.edit');
+    Route::post('user/{id}/edit', 'User\EditController@update');
 
     Route::post('user/{id}/edit/role', 'User\UserController@updateRole')->name('moderation.user.edit.role');
 
