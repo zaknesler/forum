@@ -16,24 +16,24 @@
             <div class="body">
                 {!! $topic->body !!}
             </div>
-            @if (Auth::user())
-            <div class="foot">
-                @role (['moderator','admin','owner'])
-                <div class="pull-left">
+            @if (Auth::user() || (Auth::user()->id == $topic->user->id) || (Auth::user()->hasRole(['moderator','admin','owner'])))
+                <div class="foot">
+                    <div class="pull-left">
+                        @if ($topic->reports->count())
+                            @if (Auth::user()->hasRole(['moderator','admin','owner']))
+                                <a href="{{ route('forum.topic.report.destroy', ['id' => $topic->id]) }}">Clear {{ $topic->reportCountText() }}</a>
+                            @endif
+                        @else
+                            <a href="{{ route('forum.topic.report', ['id' => $topic->id]) }}">Report</a>
+                        @endif
+                    </div>
                     @if ((Auth::user()->id == $topic->user->id) || Auth::user()->hasRole(['moderator','admin','owner']))
-                    <a href="{{ route('forum.topic.edit', ['id' => $topic->id]) }}">Edit</a>
+                        <div class="pull-right">
+                            <a href="{{ route('forum.topic.edit', ['id' => $topic->id]) }}">Edit</a>
+                        </div>
                     @endif
+                    <div class="clearfix"></div>
                 </div>
-                <div class="pull-right">
-                    @if (Auth::user()->hasRole(['moderator','admin','owner']) && $topic->reports->count())
-                    <a href="{{ route('forum.topic.report.destroy', ['id' => $topic->id]) }}">Clear</a>
-                    @elseif (!(Auth::user()->id == $topic->user->id))
-                    <a href="{{ route('forum.topic.report', ['id' => $topic->id]) }}">Report</a>
-                    @endif
-                </div>
-                @endrole
-                <div class="clearfix"></div>
-            </div>
             @endif
         </div>
     </div>
@@ -57,47 +57,44 @@
                     <div class="body">
                         {!! $post->body !!}
                     </div>
-                    @if (Auth::user())
-                    <div class="foot">
-                        <div class="pull-left">
-                            @if (Auth::user()->hasRole(['moderator','admin','owner']) && $post->reports->count())
-                            <a href="{{ route('forum.post.report.destroy', ['id' => $post->id]) }}">Clear</a>
-                            @else
-                            <a href="{{ route('forum.post.report', ['id' => $post->id]) }}">Report</a>
-                            @endif
+                    @if (Auth::user() || (Auth::user()->id == $post->user->id) || (Auth::user()->hasRole(['moderator','admin','owner'])))
+                        <div class="foot">
+                            <div class="pull-left">
+                                @if ($post->reports->count())
+                                    @if (Auth::user()->hasRole(['moderator','admin','owner']))
+                                        <a href="{{ route('forum.post.report.destroy', ['id' => $post->id]) }}">Clear {{ $post->reportCountText() }}</a>
+                                    @endif
+                                @else
+                                    <a href="{{ route('forum.post.report', ['id' => $post->id]) }}">Report</a>
+                                @endif
+                            </div>
+                            <div class="clearfix"></div>
                         </div>
-                        <div class="pull-right">
-                            @role (['admin', 'owner'])
-                            <a href="{{ route('moderation.post.destroy', ['id' => $post->id]) }}">Delete</a></li>
-                            @endrole
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
                     @endif
                 </div>
             </div>
         @endforeach
     @endif
     @if (Auth::user())
-    <div class="general-title">
-        Leave a reply
-    </div>
-    <div class="box">
-        <form action="{{ route('forum.topic.post', ['id' => $topic->id]) }}" method="post" autocomplete="off">
-            <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
-                <textarea class="form-control" name="body" id="body" rows="5">{{ old('body') }}</textarea>
-                @if ($errors->has('body'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('body') }}</strong>
-                    </span>
-                @endif
-            </div>
-            <div class="form-group">
-                {!! csrf_field() !!}
-                <button type="submit" class="btn btn-primary">Reply</button>
-            </div>
-        </form>
-    </div>
+        <div class="general-title">
+            Leave a reply
+        </div>
+        <div class="box">
+            <form action="{{ route('forum.topic.post', ['id' => $topic->id]) }}" method="post" autocomplete="off">
+                <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
+                    <textarea class="form-control" name="body" id="body" rows="5">{{ old('body') }}</textarea>
+                    @if ($errors->has('body'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('body') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="form-group">
+                    {!! csrf_field() !!}
+                    <button type="submit" class="btn btn-primary">Reply</button>
+                </div>
+            </form>
+        </div>
     @else
         <p class="text-muted">To reply to this topic, please <a href="{{ route('auth.login') }}">sign in</a> or <a href="{{ route('auth.register') }}">sign up</a>.</p>
     @endif
