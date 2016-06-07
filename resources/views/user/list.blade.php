@@ -13,6 +13,10 @@
                             <a class="label label-warning pull-right" href="{{ route('moderation.user.edit', ['id' => $user->id]) }}">Edit</a>
                             @endrole
                             <a href="{{ route('user.profile', ['username' => $user->username]) }}">{{ $user->username }}</a>
+                            <br />
+                            <small>
+                                {{ $user->email }}
+                            </small>
                         </h4></li>
                     @endforeach
                 </ul>

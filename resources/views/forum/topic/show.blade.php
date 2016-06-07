@@ -16,26 +16,28 @@
             <div class="body">
                 {!! $topic->body !!}
             </div>
-            @if (Auth::user() || (Auth::user()->id == $topic->user->id) || (Auth::user()->hasRole(['moderator','admin','owner'])))
-                <div class="foot">
-                    <div class="pull-left">
-                        @if (Auth::user()->hasRole(['moderator','admin','owner']))
-                            @if ($topic->reports->count())
-                                <a href="{{ route('forum.topic.report.destroy', ['id' => $topic->id]) }}">Clear {{ $topic->reportCountText() }}</a>
+            @if (Auth::user())
+                @if ((Auth::user()->id == $topic->user->id) || (Auth::user()->hasRole(['moderator','admin','owner'])))
+                    <div class="foot">
+                        <div class="pull-left">
+                            @if (Auth::user()->hasRole(['moderator','admin','owner']))
+                                @if ($topic->reports->count())
+                                    <a href="{{ route('forum.topic.report.destroy', ['id' => $topic->id]) }}">Clear {{ $topic->reportCountText() }}</a>
+                                @else
+                                    <p>0 reports</p>
+                                @endif
                             @else
-                                <p>0 reports</p>
+                                <a href="{{ route('forum.topic.report', ['id' => $topic->id]) }}">Report</a>
                             @endif
-                        @else
-                            <a href="{{ route('forum.topic.report', ['id' => $topic->id]) }}">Report</a>
-                        @endif
-                    </div>
-                    @if ((Auth::user()->id == $topic->user->id) || Auth::user()->hasRole(['moderator','admin','owner']))
-                        <div class="pull-right">
-                            <a href="{{ route('forum.topic.edit', ['id' => $topic->id]) }}">Edit</a>
                         </div>
-                    @endif
-                    <div class="clearfix"></div>
-                </div>
+                        @if ((Auth::user()->id == $topic->user->id) || Auth::user()->hasRole(['moderator','admin','owner']))
+                            <div class="pull-right">
+                                <a href="{{ route('forum.topic.edit', ['id' => $topic->id]) }}">Edit</a>
+                            </div>
+                        @endif
+                        <div class="clearfix"></div>
+                    </div>
+                @endif
             @endif
         </div>
     </div>
@@ -59,21 +61,23 @@
                     <div class="body">
                         {!! $post->body !!}
                     </div>
-                    @if (Auth::user() || (Auth::user()->id == $post->user->id) || (Auth::user()->hasRole(['moderator','admin','owner'])))
-                        <div class="foot">
-                            <div class="pull-left">
-                                @if (Auth::user()->hasRole(['moderator','admin','owner']))
-                                    @if ($post->reports->count())
-                                        <a href="{{ route('forum.post.report.destroy', ['id' => $post->id]) }}">Clear {{ $post->reportCountText() }}</a>
+                    @if (Auth::user())
+                        @if ((Auth::user()->id == $topic->user->id) || (Auth::user()->hasRole(['moderator','admin','owner'])))
+                            <div class="foot">
+                                <div class="pull-left">
+                                    @if (Auth::user()->hasRole(['moderator','admin','owner']))
+                                        @if ($post->reports->count())
+                                            <a href="{{ route('forum.post.report.destroy', ['id' => $post->id]) }}">Clear {{ $post->reportCountText() }}</a>
+                                        @else
+                                            <p>0 reports</p>
+                                        @endif
                                     @else
-                                        <p>0 reports</p>
+                                        <a href="{{ route('forum.post.report', ['id' => $post->id]) }}">Report</a>
                                     @endif
-                                @else
-                                    <a href="{{ route('forum.post.report', ['id' => $post->id]) }}">Report</a>
-                                @endif
+                                </div>
+                                <div class="clearfix"></div>
                             </div>
-                            <div class="clearfix"></div>
-                        </div>
+                        @endif
                     @endif
                 </div>
             </div>
