@@ -24,7 +24,7 @@
                                 @if ($topic->reports->count())
                                     <a href="{{ route('forum.topic.report.destroy', ['id' => $topic->id]) }}">Clear {{ $topic->reportCountText() }}</a>
                                 @else
-                                    <p>0 reports</p>
+                                    <p class="label label-success">0 reports</p>
                                 @endif
                             @else
                                 <a href="{{ route('forum.topic.report', ['id' => $topic->id]) }}">Report</a>
@@ -69,12 +69,17 @@
                                         @if ($post->reports->count())
                                             <a href="{{ route('forum.post.report.destroy', ['id' => $post->id]) }}">Clear {{ $post->reportCountText() }}</a>
                                         @else
-                                            <p>0 reports</p>
+                                            <p class="label label-success">0 reports</p>
                                         @endif
                                     @else
                                         <a href="{{ route('forum.post.report', ['id' => $post->id]) }}">Report</a>
                                     @endif
                                 </div>
+                                @if ((Auth::user()->id == $post->user->id) || Auth::user()->hasRole(['moderator','admin','owner']))
+                                    <div class="pull-right">
+                                        <a class="text-danger" href="{{ route('moderation.post.destroy', ['id' => $post->id]) }}">Delete</a>
+                                    </div>
+                                @endif
                                 <div class="clearfix"></div>
                             </div>
                         @endif
