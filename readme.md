@@ -2,13 +2,15 @@
 
 This is a very simple Laravel 5.2 forum that I am working on. It is for personal-use only, so the features and functionality are limited to my own abilities and creativity. (For just starting out with Laravel, I think I am doing pretty well.)
 
-## Installation
+### Please note
 
 > I **HIGHLY** discourage installing this, because it is currently in development and when I push changes here; they often damage the integrity of this project.
 > For example, I do not add any additional migrations to create or update columns in the database; I just edit the previous migrations and reset my database.
 > I want to get everything correct before I say it's good enough to clone to your machine.
 
 If you want to ignore the above statement, download, and use this for yourself, you may.
+
+## Installation
 
 First, clone repository to your machine.
 
@@ -25,12 +27,7 @@ So far you need the following third party services (All offer good enough free s
 - [Uploadcare](https://uploadcare.com/) (user profile images)
 - [Mailgun](https://www.mailgun.com/) (Email management. If you're developing, use [Mailtrap](https://mailtrap.io/) instead)
 
-Next, run the migrations.
-```
-php artisan migrate
-```
-
-Lastly, in order for the roles to work, we'll install the default roles.
+Next, run the migrations (Make sure you pass the seed option into this command; it adds the default roles into your database.
 ```
 php artisan migrate --seed
 ```
