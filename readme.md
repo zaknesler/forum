@@ -4,31 +4,37 @@ This is a very simple Laravel 5.2 forum that I am working on. It is for personal
 
 ## Installation
 
-> I HIGHLY discourage installing this, because it is currently in development and when I push changes here, they often damage the integrity of this project. For example, I do not add migrations to add new or change existing columns in the database, I just edit the previous migrations and reset my database.
+> I **HIGHLY** discourage installing this, because it is currently in development and when I push changes here; they often damage the integrity of this project.
+> For example, I do not add any additional migrations to create or update columns in the database; I just edit the previous migrations and reset my database.
 > I want to get everything correct before I say it's good enough to clone to your machine.
 
 If you want to ignore the above statement, download, and use this for yourself, you may.
 
-Now let's get this record straight. I am sure that there is a better way for users to download and use this, but as of now just clone this repository to your machine.
+First, clone repository to your machine.
 
-Then, make sure you install the composer dependencies.
+Next, install the composer dependencies.
 ```
 composer install
 ```
 
-Also, visit the `.env` file and make sure that your database and application settings are properly set.
+After that, visit the `.env` file and make sure that your database and application settings are properly set.
+
+---
 
 So far you need the following third party services (All offer good enough free services to actively use, if you want to expand, go right ahead):
-  - Algolia (search features)
-  - Uploadcare (user profile images)
-  - Mailgun (Email management. If you're developing, use Mailtrap instead)
 
-Next, run the migration to get the tables.
+- Algolia (search features)
+- Uploadcare (user profile images)
+- Mailgun (Email management. If you're developing, use Mailtrap instead)
+
+---
+
+Next, run the migrations.
 ```
 php artisan migrate
 ```
 
-In order for the roles to work, we'll install the default roles.
+Lastly, in order for the roles to work, we'll install the default roles.
 ```
 php artisan migrate --seed
 ```
@@ -37,7 +43,7 @@ php artisan migrate --seed
 
 **And that's about it. The rest is on the actual website. Enjoy!**
 
--- Just a reminder that this is my first Laravel project so I am probably doing lots of things wrong. If you could correct anything here, please do! I really appreciate feedback and support!
+> Just a reminder that this is my first Laravel project so I am probably doing lots of things wrong. If you could correct anything here, please do! I really appreciate feedback and support!
 
 ## Feature requests
 [![Feature Requests](http://feathub.com/zaknes/forum?format=svg)](http://feathub.com/zaknes/forum)
