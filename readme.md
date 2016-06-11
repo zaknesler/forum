@@ -19,15 +19,11 @@ composer install
 
 After that, visit the `.env` file and make sure that your database and application settings are properly set.
 
----
-
 So far you need the following third party services (All offer good enough free services to actively use, if you want to expand, go right ahead):
 
-- Algolia (search features)
-- Uploadcare (user profile images)
-- Mailgun (Email management. If you're developing, use Mailtrap instead)
-
----
+- [Algolia](https://www.algolia.com/) (search features)
+- [Uploadcare](https://uploadcare.com/) (user profile images)
+- [Mailgun](https://www.mailgun.com/) (Email management. If you're developing, use [Mailtrap](https://mailtrap.io/) instead)
 
 Next, run the migrations.
 ```
