@@ -3,11 +3,15 @@
 namespace Forum\Models;
 
 use Zizaco\Entrust\Traits\EntrustUserTrait;
+use AlgoliaSearch\Laravel\AlgoliaEloquentTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use EntrustUserTrait;
+    use EntrustUserTrait, AlgoliaEloquentTrait;
+
+    public static $autoIndex = true;
+    public static $autoDelete = true;
     
     protected $fillable = [
         'username',

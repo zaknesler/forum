@@ -17,9 +17,9 @@ class UserController extends Controller
      * @param  User  $user  User model injection.
      * @return \Illuminate\Http\Response
      */
-    public function index(User $user)
+    public function index(Request $request, User $user)
     {
-        $users = $user->paginate(25);
+        $users = $user->find(collect($user->search($request->search)['hits'])->lists('id')->all());
 
         return view('user.list', [
             'users' => $users,    

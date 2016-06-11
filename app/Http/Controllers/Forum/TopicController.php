@@ -2,6 +2,7 @@
 
 namespace Forum\Http\Controllers\Forum;
 
+use Forum\Models\Post;
 use Forum\Models\Topic;
 use Forum\Http\Requests;
 use Forum\Models\Section;
@@ -101,9 +102,10 @@ class TopicController extends Controller
      * Mark topic as deleted.
      * @param  integer  $id     Topic identifier.
      * @param  Topic    $topic  Topic model injection.
+     * @param  Post     $post   Post model injection.
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id, Topic $topic)
+    public function destroy($id, Topic $topic, Post $post)
     {
         $destroy = $topic->findOrFail($id);
 
@@ -115,6 +117,9 @@ class TopicController extends Controller
          * go through and delete all of its children automatically.
          */
         $destroy->delete();
+
+        $topic->reindex();
+        $post->reindex();
 
         notify()->flash('Success', 'success', [
             'text' => 'Topic has been deleted.',

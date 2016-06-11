@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
     <div class="jumbotron">
-        <h1><strong>{{ $user->username }}</strong> <small>{{ $user->getFullName() }}</small></h1>
+        <h1><strong>{{ $user->getFullName() }} </strong> <small>{{ '@' . $user->username }}</small></h1>
         <p>{{ $user->about }}</p>
         <hr>
         <div class="row">

@@ -53,6 +53,8 @@ class PostController extends Controller
             'timer' => 2000,
         ]);
 
+        $post->reindex();
+
         return redirect()->back();
     }
 }

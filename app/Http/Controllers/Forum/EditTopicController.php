@@ -61,6 +61,8 @@ class EditTopicController extends Controller
             'timer' => 2000,
         ]);
 
+        $topic->reindex();
+
         return redirect()->route('forum.topic.show', [
             'slug' => $current->slug,
             'id' => $current->id

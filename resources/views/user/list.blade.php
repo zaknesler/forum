@@ -4,7 +4,7 @@
 <div class="container">
     <h3>All users</h3>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-8">
             @if ($users->count())
                 <ul class="list-group">
                     @foreach ($users as $user)
@@ -20,12 +20,28 @@
                         </h4></li>
                     @endforeach
                 </ul>
-                {{ $users->render() }}
             @else
                 <div class="box">
                     <p>No registered users.</p>
                 </div>
             @endif
+        </div>
+        <div class="col-md-4">
+            <form action="{{ route('moderation.user.list') }}" method="get">
+                <div class="form-group{{ $errors->has('search') ? ' has-error' : '' }}">
+                    <div class="input-group">
+                        <input type="text" placeholder="Search users.." class="form-control" name="search" value="{{ request('search') }}">
+                        <div class="input-group-btn">
+                            <button class="btn btn-primary" type="submit">Search</button>
+                        </div>
+                    </div>
+                    @if ($errors->has('search'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('search') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </form>
         </div>
     </div>
 </div>

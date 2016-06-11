@@ -161,6 +161,7 @@ return [
         Inwave\LaravelUploadcare\LaravelUploadcareServiceProvider::class,
         GrahamCampbell\Markdown\MarkdownServiceProvider::class,
         Bogardo\Mailgun\MailgunServiceProvider::class,
+        AlgoliaSearch\Laravel\AlgoliaServiceProvider::class
 
     ],
 

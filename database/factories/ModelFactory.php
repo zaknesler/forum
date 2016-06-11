@@ -13,10 +13,14 @@
 
 $factory->define(Forum\Models\User::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->safeEmail,
-        'password' => bcrypt(str_random(10)),
-        'remember_token' => str_random(10),
+        'username' => $faker->userName,
+        'first_name' => $faker->firstName,
+        'last_name' => $faker->lastName,
+        'location' => $faker->city . ', ' . $faker->state,
+        'email' => $faker->email,
+        'about' => $faker->paragraph,
+        'password' => bcrypt($faker->password),
+        'remember_token' => bcrypt($faker->password),
     ];
 });
 

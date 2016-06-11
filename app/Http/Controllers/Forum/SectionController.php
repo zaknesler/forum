@@ -116,9 +116,11 @@ class SectionController extends Controller
      * Mark section as deleted.
      * @param  integer  $id       Section identifier.
      * @param  Section  $section  Section model injection.
+     * @param  Topic    $topic    Topic model injection.
+     * @param  Post     $post     Post model injection.
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id, Section $section)
+    public function destroy($id, Section $section, Topic $topic, Post $post)
     {
         $destroy = $section->findOrFail($id);
 
@@ -128,6 +130,11 @@ class SectionController extends Controller
             'text' => 'Section has been deleted.',
             'timer' => 2000,
         ]);
+
+        // Reindex Algolia indices.
+        $section->reindex();
+        $topic->reindex();
+        $post->reindex();
 
         return redirect()->route('home');
     }
