@@ -27,6 +27,8 @@ class TopicController extends Controller
 
         $topic->increment('reports');
 
+        $topic->reindex();
+
         notify()->flash('Success', 'success', [
             'text' => 'Thank you for reporting.',
             'timer' => 2000,
@@ -48,6 +50,8 @@ class TopicController extends Controller
         $topic->update([
             'reports' => 0,
         ]);
+
+        $topic->reindex();
 
         notify()->flash('Success', 'success', [
             'text' => 'Reports have been cleared.',
@@ -131,7 +135,11 @@ class TopicController extends Controller
             'section_id' => $request->input('section_id'),
         ]);
 
-        $topic->section()->increment('topics_count');
+        $section = $topic->section();
+
+        $section->increment('topics_count');
+
+        $section->reindex();
 
         notify()->flash('Success', 'success', [
             'text' => 'Your topic has been added.',
@@ -155,7 +163,9 @@ class TopicController extends Controller
     {
         $destroy = $topic->findOrFail($id);
 
-        $destroy->section()->decrement('topics_count');
+        $section = $destroy->section();
+
+        $section->decrement('topics_count');
 
         /**
          * When the database is migrated, the tables
@@ -166,6 +176,7 @@ class TopicController extends Controller
          */
         $destroy->delete();
 
+        $section->reindex();
         $topic->reindex();
         $post->reindex();
 

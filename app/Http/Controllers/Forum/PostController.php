@@ -24,6 +24,8 @@ class PostController extends Controller
 
         $post->increment('reports');
 
+        $post->reindex();
+
         notify()->flash('Success', 'success', [
             'text' => 'Thank you for reporting.',
             'timer' => 2000,
@@ -45,6 +47,8 @@ class PostController extends Controller
         $post->update([
             'reports' => 0,
         ]);
+
+        $post->reindex();
 
         notify()->flash('Success', 'success', [
             'text' => 'Reports have been cleared.',
@@ -69,6 +73,8 @@ class PostController extends Controller
 
         $topic->increment('replies_count');
 
+        $topic->reindex();
+
         notify()->flash('Success', 'success', [
             'text' => 'Your post has been added.',
             'timer' => 2000,
@@ -90,7 +96,9 @@ class PostController extends Controller
     {
         $destroy = $post->findOrFail($id);
 
-        $destroy->topic()->decrement('replies_count');
+        $topic = $destroy->topic();
+
+        $topic->decrement('replies_count');
 
         $destroy->delete();
 
@@ -99,6 +107,7 @@ class PostController extends Controller
             'timer' => 2000,
         ]);
 
+        $topic->reindex();
         $post->reindex();
 
         return redirect()->back();
