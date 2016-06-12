@@ -5,6 +5,7 @@ namespace Forum\Http\Controllers\Account;
 use Forum\Models\User;
 use Forum\Http\Requests;
 use Illuminate\Http\Request;
+use Forum\Events\User\UserWasEdited;
 use Forum\Http\Controllers\Controller;
 use Forum\Http\Requests\Account\UpdateProfileFormRequest;
 
@@ -27,7 +28,7 @@ class ProfileController extends Controller
      */
     public function update(UpdateProfileFormRequest $request, User $user)
     {
-        $current = $user->find(auth()->user()->id);
+        $user = $user->find(auth()->user()->id);
 
         if (!$request->input('first_name') && $request->input('last_name')) {
             notify()->flash('Error', 'error', [
@@ -38,19 +39,19 @@ class ProfileController extends Controller
             return redirect()->back();
         }
 
-        $current->update([
-            'first_name' => $request->input('first_name'),
-            'last_name' => $request->input('last_name'),
-            'location' => $request->input('location'),
-            'website' => $request->input('website'),
-            'about' => $request->input('about'),
-        ]);
+        $user->first_name = $request->input('first_name');
+        $user->last_name = $request->input('last_name');
+        $user->location = $request->input('location');
+        $user->website = $request->input('website');
+        $user->about = $request->input('about');
 
         if ($request->input('image')) {
-            $current->update([
-                'image_uuid' => \Uploadcare::getFile($request->input('image'))->getUuid(),
-            ]);
+            $user->image_uuid = \Uploadcare::getFile($request->input('image'))->getUuid();
         }
+
+        $user->update();
+
+        event(new UserWasEdited($user));
 
         notify()->flash('Success', 'success', [
             'text' => 'Your profile settings have been updated.',

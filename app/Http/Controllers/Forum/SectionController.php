@@ -78,8 +78,6 @@ class SectionController extends Controller
             'description' => $request->input('description'),
         ]);
 
-        $section->reindex();
-
         notify()->flash('Success', 'success', [
             'text' => 'Section has been created.',
             'timer' => 2000,
@@ -107,8 +105,6 @@ class SectionController extends Controller
             'timer' => 2000,
         ]);
 
-        // Reindex Algolia indices.
-        $section->reindex();
         $topic->reindex();
         $post->reindex();
 

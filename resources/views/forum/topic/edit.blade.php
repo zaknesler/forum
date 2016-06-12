@@ -10,19 +10,6 @@
                 <div class="panel-heading">Edit topic</div>
                 <div class="panel-body">
                     <form action="{{ route('forum.topic.edit', ['id' => $topic->id]) }}" method="post" autocomplete="off">
-                        <div class="form-group{{ $errors->has('section_id') ? ' has-error' : '' }}">
-                            <label for="section_id">Section</label>
-                            <select class="form-control" name="section_id" id="section_id">
-                                @foreach ($sections as $section)
-                                    <option value="{{ $section->id }}" @if ($topic->section->id == $section->id) selected @endif>{{ $section->name }}</option>
-                                @endforeach
-                            </select>
-                            @if ($errors->has('section_id'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('section_id') }}</strong>
-                                </span>
-                            @endif
-                        </div>
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name">Title</label>
                             <input type="text" class="form-control" name="name" id="name" placeholder="Hello, world!" value="{{ $topic->name }}">

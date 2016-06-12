@@ -7,7 +7,10 @@ use Forum\Models\Topic;
 use Forum\Http\Requests;
 use Illuminate\Http\Request;
 use Forum\Http\Controllers\Controller;
-use GrahamCampbell\Markdown\Facades\Markdown;
+use Forum\Events\Forum\Post\PostWasCreated;
+use Forum\Events\Forum\Post\PostWasDeleted;
+use Forum\Events\Forum\Post\PostWasReported;
+use Forum\Events\Forum\Post\PostReportsWereCleared;
 use Forum\Http\Requests\Forum\Post\CreatePostFormRequest;
 
 class PostController extends Controller
@@ -22,9 +25,7 @@ class PostController extends Controller
     {
         $post = $post->findOrFail($id);
 
-        $post->increment('reports');
-
-        $post->reindex();
+        event(new PostWasReported($post));
 
         notify()->flash('Success', 'success', [
             'text' => 'Thank you for reporting.',
@@ -44,11 +45,7 @@ class PostController extends Controller
     {
         $post = $post->findOrFail($id);
 
-        $post->update([
-            'reports' => 0,
-        ]);
-
-        $post->reindex();
+        event(new PostReportsWereCleared($post));
 
         notify()->flash('Success', 'success', [
             'text' => 'Reports have been cleared.',
@@ -66,14 +63,12 @@ class PostController extends Controller
      */
     public function store(CreatePostFormRequest $request, Topic $topic)
     {
-        $topic->posts()->create([
+        $post = $topic->posts()->create([
             'body' => $request->input('body'),
             'user_id' => $request->user()->id,
         ]);
 
-        $topic->increment('replies_count');
-
-        $topic->reindex();
+        event(new PostWasCreated($post, $topic, $request->user()));
 
         notify()->flash('Success', 'success', [
             'text' => 'Your post has been added.',
@@ -88,26 +83,24 @@ class PostController extends Controller
 
     /**
      * Mark post as deleted.
-     * @param  integer  $id     Post identifier.
-     * @param  Post     $post   Post model injection.
-     * @param  Topic    $topic  Topic model injection.
+     * @param  integer  $id       Post identifier.
+     * @param  Request  $request  The request.
+     * @param  Post     $post     Post model injection.
+     * @param  Topic    $topic    Topic model injection.
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id, Post $post, Topic $topic)
+    public function destroy($id, Request $request, Post $post, Topic $topic)
     {
-        $destroy = $post->findOrFail($id);
-
-        $destroy->topic()->decrement('replies_count');
-
-        $destroy->delete();
+        $post = $post->findOrFail($id);
 
         notify()->flash('Success', 'success', [
             'text' => 'Post has been deleted.',
             'timer' => 2000,
         ]);
 
-        $topic->reindex();
-        $post->reindex();
+        event(new PostWasDeleted($post, $topic, $request->user()));
+
+        $post->delete();
 
         return redirect()->back();
     }

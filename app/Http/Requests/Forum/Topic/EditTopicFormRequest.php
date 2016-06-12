@@ -26,7 +26,6 @@ class EditTopicFormRequest extends Request
         return [
             'name' => 'required',
             'body' => 'required',
-            'section_id' => 'required|exists:sections,id',
         ];
     }
 }

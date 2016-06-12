@@ -26,18 +26,22 @@ class PasswordController extends Controller
      */
     public function update(UpdatePasswordFormRequest $request, User $user)
     {
-        $current = $user->find(auth()->user()->id);
+        $user = $user->find(auth()->user()->id);
 
-        if (Hash::check($request->input('old_password'), $current->password)) {
-            $current->update([
-                'password' => bcrypt($request->input('password')),
-            ]);
+        if (Hash::check($request->input('old_password'), $user->password)) {
+            $user->password = bcrypt($request->input('password'));
+            $user->update();
 
             notify()->flash('Success', 'success', [
                 'text' => 'Your password has been changed.',
                 'timer' => 2000,
             ]);
         }
+
+        notify()->flash('Error', 'error', [
+            'text' => 'Your old password is incorrect.',
+            'timer' => 2000,
+        ]);
 
         return redirect()->route('account.settings.password');
     }

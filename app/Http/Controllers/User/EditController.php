@@ -6,6 +6,7 @@ use Forum\Models\Role;
 use Forum\Models\User;
 use Forum\Http\Requests;
 use Illuminate\Http\Request;
+use Forum\Events\User\UserWasEdited;
 use Forum\Http\Controllers\Controller;
 use Forum\Http\Requests\User\EditUserFormRequest;
 use Forum\Http\Requests\User\UpdateUserRoleFormRequest;
@@ -37,7 +38,7 @@ class EditController extends Controller
      */
     public function update($id, EditUserFormRequest $request, User $user, Role $role)
     {
-        $current = $user->findOrFail($id);
+        $user = $user->findOrFail($id);
   
         if (!$request->input('first_name') && $request->input('last_name')) {
             notify()->flash('Error', 'error', [
@@ -48,20 +49,19 @@ class EditController extends Controller
             return redirect()->back();
         }
   
-        $current->update([
-            'username' => $request->input('username'),
-            'first_name' => $request->input('first_name'),
-            'last_name' => $request->input('last_name'),
-            'location' => $request->input('location'),
-            'website' => $request->input('website'),
-            'about' => $request->input('about'),
-        ]);
-  
+        $user->first_name = $request->input('first_name');
+        $user->last_name = $request->input('last_name');
+        $user->location = $request->input('location');
+        $user->website = $request->input('website');
+        $user->about = $request->input('about');
+
         if ($request->input('image')) {
-            $current->update([
-                'image_uuid' => \Uploadcare::getFile($request->input('image'))->getUuid(),
-            ]);
+            $user->image_uuid = \Uploadcare::getFile($request->input('image'))->getUuid();
         }
+
+        $user->update();
+
+        event(new UserWasEdited($user));
   
         notify()->flash('Success', 'success', [
             'text' => 'User has been updated.',

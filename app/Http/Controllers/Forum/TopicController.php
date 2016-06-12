@@ -7,9 +7,11 @@ use Forum\Models\Topic;
 use Forum\Http\Requests;
 use Forum\Models\Section;
 use Illuminate\Http\Request;
-use Forum\Models\TopicReport;
 use Forum\Http\Controllers\Controller;
-use GrahamCampbell\Markdown\Facades\Markdown;
+use Forum\Events\Forum\Topic\TopicWasCreated;
+use Forum\Events\Forum\Topic\TopicWasDeleted;
+use Forum\Events\Forum\Topic\TopicWasReported;
+use Forum\Events\Forum\Topic\TopicReportsWereCleared;
 use Forum\Http\Requests\Forum\Topic\CreateTopicFormRequest;
 use Forum\Http\Requests\Forum\Topic\EditTopicFormRequest;
 
@@ -25,9 +27,7 @@ class TopicController extends Controller
     {
         $topic = $topic->findOrFail($id);
 
-        $topic->increment('reports');
-
-        $topic->reindex();
+        event(new TopicWasReported($topic));
 
         notify()->flash('Success', 'success', [
             'text' => 'Thank you for reporting.',
@@ -47,11 +47,7 @@ class TopicController extends Controller
     {
         $topic = $topic->findOrFail($id);
 
-        $topic->update([
-            'reports' => 0,
-        ]);
-
-        $topic->reindex();
+        event(new TopicReportsWereCleared($topic));
 
         notify()->flash('Success', 'success', [
             'text' => 'Reports have been cleared.',
@@ -124,10 +120,9 @@ class TopicController extends Controller
     /**
      * Store the new topic in database.
      * @param  CreateTopicFormRequest  $request  Form request for validation.
-     * @param  Section                 $topic    Section model injection.
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(CreateTopicFormRequest $request, Section $section)
+    public function store(CreateTopicFormRequest $request)
     {
         $topic = $request->user()->topics()->create([
             'name' => $request->input('name'),
@@ -136,9 +131,7 @@ class TopicController extends Controller
             'section_id' => $request->input('section_id'),
         ]);
 
-        $topic->section()->increment('topics_count');
-
-        $section->reindex();
+        event(new TopicWasCreated($topic, $request->user()));
 
         notify()->flash('Success', 'success', [
             'text' => 'Your topic has been added.',
@@ -155,28 +148,15 @@ class TopicController extends Controller
      * Mark topic as deleted.
      * @param  integer  $id       Topic identifier.
      * @param  Topic    $topic    Topic model injection.
-     * @param  Post     $post     Post model injection.
-     * @param  Section  $section  Section model injection.
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id, Topic $topic, Post $post, Section $section)
+    public function destroy($id, Request $request, Topic $topic)
     {
-        $destroy = $topic->findOrFail($id);
+        $topic = $topic->findOrFail($id);
 
-        $destroy->section()->decrement('topics_count');
+        event(new TopicWasDeleted($topic, $request->user()));
 
-        /**
-         * When the database is migrated, the tables
-         * are inter-connected with an option to
-         * 'cascade' when deleted. This means that if
-         * we delete the parent row value, Eloquent will
-         * go through and delete all of its children automatically.
-         */
-        $destroy->delete();
-
-        $section->reindex();
-        $topic->reindex();
-        $post->reindex();
+        $topic->delete();
 
         notify()->flash('Success', 'success', [
             'text' => 'Topic has been deleted.',

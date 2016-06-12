@@ -4,11 +4,9 @@ namespace Forum\Http\Controllers\Auth;
 
 use Validator;
 use Forum\Models\Role;
-use Forum\Events\Auth;
 use Forum\Models\User;
-use Illuminate\Http\Request;
+use Forum\Events\User\UserWasCreated;
 use Forum\Http\Controllers\Controller;
-use Forum\Events\User\UserWasAuthenticated;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
@@ -51,6 +49,8 @@ class AuthController extends Controller
         }
 
         $user->roles()->attach($role->id);
+
+        event(new UserWasCreated($user));
 
         return $user;
     }

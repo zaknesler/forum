@@ -6,9 +6,8 @@ use Forum\Models\Topic;
 use Forum\Http\Requests;
 use Forum\Models\Section;
 use Illuminate\Http\Request;
-use Forum\Models\TopicReport;
 use Forum\Http\Controllers\Controller;
-use GrahamCampbell\Markdown\Facades\Markdown;
+use Forum\Events\Forum\Topic\TopicWasEdited;
 use Forum\Http\Requests\Forum\Topic\CreateTopicFormRequest;
 use Forum\Http\Requests\Forum\Topic\EditTopicFormRequest;
 
@@ -46,10 +45,9 @@ class EditTopicController extends Controller
      */
     public function update($id, EditTopicFormRequest $request, Topic $topic)
     {
-        $current = $topic->findOrFail($id);
+        $topic = $topic->findOrFail($id);
 
-        $current->update([
-            'section_id' => $request->input('section_id'),
+        $topic->update([
             'name' => $request->input('name'),
             'slug' => str_slug($request->input('name')),
             'body' => $request->input('body'),
@@ -60,11 +58,11 @@ class EditTopicController extends Controller
             'timer' => 2000,
         ]);
 
-        $topic->reindex();
+        event(new TopicWasEdited($topic, $request->user()));
 
         return redirect()->route('forum.topic.show', [
-            'slug' => $current->slug,
-            'id' => $current->id
+            'slug' => $topic->slug,
+            'id' => $topic->id
         ]);
     }    
 }
