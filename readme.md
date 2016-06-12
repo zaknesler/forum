@@ -8,6 +8,8 @@ I set up a silly little demonstration of this application. Go try it out and let
 
 [Go to demo website](http://flynk.ml/)
 
+> I left error debugging on, so if something goes wrong, you can tell me what it is.
+
 ### Please note
 
 > I **HIGHLY** discourage installing this, because it is currently in development and when I push changes here; they often damage the integrity of this project.
