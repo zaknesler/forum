@@ -24,7 +24,7 @@ class EditTopicFormRequest extends Request
     public function rules()
     {
         return [
-            'title' => 'required',
+            'name' => 'required',
             'body' => 'required',
             'section_id' => 'required|exists:sections,id',
         ];

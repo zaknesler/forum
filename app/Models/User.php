@@ -23,14 +23,22 @@ class User extends Authenticatable
         'about',
         'image_uuid',
         'password',
+        'suspended',
+        'posts_count',
+        'topics_count',
+        'suspended_at',
+        'last_login_at',
+        'deleted_at',
     ];
 
     protected $hidden = [
-        'password',
         'remember_token',
+        'password',
     ];
 
     protected $dates = [
+        'suspended_at',
+        'last_login_at',
         'deleted_at',
     ];
 

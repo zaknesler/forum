@@ -14,7 +14,7 @@
                             <label for="section_id">Section</label>
                             <select class="form-control" name="section_id" id="section_id">
                                 @foreach ($sections as $section)
-                                    <option value="{{ $section->id }}" @if ($topic->section->id == $section->id) selected @endif>{{ $section->title }}</option>
+                                    <option value="{{ $section->id }}" @if ($topic->section->id == $section->id) selected @endif>{{ $section->name }}</option>
                                 @endforeach
                             </select>
                             @if ($errors->has('section_id'))
@@ -23,18 +23,18 @@
                                 </span>
                             @endif
                         </div>
-                        <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                            <label for="title">Title</label>
-                            <input type="text" class="form-control" name="title" id="title" placeholder="Hello, world!" value="{{ $topic->title }}">
-                            @if ($errors->has('title'))
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label for="name">Title</label>
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Hello, world!" value="{{ $topic->name }}">
+                            @if ($errors->has('name'))
                                 <span class="help-block">
-                                    <strong>{{ $errors->first('title') }}</strong>
+                                    <strong>{{ $errors->first('name') }}</strong>
                                 </span>
                             @endif
                         </div>
                         <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
                             <label for="body">Body</label>
-                            <textarea class="form-control" name="body" id="body" rows="10">{{ $topic->raw_body }}</textarea>
+                            <textarea class="form-control" name="body" id="body" rows="10">{{ $topic->body }}</textarea>
                             @if ($errors->has('body'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('body') }}</strong>
@@ -42,11 +42,11 @@
                             @endif
                         </div>
                         <div class="form-group">
-                            {!! csrf_field() !!}
                             <button type="submit" class="btn btn-primary">Update topic</button>
-                            @role (['admin', 'owner'])
+                            @role (['moderator', 'admin', 'owner'])
                             <a class="btn btn-danger pull-right" href="{{ route('moderation.topic.destroy', ['id' => $topic->id]) }}">Delete</a>
                             @endrole
+                            {!! csrf_field() !!}
                         </div>
                     </form>
                 </div>

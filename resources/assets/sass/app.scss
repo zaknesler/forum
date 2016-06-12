@@ -16,6 +16,14 @@ pre, code {
     border: 0;
 }
 
+a.text-muted-primary {
+    color: lighten(#2c3e50, 25%);
+
+    &:hover {
+        color: lighten(#2c3e50, 10%);
+    }
+}
+
 textarea {
     resize: vertical;
 }

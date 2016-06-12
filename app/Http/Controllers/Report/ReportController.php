@@ -16,8 +16,8 @@ class ReportController extends Controller
      */
     public function index(Post $post, Topic $topic)
     {
-        $topics = $topic->has('reports')->with('reports.user')->get();
-        $posts = $post->has('reports')->with('reports.user')->get();
+        $topics = $topic->hasReports()->get();
+        $posts = $post->hasReports()->get();
 
         return view('moderation.report.reports', [
             'topics' => $topics,

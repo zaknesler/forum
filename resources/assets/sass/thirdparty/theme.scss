@@ -54,11 +54,13 @@ audio:not([controls]) {
 template {
   display: none;
 }
-a {
+a,
+.as-anchor {
   background-color: transparent;
 }
 a:active,
-a:hover {
+a:hover,
+.as-anchor:hover {
   outline: 0;
 }
 abbr[title] {
@@ -219,7 +221,8 @@ th {
     text-shadow: none !important;
   }
   a,
-  a:visited {
+  a:visited,
+  .as-anchor {
     text-decoration: underline;
   }
   a[href]:after {
@@ -1112,16 +1115,19 @@ textarea {
   font-size: inherit;
   line-height: inherit;
 }
-a {
+a,
+.as-anchor {
   color: #18bc9c;
   text-decoration: none;
 }
 a:hover,
-a:focus {
+a:focus,
+.as-anchor:focus {
   color: #18bc9c;
   text-decoration: underline;
 }
-a:focus {
+a:focus,
+.as-anchor:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
@@ -4750,27 +4756,23 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   text-decoration: none;
   color: #2c3e50;
   background-color: transparent;
-  border: 1px solid #ecf0f1;
+  border: 0;
   margin-left: -1px;
-}
-.pagination > li:first-child > a,
-.pagination > li:first-child > span {
   margin-left: 0;
-  border-bottom-left-radius: 4px;
-  border-top-left-radius: 4px;
+  border-radius: 4px;
+  margin-right: 5px;
 }
 .pagination > li:last-child > a,
 .pagination > li:last-child > span {
-  border-bottom-right-radius: 4px;
-  border-top-right-radius: 4px;
+  margin-right: 0;
 }
 .pagination > li > a:hover,
 .pagination > li > span:hover,
 .pagination > li > a:focus,
 .pagination > li > span:focus {
   z-index: 2;
-  background-color: #f7f7f7;
-  border: 1px solid #ecf0f1;
+  background-color: lighten(#f7f7f7, 1%);
+  border: 0;
   color: #2c3e50;
 }
 .pagination > .active > a,
@@ -4780,9 +4782,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .pagination > .active > a:focus,
 .pagination > .active > span:focus {
   z-index: 3;
-  background-color: #ecf0f1;
+  background-color: lighten(#f7f7f7, 2%);
   color: #2c3e50;
-  border: 1px solid #ecf0f1;
+  border: 0;
   cursor: default;
 }
 .pagination > .disabled > span,
@@ -4793,7 +4795,8 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .pagination > .disabled > a:focus {
   color: #2c3e50;
   cursor: not-allowed;
-  border: 1px solid #ecf0f1;
+  border: 0;
+  display: none;
 }
 .pagination-lg > li > a,
 .pagination-lg > li > span {
@@ -4801,15 +4804,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   font-size: 19px;
   line-height: 1.3333333;
 }
-.pagination-lg > li:first-child > a,
-.pagination-lg > li:first-child > span {
-  border-bottom-left-radius: 6px;
-  border-top-left-radius: 6px;
-}
-.pagination-lg > li:last-child > a,
-.pagination-lg > li:last-child > span {
-  border-bottom-right-radius: 6px;
-  border-top-right-radius: 6px;
+.pagination-lg > li > a,
+.pagination-lg > li > span {
+  border-radius: 6px;
 }
 .pagination-sm > li > a,
 .pagination-sm > li > span {
@@ -4817,15 +4814,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   font-size: 13px;
   line-height: 1.5;
 }
-.pagination-sm > li:first-child > a,
-.pagination-sm > li:first-child > span {
-  border-bottom-left-radius: 3px;
-  border-top-left-radius: 3px;
-}
-.pagination-sm > li:last-child > a,
-.pagination-sm > li:last-child > span {
-  border-bottom-right-radius: 3px;
-  border-top-right-radius: 3px;
+.pagination-sm > li > a,
+.pagination-sm > li > span {
+  border-radius: 3px;
 }
 .pager {
   padding-left: 0;

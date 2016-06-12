@@ -16,6 +16,48 @@ use Forum\Http\Requests\Forum\Topic\EditTopicFormRequest;
 class TopicController extends Controller
 {
     /**
+     * Report topic.
+     * @param  integer  $id     Topic identifier.
+     * @param  Topic    $topic  Topic model injection.
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function report($id, Topic $topic)
+    {
+        $topic = $topic->findOrFail($id);
+
+        $topic->increment('reports');
+
+        notify()->flash('Success', 'success', [
+            'text' => 'Thank you for reporting.',
+            'timer' => 2000,
+        ]);
+
+        return redirect()->back();
+    }
+
+    /**
+     * Clear reports on topic.
+     * @param  integer  $id     Topic identifier.
+     * @param  Topic    $topic  Topic model injection.
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function clearReports($id, Topic $topic)
+    {
+        $topic = $topic->findOrFail($id);
+
+        $topic->update([
+            'reports' => 0,
+        ]);
+
+        notify()->flash('Success', 'success', [
+            'text' => 'Reports have been cleared.',
+            'timer' => 2000,
+        ]);
+
+        return redirect()->back();
+    }
+
+    /**
      * Get the view to create a new topic.
      * @param  Topic    $topic    Topic model injection.
      * @param  Section  $section  Section model injection.
@@ -64,7 +106,10 @@ class TopicController extends Controller
     public function show($slug, $id, Topic $topic)
     {
         $show = $topic->findOrFail($id);
-        $posts = $show->posts()->latestFirst()->get();
+
+        $show->increment('views_count');
+
+        $posts = $show->posts()->latestLast()->get();
 
         return view('forum.topic.show', [
             'topic' => $show,
@@ -80,12 +125,13 @@ class TopicController extends Controller
     public function store(CreateTopicFormRequest $request)
     {
         $topic = $request->user()->topics()->create([
-            'title' => $request->input('title'),
-            'slug' => str_slug($request->input('title')),
-            'body' => Markdown::convertToHtml($request->input('body')),
-            'raw_body' => $request->input('body'),
+            'name' => $request->input('name'),
+            'slug' => str_slug($request->input('name')),
+            'body' => $request->input('body'),
             'section_id' => $request->input('section_id'),
         ]);
+
+        $topic->section()->increment('topics_count');
 
         notify()->flash('Success', 'success', [
             'text' => 'Your topic has been added.',
@@ -108,6 +154,8 @@ class TopicController extends Controller
     public function destroy($id, Topic $topic, Post $post)
     {
         $destroy = $topic->findOrFail($id);
+
+        $destroy->section()->decrement('topics_count');
 
         /**
          * When the database is migrated, the tables

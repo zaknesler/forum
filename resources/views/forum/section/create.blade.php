@@ -10,12 +10,12 @@
                 <div class="panel-heading">Create new section</div>
                 <div class="panel-body">
                     <form action="{{ route('moderation.section.create') }}" method="post" autocomplete="off">
-                        <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                            <label for="title">Title</label>
-                            <input type="text" class="form-control" name="title" id="title" value="{{ old('title') }}">
-                            @if ($errors->has('title'))
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" name="name" id="name" value="{{ old('name') }}">
+                            @if ($errors->has('name'))
                                 <span class="help-block">
-                                    <strong>{{ $errors->first('title') }}</strong>
+                                    <strong>{{ $errors->first('name') }}</strong>
                                 </span>
                             @endif
                         </div>
@@ -38,8 +38,8 @@
                             @endif
                         </div>
                         <div class="form-group">
-                            {!! csrf_field() !!}
                             <button type="submit" class="btn btn-primary">Create section</button>
+                            {!! csrf_field() !!}
                         </div>
                     </form>
                 </div>

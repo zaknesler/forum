@@ -14,8 +14,13 @@ class Post extends Model
     
     protected $fillable = [
         'body',
+        'reports',
         'user_id',
         'topic_id',
+    ];
+
+    protected $dates = [
+        'deleted_at',
     ];
 
     public function scopeLatestFirst($query)
@@ -23,20 +28,19 @@ class Post extends Model
         return $query->orderBy('created_at', 'desc');
     }
 
-    public function reportCountText()
+    public function scopeLatestLast($query)
     {
-        $count = $this->reportCount();
-
-        if ($count == 1) {
-            return $count . ' report';
-        }
-
-        return $count . ' reports';
+        return $query->orderBy('created_at', 'asc');
     }
 
-    public function reportCount()
+    public function scopeHasReports($query)
     {
-        return $this->reports()->count();
+        return $query->where('reports', '>', 0);
+    }
+
+    public function reportCountText()
+    {
+        return $this->reports . ' ' . str_plural('report', $this->reports);
     }
 
     public function user()

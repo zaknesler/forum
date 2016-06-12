@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', $topic->title)
+@section('title', $topic->name)
 
 @section('content')
 <div class="container">
     <div class="topic-title">
-        {{ $topic->title }}
+        {{ $topic->name }}
     </div>
     <div class="topic-container">
         <div class="head">
@@ -14,15 +14,15 @@
         </div>
         <div class="border">
             <div class="body">
-                {!! $topic->body !!}
+                {!! Markdown::convertToHtml($topic->body) !!}
             </div>
             @if (Auth::user())
                 <div class="foot">
                     <div class="pull-left">
                         @if (Auth::user()->hasRole(['moderator','admin','owner']))
                             <span class="label label-primary">{{ $topic->reportCountText() }}</span>
-                            @if ($topic->reports->count())
-                                <a href="{{ route('forum.topic.report.destroy', ['id' => $topic->id]) }}" class="label label-info">Clear</a>
+                            @if ($topic->reports)
+                                <a href="{{ route('forum.topic.report.clear', ['id' => $topic->id]) }}" class="label label-info">Clear</a>
                             @endif
                         @else
                             <a href="{{ route('forum.topic.report', ['id' => $topic->id]) }}">Report</a>
@@ -56,15 +56,15 @@
                 </div>
                 <div class="border">
                     <div class="body">
-                        {!! $post->body !!}
+                        {!! Markdown::convertToHtml($post->body) !!}
                     </div>
                     @if (Auth::user())
                         <div class="foot">
                             <div class="pull-left">
                                 @if (Auth::user()->hasRole(['moderator','admin','owner']))
                                     <span class="label label-primary">{{ $post->reportCountText() }}</span>
-                                    @if ($post->reports->count())
-                                        <a href="{{ route('forum.post.report.destroy', ['id' => $post->id]) }}" class="label label-info">Clear</a>
+                                    @if ($post->reports)
+                                        <a href="{{ route('forum.post.report.clear', ['id' => $post->id]) }}" class="label label-info">Clear</a>
                                     @endif
                                 @else
                                     <a href="{{ route('forum.post.report', ['id' => $post->id]) }}">Report</a>

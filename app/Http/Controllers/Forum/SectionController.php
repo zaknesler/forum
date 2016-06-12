@@ -2,6 +2,7 @@
 
 namespace Forum\Http\Controllers\Forum;
 
+use Forum\Models\Topic;
 use Forum\Http\Requests;
 use Forum\Models\Section;
 use Illuminate\Http\Request;
@@ -28,17 +29,29 @@ class SectionController extends Controller
     /**
      * Get the view to show all topics under a specific section.
      * @param  string   $slug     Section slug.
-     * @param  integer  $id       Section identifier.
+     * @param  Request  $request  Form request for validation
      * @param  Section  $section  Section model injection.
+     * @param  Topic    $topic    Topic model injection.
      * @return \Illuminate\Http\Response
      */
-    public function show($slug, Section $section)
+    public function show($slug, Request $request, Section $section, Topic $topic)
     {
         $show = $section->where('slug', $slug)->firstOrFail();
 
+        if ($request->search) {
+            $topics = $show->topics()
+                ->whereIn('id', collect($topic->search($request->search)['hits'])
+                    ->lists('id')
+                    ->all())
+                    ->with('user')
+                    ->paginate(25);
+        } else {
+            $topics = $show->topics()->with('user')->paginate(25);
+        }
+
         return view('forum.section.show', [
             'section' => $show,
-            'topics' => $show->topics()->with('user')->paginate(10),
+            'topics' => $topics,
         ]);
     }
 
@@ -52,45 +65,6 @@ class SectionController extends Controller
     }
 
     /**
-     * Get the view to edit an existing section.
-     * @param  integer  $id       Section identifier.
-     * @param  Section  $section  Section model identifier.
-     * @return \Illuminate\Http\Response
-     */
-    public function getEdit($id, Section $section)
-    {
-        $edit = $section->findOrFail($id);
-
-        return view('forum.section.edit', [
-            'section' => $edit,    
-        ]);
-    }
-
-    /**
-     * Post section edit.
-     * @param  integer  $id       Section identifier.
-     * @param  Section  $section  Section model identifier.
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function postEdit($id, EditSectionFormRequest $request, Section $section)
-    {
-        $current = $section->findOrFail($id);
-
-        $current->update([
-            'title' => $request->input('title'),
-            'slug' => $request->input('slug'),
-            'description' => $request->input('description'),
-        ]);
-
-        notify()->flash('Success', 'success', [
-            'text' => 'Section has been updated.',
-            'timer' => 2000,
-        ]);
-
-        return redirect()->route('home');
-    }
-
-    /**
      * Create new section.
      * @param  CreateSectionFormRequest  $request  Form request for validation
      * @param  Section                   $section  Section model injection.
@@ -99,7 +73,7 @@ class SectionController extends Controller
     public function store(CreateSectionFormRequest $request, Section $section)
     {
         $section->create([
-            'title' => $request->input('title'),
+            'name' => $request->input('name'),
             'slug' => $request->input('slug'),
             'description' => $request->input('description'),
         ]);

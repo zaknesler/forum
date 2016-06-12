@@ -19,8 +19,12 @@ class UserController extends Controller
      */
     public function index(Request $request, User $user)
     {
-        $users = $user->find(collect($user->search($request->search)['hits'])->lists('id')->all());
-
+        if ($request->search) {
+            $users = $user->whereIn('id', collect($user->search($request->search)['hits'])->lists('id')->all())->paginate(25);
+        } else {
+            $users = $user->paginate(25);
+        }
+        
         return view('user.list', [
             'users' => $users,    
         ]);

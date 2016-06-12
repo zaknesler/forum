@@ -26,7 +26,7 @@ class EditTopicController extends Controller
         $edit = $topic->findOrFail($id);
         $user = auth()->user();
 
-        if (($user->id == $edit->user->id) || ($user->hasRole(['admin', 'owner']))) {
+        if (($user->id == $edit->user->id) || ($user->hasRole(['moderator', 'admin', 'owner']))) {
             $sections = $section->get();
 
             return view('forum.topic.edit', [
@@ -50,10 +50,9 @@ class EditTopicController extends Controller
 
         $current->update([
             'section_id' => $request->input('section_id'),
-            'title' => $request->input('title'),
-            'slug' => str_slug($request->input('title')),
-            'body' => Markdown::convertToHtml($request->input('body')),
-            'raw_body' => $request->input('body'),
+            'name' => $request->input('name'),
+            'slug' => str_slug($request->input('name')),
+            'body' => $request->input('body'),
         ]);
 
         notify()->flash('Success', 'success', [

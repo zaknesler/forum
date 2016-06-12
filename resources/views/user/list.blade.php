@@ -20,6 +20,7 @@
                         </h4></li>
                     @endforeach
                 </ul>
+                {!! $users->render() !!}
             @else
                 <div class="box">
                     <p>No registered users.</p>

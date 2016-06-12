@@ -14,7 +14,7 @@
                     @foreach ($sections as $section)
                         <li class="list-group-item"><h4>
                             <span class="label label-primary pull-right">{{ $section->topicCountText() }}</span>
-                            <a href="{{ route('forum.section.show', ['slug' => $section->slug]) }}">{{ $section->title }}</a>
+                            <a href="{{ route('forum.section.show', ['slug' => $section->slug]) }}">{{ $section->name }}</a>
                             @if ($section->description)
                                 <br />
                                 <small>{{ $section->description }}</small>
@@ -25,7 +25,7 @@
                 {{ $sections->render() }}
             @else
                 <div class="box">
-                    <p>No topics to show.</p>
+                    <p>No sections to show.</p>
                 </div>
             @endif
         </div>

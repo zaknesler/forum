@@ -14,7 +14,7 @@
                             <label for="section_id">Section</label>
                             <select class="form-control" name="section_id" id="section_id">
                                 @foreach ($sections as $section)
-                                    <option value="{{ $section->id }}" @if (($id == $section->id) || (old('section_id') == $section->id)) selected @endif>{{ $section->title }}</option>
+                                    <option value="{{ $section->id }}" @if (($id == $section->id) || (old('section_id') == $section->id)) selected @endif>{{ $section->name }}</option>
                                 @endforeach
                             </select>
                             @if ($errors->has('section_id'))
@@ -23,12 +23,12 @@
                                 </span>
                             @endif
                         </div>
-                        <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                            <label for="title">Title</label>
-                            <input type="text" class="form-control" name="title" id="title" placeholder="Hello, world!" value="{{ old('title') }}">
-                            @if ($errors->has('title'))
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Hello, world!" value="{{ old('name') }}">
+                            @if ($errors->has('name'))
                                 <span class="help-block">
-                                    <strong>{{ $errors->first('title') }}</strong>
+                                    <strong>{{ $errors->first('name') }}</strong>
                                 </span>
                             @endif
                         </div>
@@ -42,8 +42,8 @@
                             @endif
                         </div>
                         <div class="form-group">
-                            {!! csrf_field() !!}
                             <button type="submit" class="btn btn-primary">Create topic</button>
+                            {!! csrf_field() !!}
                         </div>
                     </form>
                 </div>

@@ -37,7 +37,7 @@ class EditSectionController extends Controller
         $current = $section->findOrFail($id);
 
         $current->update([
-            'title' => $request->input('title'),
+            'name' => $request->input('name'),
             'slug' => $request->input('slug'),
             'description' => $request->input('description'),
         ]);

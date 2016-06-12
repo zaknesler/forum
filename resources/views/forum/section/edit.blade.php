@@ -10,12 +10,12 @@
                 <div class="panel-heading">Edit section</div>
                 <div class="panel-body">
                     <form action="{{ route('moderation.section.edit', ['id' => $section->id]) }}" method="post" autocomplete="off">
-                        <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                            <label for="title">Title</label>
-                            <input type="text" class="form-control" name="title" id="title" value="{{ $section->title }}">
-                            @if ($errors->has('title'))
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" name="name" id="name" value="{{ $section->name }}">
+                            @if ($errors->has('name'))
                                 <span class="help-block">
-                                    <strong>{{ $errors->first('title') }}</strong>
+                                    <strong>{{ $errors->first('name') }}</strong>
                                 </span>
                             @endif
                         </div>

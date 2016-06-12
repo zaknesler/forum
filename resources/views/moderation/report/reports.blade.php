@@ -10,7 +10,9 @@
                 @foreach ($topics as $topic)
                     <li class="list-group-item"><h4>
                         <span class="label label-primary pull-right">{{ $topic->reportCountText() }}</span>
-                        <a href="{{ route('forum.topic.show', ['slug' => $topic->slug, 'id' => $topic->id]) }}">{{ $topic->title }}</a>
+                        <a href="{{ route('forum.topic.show', ['slug' => $topic->slug, 'id' => $topic->id]) }}">{{ $topic->name }}</a>
+                        <br />
+                        <small>by {{ $topic->user->username }}</small>
                     </h4></li>
                 @endforeach
                 </ul>
@@ -27,7 +29,9 @@
                 @foreach ($posts as $post)
                     <li class="list-group-item"><h4>
                         <span class="label label-primary pull-right">{{ $post->reportCountText() }}</span>
-                        <div class="text-muted"><a href="{{ route('forum.topic.show', ['slug' => $post->topic->slug, 'id' => $post->topic->id]) }}#post-{{ $post->id }}">{{ $post->topic->title }}</a></div>
+                        <a href="{{ route('forum.topic.show', ['slug' => $post->topic->slug, 'id' => $post->topic->id]) }}#post-{{ $post->id }}">{{ $post->topic->name }}</a>
+                        <br />
+                        <small>by {{ $post->user->username }}</small>
                     </h4></li>
                 @endforeach
                 </ul>

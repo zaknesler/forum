@@ -23,7 +23,12 @@ class CreateUsersTable extends Migration
             $table->text('about')->nullable();
             $table->string('image_uuid')->nullable();
             $table->string('password');
+            $table->boolean('suspended')->default(false);
+            $table->integer('topics_count')->default(0);
+            $table->integer('posts_count')->default(0);
             $table->rememberToken();
+            $table->timestamp('suspended_at')->nullable();
+            $table->timestamp('last_login_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -24,7 +24,7 @@ class EditSectionFormRequest extends Request
     public function rules()
     {
         return [
-            'title' => 'required|max:255',
+            'name' => 'required|max:255',
             'slug' => 'required|max:255|unique:sections,slug,' . $this->id,
         ];
     }

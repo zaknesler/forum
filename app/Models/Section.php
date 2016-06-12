@@ -13,25 +13,25 @@ class Section extends Model
     public static $autoDelete = true;
     
     protected $fillable = [
-        'title',
+        'name',
         'slug',
         'description',
+        'topics_count',
+    ];
+
+    protected $dates = [
+        'last_topic_at',
+        'deleted_at',
     ];
 
     public function topicCountText()
     {
-        $count = $this->topicCount();
-
-        if ($count == 1) {
-            return $count . ' topic';
-        }
-
-        return $count . ' topics';
+        return $this->topicCount() . ' ' . str_plural('topic', $this->topicCount());
     }
 
     public function topicCount()
     {
-        return $this->topics()->count();
+        return $this->topics_count;
     }
 
     public function topics()
