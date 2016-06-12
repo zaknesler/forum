@@ -124,9 +124,10 @@ class TopicController extends Controller
     /**
      * Store the new topic in database.
      * @param  CreateTopicFormRequest  $request  Form request for validation.
+     * @param  Section                 $topic    Section model injection.
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(CreateTopicFormRequest $request)
+    public function store(CreateTopicFormRequest $request, Section $section)
     {
         $topic = $request->user()->topics()->create([
             'name' => $request->input('name'),
@@ -135,9 +136,7 @@ class TopicController extends Controller
             'section_id' => $request->input('section_id'),
         ]);
 
-        $section = $topic->section();
-
-        $section->increment('topics_count');
+        $topic->section()->increment('topics_count');
 
         $section->reindex();
 
@@ -154,18 +153,17 @@ class TopicController extends Controller
 
     /**
      * Mark topic as deleted.
-     * @param  integer  $id     Topic identifier.
-     * @param  Topic    $topic  Topic model injection.
-     * @param  Post     $post   Post model injection.
+     * @param  integer  $id       Topic identifier.
+     * @param  Topic    $topic    Topic model injection.
+     * @param  Post     $post     Post model injection.
+     * @param  Section  $section  Section model injection.
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id, Topic $topic, Post $post)
+    public function destroy($id, Topic $topic, Post $post, Section $section)
     {
         $destroy = $topic->findOrFail($id);
 
-        $section = $destroy->section();
-
-        $section->decrement('topics_count');
+        $destroy->section()->decrement('topics_count');
 
         /**
          * When the database is migrated, the tables

@@ -88,17 +88,16 @@ class PostController extends Controller
 
     /**
      * Mark post as deleted.
-     * @param  integer  $id    Post identifier.
-     * @param  Post     $post  Post model injection.
+     * @param  integer  $id     Post identifier.
+     * @param  Post     $post   Post model injection.
+     * @param  Topic    $topic  Topic model injection.
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id, Post $post)
+    public function destroy($id, Post $post, Topic $topic)
     {
         $destroy = $post->findOrFail($id);
 
-        $topic = $destroy->topic();
-
-        $topic->decrement('replies_count');
+        $destroy->topic()->decrement('replies_count');
 
         $destroy->delete();
 
