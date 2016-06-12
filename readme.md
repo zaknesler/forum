@@ -2,6 +2,11 @@
 
 This is a very simple Laravel 5.2 forum that I am working on. It is for personal-use only, so the features and functionality are limited to my own abilities and creativity. (For just starting out with Laravel, I think I am doing pretty well.)
 
+## Demo
+
+I set up a silly little demonstration of this application.
+[Go to demo website](http://flynk.ml/)
+
 ### Please note
 
 > I **HIGHLY** discourage installing this, because it is currently in development and when I push changes here; they often damage the integrity of this project.
