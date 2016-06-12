@@ -30,7 +30,7 @@
         <div class="col-md-4">
             <form action="{{ route('moderation.user.list') }}" method="get">
                 <div class="form-group{{ $errors->has('search') ? ' has-error' : '' }}">
-                    <div class="input-group">
+                    <div class="input-group" title="Powered by Algolia">
                         <input type="text" placeholder="Search users.." class="form-control" name="search" value="{{ request('search') }}">
                         <div class="input-group-btn">
                             <button class="btn btn-primary" type="submit">Search</button>

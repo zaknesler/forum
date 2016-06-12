@@ -16,7 +16,7 @@
                 <form action="{{ route('auth.password.email') }}" method="post">
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                         <label for="email">Email</label>
-                        <input type="email" class="form-control" name="email" id="email" value="{{ old('email') }}">
+                        <input type="email" class="form-control" name="email" placeholder="you{{'@'}}domain.com" id="email" value="{{ old('email') }}">
                         @if ($errors->has('email'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('email') }}</strong>

@@ -35,7 +35,7 @@
         <div class="col-md-3">
             <form action="{{ route('forum.section.show', ['slug' => $section->slug]) }}" method="get">
                 <div class="form-group{{ $errors->has('search') ? ' has-error' : '' }}">
-                    <div class="input-group">
+                    <div class="input-group" title="Powered by Algolia">
                         <input type="text" placeholder="Search topics.." class="form-control" name="search" value="{{ request('search') }}">
                         <div class="input-group-btn">
                             <button class="btn btn-primary" type="submit">Search</button>

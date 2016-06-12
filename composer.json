@@ -12,8 +12,8 @@
         "inwave/laravel-uploadcare": "^1.4",
         "laravelcollective/html": "^5.2",
         "graham-campbell/markdown": "^6.1",
-        "bogardo/mailgun": "4.0.*",
-        "algolia/algoliasearch-laravel": "^1.1"
+        "algolia/algoliasearch-laravel": "^1.1",
+        "guzzlehttp/guzzle": "~4.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
