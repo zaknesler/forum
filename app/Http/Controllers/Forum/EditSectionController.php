@@ -47,8 +47,6 @@ class EditSectionController extends Controller
             'timer' => 2000,
         ]);
 
-        $section->reindex();
-
         return redirect()->route('home');
     }
 }
