@@ -2,11 +2,11 @@
 
 namespace Forum\Listeners\User;
 
-use Forum\Events\User\UserWasAuthenticated;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class UpdateUserLastActiveAt
+class UpdateUserLastLoggedInAt
 {
     /**
      * Create the event listener.
@@ -24,10 +24,9 @@ class UpdateUserLastActiveAt
      * @param  UserWasActive  $event
      * @return void
      */
-    public function handle(UserWasAuthenticated $event)
+    public function handle(Login $event)
     {
-        $event->user->update([
-            'last_login_at' => \Carbon\Carbon::now(),
-        ]);
+        $event->user->last_login_at = \Carbon\Carbon::now();
+        $event->user->save();
     }
 }

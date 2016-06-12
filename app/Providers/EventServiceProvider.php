@@ -13,8 +13,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'Forum\Events\Auth\UserWasAuthenticated' => [
-            'Forum\Listeners\Auth\UserWasAuthenticated\UpdateUserLastLoggedInAt',
+        'Illuminate\Auth\Events\Login' => [
+            'Forum\Listeners\User\UpdateUserLastLoggedInAt',
         ],
     ];
 
