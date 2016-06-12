@@ -4,7 +4,8 @@ This is a very simple Laravel 5.2 forum that I am working on. It is for personal
 
 ## Demo
 
-I set up a silly little demonstration of this application.
+I set up a silly little demonstration of this application. Go try it out and let me know what you think. You can do it there! **(:**
+
 [Go to demo website](http://flynk.ml/)
 
 ### Please note
