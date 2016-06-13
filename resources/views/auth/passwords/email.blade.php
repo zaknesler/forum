@@ -13,7 +13,7 @@
                         {{ session('status') }}
                     </div>
                 @endif
-                <form action="{{ route('auth.password.email') }}" method="post">
+                <form action="{{ route('auth.password.email') }}" method="post"  autocomplete="off">
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                         <label for="email">Email</label>
                         <input type="email" class="form-control" name="email" placeholder="you{{'@'}}domain.com" id="email" value="{{ old('email') }}">

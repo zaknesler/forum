@@ -8,7 +8,7 @@
         <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
             <div class="general-title small">Sign in</div>
             <div class="box">
-                <form action="{{ route('auth.login') }}" method="post">
+                <form action="{{ route('auth.login') }}" method="post" autocomplete="off">
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                         <label for="email">E-mail</label>
                         <input type="email" class="form-control" name="email" id="email" placeholder="you{{'@'}}domain.com" value="{{ old('email') }}">
