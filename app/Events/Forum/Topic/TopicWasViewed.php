@@ -1,13 +1,13 @@
 <?php
 
-namespace Forum\Events\Forum\Post;
+namespace Forum\Events\Forum\Topic;
 
 use Forum\Events\Event;
 use Forum\Models\Topic;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class PostWasCreated extends Event
+class TopicWasViewed extends Event
 {
     use SerializesModels;
 

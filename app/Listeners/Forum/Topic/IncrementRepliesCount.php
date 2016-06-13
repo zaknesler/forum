@@ -26,6 +26,6 @@ class IncrementRepliesCount
      */
     public function handle(PostWasCreated $event)
     {
-        $event->post->topic()->increment('replies_count');
+        $event->topic->increment('replies_count');
     }
 }

@@ -12,7 +12,7 @@
         @endif
             <div class="general-title small">Update user settings</div>
             <div class="box">
-                <form action="{{ route('moderation.user.edit', ['id' => $user->id]) }}" method="post" autocomplete="off" id="has-upload">
+                <form action="{{ route('user.edit', ['id' => $user->id]) }}" method="post" autocomplete="off" id="has-upload">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
@@ -35,7 +35,7 @@
                                             </span>
                                         @endif
                                     </div>
-                                </div>                                    
+                                </div>
                                 <div class="col-xs-6">
                                     <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
                                         <label for="last_name">Last name</label>
@@ -66,7 +66,7 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>                            
+                        </div>
                         <div class="col-md-6">
                             <div class="form-group{{ $errors->has('about') ? ' has-error' : '' }}">
                                 <label for="about">About you</label>
@@ -100,7 +100,7 @@
             <div class="general-title small">User actions</div>
             <div class="box">
                 @role (['owner'])
-                <form action="{{ route('moderation.user.edit.role', ['id' => $user->id]) }}" method="post" autocomplete="off">
+                <form action="{{ route('user.edit.role', ['id' => $user->id]) }}" method="post" autocomplete="off">
                     <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
                         <label for="role">User role</label>
                         <select class="form-control" name="role" id="role">

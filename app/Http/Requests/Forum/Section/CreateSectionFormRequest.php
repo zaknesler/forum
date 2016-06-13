@@ -24,8 +24,9 @@ class CreateSectionFormRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required|max:255',
-            'slug' => 'required|max:255|unique:sections',
+            'name' => 'required|max:64',
+            'slug' => 'required|max:64|unique:sections',
+            'description' => 'max:255',
         ];
     }
 }

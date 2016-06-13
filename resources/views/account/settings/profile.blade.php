@@ -23,7 +23,7 @@
                                         @endif
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-xs-6">
                                     <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
                                         <label for="last_name">Last name</label>
@@ -57,7 +57,7 @@
                                 @endif
                             </div>
                         </div>
-                        
+
                         <div class="col-md-6">
                             <div class="form-group{{ $errors->has('about') ? ' has-error' : '' }}">
                                 <label for="about">About you</label>

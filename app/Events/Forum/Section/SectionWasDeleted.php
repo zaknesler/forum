@@ -1,13 +1,13 @@
 <?php
 
-namespace Forum\Events\Forum\Post;
+namespace Forum\Events\Forum\Section;
 
 use Forum\Events\Event;
 use Forum\Models\Topic;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class PostWasCreated extends Event
+class SectionWasDeleted extends Event
 {
     use SerializesModels;
 

@@ -4,9 +4,9 @@ namespace Forum\Listeners\Forum\Topic;
 
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Forum\Events\Forum\Post\PostWasDeleted;
+use Forum\Events\Forum\Topic\TopicWasViewed;
 
-class DecrementRepliesCount
+class IncrementViewsCount
 {
     /**
      * Create the event listener.
@@ -21,11 +21,11 @@ class DecrementRepliesCount
     /**
      * Handle the event.
      *
-     * @param  PostWasDeleted  $event
+     * @param  TopicWasViewed  $event
      * @return void
      */
-    public function handle(PostWasDeleted $event)
+    public function handle(TopicWasViewed $event)
     {
-        $event->topic->decrement('replies_count');
+        $event->topic->increment('views_count');
     }
 }

@@ -7,6 +7,7 @@ use Forum\Http\Requests;
 use Forum\Models\Section;
 use Illuminate\Http\Request;
 use Forum\Http\Controllers\Controller;
+use Forum\Events\Forum\Section\SectionWasDeleted;
 use Forum\Http\Requests\Forum\Section\EditSectionFormRequest;
 use Forum\Http\Requests\Forum\Section\CreateSectionFormRequest;
 
@@ -76,6 +77,7 @@ class SectionController extends Controller
      */
     public function store(CreateSectionFormRequest $request, Section $section)
     {
+
         $section->create([
             'name' => $request->input('name'),
             'slug' => $request->input('slug'),
@@ -96,10 +98,9 @@ class SectionController extends Controller
      * @param  integer               $id
      * @param  Forum\Models\Section  $section
      * @param  Forum\Models\Topic    $topic
-     * @param  Forum\Models\Post     $post
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id, Section $section, Topic $topic, Post $post)
+    public function destroy($id, Section $section, Topic $topic)
     {
         $destroy = $section->findOrFail($id);
 
@@ -110,8 +111,7 @@ class SectionController extends Controller
             'timer' => 2000,
         ]);
 
-        $topic->reindex();
-        $post->reindex();
+        event(new SectionWasDeleted($topic));
 
         return redirect()->route('home');
     }

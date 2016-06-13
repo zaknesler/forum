@@ -26,8 +26,8 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Moderation <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 @role (['moderator', 'admin', 'owner'])
-                                <li><a href="{{ route('moderation.user.list') }}">User list</a></li>
-                                <li><a href="{{ route('moderation.reports') }}">Reports</a></li>
+                                <li><a href="{{ route('user.list') }}">User list</a></li>
+                                <li><a href="{{ route('report.reports') }}">Reports</a></li>
                                 @endrole
                             </ul>
                         </li>

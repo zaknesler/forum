@@ -39,8 +39,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('topic/{id}/edit', 'Forum\EditTopicController@index')->name('forum.topic.edit');
     Route::post('topic/{id}/edit', 'Forum\EditTopicController@update');
 
-    Route::get('topic/create/{section_id?}', 'Forum\TopicController@create')->name('forum.topic.create');
-    Route::post('topic/create/{section_id?}', 'Forum\TopicController@store');
+    Route::get('topic/create/{id?}', 'Forum\TopicController@create')->name('forum.topic.create');
+    Route::post('topic/create/{id?}', 'Forum\TopicController@store');
 
     Route::post('topic/{topic}/post', 'Forum\PostController@store')->name('forum.topic.post');
 });
@@ -49,33 +49,33 @@ Route::group(['middleware' => ['auth']], function () {
  * Moderation routes for moderators, administrators, and owners.
  */
 Route::group(['middleware' => ['role:moderator|admin|owner']], function () {
-    Route::get('user/list', 'User\UserController@index')->name('moderation.user.list');
+    Route::get('users', 'User\UserController@index')->name('user.list');
 
-    Route::get('reports', 'Report\ReportController@index')->name('moderation.reports');
+    Route::get('reports', 'Report\ReportController@index')->name('report.reports');
 
     Route::get('topic/post/{id}/report/clear', 'Forum\PostController@clearReports')->name('forum.post.report.clear');
     Route::get('topic/{id}/report/clear', 'Forum\TopicController@clearReports')->name('forum.topic.report.clear');
 
-    Route::get('section/{id}/edit', 'Forum\EditSectionController@index')->name('moderation.section.edit');
+    Route::get('section/{id}/edit', 'Forum\EditSectionController@index')->name('forum.section.edit');
     Route::post('section/{id}/edit', 'Forum\EditSectionController@update');
 
-    Route::get('post/{id}/destroy', 'Forum\PostController@destroy')->name('moderation.post.destroy');
-    Route::get('topic/{id}/destroy', 'Forum\TopicController@destroy')->name('moderation.topic.destroy');
+    Route::get('post/{id}/destroy', 'Forum\PostController@destroy')->name('forum.post.destroy');
+    Route::get('topic/{id}/destroy', 'Forum\TopicController@destroy')->name('forum.topic.destroy');
 });
 
 /**
  * Moderation routes for administrators and owners.
  */
 Route::group(['middleware' => ['role:owner|admin']], function () {
-    Route::get('user/{id}/edit', 'User\EditController@index')->name('moderation.user.edit');
+    Route::get('user/{id}/edit', 'User\EditController@index')->name('user.edit');
     Route::post('user/{id}/edit', 'User\EditController@update');
 
-    Route::post('user/{id}/edit/role', 'User\RoleController@update')->name('moderation.user.edit.role');
+    Route::post('user/{id}/edit/role', 'User\RoleController@update')->name('user.edit.role');
 
-    Route::get('section/create', 'Forum\SectionController@create')->name('moderation.section.create');
+    Route::get('section/create', 'Forum\SectionController@create')->name('forum.section.create');
     Route::post('section/create', 'Forum\SectionController@store');
 
-    Route::get('section/{id}/destroy', 'Forum\SectionController@destroy')->name('moderation.section.destroy');
+    Route::get('section/{id}/destroy', 'Forum\SectionController@destroy')->name('forum.section.destroy');
 });
 
 Route::get('section/{slug}', 'Forum\SectionController@show')->name('forum.section.show');

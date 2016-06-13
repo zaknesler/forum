@@ -39,6 +39,9 @@
                 </div>
             </div>
         </div>
+        @role (['owner', 'admin'])
+            <h4><a href="{{ route('user.edit', ['id' => $user->id]) }}" class="label label-warning">Edit</a></h4>
+        @endrole
     </div>
 </div>
 @endsection

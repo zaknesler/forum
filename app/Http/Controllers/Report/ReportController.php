@@ -21,7 +21,7 @@ class ReportController extends Controller
         $topics = $topic->hasReports()->get();
         $posts = $post->hasReports()->get();
 
-        return view('moderation.report.reports', [
+        return view('report.reports', [
             'topics' => $topics,
             'posts' => $posts,
         ]);

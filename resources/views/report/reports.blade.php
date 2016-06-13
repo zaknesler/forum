@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Reports')
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -30,6 +32,7 @@
                     <li class="list-group-item"><h4>
                         <span class="label label-primary pull-right">{{ $post->reportCountText() }}</span>
                         <a href="{{ route('forum.topic.show', ['slug' => $post->topic->slug, 'id' => $post->topic->id]) }}#post-{{ $post->id }}">{{ $post->topic->name }}</a>
+                        <span class="text-muted"><small>post {{ $post->id }}</small></span>
                         <br />
                         <small>by {{ $post->user->username }}</small>
                     </h4></li>

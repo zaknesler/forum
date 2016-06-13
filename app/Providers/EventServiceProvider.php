@@ -14,6 +14,13 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         /**
+         * Sections
+         */
+        'Forum\Events\Forum\Section\SectionWasDeleted' => [
+            'Forum\Listeners\Forum\Topic\ReindexWithAlgolia',
+        ],
+
+        /**
          * Topics
          */
         'Forum\Events\Forum\Topic\TopicWasCreated' => [

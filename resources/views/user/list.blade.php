@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'User list')
+
 @section('content')
 <div class="container">
     <h3>All users</h3>
@@ -10,7 +12,7 @@
                     @foreach ($users as $user)
                         <li class="list-group-item"><h4>
                             @role (['admin', 'owner'])
-                            <a class="label label-warning pull-right" href="{{ route('moderation.user.edit', ['id' => $user->id]) }}">Edit</a>
+                            <a class="label label-warning pull-right" href="{{ route('user.edit', ['id' => $user->id]) }}">Edit</a>
                             @endrole
                             <a href="{{ route('user.profile', ['username' => $user->username]) }}">{{ $user->username }}</a>
                             <br />
@@ -28,7 +30,7 @@
             @endif
         </div>
         <div class="col-md-4">
-            <form action="{{ route('moderation.user.list') }}" method="get">
+            <form action="{{ route('user.list') }}" method="get">
                 <div class="form-group{{ $errors->has('search') ? ' has-error' : '' }}">
                     <div class="input-group" title="Powered by Algolia">
                         <input type="text" placeholder="Search users.." class="form-control" name="search" value="{{ request('search') }}">

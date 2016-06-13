@@ -49,9 +49,9 @@
                 </div>
             </form>
             @role (['admin', 'owner'])
-            <a class="btn btn-warning btn-block" href="{{ route('moderation.section.edit', ['id' => $section->id]) }}">Edit section</a>
+            <a class="btn btn-warning btn-block" href="{{ route('forum.section.edit', ['id' => $section->id]) }}">Edit section</a>
             @endrole
-            <a class="btn btn-info btn-block" href="{{ route('forum.topic.create') }}?section_id={{ $section->id }}">Create topic</a>
+            <a class="btn btn-info btn-block" href="{{ route('forum.topic.create', ['section_id' => $section->id]) }}">Create topic</a>
         </div>
         @endif
     </div>

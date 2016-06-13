@@ -38,7 +38,7 @@
             @endif
         </div>
     </div>
-    
+
     @if ($posts->count())
         <div class="general-title">
             Replies
@@ -72,7 +72,7 @@
                             </div>
                             @if (Auth::user()->hasRole(['moderator','admin','owner']))
                                 <div class="pull-right">
-                                    <a class="text-danger" href="{{ route('moderation.post.destroy', ['id' => $post->id]) }}">Delete</a>
+                                    <a class="text-danger" href="{{ route('forum.post.destroy', ['id' => $post->id]) }}">Delete</a>
                                 </div>
                             @endif
                             <div class="clearfix"></div>

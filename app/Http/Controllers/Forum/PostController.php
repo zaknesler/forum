@@ -17,7 +17,7 @@ class PostController extends Controller
 {
     /**
      * Report post.
-     * 
+     *
      * @param  integer            $id
      * @param  Forum\Models\Post  $post
      * @return \Illuminate\Http\RedirectResponse
@@ -38,7 +38,7 @@ class PostController extends Controller
 
     /**
      * Clear reports on post.
-     * 
+     *
      * @param  integer            $id
      * @param  Forum\Models\Post  $post
      * @return \Illuminate\Http\RedirectResponse
@@ -59,7 +59,7 @@ class PostController extends Controller
 
     /**
      * Store the user's reply to a thread.
-     * 
+     *
      * @param  CreatePostFormRequest  $request
      * @param  Forum\Models\Topic     $topic
      * @return \Illuminate\Http\RedirectResponse
@@ -71,7 +71,7 @@ class PostController extends Controller
             'user_id' => $request->user()->id,
         ]);
 
-        event(new PostWasCreated($post, $topic, $request->user()));
+        event(new PostWasCreated($topic));
 
         notify()->flash('Success', 'success', [
             'text' => 'Your post has been added.',
@@ -101,7 +101,7 @@ class PostController extends Controller
             'timer' => 2000,
         ]);
 
-        event(new PostWasDeleted($post, $topic, $request->user()));
+        event(new PostWasDeleted($topic));
 
         $post->delete();
 

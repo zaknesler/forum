@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', '404 not found')
+
 @section('content')
 <div class="container">
     <div class="jumbotron">

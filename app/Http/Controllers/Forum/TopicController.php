@@ -8,6 +8,7 @@ use Forum\Http\Requests;
 use Forum\Models\Section;
 use Illuminate\Http\Request;
 use Forum\Http\Controllers\Controller;
+use Forum\Events\Forum\Topic\TopicWasViewed;
 use Forum\Events\Forum\Topic\TopicWasCreated;
 use Forum\Events\Forum\Topic\TopicWasDeleted;
 use Forum\Events\Forum\Topic\TopicWasReported;
@@ -81,7 +82,7 @@ class TopicController extends Controller
 
         return view('forum.topic.create', [
             'sections' => $sections,
-            'id' => $request['section_id'],
+            'id' => $request->id,
         ]);
     }
 
@@ -110,14 +111,14 @@ class TopicController extends Controller
      */
     public function show($slug, $id, Topic $topic)
     {
-        $show = $topic->findOrFail($id);
+        $topic = $topic->findOrFail($id);
 
-        $show->increment('views_count');
+        event(new TopicWasViewed($topic));
 
-        $posts = $show->posts()->latestLast()->get();
+        $posts = $topic->posts()->latestLast()->get();
 
         return view('forum.topic.show', [
-            'topic' => $show,
+            'topic' => $topic,
             'posts' => $posts,
         ]);
     }
@@ -134,10 +135,10 @@ class TopicController extends Controller
             'name' => $request->input('name'),
             'slug' => str_slug($request->input('name')),
             'body' => $request->input('body'),
-            'section_id' => $request->input('section_id'),
+            'section_id' => $request->input('id'),
         ]);
 
-        event(new TopicWasCreated($topic, $request->user()));
+        event(new TopicWasCreated($topic));
 
         notify()->flash('Success', 'success', [
             'text' => 'Your topic has been added.',
@@ -160,7 +161,7 @@ class TopicController extends Controller
     {
         $topic = $topic->findOrFail($id);
 
-        event(new TopicWasDeleted($topic, $request->user()));
+        event(new TopicWasDeleted($topic));
 
         $topic->delete();
 
