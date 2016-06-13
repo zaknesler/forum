@@ -33,7 +33,7 @@
         </div>
         @if (Auth::user())
         <div class="col-md-3">
-            <form action="{{ route('forum.section.show', ['slug' => $section->slug]) }}" method="get">
+            <form action="{{ route('forum.section.show', ['id' => $section->id, 'slug' => $section->slug]) }}" method="get">
                 <div class="form-group{{ $errors->has('search') ? ' has-error' : '' }}">
                     <div class="input-group" title="Powered by Algolia">
                         <input type="text" placeholder="Search topics.." class="form-control" name="search" value="{{ request('search') }}">
@@ -51,7 +51,7 @@
             @role (['admin', 'owner'])
             <a class="btn btn-warning btn-block" href="{{ route('forum.section.edit', ['id' => $section->id]) }}">Edit section</a>
             @endrole
-            <a class="btn btn-info btn-block" href="{{ route('forum.topic.create', ['section_id' => $section->id]) }}">Create topic</a>
+            <a class="btn btn-info btn-block" href="{{ route('forum.topic.create', ['id' => $section->id]) }}">Create topic</a>
         </div>
         @endif
     </div>

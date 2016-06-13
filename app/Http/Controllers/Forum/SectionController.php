@@ -32,28 +32,29 @@ class SectionController extends Controller
      * Get the view to show all topics under a specific section.
      *
      * @param  string                   $slug
+     * @param  integer                  $id
      * @param  Illuminate\Http\Request  $request
      * @param  Forum\Models\Section     $section
      * @param  Forum\Models\Topic       $topic
      * @return \Illuminate\Http\Response
      */
-    public function show($slug, Request $request, Section $section, Topic $topic)
+    public function show($slug, $id, Request $request, Section $section, Topic $topic)
     {
-        $show = $section->where('slug', $slug)->firstOrFail();
+        $section = $section->findOrFail($id);
 
         if ($request->search) {
-            $topics = $show->topics()
+            $topics = $section->topics()
                 ->whereIn('id', collect($topic->search($request->search)['hits'])
                     ->lists('id')
                     ->all())
                     ->with('user')
                     ->paginate(25);
         } else {
-            $topics = $show->topics()->with('user')->paginate(25);
+            $topics = $section->topics()->with('user')->latestLast()->paginate(25);
         }
 
         return view('forum.section.show', [
-            'section' => $show,
+            'section' => $section,
             'topics' => $topics,
         ]);
     }
@@ -77,10 +78,9 @@ class SectionController extends Controller
      */
     public function store(CreateSectionFormRequest $request, Section $section)
     {
-
         $section->create([
             'name' => $request->input('name'),
-            'slug' => $request->input('slug'),
+            'slug' => str_slug($request->input('name')),
             'description' => $request->input('description'),
         ]);
 

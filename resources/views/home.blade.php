@@ -14,7 +14,7 @@
                     @foreach ($sections as $section)
                         <li class="list-group-item"><h4>
                             <span class="label label-primary pull-right">{{ $section->topicCountText() }}</span>
-                            <a href="{{ route('forum.section.show', ['slug' => $section->slug]) }}">{{ $section->name }}</a>
+                            <a href="{{ route('forum.section.show', ['slug' => $section->slug, 'id' => $section->id]) }}">{{ $section->name }}</a>
                             @if ($section->description)
                                 <br />
                                 <small>{{ $section->description }}</small>

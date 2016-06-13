@@ -25,7 +25,6 @@ class CreateSectionFormRequest extends Request
     {
         return [
             'name' => 'required|max:64',
-            'slug' => 'required|max:64|unique:sections',
             'description' => 'max:255',
         ];
     }

@@ -78,5 +78,5 @@ Route::group(['middleware' => ['role:owner|admin']], function () {
     Route::get('section/{id}/destroy', 'Forum\SectionController@destroy')->name('forum.section.destroy');
 });
 
-Route::get('section/{slug}', 'Forum\SectionController@show')->name('forum.section.show');
+Route::get('section/{slug}/{id}', 'Forum\SectionController@show')->name('forum.section.show');
 Route::get('topic/{slug}/{id}', 'Forum\TopicController@show')->name('forum.topic.show');

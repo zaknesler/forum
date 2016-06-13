@@ -18,15 +18,6 @@
                             </span>
                         @endif
                     </div>
-                    <div class="form-group{{ $errors->has('slug') ? ' has-error' : '' }}">
-                        <label for="slug">Slug</label>
-                        <input type="text" class="form-control" name="slug" id="slug" value="{{ old('slug') }}">
-                        @if ($errors->has('slug'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('slug') }}</strong>
-                            </span>
-                        @endif
-                    </div>
                     <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
                         <label for="description">Description</label>
                         <textarea name="description" id="description" rows="3" class="form-control">{{ old('description') }}</textarea>
