@@ -81,7 +81,7 @@ Route::group(['middleware' => ['role:owner|admin']], function () {
 /**
  * Moderation routes for owners.
  */
-Route::group(['middleware' => ['role:owner|admin']], function () {
+Route::group(['middleware' => ['role:owner']], function () {
     Route::post('user/{id}/edit/role', 'User\RoleController@update')->name('user.edit.role');
 });
 
