@@ -13,10 +13,11 @@ class RoleController extends Controller
 {
     /**
      * Update user's role.
-     * @param  integer                    $id      User identifier.
-     * @param  UpdateUserRoleFormRequest  $request Form request for validation.
-     * @param  User                       $user    User model injection.
-     * @param  Role                       $role    Role model injection.
+     *
+     * @param  integer                    $id
+     * @param  UpdateUserRoleFormRequest  $request
+     * @param  Forum\Models\User          $user
+     * @param  Forum\Models\Role          $role
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update($id, UpdateUserRoleFormRequest $request, User $user, Role $role)

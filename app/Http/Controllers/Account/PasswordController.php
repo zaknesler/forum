@@ -13,6 +13,7 @@ class PasswordController extends Controller
 {
     /**
      * Get the view to update user's password.
+     *
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -22,6 +23,9 @@ class PasswordController extends Controller
 
     /**
      * Update the user's password.
+     *
+     * @param  UpdatePasswordFormRequest  $request
+     * @param  Forum\Models\User          $user
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdatePasswordFormRequest $request, User $user)

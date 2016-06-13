@@ -12,6 +12,8 @@ class ReportController extends Controller
 {
     /**
      * Lists all reported topics and posts.
+     *
+     * @param  Forum\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
     public function index(Post $post, Topic $topic)

@@ -19,8 +19,9 @@ class TopicController extends Controller
 {
     /**
      * Report topic.
-     * @param  integer  $id     Topic identifier.
-     * @param  Topic    $topic  Topic model injection.
+     *
+     * @param  integer             $id
+     * @param  Forum\Models\Topic  $topic
      * @return \Illuminate\Http\RedirectResponse
      */
     public function report($id, Topic $topic)
@@ -39,8 +40,9 @@ class TopicController extends Controller
 
     /**
      * Clear reports on topic.
-     * @param  integer  $id     Topic identifier.
-     * @param  Topic    $topic  Topic model injection.
+     *
+     * @param  integer             $id
+     * @param  Forum\Models\Topic  $topic
      * @return \Illuminate\Http\RedirectResponse
      */
     public function clearReports($id, Topic $topic)
@@ -59,8 +61,9 @@ class TopicController extends Controller
 
     /**
      * Get the view to create a new topic.
-     * @param  Topic    $topic    Topic model injection.
-     * @param  Section  $section  Section model injection.
+     *
+     * @param  Forum\Models\Topic    $topic
+     * @param  Forum\Models\Section  $section
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request, Topic $topic, Section $section)
@@ -81,10 +84,11 @@ class TopicController extends Controller
             'id' => $request['section_id'],
         ]);
     }
-    
+
     /**
      * Get the view that displays all of the topics.
-     * @param  Topic  $topic  Topic model injection.
+     *
+     * @param  Forum\Models\Topic  $topic
      * @return \Illuminate\Http\Response
      */
     public function all(Topic $topic)
@@ -92,15 +96,16 @@ class TopicController extends Controller
         $topics = $topic->latestFirst()->paginate(10);
 
         return view('moderation.topic.all', [
-            'topics' => $topics,    
+            'topics' => $topics,
         ]);
     }
 
     /**
      * Get the view that displays a single topic with its replies.
-     * @param  string   $slug   Topic slug.
-     * @param  integer  $id     Topic identifier.
-     * @param  Topic    $topic  Topic model injection.
+     *
+     * @param  string              $slug
+     * @param  integer             $id
+     * @param  Forum\Models\Topic  $topic
      * @return \Illuminate\Http\Response
      */
     public function show($slug, $id, Topic $topic)
@@ -119,7 +124,8 @@ class TopicController extends Controller
 
     /**
      * Store the new topic in database.
-     * @param  CreateTopicFormRequest  $request  Form request for validation.
+     *
+     * @param  CreateTopicFormRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(CreateTopicFormRequest $request)
@@ -146,8 +152,8 @@ class TopicController extends Controller
 
     /**
      * Mark topic as deleted.
-     * @param  integer  $id       Topic identifier.
-     * @param  Topic    $topic    Topic model injection.
+     * @param  integer             $id
+     * @param  Forum\Models\Topic  $topic
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id, Request $request, Topic $topic)

@@ -14,7 +14,9 @@ class UserController extends Controller
 {
     /**
      * Get all users.
-     * @param  User  $user  User model injection.
+     *
+     * @param  Illuminate\Http\Request  $request
+     * @param  Forum\Models\User        $user
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request, User $user)
@@ -24,16 +26,16 @@ class UserController extends Controller
         } else {
             $users = $user->paginate(25);
         }
-        
+
         return view('user.list', [
-            'users' => $users,    
+            'users' => $users,
         ]);
     }
-    
+
     /**
      * Display user's profile page.
-     * @param  string $username Username
-     * @param  User   $user     User model injection.
+     * @param  string             $username
+     * @param  Forum\Models\User  $user
      * @return \Illuminate\Http\Response
      */
     public function profile($username, User $user)
@@ -45,7 +47,7 @@ class UserController extends Controller
         }
 
         return view('user.profile', [
-            'user' => $find,    
+            'user' => $find,
         ]);
     }
 

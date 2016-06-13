@@ -160,7 +160,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Inwave\LaravelUploadcare\LaravelUploadcareServiceProvider::class,
         GrahamCampbell\Markdown\MarkdownServiceProvider::class,
-        AlgoliaSearch\Laravel\AlgoliaServiceProvider::class
+        AlgoliaSearch\Laravel\AlgoliaServiceProvider::class,
 
     ],
 

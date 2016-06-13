@@ -10,6 +10,8 @@ class HomeController extends Controller
 {
     /**
      * Get the view for the home page.
+     *
+     * @param  Forum\Models\Section $section
      * @return \Illuminate\Http\Response
      */
     public function index(Section $section)
@@ -17,7 +19,7 @@ class HomeController extends Controller
         $sections = $section->paginate(10);
 
         return view('home', [
-            'sections' => $sections,    
+            'sections' => $sections,
         ]);
     }
 }

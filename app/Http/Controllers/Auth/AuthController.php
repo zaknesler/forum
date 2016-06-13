@@ -14,13 +14,27 @@ class AuthController extends Controller
 {
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
+    /**
+     * Path to redirect to after successful login.
+     * 
+     * @var string
+     */
     protected $redirectTo = '/';
 
+    /**
+     * Create a new auth controller instance.
+     */
     public function __construct()
     {
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
 
+    /**
+     * Validation rules for registering a new user.
+     * 
+     * @param  array  $data
+     * @return Validator
+     */
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -32,6 +46,12 @@ class AuthController extends Controller
         ]);
     }
 
+    /**
+     * Create new user with data.
+     * 
+     * @param  array  $data
+     * @return Forum\Models\User
+     */
     protected function create(array $data)
     {
         $user = User::create([
@@ -42,6 +62,10 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
 
+        /**
+         * If user is first in database, give them the 'owner' role.
+         * Otherwise, give them the 'user' role.
+         */
         if (User::count() == 1) {
             $role = Role::where('name', 'owner')->first();
         } else {

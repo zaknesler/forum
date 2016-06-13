@@ -13,6 +13,7 @@ class ProfileController extends Controller
 {
     /**
      * Get the view to update user's profile settings.
+     * 
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -22,8 +23,9 @@ class ProfileController extends Controller
     
     /**
      * Post request to update the user's profile settings.
-     * @param  UpdateProfileFormRequest  Form request for validation.
-     * @param  User                      User model injection.
+     * 
+     * @param  UpdateProfileFormRequest  $request
+     * @param  Forum\Models\User         $user
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdateProfileFormRequest $request, User $user)

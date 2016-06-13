@@ -17,8 +17,9 @@ class PostController extends Controller
 {
     /**
      * Report post.
-     * @param  integer  $id    Post identifier.
-     * @param  Post     $post  Post model injection.
+     * 
+     * @param  integer            $id
+     * @param  Forum\Models\Post  $post
      * @return \Illuminate\Http\RedirectResponse
      */
     public function report($id, Post $post)
@@ -37,8 +38,9 @@ class PostController extends Controller
 
     /**
      * Clear reports on post.
-     * @param  integer  $id     Post identifier.
-     * @param  Post     $post   Post model injection.
+     * 
+     * @param  integer            $id
+     * @param  Forum\Models\Post  $post
      * @return \Illuminate\Http\RedirectResponse
      */
     public function clearReports($id, Post $post)
@@ -57,8 +59,9 @@ class PostController extends Controller
 
     /**
      * Store the user's reply to a thread.
-     * @param  CreatePostFormRequest  $request  Form request for validation.
-     * @param  Topic                  $topic    Topic model injection.
+     * 
+     * @param  CreatePostFormRequest  $request
+     * @param  Forum\Models\Topic     $topic
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(CreatePostFormRequest $request, Topic $topic)
@@ -83,10 +86,10 @@ class PostController extends Controller
 
     /**
      * Mark post as deleted.
-     * @param  integer  $id       Post identifier.
-     * @param  Request  $request  The request.
-     * @param  Post     $post     Post model injection.
-     * @param  Topic    $topic    Topic model injection.
+     * @param  integer                  $id
+     * @param  Illuminate\Http\Request  $request
+     * @param  Forum\Models\Post        $post
+     * @param  Forum\Models\Topic       $topic
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id, Request $request, Post $post, Topic $topic)

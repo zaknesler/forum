@@ -14,7 +14,8 @@ class SectionController extends Controller
 {
     /**
      * Get the view to show all sections.
-     * @param  Section  $section  Section model injection.
+     *
+     * @param  Forum\Models\Section  $section
      * @return \Illuminate\Http\Response
      */
     public function all(Section $section)
@@ -22,16 +23,17 @@ class SectionController extends Controller
         $sections = $section->paginate(10);
 
         return view('forum.section.all', [
-            'sections' => $sections,    
+            'sections' => $sections,
         ]);
     }
 
     /**
      * Get the view to show all topics under a specific section.
-     * @param  string   $slug     Section slug.
-     * @param  Request  $request  Form request for validation
-     * @param  Section  $section  Section model injection.
-     * @param  Topic    $topic    Topic model injection.
+     *
+     * @param  string                   $slug
+     * @param  Illuminate\Http\Request  $request
+     * @param  Forum\Models\Section     $section
+     * @param  Forum\Models\Topic       $topic
      * @return \Illuminate\Http\Response
      */
     public function show($slug, Request $request, Section $section, Topic $topic)
@@ -57,6 +59,7 @@ class SectionController extends Controller
 
     /**
      * Get the view to create a new section.
+     *
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -66,8 +69,9 @@ class SectionController extends Controller
 
     /**
      * Create new section.
-     * @param  CreateSectionFormRequest  $request  Form request for validation
-     * @param  Section                   $section  Section model injection.
+     *
+     * @param  CreateSectionFormRequest  $request
+     * @param  Forum\Models\Section      $section
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(CreateSectionFormRequest $request, Section $section)
@@ -88,10 +92,11 @@ class SectionController extends Controller
 
     /**
      * Mark section as deleted.
-     * @param  integer  $id       Section identifier.
-     * @param  Section  $section  Section model injection.
-     * @param  Topic    $topic    Topic model injection.
-     * @param  Post     $post     Post model injection.
+     *
+     * @param  integer               $id
+     * @param  Forum\Models\Section  $section
+     * @param  Forum\Models\Topic    $topic
+     * @param  Forum\Models\Post     $post
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id, Section $section, Topic $topic, Post $post)

@@ -13,8 +13,9 @@ class EditSectionController extends Controller
 {
     /**
      * Get the view to edit an existing section.
-     * @param  integer  $id       Section identifier.
-     * @param  Section  $section  Section model identifier.
+     * 
+     * @param  integer               $id
+     * @param  Forum\Models\Section  $section
      * @return \Illuminate\Http\Response
      */
     public function index($id, Section $section)
@@ -28,8 +29,9 @@ class EditSectionController extends Controller
 
     /**
      * Post section edit.
-     * @param  integer  $id       Section identifier.
-     * @param  Section  $section  Section model identifier.
+     * 
+     * @param  integer               $id
+     * @param  Forum\Models\Section  $section
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update($id, EditSectionFormRequest $request, Section $section)

@@ -15,9 +15,10 @@ class EditTopicController extends Controller
 {
     /**
      * Get the view to edit an existing topic.
-     * @param  integer  $id       Topic identifier.
-     * @param  Topic    $topic    Topic model identifier.
-     * @param  Section  $section  Section model identifier.
+     * 
+     * @param  integer               $id
+     * @param  Forum\Models\Topic    $topic
+     * @param  Forum\Models\Section  $section
      * @return \Illuminate\Http\Response
      */
     public function index($id, Topic $topic, Section $section)
@@ -39,8 +40,9 @@ class EditTopicController extends Controller
 
     /**
      * Post section edit.
-     * @param  integer  $id     Topic identifier.
-     * @param  Topic    $topic  Topic model identifier.
+     * 
+     * @param  integer             $id
+     * @param  Forum\Models\Topic  $topic
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update($id, EditTopicFormRequest $request, Topic $topic)
