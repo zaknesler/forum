@@ -119,8 +119,8 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        {!! csrf_field() !!}
                         <button type="submit" class="btn btn-primary">Change password</button>
+                        {!! csrf_field() !!}
                     </div>
                 </form>
             </div>

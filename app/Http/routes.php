@@ -70,12 +70,19 @@ Route::group(['middleware' => ['role:owner|admin']], function () {
     Route::get('user/{id}/edit', 'User\EditController@index')->name('user.edit');
     Route::post('user/{id}/edit', 'User\EditController@update');
 
-    Route::post('user/{id}/edit/role', 'User\RoleController@update')->name('user.edit.role');
+    Route::post('user/{id}/edit/password', 'User\PasswordController@update')->name('user.edit.password');
 
     Route::get('section/create', 'Forum\SectionController@create')->name('forum.section.create');
     Route::post('section/create', 'Forum\SectionController@store');
 
     Route::get('section/{id}/destroy', 'Forum\SectionController@destroy')->name('forum.section.destroy');
+});
+
+/**
+ * Moderation routes for owners.
+ */
+Route::group(['middleware' => ['role:owner|admin']], function () {
+    Route::post('user/{id}/edit/role', 'User\RoleController@update')->name('user.edit.role');
 });
 
 Route::get('section/{slug}/{id}', 'Forum\SectionController@show')->name('forum.section.show');

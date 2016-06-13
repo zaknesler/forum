@@ -96,32 +96,61 @@
             </div>
         </div>
         @role (['admin', 'owner'])
-        <div class="col-md-4">
-            <div class="general-title small">User actions</div>
-            <div class="box">
+            <div class="col-md-4">
+                @role (['admin', 'owner'])
+                    <div class="general-title small">Update user password</div>
+                    <div class="box">
+                        <form action="{{ route('user.edit.password', ['id' => $user->id]) }}" method="post" autocomplete="off">
+                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                                <label for="password">New password</label>
+                                <input type="password" class="form-control" name="password" id="password">
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+                                <label for="password_confirmation">Confirm new password</label>
+                                <input type="password" class="form-control" name="password_confirmation" id="password_confirmation">
+                                @if ($errors->has('password_confirmation'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Change password</button>
+                                {!! csrf_field() !!}
+                            </div>
+                        </form>
+                    </div>
+                @endrole
                 @role (['owner'])
-                <form action="{{ route('user.edit.role', ['id' => $user->id]) }}" method="post" autocomplete="off">
-                    <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
-                        <label for="role">User role</label>
-                        <select class="form-control" name="role" id="role">
-                            @foreach ($roles as $role)
-                                <option value="{{ $role->id }}" @if (($user->roles->first()->id == $role->id) || (old('role') == $role->id)) selected @endif>{{ $role->display_name }}</option>
-                            @endforeach
-                        </select>
-                        @if ($errors->has('role'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('role') }}</strong>
-                            </span>
-                        @endif
+                <div class="general-title small">Update user role</div>
+                    <div class="box">
+                        <form action="{{ route('user.edit.role', ['id' => $user->id]) }}" method="post" autocomplete="off">
+                            <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
+                                <label for="role">Role</label>
+                                <select class="form-control" name="role" id="role">
+                                    @foreach ($roles as $role)
+                                        <option value="{{ $role->id }}" @if (($user->roles->first()->id == $role->id) || (old('role') == $role->id)) selected @endif>{{ $role->display_name }}</option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('role'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('role') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                {!! csrf_field() !!}
+                                <button type="submit" class="btn btn-primary">Change role</button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        {!! csrf_field() !!}
-                        <button type="submit" class="btn btn-primary">Change role</button>
-                    </div>
-                </form>
                 @endrole
             </div>
-        </div>
         @endrole
     </div>
 </div>

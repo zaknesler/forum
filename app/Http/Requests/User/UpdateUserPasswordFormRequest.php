@@ -1,10 +1,10 @@
 <?php
 
-namespace Forum\Http\Requests\Account\Password;
+namespace Forum\Http\Requests\User;
 
 use Forum\Http\Requests\Request;
 
-class UpdatePasswordFormRequest extends Request
+class UpdateUserPasswordFormRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,6 @@ class UpdatePasswordFormRequest extends Request
     public function rules()
     {
         return [
-            'old_password' => 'required',
             'password' => 'required|confirmed|min:6',
         ];
     }
