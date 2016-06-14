@@ -11,6 +11,7 @@
                 <ul class="list-group">
                 @foreach ($topics as $topic)
                     <li class="list-group-item"><h4>
+                        <a href="{{ route('forum.topic.report.clear', ['id' => $topic->id]) }}" class="label label-info pull-right">Clear</a>
                         <span class="label label-primary pull-right">{{ $topic->reportCountText() }}</span>
                         <a href="{{ route('forum.topic.show', ['slug' => $topic->slug, 'id' => $topic->id]) }}">{{ $topic->name }}</a>
                         <br />
@@ -30,6 +31,7 @@
                 <ul class="list-group">
                 @foreach ($posts as $post)
                     <li class="list-group-item"><h4>
+                    <a href="{{ route('forum.post.report.clear', ['id' => $post->id]) }}" class="label label-info pull-right">Clear</a>
                         <span class="label label-primary pull-right">{{ $post->reportCountText() }}</span>
                         <a href="{{ route('forum.topic.show', ['slug' => $post->topic->slug, 'id' => $post->topic->id]) }}#post-{{ $post->id }}">{{ $post->topic->name }}</a>
                         <span class="text-muted"><small>post {{ $post->id }}</small></span>

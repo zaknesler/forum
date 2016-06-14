@@ -48,10 +48,12 @@
                     @endif
                 </div>
             </form>
-            @role (['admin', 'owner'])
-            <a class="btn btn-warning btn-block" href="{{ route('forum.section.edit', ['id' => $section->id]) }}">Edit section</a>
-            @endrole
-            <a class="btn btn-info btn-block" href="{{ route('forum.topic.create', ['id' => $section->id]) }}">Create topic</a>
+            <div class="box">
+                <a class="btn btn-info btn-block" href="{{ route('forum.topic.create', ['id' => $section->id]) }}">Create topic</a>
+                @role (['admin', 'owner'])
+                    <a class="btn btn-warning btn-block" href="{{ route('forum.section.edit', ['id' => $section->id]) }}">Edit section</a>
+                @endrole
+            </div>
         </div>
         @endif
     </div>
