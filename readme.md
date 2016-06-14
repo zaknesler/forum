@@ -2,11 +2,11 @@
 
 This is a very simple Laravel 5.2 forum that I am working on. I started Laravel about a month ago and I think I've progressed far!
 
-## Demo
+### Demo
 
 I set up a demo of this application so if you want to check it out, go ahead. Explore around, leave any topics/posts you would like.
 
-[Demo](http://flynk.ml/)
+[Go to demo website](http://flynk.ml/)
 
 > **Note:** Error debugging is turned on.
 
@@ -25,7 +25,7 @@ So far you need the following third party services (All offer good enough free s
 
 - [Algolia](https://www.algolia.com/) (search features)
 - [Uploadcare](https://uploadcare.com/) (user profile images)
-- [Mailgun](https://www.mailgun.com/) (Email management. If you're developing, use [Mailtrap](https://mailtrap.io/) instead)
+- [Mailgun](https://www.mailgun.com/) (Email management. If you're developing, I'd use [Mailtrap](https://mailtrap.io/) instead)
 
 Next, run the migrations (Make sure you pass the seed option into this command; it adds the default roles into your database.
 ```
