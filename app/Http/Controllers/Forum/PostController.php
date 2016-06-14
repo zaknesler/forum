@@ -79,8 +79,8 @@ class PostController extends Controller
         ]);
 
         return redirect()->route('forum.topic.show', [
-            'id' => $topic->id,
             'slug' => $topic->slug,
+            'id' => $topic->id,
         ]);
     }
 
@@ -103,8 +103,13 @@ class PostController extends Controller
 
         event(new PostWasDeleted($topic));
 
+        $topic = $post->topic()->first();
+
         $post->delete();
 
-        return redirect()->back();
+        return redirect()->route('forum.topic.show', [
+            'slug' => $topic->slug,
+            'id' => $topic->id,
+        ]);
     }
 }

@@ -8,14 +8,13 @@ use Forum\Models\Section;
 use Illuminate\Http\Request;
 use Forum\Http\Controllers\Controller;
 use Forum\Events\Forum\Topic\TopicWasEdited;
-use Forum\Http\Requests\Forum\Topic\CreateTopicFormRequest;
 use Forum\Http\Requests\Forum\Topic\EditTopicFormRequest;
 
 class EditTopicController extends Controller
 {
     /**
      * Get the view to edit an existing topic.
-     * 
+     *
      * @param  integer               $id
      * @param  Forum\Models\Topic    $topic
      * @param  Forum\Models\Section  $section
@@ -35,12 +34,12 @@ class EditTopicController extends Controller
             ]);
         } else {
             return redirect()->route('home');
-        }        
+        }
     }
 
     /**
      * Post section edit.
-     * 
+     *
      * @param  integer             $id
      * @param  Forum\Models\Topic  $topic
      * @return \Illuminate\Http\RedirectResponse
@@ -66,5 +65,5 @@ class EditTopicController extends Controller
             'slug' => $topic->slug,
             'id' => $topic->id
         ]);
-    }    
+    }
 }

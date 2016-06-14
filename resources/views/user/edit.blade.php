@@ -129,7 +129,7 @@
                 @role (['owner'])
                 <div class="general-title small">Update user role</div>
                     <div class="box">
-                        <form action="{{ route('user.edit.role', ['id' => $user->id]) }}" method="post" autocomplete="off">
+                        <form action="{{ route('user.edit.role', ['id' => $user->id]) }}" method="post" autocomplete="off" id="swal-confirm-submit">
                             <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
                                 <label for="role">Role</label>
                                 <select class="form-control" name="role" id="role">

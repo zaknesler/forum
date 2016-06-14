@@ -39,6 +39,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('topic/{id}/edit', 'Forum\EditTopicController@index')->name('forum.topic.edit');
     Route::post('topic/{id}/edit', 'Forum\EditTopicController@update');
 
+    Route::get('post/{id}/edit', 'Forum\EditPostController@index')->name('forum.post.edit');
+    Route::post('post/{id}/edit', 'Forum\EditPostController@update');
+
     Route::get('topic/create/{id?}', 'Forum\TopicController@create')->name('forum.topic.create');
     Route::post('topic/create/{id?}', 'Forum\TopicController@store');
 
@@ -59,8 +62,8 @@ Route::group(['middleware' => ['role:moderator|admin|owner']], function () {
     Route::get('section/{id}/edit', 'Forum\EditSectionController@index')->name('forum.section.edit');
     Route::post('section/{id}/edit', 'Forum\EditSectionController@update');
 
-    Route::get('post/{id}/destroy', 'Forum\PostController@destroy')->name('forum.post.destroy');
-    Route::get('topic/{id}/destroy', 'Forum\TopicController@destroy')->name('forum.topic.destroy');
+    Route::post('post/{id}/destroy', 'Forum\PostController@destroy')->name('forum.post.destroy');
+    Route::post('topic/{id}/destroy', 'Forum\TopicController@destroy')->name('forum.topic.destroy');
 });
 
 /**
@@ -75,7 +78,7 @@ Route::group(['middleware' => ['role:owner|admin']], function () {
     Route::get('section/create', 'Forum\SectionController@create')->name('forum.section.create');
     Route::post('section/create', 'Forum\SectionController@store');
 
-    Route::get('section/{id}/destroy', 'Forum\SectionController@destroy')->name('forum.section.destroy');
+    Route::post('section/{id}/destroy', 'Forum\SectionController@destroy')->name('forum.section.destroy');
 });
 
 /**

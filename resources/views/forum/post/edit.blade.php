@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Edit topic')
+@section('title', 'Edit post')
 
 @section('content')
 <div class="container">
@@ -10,21 +10,12 @@
         @else
         <div class="col-md-12">
         @endif
-            <div class="general-title small">Edit topic</div>
+            <div class="general-title small">Edit post</div>
             <div class="box">
-                <form action="{{ route('forum.topic.edit', ['id' => $topic->id]) }}" method="post" autocomplete="off">
-                    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                        <label for="name">Title</label>
-                        <input type="text" class="form-control" name="name" id="name" placeholder="Hello, world!" value="{{ $topic->name }}">
-                        @if ($errors->has('name'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('name') }}</strong>
-                            </span>
-                        @endif
-                    </div>
+                <form action="{{ route('forum.post.edit', ['id' => $post->id]) }}" method="post" autocomplete="off">
                     <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
                         <label for="body">Body</label>
-                        <textarea class="form-control" name="body" id="body" rows="20">{{ $topic->body }}</textarea>
+                        <textarea class="form-control" name="body" id="body" rows="20">{{ $post->body }}</textarea>
                         @if ($errors->has('body'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('body') }}</strong>
@@ -32,7 +23,7 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Update topic</button>
+                        <button type="submit" class="btn btn-primary">Update post</button>
                         {!! csrf_field() !!}
                     </div>
                 </form>
@@ -40,9 +31,9 @@
         </div>
         @role (['moderator', 'admin', 'owner'])
             <div class="col-md-2">
-                <div class="general-title small">Topic actions</div>
+                <div class="general-title small">Post actions</div>
                 <div class="box">
-                    <form action="{{ route('forum.topic.destroy', ['id' => $topic->id]) }}" method="post" id="swal-confirm-submit">
+                    <form action="{{ route('forum.post.destroy', ['id' => $post->id]) }}" method="post" id="swal-confirm-submit">
                         <button type="submit" class="btn btn-danger btn-block">Delete</button>
                         {!! csrf_field() !!}
                     </form>

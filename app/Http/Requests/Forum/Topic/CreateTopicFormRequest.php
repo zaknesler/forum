@@ -24,8 +24,8 @@ class CreateTopicFormRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required',
-            'body' => 'required',
+            'name' => 'required|min:8',
+            'body' => 'required|min:8',
             'id' => 'required|exists:sections,id',
         ];
     }

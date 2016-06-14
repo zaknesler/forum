@@ -1,4 +1,40 @@
-UPLOADCARE_LOCALE = "en";
-UPLOADCARE_LIVE = false;
-UPLOADCARE_TABS = "file url";
-UPLOADCARE_PUBLIC_KEY = "53827a9ca32784e6c3e9";
+$(function() {
+    function swalConfirmSubmit(element)
+    {
+        $(element).on('submit', function (e) {
+            e.preventDefault();
+            swal({
+                title: "Are you sure?",
+                type: "warning",
+                showCancelButton: true,
+                closeOnCancel: true,
+                closeOnConfirm: true
+            }, function(isConfirm) {
+                if (isConfirm) {
+                    $(element).unbind().submit();
+                }
+            });
+        });
+    }
+
+    function swalConfirmClick(element)
+    {
+        $(element).on('click', function (e) {
+            e.preventDefault();
+            swal({
+                title: "Are you sure?",
+                type: "warning",
+                showCancelButton: true,
+                closeOnCancel: true,
+                closeOnConfirm: true
+            }, function(isConfirm) {
+                if (isConfirm) {
+                    $(element).unbind().click();
+                }
+            });
+        });
+    }
+
+    swalConfirmSubmit("#swal-confirm-submit");
+    swalConfirmClick("#swal-confirm-click");
+});

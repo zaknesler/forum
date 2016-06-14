@@ -70,9 +70,9 @@
                                     <a href="{{ route('forum.post.report', ['id' => $post->id]) }}">Report</a>
                                 @endif
                             </div>
-                            @if (Auth::user()->hasRole(['moderator','admin','owner']))
+                            @if ((Auth::user()->id == $post->user->id) || Auth::user()->hasRole(['moderator','admin','owner']))
                                 <div class="pull-right">
-                                    <a class="text-danger" href="{{ route('forum.post.destroy', ['id' => $post->id]) }}">Delete</a>
+                                    <a href="{{ route('forum.post.edit', ['id' => $post->id]) }}">Edit</a>
                                 </div>
                             @endif
                             <div class="clearfix"></div>

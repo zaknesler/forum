@@ -58,6 +58,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
+        UPLOADCARE_LOCALE = "en";
+        UPLOADCARE_LIVE = false;
+        UPLOADCARE_TABS = "file url";
+        UPLOADCARE_PUBLIC_KEY = "{{ env('UPLOADCARE_PUBLIC_KEY') }}";
         hljs.initHighlightingOnLoad();
         @if (notify()->ready())
             swal({

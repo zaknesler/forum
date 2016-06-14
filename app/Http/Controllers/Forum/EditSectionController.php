@@ -7,13 +7,12 @@ use Forum\Models\Section;
 use Illuminate\Http\Request;
 use Forum\Http\Controllers\Controller;
 use Forum\Http\Requests\Forum\Section\EditSectionFormRequest;
-use Forum\Http\Requests\Forum\Section\CreateSectionFormRequest;
 
 class EditSectionController extends Controller
 {
     /**
      * Get the view to edit an existing section.
-     * 
+     *
      * @param  integer               $id
      * @param  Forum\Models\Section  $section
      * @return \Illuminate\Http\Response
@@ -23,13 +22,13 @@ class EditSectionController extends Controller
         $edit = $section->findOrFail($id);
 
         return view('forum.section.edit', [
-            'section' => $edit,    
+            'section' => $edit,
         ]);
     }
 
     /**
      * Post section edit.
-     * 
+     *
      * @param  integer               $id
      * @param  Forum\Models\Section  $section
      * @return \Illuminate\Http\RedirectResponse

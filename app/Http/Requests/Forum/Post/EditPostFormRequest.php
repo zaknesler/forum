@@ -4,7 +4,7 @@ namespace Forum\Http\Requests\Forum\Post;
 
 use Forum\Http\Requests\Request;
 
-class CreatePostFormRequest extends Request
+class EditPostFormRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
