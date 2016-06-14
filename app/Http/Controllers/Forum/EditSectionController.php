@@ -39,7 +39,7 @@ class EditSectionController extends Controller
 
         $current->update([
             'name' => $request->input('name'),
-            'slug' => $request->input('slug'),
+            'slug' => str_slug($request->input('name')),
             'description' => $request->input('description'),
         ]);
 
