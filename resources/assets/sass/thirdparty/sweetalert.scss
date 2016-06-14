@@ -4,9 +4,7 @@ body.stop-scrolling {
 
 .sweet-overlay {
   background-color: black;
-  /* IE8 */
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
-  /* IE8 */
   background-color: rgba(0, 0, 0, 0.4);
   position: fixed;
   left: 0;
@@ -364,10 +362,6 @@ body.stop-scrolling {
       border: none;
       background-position: center center;
       background-repeat: no-repeat; }
-
-/*
- * Animations
- */
 @-webkit-keyframes showSweetAlert {
   0% {
     transform: scale(0.7);
@@ -726,17 +720,12 @@ body.stop-scrolling {
   100% {
     transform: rotate(360deg); } }
 
-/* Internet Explorer 9 has some special quirks that are fixed here */
-/* The icons are not animated. */
-/* This file is automatically merged into sweet-alert.min.js through Gulp */
-/* Error icon */
 .sweet-alert .sa-icon.sa-error .sa-line.sa-left {
   -ms-transform: rotate(45deg) \9; }
 
 .sweet-alert .sa-icon.sa-error .sa-line.sa-right {
   -ms-transform: rotate(-45deg) \9; }
 
-/* Success icon */
 .sweet-alert .sa-icon.sa-success {
   border-color: transparent\9; }
 
@@ -746,11 +735,6 @@ body.stop-scrolling {
 .sweet-alert .sa-icon.sa-success .sa-line.sa-long {
   -ms-transform: rotate(-45deg) \9; }
 
-/*!
- * Load Awesome v1.1.0 (http://github.danielcardoso.net/load-awesome/)
- * Copyright 2015 Daniel Cardoso <@DanielCardoso>
- * Licensed under MIT
- */
 .la-ball-fall,
 .la-ball-fall > div {
   position: relative;
@@ -832,9 +816,6 @@ body.stop-scrolling {
   height: 30px;
   margin: 12px; }
 
-/*
- * Animation
- */
 @-webkit-keyframes ball-fall {
   0% {
     opacity: 0;
