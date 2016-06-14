@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container">
-    <h3>All users</h3>
+    <div class="general-title">All users</div>
     <div class="row">
         <div class="col-md-8">
             @if ($users->count())

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h3>All sections</h3>
+    <div class="general-title">All sections</div>
     <div class="row">
         @if (Auth::user())
         <div class="col-md-10">
@@ -31,12 +31,14 @@
         </div>
         @if (Auth::user())
         <div class="col-md-2">
-            @role (['admin', 'owner'])
-            <a href="{{ route('forum.section.create') }}" class="btn btn-warning btn-block">Create section</a>
-            @endrole
-            @if ($sections->count())
-            <a href="{{ route('forum.topic.create') }}" class="btn btn-info btn-block">Create topic</a>
-            @endif
+            <div class="box">
+                @if ($sections->count())
+                    <a href="{{ route('forum.topic.create') }}" class="btn btn-info btn-block">Create topic</a>
+                @endif
+                @role (['admin', 'owner'])
+                    <a href="{{ route('forum.section.create') }}" class="btn btn-warning btn-block">Create section</a>
+                @endrole
+            </div>
         </div>
         @endif
     </div>

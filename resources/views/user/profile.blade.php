@@ -9,7 +9,7 @@
         <p>{{ $user->about }}</p>
         <hr>
         <div class="row">
-            <div class="col-xs-8">
+            <div class="col-xs-7">
                 <h4>
                     <dl class="spaced">
                         @if ($user->location)
@@ -33,7 +33,7 @@
                     </dl>
                 </h4>
             </div>
-            <div class="col-xs-4">
+            <div class="col-xs-5">
                 <div class="pull-right">
                     <img src="{{ $user->avatarUrl(['size' => 250]) }}" alt="User image" class="img-responsive">
                 </div>

@@ -3564,6 +3564,11 @@ tbody.collapse.in {
   overflow: hidden;
   background-color: #e5e5e5;
 }
+@media screen and (max-width: 768px) {
+  .dropdown-menu .divider {
+    background-color: hsla(0, 0%, 100%, 0.1);
+  }
+}
 .dropdown-menu > li > a {
   display: block;
   padding: 3px 20px;
@@ -4026,6 +4031,11 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   margin: 9.5px 0;
   overflow: hidden;
   background-color: #e5e5e5;
+}
+@media screen and (max-width: 768px) {
+  .nav .nav-divider {
+    background-color: hsla(0, 0%, 100%, 0.1);
+  }
 }
 .nav > li > a > img {
   max-width: none;

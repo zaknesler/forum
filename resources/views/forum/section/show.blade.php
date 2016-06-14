@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container">
-    <h3>{{ $section->name }} <small>all topics</small></h3>
+    <div class="general-title">{{ $section->name }} <span class="small">All topics</span></div>
     <div class="row">
         @if (Auth::user())
         <div class="col-md-9">

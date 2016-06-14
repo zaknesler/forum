@@ -69,6 +69,12 @@ dl.spaced > dd:last-child {
         line-height: 18px;
         font-size: 18px;
     }
+
+    & .small {
+        line-height: 16px;
+        font-size: 16px;
+        color: #b4bcc2;
+    }
 }
 
 .box {
