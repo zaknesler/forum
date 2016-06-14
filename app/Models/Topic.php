@@ -11,7 +11,7 @@ class Topic extends Model
 
     public static $autoIndex = true;
     public static $autoDelete = true;
-    
+
     protected $fillable = [
         'name',
         'body',
@@ -48,7 +48,11 @@ class Topic extends Model
 
     public function reportCountText()
     {
-        return $this->reports . ' ' . str_plural('report', $this->reports);
+        if ($this->reports == 1) {
+            return $this->reports . ' report';
+        }
+
+        return $this->reports . ' reports';
     }
 
     public function reportCount()
@@ -58,7 +62,11 @@ class Topic extends Model
 
     public function replyCountText()
     {
-        return $this->replyCount() . ' ' . str_plural('reply', $this->replyCount());
+        if ($this->replies_count == 1) {
+            return $this->replies_count . ' reply';
+        }
+
+        return $this->replies_count . ' replies';
     }
 
     public function replyCount()

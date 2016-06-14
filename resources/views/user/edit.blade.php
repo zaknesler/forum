@@ -10,7 +10,7 @@
         @else
         <div class="col-md-8 col-md-offset-2">
         @endif
-            <div class="general-title small">Update user settings</div>
+            <div class="general-title small">Update user profile</div>
             <div class="box">
                 <form action="{{ route('user.edit', ['id' => $user->id]) }}" method="post" autocomplete="off" id="has-upload">
                     <div class="row">

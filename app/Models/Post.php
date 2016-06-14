@@ -34,7 +34,11 @@ class Post extends Model
 
     public function reportCountText()
     {
-        return $this->reports . ' ' . str_plural('report', $this->reports);
+        if ($this->reports == 1) {
+            return $this->reports . ' report';
+        }
+
+        return $this->reports . ' reports';
     }
 
     public function user()

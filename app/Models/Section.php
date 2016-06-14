@@ -20,7 +20,11 @@ class Section extends Model
 
     public function topicCountText()
     {
-        return $this->topicCount() . ' ' . str_plural('topic', $this->topicCount());
+        if ($this->topics_count == 1) {
+            return $this->topics_count . ' topic';
+        }
+
+        return $this->topics_count . ' topics';
     }
 
     public function topicCount()

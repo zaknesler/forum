@@ -9,7 +9,7 @@
     </div>
     <div class="topic-container">
         <div class="head">
-            <div class="date pull-left text-muted">{{ $topic->created_at->diffForHumans() }} by <a href="{{ route('user.profile', ['username' => $topic->user->username]) }}">{{ $topic->user->username }}</a></div>
+            <div class="date pull-left text-muted">{{ $topic->created_at->diffForHumans() }} by <a href="{{ route('user.profile', ['username' => $topic->user->username]) }}">{{ $topic->user->getFullNameOrUsername() }}</a></div>
             <div class="clearfix"></div>
         </div>
         <div class="border">
@@ -49,7 +49,7 @@
                     <div class="date pull-left text-muted">
                         {{ $post->created_at->diffForHumans() }} by
                         <a href="{{ route('user.profile', ['username' => $post->user->username]) }}">
-                            {{ $post->user->username }}
+                            {{ $post->user->getFullNameOrUsername() }}
                         </a>
                     </div>
                     <div class="clearfix"></div>
