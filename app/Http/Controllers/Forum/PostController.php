@@ -26,7 +26,9 @@ class PostController extends Controller
     {
         $post = $post->findOrFail($id);
 
-        event(new PostWasReported($post));
+        if (!(auth()->user()->id == $post->user->id)) {
+            event(new PostWasReported($post));
+        }
 
         notify()->flash('Success', 'success', [
             'text' => 'Thank you for reporting.',

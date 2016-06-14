@@ -29,7 +29,9 @@ class TopicController extends Controller
     {
         $topic = $topic->findOrFail($id);
 
-        event(new TopicWasReported($topic));
+        if (!(auth()->user()->id == $topic->user->id)) {
+            event(new TopicWasReported($topic));
+        }
 
         notify()->flash('Success', 'success', [
             'text' => 'Thank you for reporting.',

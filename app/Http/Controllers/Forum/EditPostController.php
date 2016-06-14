@@ -41,7 +41,7 @@ class EditPostController extends Controller
     public function update($id, EditPostFormRequest $request, Post $post)
     {
         $post = $post->findOrFail($id);
-        $topic = $post->topic()->first();
+        $topic = $post->topic;
 
         $post->update([
             'body' => $request->input('body'),

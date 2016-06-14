@@ -29,7 +29,11 @@ textarea {
 }
 
 code {
-  font-size: 80%;
+    font-size: 80%;
+}
+
+.list-inline-no-margin {
+    margin-left: 0;
 }
 
 dl.spaced > dd {

@@ -35,9 +35,9 @@ class EditSectionController extends Controller
      */
     public function update($id, EditSectionFormRequest $request, Section $section)
     {
-        $current = $section->findOrFail($id);
+        $section = $section->findOrFail($id);
 
-        $current->update([
+        $section->update([
             'name' => $request->input('name'),
             'slug' => str_slug($request->input('name')),
             'description' => $request->input('description'),
