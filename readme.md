@@ -10,14 +10,6 @@ I set up a silly little demonstration of this application. Go try it out and let
 
 > I left error debugging on, so if something goes wrong, you can tell me what it is.
 
-### Please note
-
-> I **HIGHLY** discourage installing this, because it is currently in development and when I push changes here; they often damage the integrity of this project.
-> For example, I do not add any additional migrations to create or update columns in the database; I just edit the previous migrations and reset my database.
-> I want to get everything correct before I say it's good enough to clone to your machine.
-
-If you want to ignore the above statement, download, and use this for yourself, you may.
-
 ## Installation
 
 First, clone repository to your machine.
@@ -46,10 +38,7 @@ php artisan migrate --seed
 
 > Just a reminder that this is my first Laravel project so I am probably doing lots of things wrong. If you could correct anything here, please do! I really appreciate feedback and support!
 
-## Feature requests
-[![Feature Requests](http://feathub.com/zaknes/forum?format=svg)](http://feathub.com/zaknes/forum)
-
-## Checklist
+## Checklist (no longer updated)
 
 This is the checklist of functionality I wish to have for this project. A strikethrough signifies completion.
 - Front-end (Javascript and Stylesheets handled by gulp):
@@ -65,7 +54,7 @@ This is the checklist of functionality I wish to have for this project. A strike
         - ~~Customised theme~~
     - ~~Highlight.js~~
     - ~~SweetAlert~~
-- Back-end: 
+- Back-end:
   - ~~Base Laravel 5.2 Authentication~~
   - ~~Customised base Laravel 5.2 Authentication~~
   - ~~User profile customisation~~
