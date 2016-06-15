@@ -2,14 +2,6 @@
 
 This is a very simple Laravel 5.2 forum that I am working on. I started Laravel about a month ago and I think I've progressed far!
 
-### Demo
-
-I set up a demo of this application so if you want to check it out, go ahead. Explore around, leave any topics/posts you would like.
-
-[Go to demo website](http://flynk.ml/)
-
-> **Note:** Error debugging is turned on.
-
 ## Installation
 
 First, clone repository to your machine.
