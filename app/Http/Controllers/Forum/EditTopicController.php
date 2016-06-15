@@ -22,20 +22,23 @@ class EditTopicController extends Controller
      */
     public function index($id, Topic $topic, Section $section)
     {
-        $edit = $topic->findOrFail($id);
+        $topic = $topic->findOrFail($id);
         $user = auth()->user();
 
-        if (($user->id == $edit->user->id) || ($user->hasRole(['moderator', 'admin', 'owner']))) {
+        if (($user->id == $topic->user->id) || ($user->hasRole(['moderator', 'admin', 'owner']))) {
             $sections = $section->get();
 
-            return view('forum.topic.edit', [
-                'topic' => $edit,
-                'sections' => $sections,
-            ]);
+            return view('forum.topic.edit')
+                ->with('topic', $topic)
+                ->with('sections', $sections);
         } else {
             return redirect()->route('home');
         }
     }
+
+    // brb (:
+    //
+    // you can leave if you want i am doing boring stuff.
 
     /**
      * Post section edit.

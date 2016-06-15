@@ -21,9 +21,8 @@ class ReportController extends Controller
         $topics = $topic->hasReports()->get();
         $posts = $post->hasReports()->get();
 
-        return view('report.reports', [
-            'topics' => $topics,
-            'posts' => $posts,
-        ]);
+        return view('report.reports')
+            ->with('topics', $topics)
+            ->with('posts', $posts);
     }
 }

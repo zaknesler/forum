@@ -18,8 +18,7 @@ class HomeController extends Controller
     {
         $sections = $section->paginate(10);
 
-        return view('home', [
-            'sections' => $sections,
-        ]);
+        return view('home')
+            ->with('sections', $sections);
     }
 }

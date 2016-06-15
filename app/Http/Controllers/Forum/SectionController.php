@@ -7,6 +7,7 @@ use Forum\Http\Requests;
 use Forum\Models\Section;
 use Illuminate\Http\Request;
 use Forum\Http\Controllers\Controller;
+use Forum\Events\Forum\Section\SectionWasCreated;
 use Forum\Events\Forum\Section\SectionWasDeleted;
 use Forum\Http\Requests\Forum\Section\EditSectionFormRequest;
 use Forum\Http\Requests\Forum\Section\CreateSectionFormRequest;
@@ -23,9 +24,8 @@ class SectionController extends Controller
     {
         $sections = $section->paginate(10);
 
-        return view('forum.section.all', [
-            'sections' => $sections,
-        ]);
+        return view('forum.section.all')
+            ->with('sections', $sections);
     }
 
     /**
@@ -53,10 +53,9 @@ class SectionController extends Controller
             $topics = $section->topics()->with('user')->latestLast()->paginate(25);
         }
 
-        return view('forum.section.show', [
-            'section' => $section,
-            'topics' => $topics,
-        ]);
+        return view('forum.section.show')
+            ->with('section', $section)
+            ->with('topics', $topics);
     }
 
     /**
@@ -89,6 +88,8 @@ class SectionController extends Controller
             'timer' => 2000,
         ]);
 
+        event(new SectionWasCreated($section));
+
         return redirect()->route('home');
     }
 
@@ -102,16 +103,16 @@ class SectionController extends Controller
      */
     public function destroy($id, Section $section, Topic $topic)
     {
-        $destroy = $section->findOrFail($id);
+        $section = $section->findOrFail($id);
 
-        $destroy->delete();
+        $section->delete();
 
         notify()->flash('Success', 'success', [
             'text' => 'Section has been deleted.',
             'timer' => 2000,
         ]);
 
-        event(new SectionWasDeleted($topic));
+        event(new SectionWasDeleted($section, $topic));
 
         return redirect()->route('home');
     }

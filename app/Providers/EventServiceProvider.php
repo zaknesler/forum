@@ -16,8 +16,15 @@ class EventServiceProvider extends ServiceProvider
         /**
          * Sections
          */
+        'Forum\Events\Forum\Section\SectionWasCreated' => [
+            'Forum\Listeners\Forum\Section\ReindexWithAlgolia',
+        ],
         'Forum\Events\Forum\Section\SectionWasDeleted' => [
+            'Forum\Listeners\Forum\Section\ReindexWithAlgolia',
             'Forum\Listeners\Forum\Topic\ReindexWithAlgolia',
+        ],
+        'Forum\Events\Forum\Section\SectionWasEdited' => [
+            'Forum\Listeners\Forum\Section\ReindexWithAlgolia',
         ],
 
         /**
@@ -26,6 +33,7 @@ class EventServiceProvider extends ServiceProvider
         'Forum\Events\Forum\Topic\TopicWasCreated' => [
             'Forum\Listeners\Forum\Section\IncrementTopicsCount',
             'Forum\Listeners\Forum\Topic\ReindexWithAlgolia',
+            'Forum\Listeners\Forum\Section\ReindexWithAlgolia',
         ],
         'Forum\Events\Forum\Topic\TopicWasEdited' => [
             'Forum\Listeners\Forum\Topic\ReindexWithAlgolia',

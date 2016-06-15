@@ -3,9 +3,15 @@
 namespace Forum\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use AlgoliaSearch\Laravel\AlgoliaEloquentTrait;
 
 class Section extends Model
 {
+    use AlgoliaEloquentTrait;
+
+    public static $autoIndex = true;
+    public static $autoDelete = true;
+
     protected $fillable = [
         'name',
         'slug',

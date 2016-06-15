@@ -6,6 +6,7 @@ use Forum\Http\Requests;
 use Forum\Models\Section;
 use Illuminate\Http\Request;
 use Forum\Http\Controllers\Controller;
+use Forum\Events\Forum\Section\SectionWasEdited;
 use Forum\Http\Requests\Forum\Section\EditSectionFormRequest;
 
 class EditSectionController extends Controller
@@ -19,11 +20,10 @@ class EditSectionController extends Controller
      */
     public function index($id, Section $section)
     {
-        $edit = $section->findOrFail($id);
+        $section = $section->findOrFail($id);
 
-        return view('forum.section.edit', [
-            'section' => $edit,
-        ]);
+        return view('forum.section.edit')
+            ->with('section', $section);
     }
 
     /**
@@ -42,6 +42,8 @@ class EditSectionController extends Controller
             'slug' => str_slug($request->input('name')),
             'description' => $request->input('description'),
         ]);
+
+        event(new SectionWasEdited($section));
 
         notify()->flash('Success', 'success', [
             'text' => 'Section has been updated.',

@@ -82,10 +82,9 @@ class TopicController extends Controller
             return redirect()->route('home');
         }
 
-        return view('forum.topic.create', [
-            'sections' => $sections,
-            'id' => $request->id,
-        ]);
+        return view('forum.topic.create')
+            ->with('sections', $sections)
+            ->with('id', $request->id);
     }
 
     /**
@@ -98,9 +97,8 @@ class TopicController extends Controller
     {
         $topics = $topic->latestFirst()->paginate(10);
 
-        return view('moderation.topic.all', [
-            'topics' => $topics,
-        ]);
+        return view('moderation.topic.all')
+            ->with('topics', $topics);
     }
 
     /**
@@ -119,10 +117,9 @@ class TopicController extends Controller
 
         $posts = $topic->posts()->latestLast()->get();
 
-        return view('forum.topic.show', [
-            'topic' => $topic,
-            'posts' => $posts,
-        ]);
+        return view('forum.topic.show')
+            ->with('topic', $topic)
+            ->with('posts', $posts);
     }
 
     /**
@@ -140,7 +137,7 @@ class TopicController extends Controller
             'section_id' => $request->input('id'),
         ]);
 
-        event(new TopicWasCreated($topic));
+        event(new TopicWasCreated($topic, $topic->section));
 
         notify()->flash('Success', 'success', [
             'text' => 'Your topic has been added.',

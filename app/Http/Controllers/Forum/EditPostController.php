@@ -23,9 +23,8 @@ class EditPostController extends Controller
         $user = auth()->user();
 
         if (($user->id == $post->user->id) || ($user->hasRole(['moderator', 'admin', 'owner']))) {
-            return view('forum.post.edit', [
-                'post' => $post,
-            ]);
+            return view('forum.post.edit')
+                ->with('post', $post);
         } else {
             return redirect()->route('home');
         }

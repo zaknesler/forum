@@ -1,18 +1,16 @@
 <?php
 
-namespace Forum\Events\Forum\Topic;
+namespace Forum\Events\Forum\Section;
 
 use Forum\Events\Event;
-use Forum\Models\Topic;
 use Forum\Models\Section;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class TopicWasCreated extends Event
+class SectionWasEdited extends Event
 {
     use SerializesModels;
 
-    public $topic;
     public $section;
 
     /**
@@ -20,9 +18,8 @@ class TopicWasCreated extends Event
      *
      * @return void
      */
-    public function __construct(Topic $topic, Section $section)
+    public function __construct(Section $section)
     {
-        $this->topic = $topic;
         $this->section = $section;
     }
 

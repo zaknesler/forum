@@ -27,9 +27,8 @@ class UserController extends Controller
             $users = $user->paginate(25);
         }
 
-        return view('user.list', [
-            'users' => $users,
-        ]);
+        return view('user.list')
+            ->with('users', $users);
     }
 
     /**
