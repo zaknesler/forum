@@ -13,24 +13,27 @@ class ProfileController extends Controller
 {
     /**
      * Get the view to update user's profile settings.
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('account.settings.profile');
+        $user = auth()->user();
+
+        return view('account.settings.profile')
+            ->with('user', $user);
     }
-    
+
     /**
      * Post request to update the user's profile settings.
-     * 
+     *
      * @param  UpdateProfileFormRequest  $request
      * @param  Forum\Models\User         $user
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdateProfileFormRequest $request, User $user)
     {
-        $user = $user->find(auth()->user()->id);
+        $user = auth()->user();
 
         if (!$request->input('first_name') && $request->input('last_name')) {
             notify()->flash('Error', 'error', [

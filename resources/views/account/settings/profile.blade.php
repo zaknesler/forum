@@ -15,7 +15,7 @@
                                 <div class="col-xs-6">
                                     <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
                                         <label for="first_name">First name</label>
-                                        <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Alex" value="{{ Auth::user()->first_name }}">
+                                        <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Alex" value="{{ $user->first_name }}">
                                         @if ($errors->has('first_name'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('first_name') }}</strong>
@@ -27,7 +27,7 @@
                                 <div class="col-xs-6">
                                     <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
                                         <label for="last_name">Last name</label>
-                                        <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Smith" value="{{ Auth::user()->last_name }}">
+                                        <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Smith" value="{{ $user->last_name }}">
                                         @if ($errors->has('last_name'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('last_name') }}</strong>
@@ -39,7 +39,7 @@
 
                             <div class="form-group{{ $errors->has('location') ? ' has-error' : '' }}">
                                 <label for="location">Location</label>
-                                <input type="text" class="form-control" name="location" id="location" placeholder="London, England" value="{{ Auth::user()->location }}">
+                                <input type="text" class="form-control" name="location" id="location" placeholder="London, England" value="{{ $user->location }}">
                                 @if ($errors->has('location'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('location') }}</strong>
@@ -49,7 +49,7 @@
 
                             <div class="form-group{{ $errors->has('website') ? ' has-error' : '' }}">
                                 <label for="website">Website url</label>
-                                <input type="url" class="form-control" name="website" id="website" placeholder="https://google.com" value="{{ Auth::user()->website }}">
+                                <input type="url" class="form-control" name="website" id="website" placeholder="https://google.com" value="{{ $user->website }}">
                                 @if ($errors->has('website'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('website') }}</strong>
@@ -61,7 +61,7 @@
                         <div class="col-md-6">
                             <div class="form-group{{ $errors->has('about') ? ' has-error' : '' }}">
                                 <label for="about">About you</label>
-                                <textarea name="about" class="form-control" id="about" maxlength="300" cols="10" rows="5">{{ Auth::user()->about }}</textarea>
+                                <textarea name="about" class="form-control" id="about" maxlength="300" cols="10" rows="5">{{ $user->about }}</textarea>
                                 @if ($errors->has('about'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('about') }}</strong>
@@ -120,6 +120,25 @@
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Change password</button>
+                        {!! csrf_field() !!}
+                    </div>
+                </form>
+            </div>
+            <div class="general-title small">Privacy settings</div>
+            <div class="box">
+                <form action="{{ route('account.settings.privacy') }}" method="post" autocomplete="off">
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="view_profile" @if ($user->view_profile) checked="checked" @endif>Keep my profile private</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="view_profile_email" @if ($user->view_profile_email) checked="checked" @endif>Show my email on my profile</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Update settings</button>
                         {!! csrf_field() !!}
                     </div>
                 </form>

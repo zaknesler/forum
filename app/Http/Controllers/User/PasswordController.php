@@ -20,18 +20,16 @@ class PasswordController extends Controller
      */
     public function update($id, UpdateUserPasswordFormRequest $request, User $user)
     {
-        if (auth()->user()->hasRole(['admin', 'owner'])) {
-            $user = $user->findOrFail($id);
+        $user = $user->findOrFail($id);
 
-            $user->password = bcrypt($request->input('password'));
-            $user->update();
+        $user->password = bcrypt($request->input('password'));
+        $user->update();
 
 
-            notify()->flash('Success', 'success', [
-                'text' => 'User\'s password has been updated.',
-                'timer' => 2000,
-            ]);
-        }
+        notify()->flash('Success', 'success', [
+            'text' => 'User\'s password has been updated.',
+            'timer' => 2000,
+        ]);
 
         return redirect()->back();
     }

@@ -16,7 +16,7 @@ class AuthController extends Controller
 
     /**
      * Path to redirect to after successful login.
-     * 
+     *
      * @var string
      */
     protected $redirectTo = '/';
@@ -31,7 +31,7 @@ class AuthController extends Controller
 
     /**
      * Validation rules for registering a new user.
-     * 
+     *
      * @param  array  $data
      * @return Validator
      */
@@ -48,17 +48,27 @@ class AuthController extends Controller
 
     /**
      * Create new user with data.
-     * 
+     *
      * @param  array  $data
      * @return Forum\Models\User
      */
     protected function create(array $data)
     {
+        $options = json_encode([
+            'privacy' => [
+                'profile' => [
+                    'view' => true,
+                    'view_email' => false,
+                ],
+            ],
+        ]);
+
         $user = User::create([
             'username' => $data['username'],
             'email' => $data['email'],
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
+            'options' => $options,
             'password' => bcrypt($data['password']),
         ]);
 

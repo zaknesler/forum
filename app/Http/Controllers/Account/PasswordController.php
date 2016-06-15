@@ -18,7 +18,10 @@ class PasswordController extends Controller
      */
     public function index()
     {
-        return view('account.settings.profile');
+        $user = auth()->user();
+
+        return view('account.settings.profile')
+            ->with('user', $user);
     }
 
     /**
@@ -30,7 +33,7 @@ class PasswordController extends Controller
      */
     public function update(UpdatePasswordFormRequest $request, User $user)
     {
-        $user = $user->find(auth()->user()->id);
+        $user = auth()->user();
 
         if (Hash::check($request->input('old_password'), $user->password)) {
             $user->password = bcrypt($request->input('password'));

@@ -31,14 +31,16 @@
         </div>
         @if (Auth::user())
         <div class="col-md-2">
-            <div class="box">
-                @if ($sections->count())
+            @if ($sections->count())
+                <div class="box">
                     <a href="{{ route('forum.topic.create') }}" class="btn btn-info btn-block">Create topic</a>
-                @endif
-                @role (['admin', 'owner'])
-                    <a href="{{ route('forum.section.create') }}" class="btn btn-warning btn-block">Create section</a>
-                @endrole
-            </div>
+                </div>
+            @endif
+            @role (['admin', 'owner'])
+                <div class="box">
+                <a href="{{ route('forum.section.create') }}" class="btn btn-warning btn-block">Create section</a>
+                </div>
+            @endrole
         </div>
         @endif
     </div>

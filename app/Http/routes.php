@@ -31,6 +31,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('account/settings/password', 'Account\PasswordController@index')->name('account.settings.password');
     Route::post('account/settings/password', 'Account\PasswordController@update');
 
+    Route::get('account/settings/privacy', 'Account\PrivacyController@index')->name('account.settings.privacy');
+    Route::post('account/settings/privacy', 'Account\PrivacyController@update');
+
     Route::get('@{username}', 'User\UserController@profile')->name('user.profile');
 
     Route::get('topic/{id}/report', 'Forum\TopicController@report')->name('forum.topic.report');
@@ -74,6 +77,7 @@ Route::group(['middleware' => ['role:owner|admin']], function () {
     Route::post('user/{id}/edit', 'User\EditController@update');
 
     Route::post('user/{id}/edit/password', 'User\PasswordController@update')->name('user.edit.password');
+    Route::post('user/{id}/edit/privacy', 'User\PrivacyController@update')->name('user.edit.privacy');
 
     Route::get('section/create', 'Forum\SectionController@create')->name('forum.section.create');
     Route::post('section/create', 'Forum\SectionController@store');

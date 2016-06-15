@@ -12,7 +12,7 @@ class User extends Authenticatable
 
     public static $autoIndex = true;
     public static $autoDelete = true;
-    
+
     protected $fillable = [
         'username',
         'email',
@@ -23,6 +23,8 @@ class User extends Authenticatable
         'about',
         'image_uuid',
         'password',
+        'view_profile',
+        'view_profile_email',
         'suspended',
         'posts_count',
         'topics_count',
