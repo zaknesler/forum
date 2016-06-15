@@ -45,7 +45,7 @@
                 <h4><span class="label label-info">User's profile is private</span></h4>
             @endrole
         @else
-            <h3 class="text-muted">This user has decided to keep their profile private.</h3>
+            <h3 class="text-muted">This user's profile is private.</h3>
         @endif
     </div>
 </div>

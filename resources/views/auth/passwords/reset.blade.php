@@ -20,7 +20,7 @@
                     </div>
                     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                         <label for="password">New password</label>
-                        <input type="password" class="form-control" name="password">
+                        <input type="password" class="form-control" name="password" autofocus>
                         @if ($errors->has('password'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('password') }}</strong>

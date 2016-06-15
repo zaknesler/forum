@@ -11,7 +11,7 @@
                 <form action="{{ route('auth.login') }}" method="post" autocomplete="off">
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                         <label for="email">E-mail</label>
-                        <input type="email" class="form-control" name="email" id="email" placeholder="you{{'@'}}domain.com" value="{{ old('email') }}">
+                        <input type="email" class="form-control" name="email" id="email" placeholder="you{{'@'}}domain.com" value="{{ old('email') }}" autofocus>
                         @if ($errors->has('email'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('email') }}</strong>
