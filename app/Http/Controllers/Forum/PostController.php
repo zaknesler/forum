@@ -28,7 +28,7 @@ class PostController extends Controller
         $post = $post->findOrFail($id);
         $user = $request->user();
 
-        if (!($user->id == $post->user->id)) {
+        if ($user->id !== $post->user->id) {
             event(new PostWasReported($post, $user));
         }
 

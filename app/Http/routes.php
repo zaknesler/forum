@@ -78,6 +78,8 @@ Route::group(['middleware' => ['role:owner|admin']], function () {
 
     Route::post('user/{id}/edit/password', 'User\PasswordController@update')->name('user.edit.password');
     Route::post('user/{id}/edit/privacy', 'User\PrivacyController@update')->name('user.edit.privacy');
+    Route::post('user/{id}/edit/suspend', 'User\SuspensionController@suspend')->name('user.edit.suspend');
+    Route::post('user/{id}/edit/unsuspend', 'User\SuspensionController@unsuspend')->name('user.edit.unsuspend');
 
     Route::get('section/create', 'Forum\SectionController@create')->name('forum.section.create');
     Route::post('section/create', 'Forum\SectionController@store');

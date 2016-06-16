@@ -23,8 +23,8 @@ class PasswordController extends Controller
         $user = $user->findOrFail($id);
 
         $user->password = bcrypt($request->input('password'));
-        $user->update();
 
+        $user->update();
 
         notify()->flash('Success', 'success', [
             'text' => 'User\'s password has been updated.',

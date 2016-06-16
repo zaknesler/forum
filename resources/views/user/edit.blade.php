@@ -144,6 +144,22 @@
                             </div>
                         </form>
                     </div>
+                    @if (auth()->user()->id !== $user->id)
+                        <div class="general-title small">Suspension actions</div>
+                        <div class="box">
+                            @if ($user->suspended)
+                                <form action="{{ route('user.edit.unsuspend', ['id' => $user->id]) }}" method="post">
+                                    <button type="submit" class="btn btn-info">Unsuspend user</button>
+                                    {!! csrf_field() !!}
+                                </form>
+                            @else
+                                <form action="{{ route('user.edit.suspend', ['id' => $user->id]) }}" method="post">
+                                    <button type="submit" class="btn btn-danger">Suspend user</button>
+                                    {!! csrf_field() !!}
+                                </form>
+                            @endif
+                        </div>
+                    @endif
                 @endrole
                 @role (['owner'])
                 <div class="general-title small">Update user role</div>

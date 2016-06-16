@@ -31,7 +31,7 @@ class TopicController extends Controller
         $topic = $topic->findOrFail($id);
         $user = $request->user();
 
-        if (!($user->id == $topic->user->id)) {
+        if ($user->id !== $topic->user->id) {
             event(new TopicWasReported($topic, $user));
         }
 

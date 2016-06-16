@@ -15,6 +15,7 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
+        \Forum\Http\Middleware\RedirectIfSuspended::class,
     ];
 
     /**
@@ -29,6 +30,7 @@ class Kernel extends HttpKernel
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \Forum\Http\Middleware\VerifyCsrfToken::class,
+            \Forum\Http\Middleware\RedirectIfSuspended::class,
         ],
 
         'api' => [
