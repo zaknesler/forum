@@ -39,11 +39,7 @@ class UserController extends Controller
      */
     public function profile($username, User $user)
     {
-        $user = $user->where('username', $username)->first();
-
-        if (!$user) {
-            return abort(404);
-        }
+        $user = $user->where('username', $username)->firstOrFail();
 
         return view('user.profile', [
             'user' => $user,

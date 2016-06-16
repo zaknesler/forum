@@ -25,7 +25,7 @@ class User extends Authenticatable
         'password',
         'view_profile',
         'view_profile_email',
-        'suspended', // Implement
+        'suspended',
         'posts_count',
         'topics_count',
         'last_login_at',
@@ -85,6 +85,16 @@ class User extends Authenticatable
         }
 
         return 'https://www.gravatar.com/avatar/' . md5(strtolower($this->email)) . '?s=' . $size . '&d=mm';
+    }
+
+    public function profileIsPrivate()
+    {
+        return $this->view_profile == false;
+    }
+
+    public function profileIsNotPrivate()
+    {
+        return $this->view_profile == true;
     }
 
     public function roles()

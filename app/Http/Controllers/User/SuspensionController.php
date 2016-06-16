@@ -23,7 +23,7 @@ class SuspensionController extends Controller
         $user = $user->findOrFail($id);
 
         if (auth()->user()->id !== $user->id) {
-            if (auth()->user()->hasRole(['admin']) && !$user->hasRole(['owner'])) {
+            if (!(auth()->user()->hasRole(['admin']) && $user->hasRole(['owner']))) {
                 $user->suspended = true;
 
                 $user->update();

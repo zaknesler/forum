@@ -129,12 +129,18 @@
                 <form action="{{ route('account.settings.privacy') }}" method="post" autocomplete="off">
                     <div class="form-group">
                         <div class="checkbox">
-                            <label><input type="checkbox" name="view_profile" @if ($user->view_profile) checked="checked" @endif>Keep my profile private</label>
+                            <label>
+                                <input type="checkbox" name="view_profile" @if ($user->view_profile) checked="checked" @endif>
+                                Let other users view my profile
+                            </label>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="checkbox">
-                            <label><input type="checkbox" name="view_profile_email" @if ($user->view_profile_email) checked="checked" @endif>Show my email on my profile</label>
+                            <label>
+                                <input type="checkbox" name="view_profile_email" @if ($user->view_profile_email) checked="checked" @endif>
+                                Show my email on my profile
+                            </label>
                         </div>
                     </div>
                     <div class="form-group">
