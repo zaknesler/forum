@@ -33,7 +33,7 @@
             <form action="{{ route('user.list') }}" method="get">
                 <div class="form-group{{ $errors->has('search') ? ' has-error' : '' }}">
                     <div class="input-group" title="Powered by Algolia">
-                        <input type="text" placeholder="Search users.." class="form-control" name="search" value="{{ request('search') }}">
+                        <input type="text" placeholder="Search users.." class="form-control" name="search" value="{{ request('search') }}" required="required">
                         <div class="input-group-btn">
                             <button class="btn btn-primary" type="submit">Search</button>
                         </div>

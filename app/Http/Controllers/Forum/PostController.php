@@ -18,16 +18,18 @@ class PostController extends Controller
     /**
      * Report post.
      *
-     * @param  integer            $id
-     * @param  Forum\Models\Post  $post
+     * @param  integer                $id
+     * @param  CreatePostFormRequest  $request
+     * @param  Forum\Models\Post      $post
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function report($id, Post $post)
+    public function report($id, Request $request, Post $post)
     {
         $post = $post->findOrFail($id);
+        $user = $request->user();
 
-        if (!(auth()->user()->id == $post->user->id)) {
-            event(new PostWasReported($post));
+        if (!($user->id == $post->user->id)) {
+            event(new PostWasReported($post, $user));
         }
 
         notify()->flash('Success', 'success', [
@@ -41,15 +43,16 @@ class PostController extends Controller
     /**
      * Clear reports on post.
      *
-     * @param  integer            $id
-     * @param  Forum\Models\Post  $post
+     * @param  integer                $id
+     * @param  CreatePostFormRequest  $request
+     * @param  Forum\Models\Post      $post
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function clearReports($id, Post $post)
+    public function clearReports($id, Request $request, Post $post)
     {
         $post = $post->findOrFail($id);
 
-        event(new PostReportsWereCleared($post));
+        event(new PostReportsWereCleared($post, $request->user()));
 
         notify()->flash('Success', 'success', [
             'text' => 'Reports have been cleared.',
@@ -68,12 +71,14 @@ class PostController extends Controller
      */
     public function store(CreatePostFormRequest $request, Topic $topic)
     {
+        $user = $request->user();
+
         $post = $topic->posts()->create([
             'body' => $request->input('body'),
-            'user_id' => $request->user()->id,
+            'user_id' => $user->id,
         ]);
 
-        event(new PostWasCreated($topic));
+        event(new PostWasCreated($topic, $user));
 
         notify()->flash('Success', 'success', [
             'text' => 'Your post has been added.',
@@ -103,7 +108,7 @@ class PostController extends Controller
             'timer' => 2000,
         ]);
 
-        event(new PostWasDeleted($topic));
+        event(new PostWasDeleted($topic, $request->user()));
 
         $topic = $post->topic()->first();
 

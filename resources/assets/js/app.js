@@ -8,7 +8,9 @@ $(function() {
                 type: "warning",
                 showCancelButton: true,
                 closeOnCancel: true,
-                closeOnConfirm: true
+                closeOnConfirm: true,
+                confirmButtonColor: "#3498db",
+                cancelButtonColor: "#95a5a6"
             }, function(isConfirm) {
                 if (isConfirm) {
                     $(element).unbind().submit();
@@ -26,7 +28,9 @@ $(function() {
                 type: "warning",
                 showCancelButton: true,
                 closeOnCancel: true,
-                closeOnConfirm: true
+                closeOnConfirm: true,
+                confirmButtonColor: "#3498db",
+                cancelButtonColor: "#95a5a6"
             }, function(isConfirm) {
                 if (isConfirm) {
                     $(element).unbind().click();

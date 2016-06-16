@@ -19,7 +19,7 @@
                             <a href="{{ route('forum.topic.show', ['slug' => $topic->slug, 'id' => $topic->id]) }}">{{ $topic->name }}</a>
                             <br />
                             <small>
-                                {{ $topic->created_at->diffForHumans() }} by <a href="{{ route('user.profile', ['username' => $topic->user->username]) }}" class="text-muted-primary">{{ $topic->user->getFullNameOrUsername() }}</a>
+                                {{ $topic->created_at->diffForHumans() }} by <a href="{{ route('user.profile', ['username' => $topic->user->username]) }}" class="text-muted dark">{{ $topic->user->getFullNameOrUsername() }}</a>
                             </small>
                         </h4></li>
                     @endforeach

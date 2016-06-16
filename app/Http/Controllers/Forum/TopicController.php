@@ -21,16 +21,18 @@ class TopicController extends Controller
     /**
      * Report topic.
      *
-     * @param  integer             $id
-     * @param  Forum\Models\Topic  $topic
+     * @param  integer                  $id
+     * @param  Illuminate\Http\Request  $request
+     * @param  Forum\Models\Topic       $topic
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function report($id, Topic $topic)
+    public function report($id, Request $request, Topic $topic)
     {
         $topic = $topic->findOrFail($id);
+        $user = $request->user();
 
-        if (!(auth()->user()->id == $topic->user->id)) {
-            event(new TopicWasReported($topic));
+        if (!($user->id == $topic->user->id)) {
+            event(new TopicWasReported($topic, $user));
         }
 
         notify()->flash('Success', 'success', [
@@ -44,15 +46,16 @@ class TopicController extends Controller
     /**
      * Clear reports on topic.
      *
-     * @param  integer             $id
-     * @param  Forum\Models\Topic  $topic
+     * @param  integer                  $id
+     * @param  Illuminate\Http\Request  $request
+     * @param  Forum\Models\Topic       $topic
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function clearReports($id, Topic $topic)
+    public function clearReports($id, Request $request, Topic $topic)
     {
         $topic = $topic->findOrFail($id);
 
-        event(new TopicReportsWereCleared($topic));
+        event(new TopicReportsWereCleared($topic, $request->user()));
 
         notify()->flash('Success', 'success', [
             'text' => 'Reports have been cleared.',
@@ -111,7 +114,7 @@ class TopicController extends Controller
      */
     public function show($slug, $id, Topic $topic)
     {
-        $topic = $topic->findOrFail($id);
+        $topic = $topic->findOrFail($id)->with('section')->first();
 
         event(new TopicWasViewed($topic));
 
@@ -130,14 +133,16 @@ class TopicController extends Controller
      */
     public function store(CreateTopicFormRequest $request)
     {
-        $topic = $request->user()->topics()->create([
+        $user = $request->user();
+
+        $topic = $user->topics()->create([
             'name' => $request->input('name'),
             'slug' => str_slug($request->input('name')),
             'body' => $request->input('body'),
             'section_id' => $request->input('id'),
         ]);
 
-        event(new TopicWasCreated($topic, $topic->section));
+        event(new TopicWasCreated($topic, $topic->section, $user));
 
         notify()->flash('Success', 'success', [
             'text' => 'Your topic has been added.',
@@ -160,7 +165,7 @@ class TopicController extends Controller
     {
         $topic = $topic->findOrFail($id);
 
-        event(new TopicWasDeleted($topic));
+        event(new TopicWasDeleted($topic, $request->user()));
 
         $topic->delete();
 

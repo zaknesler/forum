@@ -2,6 +2,7 @@
 
 namespace Forum\Events\Forum\Topic;
 
+use Forum\Models\User;
 use Forum\Events\Event;
 use Forum\Models\Topic;
 use Illuminate\Queue\SerializesModels;
@@ -10,17 +11,19 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 class TopicReportsWereCleared extends Event
 {
     use SerializesModels;
-    
+
     public $topic;
+    public $user;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Topic $topic)
+    public function __construct(Topic $topic, User $user)
     {
         $this->topic = $topic;
+        $this->user = $user;
     }
 
     /**

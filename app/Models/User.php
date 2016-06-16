@@ -25,11 +25,11 @@ class User extends Authenticatable
         'password',
         'view_profile',
         'view_profile_email',
-        'suspended',
+        'suspended', // Implement
         'posts_count',
         'topics_count',
-        'suspended_at',
         'last_login_at',
+        'last_active_at',
         'deleted_at',
     ];
 
@@ -39,8 +39,8 @@ class User extends Authenticatable
     ];
 
     protected $dates = [
-        'suspended_at',
         'last_login_at',
+        'last_active_at',
         'deleted_at',
     ];
 

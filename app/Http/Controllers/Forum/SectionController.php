@@ -88,7 +88,7 @@ class SectionController extends Controller
             'timer' => 2000,
         ]);
 
-        event(new SectionWasCreated($section));
+        event(new SectionWasCreated($section, $request->user()));
 
         return redirect()->route('home');
     }
@@ -96,12 +96,13 @@ class SectionController extends Controller
     /**
      * Mark section as deleted.
      *
-     * @param  integer               $id
-     * @param  Forum\Models\Section  $section
-     * @param  Forum\Models\Topic    $topic
+     * @param  integer                  $id
+     * @param  Illuminate\Http\Request  $request
+     * @param  Forum\Models\Section     $section
+     * @param  Forum\Models\Topic       $topic
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id, Section $section, Topic $topic)
+    public function destroy($id, Request $request, Section $section, Topic $topic)
     {
         $section = $section->findOrFail($id);
 
@@ -112,7 +113,7 @@ class SectionController extends Controller
             'timer' => 2000,
         ]);
 
-        event(new SectionWasDeleted($section, $topic));
+        event(new SectionWasDeleted($section, $topic, $request->user()));
 
         return redirect()->route('home');
     }

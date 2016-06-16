@@ -15,15 +15,16 @@ class EditTopicController extends Controller
     /**
      * Get the view to edit an existing topic.
      *
-     * @param  integer               $id
-     * @param  Forum\Models\Topic    $topic
-     * @param  Forum\Models\Section  $section
+     * @param  integer                  $id
+     * @param  Illuminate\Http\Request  $request
+     * @param  Forum\Models\Topic       $topic
+     * @param  Forum\Models\Section     $section
      * @return \Illuminate\Http\Response
      */
-    public function index($id, Topic $topic, Section $section)
+    public function index($id, Request $request, Topic $topic, Section $section)
     {
         $topic = $topic->findOrFail($id);
-        $user = auth()->user();
+        $user = $request->user();
 
         if (($user->id == $topic->user->id) || ($user->hasRole(['moderator', 'admin', 'owner']))) {
             $sections = $section->get();

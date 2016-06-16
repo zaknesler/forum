@@ -29,8 +29,8 @@ class CreateUsersTable extends Migration
             $table->integer('topics_count')->default(0);
             $table->integer('posts_count')->default(0);
             $table->rememberToken();
-            $table->timestamp('suspended_at')->nullable();
             $table->timestamp('last_login_at')->nullable();
+            $table->timestamp('last_active_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

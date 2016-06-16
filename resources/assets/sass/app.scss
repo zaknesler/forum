@@ -16,11 +16,14 @@ pre, code {
     border: 0;
 }
 
-a.text-muted-primary {
-    color: lighten(#2c3e50, 25%);
+a.text-muted.dark {
+    color: darken(#b4bcc2, 15%);
+    transition: color 150ms ease-in-out;
 
     &:hover {
-        color: lighten(#2c3e50, 10%);
+        color: darken(#b4bcc2, 25%);
+        text-decoration: none;
+        transition: color 150ms ease-in-out;
     }
 }
 
@@ -57,6 +60,11 @@ dl.spaced > dd:last-child {
     line-height: 24px;
     padding-top: 15px;
     padding-bottom: 30px;
+
+    & .small {
+        line-height: 18px;
+        font-size: 18px;
+    }
 }
 
 .general-title {

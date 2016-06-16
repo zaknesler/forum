@@ -5,11 +5,17 @@
 @section('content')
 <div class="container">
     <div class="topic-title">
-        {{ $topic->name }}
+        <div class="pull-left">
+            {{ $topic->name }}
+        </div>
+        <div class="pull-right">
+            <small><a href="{{ route('forum.section.show', ['slug' => $topic->section->slug, 'id' => $topic->section->id]) }}" class="label label-info">{{ $topic->section->name }}</a></small>
+        </div>
+        <div class="clearfix"></div>
     </div>
     <div class="topic-container">
         <div class="head">
-            <div class="date pull-left text-muted">{{ $topic->created_at->diffForHumans() }} by <a href="{{ route('user.profile', ['username' => $topic->user->username]) }}">{{ $topic->user->getFullNameOrUsername() }}</a></div>
+            <div class="date pull-left text-muted">{{ $topic->created_at->diffForHumans() }} by <a href="{{ route('user.profile', ['username' => $topic->user->username]) }}" class="text-muted dark">{{ $topic->user->getFullNameOrUsername() }}</a></div>
             <div class="clearfix"></div>
         </div>
         <div class="border">

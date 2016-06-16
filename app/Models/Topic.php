@@ -18,10 +18,10 @@ class Topic extends Model
         'slug',
         'user_id',
         'section_id',
-        'spam',
-        'locked',
+        'spam', // Implement
+        'locked', // Implement
         'reports',
-        'hide',
+        'hide', // Implement
         'posts_count',
         'views_count',
     ];

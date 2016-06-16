@@ -18,13 +18,16 @@ class EventServiceProvider extends ServiceProvider
          */
         'Forum\Events\Forum\Section\SectionWasCreated' => [
             'Forum\Listeners\Forum\Section\ReindexWithAlgolia',
+            'Forum\Listeners\User\UpdateUserLastActiveAt',
         ],
         'Forum\Events\Forum\Section\SectionWasDeleted' => [
             'Forum\Listeners\Forum\Section\ReindexWithAlgolia',
             'Forum\Listeners\Forum\Topic\ReindexWithAlgolia',
+            'Forum\Listeners\User\UpdateUserLastActiveAt',
         ],
         'Forum\Events\Forum\Section\SectionWasEdited' => [
             'Forum\Listeners\Forum\Section\ReindexWithAlgolia',
+            'Forum\Listeners\User\UpdateUserLastActiveAt',
         ],
 
         /**
@@ -34,21 +37,26 @@ class EventServiceProvider extends ServiceProvider
             'Forum\Listeners\Forum\Section\IncrementTopicsCount',
             'Forum\Listeners\Forum\Topic\ReindexWithAlgolia',
             'Forum\Listeners\Forum\Section\ReindexWithAlgolia',
+            'Forum\Listeners\User\UpdateUserLastActiveAt',
         ],
         'Forum\Events\Forum\Topic\TopicWasEdited' => [
             'Forum\Listeners\Forum\Topic\ReindexWithAlgolia',
+            'Forum\Listeners\User\UpdateUserLastActiveAt',
         ],
         'Forum\Events\Forum\Topic\TopicWasDeleted' => [
             'Forum\Listeners\Forum\Section\DecrementTopicsCount',
             'Forum\Listeners\Forum\Topic\ReindexWithAlgolia',
+            'Forum\Listeners\User\UpdateUserLastActiveAt',
         ],
         'Forum\Events\Forum\Topic\TopicWasReported' => [
             'Forum\Listeners\Forum\Topic\IncrementReportsCount',
             'Forum\Listeners\Forum\Topic\ReindexWithAlgolia',
+            'Forum\Listeners\User\UpdateUserLastActiveAt',
         ],
         'Forum\Events\Forum\Topic\TopicReportsWereCleared' => [
             'Forum\Listeners\Forum\Topic\ClearReportsCount',
             'Forum\Listeners\Forum\Topic\ReindexWithAlgolia',
+            'Forum\Listeners\User\UpdateUserLastActiveAt',
         ],
 
         /**
@@ -57,16 +65,20 @@ class EventServiceProvider extends ServiceProvider
         'Forum\Events\Forum\Post\PostWasCreated' => [
             'Forum\Listeners\Forum\Topic\IncrementRepliesCount',
             'Forum\Listeners\Forum\Topic\ReindexWithAlgolia',
+            'Forum\Listeners\User\UpdateUserLastActiveAt',
         ],
         'Forum\Events\Forum\Post\PostWasDeleted' => [
             'Forum\Listeners\Forum\Topic\DecrementRepliesCount',
             'Forum\Listeners\Forum\Topic\ReindexWithAlgolia',
+            'Forum\Listeners\User\UpdateUserLastActiveAt',
         ],
         'Forum\Events\Forum\Post\PostWasReported' => [
             'Forum\Listeners\Forum\Post\IncrementReportsCount',
+            'Forum\Listeners\User\UpdateUserLastActiveAt',
         ],
         'Forum\Events\Forum\Post\PostReportsWereCleared' => [
             'Forum\Listeners\Forum\Post\ClearReportsCount',
+            'Forum\Listeners\User\UpdateUserLastActiveAt',
         ],
 
         /**
@@ -80,6 +92,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         'Forum\Events\User\UserWasEdited' => [
             'Forum\Listeners\User\ReindexWithAlgolia',
+            'Forum\Listeners\User\UpdateUserLastActiveAt',
         ],
     ];
 

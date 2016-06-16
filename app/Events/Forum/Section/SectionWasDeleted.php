@@ -2,6 +2,7 @@
 
 namespace Forum\Events\Forum\Section;
 
+use Forum\Models\User;
 use Forum\Events\Event;
 use Forum\Models\Topic;
 use Forum\Models\Section;
@@ -14,16 +15,18 @@ class SectionWasDeleted extends Event
 
     public $section;
     public $topic;
+    public $user;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Section $section, Topic $topic)
+    public function __construct(Section $section, Topic $topic, User $user)
     {
         $this->section = $section;
         $this->topic = $topic;
+        $this->user = $user;
     }
 
     /**
