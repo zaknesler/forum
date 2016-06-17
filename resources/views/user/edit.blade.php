@@ -154,12 +154,12 @@
                         <div class="general-title small">Suspension actions</div>
                         <div class="box">
                             @if ($user->suspended)
-                                <form action="{{ route('user.edit.unsuspend', ['id' => $user->id]) }}" method="post">
+                                <form action="{{ route('user.edit.unsuspend', ['id' => $user->id]) }}" method="post" id="swal-confirm-submit">
                                     <button type="submit" class="btn btn-info">Unsuspend user</button>
                                     {!! csrf_field() !!}
                                 </form>
                             @else
-                                <form action="{{ route('user.edit.suspend', ['id' => $user->id]) }}" method="post">
+                                <form action="{{ route('user.edit.suspend', ['id' => $user->id]) }}" method="post" id="swal-confirm-submit">
                                     <button type="submit" class="btn btn-danger">Suspend user</button>
                                     {!! csrf_field() !!}
                                 </form>

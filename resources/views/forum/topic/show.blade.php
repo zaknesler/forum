@@ -61,7 +61,7 @@
                 <div class="head">
                     <div class="date pull-left text-muted">
                         {{ $post->created_at->diffForHumans() }} by
-                        <a href="{{ route('user.profile', ['username' => $post->user->username]) }}">
+                        <a href="{{ route('user.profile', ['username' => $post->user->username]) }}" class="text-muted dark">
                             {{ $post->user->getFullNameOrUsername() }}
                         </a>
                     </div>

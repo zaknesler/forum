@@ -114,7 +114,7 @@ class TopicController extends Controller
      */
     public function show($slug, $id, Topic $topic)
     {
-        $topic = $topic->findOrFail($id)->with('section')->first();
+        $topic = $topic->findOrFail($id);
 
         event(new TopicWasViewed($topic));
 

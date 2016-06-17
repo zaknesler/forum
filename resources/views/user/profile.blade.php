@@ -45,14 +45,17 @@
                     </div>
                 </div>
             </div>
-            @role (['owner', 'admin'])
+            @role (['admin', 'owner'])
                 <h4><a href="{{ route('user.edit', ['id' => $user->id]) }}" class="label label-warning">Edit</a></h4>
                 @if ($user->profileIsPrivate())
                     <h4><span class="label label-info">User's profile is private</span></h4>
                 @endif
             @endrole
         @else
-            <h3 class="text-muted">{{ $user->getFullNameOrUsername() }} has chosen to make his or her profile private.</h3>
+            <h2 class="text-muted"><strong>Oops!</strong></h2>
+            <h3 class="text-muted">This user's profile is private.</h3>
+            <hr>
+            <p><a href="{{ route('home') }}">Return home</a></p>
         @endif
     </div>
 </div>

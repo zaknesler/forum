@@ -4,7 +4,7 @@
 <div class="container">
     <div class="general-title">All sections</div>
     <div class="row">
-        @if (Auth::user())
+        @if (Auth::user() && ($count || Auth::user()->hasRole(['admin', 'owner'])))
         <div class="col-md-10">
         @else
         <div class="col-md-12">
@@ -29,9 +29,9 @@
                 </div>
             @endif
         </div>
-        @if (Auth::user())
+        @if (Auth::user() && ($count || Auth::user()->hasRole(['admin', 'owner'])))
         <div class="col-md-2">
-            @if ($sections->count())
+            @if ($count)
                 <a href="{{ route('forum.topic.create') }}" class="btn btn-info btn-block">Create topic</a>
             @endif
             @role (['admin', 'owner'])

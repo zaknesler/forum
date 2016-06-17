@@ -14,6 +14,10 @@
                             @role (['admin', 'owner'])
                             <a class="label label-warning pull-right" href="{{ route('user.edit', ['id' => $user->id]) }}">Edit</a>
                             @endrole
+                            <span class="label label-info pull-right">{{ $user->roles()->first()->display_name }}</span>
+                            @if ($user->suspended)
+                                <span class="label label-danger pull-right">Suspended</span>
+                            @endif
                             <a href="{{ route('user.profile', ['username' => $user->username]) }}">{{ $user->username }}</a>
                             <br />
                             <small>
