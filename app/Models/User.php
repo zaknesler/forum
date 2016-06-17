@@ -71,6 +71,15 @@ class User extends Authenticatable
         }
     }
 
+    public function getName()
+    {
+        if ($this->first_name && $this->last_name) {
+            return $this->first_name . ' ' . $this->last_name;
+        } else if ($this->first_name && !$this->last_name) {
+            return $this->first_name;
+        }
+    }
+
     public function getFirstNameOrUsername()
     {
         return isset($this->first_name) ? $this->first_name : $this->username;

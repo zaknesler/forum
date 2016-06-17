@@ -25,13 +25,13 @@ $factory->define(Forum\Models\User::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(Forum\Models\Topic::class, function (Faker\Generator $faker) {
-    $title = $faker->sentence(7);
+    $name = $faker->sentence(7);
 
     return [
-        'section_id' => $faker->numberBetween(1, 4),
+        'section_id' => $faker->numberBetween(3, 5),
         'user_id' => $faker->numberBetween(1, 2),
-        'title' => $title,
-        'slug' => str_slug($title),
+        'name' => $name,
+        'slug' => str_slug($name),
         'body' => $faker->text(500),
     ];
 });

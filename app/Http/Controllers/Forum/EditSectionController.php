@@ -43,7 +43,7 @@ class EditSectionController extends Controller
             'description' => $request->input('description'),
         ]);
 
-        event(new SectionWasEdited($section));
+        event(new SectionWasEdited($section, $request->user()));
 
         notify()->flash('Success', 'success', [
             'text' => 'Section has been updated.',
