@@ -73,17 +73,19 @@ class PostController extends Controller
     {
         $user = $request->user();
 
-        $post = $topic->posts()->create([
-            'body' => $request->input('body'),
-            'user_id' => $user->id,
-        ]);
+        if ((!$topic->hide && !$topic->locked) || ($user->hasRole(['moderator', 'admin', 'owner']))) {
+            $post = $topic->posts()->create([
+                'body' => $request->input('body'),
+                'user_id' => $user->id,
+            ]);
 
-        event(new PostWasCreated($topic, $user));
+            event(new PostWasCreated($topic, $user));
 
-        notify()->flash('Success', 'success', [
-            'text' => 'Your post has been added.',
-            'timer' => 2000,
-        ]);
+            notify()->flash('Success', 'success', [
+                'text' => 'Your post has been added.',
+                'timer' => 2000,
+            ]);
+        }
 
         return redirect()->route('forum.topic.show', [
             'slug' => $topic->slug,

@@ -19,7 +19,7 @@ class Topic extends Model
         'user_id',
         'section_id',
         'spam', // Implement
-        'locked', // Implement
+        'locked',
         'reports',
         'hide',
         'posts_count',

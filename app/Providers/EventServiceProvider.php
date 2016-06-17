@@ -55,6 +55,14 @@ class EventServiceProvider extends ServiceProvider
             'Forum\Listeners\Forum\Topic\ReindexWithAlgolia',
             'Forum\Listeners\User\UpdateUserLastActiveAt',
         ],
+        'Forum\Events\Forum\Topic\TopicWasLocked' => [
+            'Forum\Listeners\Forum\Topic\ReindexWithAlgolia',
+            'Forum\Listeners\User\UpdateUserLastActiveAt',
+        ],
+        'Forum\Events\Forum\Topic\TopicWasUnlocked' => [
+            'Forum\Listeners\Forum\Topic\ReindexWithAlgolia',
+            'Forum\Listeners\User\UpdateUserLastActiveAt',
+        ],
         'Forum\Events\Forum\Topic\TopicWasDeleted' => [
             'Forum\Listeners\Forum\Section\DecrementTopicsCount',
             'Forum\Listeners\Forum\Topic\ReindexWithAlgolia',

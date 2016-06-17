@@ -70,6 +70,9 @@ Route::group(['middleware' => ['role:moderator|admin|owner']], function () {
 
     Route::post('topic/{id}/hide', 'Forum\TopicController@hide')->name('forum.topic.hide');
     Route::post('topic/{id}/unhide', 'Forum\TopicController@unhide')->name('forum.topic.unhide');
+
+    Route::post('topic/{id}/lock', 'Forum\TopicController@lock')->name('forum.topic.lock');
+    Route::post('topic/{id}/unlock', 'Forum\TopicController@unlock')->name('forum.topic.unlock');
 });
 
 /**

@@ -107,7 +107,7 @@
             </div>
         @endforeach
     @endif
-    @if (Auth::user())
+    @if (Auth::user() && (!$topic->locked || Auth::user()->hasRole(['moderator', 'admin', 'owner'])))
         <div class="general-title">
             Leave a reply
         </div>
@@ -127,8 +127,10 @@
                 </div>
             </form>
         </div>
-    @else
-        <p class="text-muted">To reply to this topic, please <a href="{{ route('auth.login') }}">sign in</a> or <a href="{{ route('auth.register') }}">sign up</a>.</p>
+    @elseif (!Auth::user())
+        <p class="text-muted">To reply to this topic, please <a href="{{ route('auth.login') }}" class="text-muted dark">sign in</a> or <a href="{{ route('auth.register') }}" class="text-muted dark">sign up</a>.</p>
+    @elseif ($topic->locked)
+        <p class="text-muted">This topic is locked from any further replies.</p>
     @endif
 </div>
 @endsection

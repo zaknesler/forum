@@ -23,6 +23,8 @@ class RedirectIfSuspended
                 'text' => 'Your account has been suspended.',
                 'timer' => 2000,
             ]);
+
+            return redirect()->route('auth.login');
         }
 
         return $next($request);

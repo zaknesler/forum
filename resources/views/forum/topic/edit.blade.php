@@ -60,6 +60,19 @@
                         </form>
                     @endif
                 </div>
+                <div class="box">
+                    @if ($topic->locked)
+                        <form action="{{ route('forum.topic.unlock', ['id' => $topic->id]) }}" method="post" id="swal-confirm-submit">
+                            <button type="submit" class="btn btn-info btn-block">Unlock</button>
+                            {!! csrf_field() !!}
+                        </form>
+                    @else
+                        <form action="{{ route('forum.topic.lock', ['id' => $topic->id]) }}" method="post" id="swal-confirm-submit">
+                            <button type="submit" class="btn btn-success btn-block">Lock</button>
+                            {!! csrf_field() !!}
+                        </form>
+                    @endif
+                </div>
             </div>
         @endrole
     </div>

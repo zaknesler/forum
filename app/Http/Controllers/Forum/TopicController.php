@@ -9,11 +9,13 @@ use Forum\Models\Section;
 use Illuminate\Http\Request;
 use Forum\Http\Controllers\Controller;
 use Forum\Events\Forum\Topic\TopicWasHidden;
+use Forum\Events\Forum\Topic\TopicWasLocked;
 use Forum\Events\Forum\Topic\TopicWasViewed;
 use Forum\Events\Forum\Topic\TopicWasCreated;
 use Forum\Events\Forum\Topic\TopicWasDeleted;
 use Forum\Events\Forum\Topic\TopicWasReported;
 use Forum\Events\Forum\Topic\TopicWasUnhidden;
+use Forum\Events\Forum\Topic\TopicWasUnlocked;
 use Forum\Events\Forum\Topic\TopicReportsWereCleared;
 use Forum\Http\Requests\Forum\Topic\CreateTopicFormRequest;
 use Forum\Http\Requests\Forum\Topic\EditTopicFormRequest;
@@ -206,6 +208,56 @@ class TopicController extends Controller
 
         notify()->flash('Success', 'success', [
             'text' => 'Topic has been hidden.',
+            'timer' => 2000,
+        ]);
+
+        return redirect()->back();
+    }
+
+    /**
+     * Lock topic from user's posting.
+     * @param  integer                  $id
+     * @param  Illuminate\Http\Request  $request
+     * @param  Forum\Models\Topic       $topic
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function lock($id, Request $request, Topic $topic)
+    {
+        $topic = $topic->findOrFail($id);
+
+        $topic->locked = true;
+
+        $topic->update();
+
+        event(new TopicWasLocked($topic, $request->user()));
+
+        notify()->flash('Success', 'success', [
+            'text' => 'Topic has been locked.',
+            'timer' => 2000,
+        ]);
+
+        return redirect()->back();
+    }
+
+    /**
+     * Mark topic as unhidden.
+     * @param  integer                  $id
+     * @param  Illuminate\Http\Request  $request
+     * @param  Forum\Models\Topic       $topic
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function unlock($id, Request $request, Topic $topic)
+    {
+        $topic = $topic->findOrFail($id);
+
+        $topic->locked = false;
+
+        $topic->update();
+
+        event(new TopicWasUnlocked($topic, $request->user()));
+
+        notify()->flash('Success', 'success', [
+            'text' => 'Topic has been unlocked.',
             'timer' => 2000,
         ]);
 
