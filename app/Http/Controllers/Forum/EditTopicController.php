@@ -41,6 +41,8 @@ class EditTopicController extends Controller
     //
     // you can leave if you want i am doing boring stuff.
 
+
+
     /**
      * Post section edit.
      *
@@ -58,12 +60,12 @@ class EditTopicController extends Controller
             'body' => $request->input('body'),
         ]);
 
+        event(new TopicWasEdited($topic, $request->user()));
+
         notify()->flash('Success', 'success', [
             'text' => 'Topic has been updated.',
             'timer' => 2000,
         ]);
-
-        event(new TopicWasEdited($topic, $request->user()));
 
         return redirect()->route('forum.topic.show', [
             'slug' => $topic->slug,

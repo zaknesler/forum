@@ -21,7 +21,7 @@ class Topic extends Model
         'spam', // Implement
         'locked', // Implement
         'reports',
-        'hide', // Implement
+        'hide',
         'posts_count',
         'views_count',
     ];
@@ -44,6 +44,15 @@ class Topic extends Model
     public function scopeHasReports($query)
     {
         return $query->where('reports', '>', 0);
+    }
+
+    public function scopeIsVisible($query)
+    {
+        if (auth()->user() && auth()->user()->hasRole(['moderator', 'admin', 'owner'])) {
+            return $query;
+        } else {
+            return $query->where('hide', false)->where('spam', false);
+        }
     }
 
     public function reportCountText()

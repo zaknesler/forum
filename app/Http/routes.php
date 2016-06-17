@@ -67,6 +67,9 @@ Route::group(['middleware' => ['role:moderator|admin|owner']], function () {
 
     Route::post('post/{id}/destroy', 'Forum\PostController@destroy')->name('forum.post.destroy');
     Route::post('topic/{id}/destroy', 'Forum\TopicController@destroy')->name('forum.topic.destroy');
+
+    Route::post('topic/{id}/hide', 'Forum\TopicController@hide')->name('forum.topic.hide');
+    Route::post('topic/{id}/unhide', 'Forum\TopicController@unhide')->name('forum.topic.unhide');
 });
 
 /**

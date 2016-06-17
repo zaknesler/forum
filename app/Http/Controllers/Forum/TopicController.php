@@ -8,10 +8,12 @@ use Forum\Http\Requests;
 use Forum\Models\Section;
 use Illuminate\Http\Request;
 use Forum\Http\Controllers\Controller;
+use Forum\Events\Forum\Topic\TopicWasHidden;
 use Forum\Events\Forum\Topic\TopicWasViewed;
 use Forum\Events\Forum\Topic\TopicWasCreated;
 use Forum\Events\Forum\Topic\TopicWasDeleted;
 use Forum\Events\Forum\Topic\TopicWasReported;
+use Forum\Events\Forum\Topic\TopicWasUnhidden;
 use Forum\Events\Forum\Topic\TopicReportsWereCleared;
 use Forum\Http\Requests\Forum\Topic\CreateTopicFormRequest;
 use Forum\Http\Requests\Forum\Topic\EditTopicFormRequest;
@@ -68,8 +70,9 @@ class TopicController extends Controller
     /**
      * Get the view to create a new topic.
      *
-     * @param  Forum\Models\Topic    $topic
-     * @param  Forum\Models\Section  $section
+     * @param  Illuminate\Http\Request  $request
+     * @param  Forum\Models\Topic       $topic
+     * @param  Forum\Models\Section     $section
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request, Topic $topic, Section $section)
@@ -116,6 +119,10 @@ class TopicController extends Controller
     {
         $topic = $topic->findOrFail($id);
 
+        if ($topic->hide && !auth()->user()->hasRole(['moderator', 'admin', 'owner'])) {
+            return abort(404);
+        }
+
         event(new TopicWasViewed($topic));
 
         $posts = $topic->posts()->latestLast()->get();
@@ -156,9 +163,60 @@ class TopicController extends Controller
     }
 
     /**
+     * Mark topic as hidden.
+     * @param  integer                  $id
+     * @param  Illuminate\Http\Request  $request
+     * @param  Forum\Models\Topic       $topic
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function hide($id, Request $request, Topic $topic)
+    {
+        $topic = $topic->findOrFail($id);
+
+        $topic->hide = true;
+
+        $topic->update();
+
+        event(new TopicWasHidden($topic, $topic->section, $request->user()));
+
+        notify()->flash('Success', 'success', [
+            'text' => 'Topic has been hidden.',
+            'timer' => 2000,
+        ]);
+
+        return redirect()->back();
+    }
+
+    /**
+     * Mark topic as unhidden.
+     * @param  integer                  $id
+     * @param  Illuminate\Http\Request  $request
+     * @param  Forum\Models\Topic       $topic
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function unhide($id, Request $request, Topic $topic)
+    {
+        $topic = $topic->findOrFail($id);
+
+        $topic->hide = false;
+
+        $topic->update();
+
+        event(new TopicWasUnhidden($topic, $topic->section, $request->user()));
+
+        notify()->flash('Success', 'success', [
+            'text' => 'Topic has been hidden.',
+            'timer' => 2000,
+        ]);
+
+        return redirect()->back();
+    }
+
+    /**
      * Mark topic as deleted.
-     * @param  integer             $id
-     * @param  Forum\Models\Topic  $topic
+     * @param  integer                  $id
+     * @param  Illuminate\Http\Request  $request
+     * @param  Forum\Models\Topic       $topic
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id, Request $request, Topic $topic)

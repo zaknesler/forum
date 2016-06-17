@@ -9,7 +9,12 @@
             {{ $topic->name }}
         </div>
         <div class="pull-right">
-            <small><a href="{{ route('forum.section.show', ['slug' => $topic->section->slug, 'id' => $topic->section->id]) }}" class="label label-info">{{ $topic->section->name }}</a></small>
+            <small>
+                @if ($topic->hide && auth()->user()->hasRole(['moderator', 'admin', 'owner']))
+                    <span class="label label-warning">Hidden</span>
+                @endif
+                <span><a href="{{ route('forum.section.show', ['slug' => $topic->section->slug, 'id' => $topic->section->id]) }}" class="label label-info">{{ $topic->section->name }}</a></span>
+            </small>
         </div>
         <div class="clearfix"></div>
     </div>

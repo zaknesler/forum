@@ -43,6 +43,18 @@ class EventServiceProvider extends ServiceProvider
             'Forum\Listeners\Forum\Topic\ReindexWithAlgolia',
             'Forum\Listeners\User\UpdateUserLastActiveAt',
         ],
+        'Forum\Events\Forum\Topic\TopicWasHidden' => [
+            'Forum\Listeners\Forum\Section\DecrementTopicsCount',
+            'Forum\Listeners\Forum\Section\ReindexWithAlgolia',
+            'Forum\Listeners\Forum\Topic\ReindexWithAlgolia',
+            'Forum\Listeners\User\UpdateUserLastActiveAt',
+        ],
+        'Forum\Events\Forum\Topic\TopicWasUnhidden' => [
+            'Forum\Listeners\Forum\Section\IncrementTopicsCount',
+            'Forum\Listeners\Forum\Section\ReindexWithAlgolia',
+            'Forum\Listeners\Forum\Topic\ReindexWithAlgolia',
+            'Forum\Listeners\User\UpdateUserLastActiveAt',
+        ],
         'Forum\Events\Forum\Topic\TopicWasDeleted' => [
             'Forum\Listeners\Forum\Section\DecrementTopicsCount',
             'Forum\Listeners\Forum\Topic\ReindexWithAlgolia',

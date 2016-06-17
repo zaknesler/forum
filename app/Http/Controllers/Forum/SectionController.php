@@ -44,13 +44,19 @@ class SectionController extends Controller
 
         if ($request->search) {
             $topics = $section->topics()
-                ->whereIn('id', collect($topic->search($request->search)['hits'])
+                    ->whereIn('id', collect($topic->search($request->search)['hits'])
                     ->lists('id')
                     ->all())
                     ->with('user')
+                    ->latestLast()
+                    ->isVisible()
                     ->paginate(25);
         } else {
-            $topics = $section->topics()->with('user')->latestLast()->paginate(25);
+            $topics = $section->topics()
+                    ->with('user')
+                    ->latestLast()
+                    ->isVisible()
+                    ->paginate(25);
         }
 
         return view('forum.section.show')

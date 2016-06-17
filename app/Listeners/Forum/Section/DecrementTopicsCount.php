@@ -4,7 +4,6 @@ namespace Forum\Listeners\Forum\Section;
 
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Forum\Events\Forum\Topic\TopicWasDeleted;
 
 class DecrementTopicsCount
 {
@@ -24,7 +23,7 @@ class DecrementTopicsCount
      * @param  TopicWasDeleted  $event
      * @return void
      */
-    public function handle(TopicWasDeleted $event)
+    public function handle($event)
     {
         $event->topic->section()->decrement('topics_count');
     }

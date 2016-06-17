@@ -16,6 +16,9 @@
                     @foreach ($topics as $topic)
                         <li class="list-group-item"><h4>
                             <span class="label label-primary pull-right">{{ $topic->replyCountText() }}</span>
+                            @if ($topic->hide && auth()->user()->hasRole(['moderator', 'admin', 'owner']))
+                                <span class="label label-warning pull-right">Hidden</span>
+                            @endif
                             <a href="{{ route('forum.topic.show', ['slug' => $topic->slug, 'id' => $topic->id]) }}">{{ $topic->name }}</a>
                             <br />
                             <small>

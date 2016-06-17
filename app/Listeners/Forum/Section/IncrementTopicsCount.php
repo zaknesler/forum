@@ -4,7 +4,6 @@ namespace Forum\Listeners\Forum\Section;
 
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Forum\Events\Forum\Topic\TopicWasCreated;
 
 class IncrementTopicsCount
 {
@@ -24,7 +23,7 @@ class IncrementTopicsCount
      * @param  TopicWasCreated  $event
      * @return void
      */
-    public function handle(TopicWasCreated $event)
+    public function handle($event)
     {
         $event->topic->section()->increment('topics_count');
     }

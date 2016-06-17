@@ -47,6 +47,19 @@
                         {!! csrf_field() !!}
                     </form>
                 </div>
+                <div class="box">
+                    @if ($topic->hide)
+                        <form action="{{ route('forum.topic.unhide', ['id' => $topic->id]) }}" method="post" id="swal-confirm-submit">
+                            <button type="submit" class="btn btn-info btn-block">Unhide</button>
+                            {!! csrf_field() !!}
+                        </form>
+                    @else
+                        <form action="{{ route('forum.topic.hide', ['id' => $topic->id]) }}" method="post" id="swal-confirm-submit">
+                            <button type="submit" class="btn btn-warning btn-block">Hide</button>
+                            {!! csrf_field() !!}
+                        </form>
+                    @endif
+                </div>
             </div>
         @endrole
     </div>
