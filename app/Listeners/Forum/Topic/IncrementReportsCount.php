@@ -26,6 +26,6 @@ class IncrementReportsCount
      */
     public function handle(TopicWasReported $event)
     {
-        $event->topic->increment('reports');
+        $event->topic->increment('reports_count');
     }
 }

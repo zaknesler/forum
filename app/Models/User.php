@@ -26,8 +26,6 @@ class User extends Authenticatable
         'view_profile',
         'view_profile_email',
         'suspended',
-        'posts_count',
-        'topics_count',
         'last_login_at',
         'last_active_at',
         'deleted_at',

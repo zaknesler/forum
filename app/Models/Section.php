@@ -16,7 +16,6 @@ class Section extends Model
         'name',
         'slug',
         'description',
-        'topics_count',
     ];
 
     protected $dates = [
@@ -26,16 +25,18 @@ class Section extends Model
 
     public function topicCountText()
     {
-        if ($this->topics_count == 1) {
-            return $this->topics_count . ' topic';
+        $count = $this->topicCount();
+
+        if ($count == 1) {
+            return $count . ' topic';
         }
 
-        return $this->topics_count . ' topics';
+        return $count . ' topics';
     }
 
     public function topicCount()
     {
-        return $this->topics_count;
+        return $this->topics()->isVisible()->count();
     }
 
     public function topics()

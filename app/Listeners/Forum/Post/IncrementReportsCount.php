@@ -26,6 +26,6 @@ class IncrementReportsCount
      */
     public function handle(PostWasReported $event)
     {
-        $event->post->increment('reports');
+        $event->post->increment('reports_count');
     }
 }

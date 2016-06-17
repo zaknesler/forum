@@ -19,11 +19,10 @@ class CreateTopicsTable extends Migration
             $table->string('slug');
             $table->integer('user_id')->unsigned();
             $table->integer('section_id')->unsigned();
-            $table->boolean('spam')->default(false);
-            $table->boolean('locked')->default(false);
-            $table->integer('reports')->default(0);
-            $table->boolean('hide')->default(false);
-            $table->integer('replies_count')->default(0);
+            $table->boolean('is_spam')->default(false);
+            $table->boolean('is_locked')->default(false);
+            $table->boolean('is_hidden')->default(false);
+            $table->integer('reports_count')->default(0);
             $table->integer('views_count')->default(0);
             $table->timestamp('last_post_at')->nullable();
             $table->timestamps();

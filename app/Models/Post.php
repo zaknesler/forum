@@ -8,7 +8,7 @@ class Post extends Model
 {
     protected $fillable = [
         'body',
-        'reports',
+        'reports_count',
         'user_id',
         'topic_id',
     ];
@@ -29,16 +29,23 @@ class Post extends Model
 
     public function scopeHasReports($query)
     {
-        return $query->where('reports', '>', 0);
+        return $query->where('reports_count', '>', 0);
     }
 
     public function reportCountText()
     {
-        if ($this->reports == 1) {
-            return $this->reports . ' report';
+        $count = $this->reportCount();
+
+        if ($count == 1) {
+            return $count . ' report';
         }
 
-        return $this->reports . ' reports';
+        return $count . ' reports';
+    }
+
+    public function reportCount()
+    {
+        return $this->reports_count;
     }
 
     public function user()
@@ -49,10 +56,5 @@ class Post extends Model
     public function topic()
     {
         return $this->belongsTo(Topic::class);
-    }
-
-    public function reports()
-    {
-        return $this->hasMany(PostReport::class);
     }
 }

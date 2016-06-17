@@ -22,7 +22,10 @@ class UserController extends Controller
     public function index(Request $request, User $user)
     {
         if ($request->search) {
-            $users = $user->whereIn('id', collect($user->search($request->search)['hits'])->lists('id')->all())->paginate(25);
+            $users = $user->whereIn('id', collect($user->search($request->search)['hits'])
+                   ->lists('id')
+                   ->all())
+                   ->paginate(25);
         } else {
             $users = $user->paginate(25);
         }
@@ -39,7 +42,8 @@ class UserController extends Controller
      */
     public function profile($username, User $user)
     {
-        $user = $user->where('username', $username)->firstOrFail();
+        $user = $user->where('username', $username)
+                     ->firstOrFail();
 
         return view('user.profile', [
             'user' => $user,

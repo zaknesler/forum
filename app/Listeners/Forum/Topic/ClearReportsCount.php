@@ -28,7 +28,7 @@ class ClearReportsCount
     {
         $topic = $event->topic;
 
-        $topic->reports = 0;
+        $topic->reports_count = 0;
         $topic->update();
     }
 }

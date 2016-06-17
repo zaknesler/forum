@@ -48,7 +48,7 @@
                     </form>
                 </div>
                 <div class="box">
-                    @if ($topic->hide)
+                    @if ($topic->is_hidden)
                         <form action="{{ route('forum.topic.unhide', ['id' => $topic->id]) }}" method="post" id="swal-confirm-submit">
                             <button type="submit" class="btn btn-info btn-block">Unhide</button>
                             {!! csrf_field() !!}
@@ -61,7 +61,7 @@
                     @endif
                 </div>
                 <div class="box">
-                    @if ($topic->locked)
+                    @if ($topic->is_locked)
                         <form action="{{ route('forum.topic.unlock', ['id' => $topic->id]) }}" method="post" id="swal-confirm-submit">
                             <button type="submit" class="btn btn-info btn-block">Unlock</button>
                             {!! csrf_field() !!}

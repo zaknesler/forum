@@ -17,7 +17,6 @@ class CreateSectionsTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->text('description');
-            $table->integer('topics_count');
             $table->timestamp('last_topic_at');
             $table->timestamps();
             $table->softDeletes();

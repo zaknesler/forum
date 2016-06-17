@@ -17,8 +17,8 @@ class CreatePostsTable extends Migration
             $table->integer('topic_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->text('body');
-            $table->boolean('spam')->default(false);
-            $table->integer('reports')->default(0);
+            $table->boolean('is_spam')->default(false);
+            $table->integer('reports_count')->default(0);
             $table->timestamps();
             $table->softDeletes();
 

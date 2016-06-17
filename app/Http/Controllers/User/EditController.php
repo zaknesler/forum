@@ -23,7 +23,9 @@ class EditController extends Controller
        */
     public function index($id, User $user, Role $role)
     {
-        $user = $user->with('roles')->findOrFail($id);
+        $user = $user->with('roles')
+                     ->findOrFail($id);
+
         $roles = $role->get();
 
         return view('user.edit')

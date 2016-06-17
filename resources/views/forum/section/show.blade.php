@@ -16,10 +16,10 @@
                     @foreach ($topics as $topic)
                         <li class="list-group-item"><h4>
                             <span class="label label-primary pull-right">{{ $topic->replyCountText() }}</span>
-                            @if ($topic->hide && auth()->user()->hasRole(['moderator', 'admin', 'owner']))
+                            @if ($topic->is_hidden && auth()->user()->hasRole(['moderator', 'admin', 'owner']))
                                 <span class="label label-warning pull-right">Hidden</span>
                             @endif
-                            @if ($topic->locked)
+                            @if ($topic->is_locked)
                                 <span class="label label-success pull-right">Locked</span>
                             @endif
                             <a href="{{ route('forum.topic.show', ['slug' => $topic->slug, 'id' => $topic->id]) }}">{{ $topic->name }}</a>

@@ -121,7 +121,7 @@ class TopicController extends Controller
     {
         $topic = $topic->findOrFail($id);
 
-        if ($topic->hide && !auth()->user()->hasRole(['moderator', 'admin', 'owner'])) {
+        if ($topic->is_hidden && !auth()->user()->hasRole(['moderator', 'admin', 'owner'])) {
             return abort(404);
         }
 
@@ -173,9 +173,11 @@ class TopicController extends Controller
      */
     public function hide($id, Request $request, Topic $topic)
     {
+        // TODO: Add event listener for this functionality.
+
         $topic = $topic->findOrFail($id);
 
-        $topic->hide = true;
+        $topic->is_hidden = true;
 
         $topic->update();
 
@@ -198,9 +200,11 @@ class TopicController extends Controller
      */
     public function unhide($id, Request $request, Topic $topic)
     {
+        // TODO: Add event listener for this functionality.
+
         $topic = $topic->findOrFail($id);
 
-        $topic->hide = false;
+        $topic->is_hidden = false;
 
         $topic->update();
 
@@ -223,9 +227,11 @@ class TopicController extends Controller
      */
     public function lock($id, Request $request, Topic $topic)
     {
+        // TODO: Add event listener for this functionality.
+
         $topic = $topic->findOrFail($id);
 
-        $topic->locked = true;
+        $topic->is_locked = true;
 
         $topic->update();
 
@@ -250,7 +256,7 @@ class TopicController extends Controller
     {
         $topic = $topic->findOrFail($id);
 
-        $topic->locked = false;
+        $topic->is_locked = false;
 
         $topic->update();
 
@@ -275,9 +281,9 @@ class TopicController extends Controller
     {
         $topic = $topic->findOrFail($id);
 
-        event(new TopicWasDeleted($topic, $request->user()));
-
         $topic->delete();
+
+        event(new TopicWasDeleted($topic, $request->user()));
 
         notify()->flash('Success', 'success', [
             'text' => 'Topic has been deleted.',

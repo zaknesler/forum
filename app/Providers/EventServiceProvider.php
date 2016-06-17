@@ -34,7 +34,6 @@ class EventServiceProvider extends ServiceProvider
          * Topics
          */
         'Forum\Events\Forum\Topic\TopicWasCreated' => [
-            'Forum\Listeners\Forum\Section\IncrementTopicsCount',
             'Forum\Listeners\Forum\Topic\ReindexWithAlgolia',
             'Forum\Listeners\Forum\Section\ReindexWithAlgolia',
             'Forum\Listeners\User\UpdateUserLastActiveAt',
@@ -44,13 +43,11 @@ class EventServiceProvider extends ServiceProvider
             'Forum\Listeners\User\UpdateUserLastActiveAt',
         ],
         'Forum\Events\Forum\Topic\TopicWasHidden' => [
-            'Forum\Listeners\Forum\Section\DecrementTopicsCount',
             'Forum\Listeners\Forum\Section\ReindexWithAlgolia',
             'Forum\Listeners\Forum\Topic\ReindexWithAlgolia',
             'Forum\Listeners\User\UpdateUserLastActiveAt',
         ],
         'Forum\Events\Forum\Topic\TopicWasUnhidden' => [
-            'Forum\Listeners\Forum\Section\IncrementTopicsCount',
             'Forum\Listeners\Forum\Section\ReindexWithAlgolia',
             'Forum\Listeners\Forum\Topic\ReindexWithAlgolia',
             'Forum\Listeners\User\UpdateUserLastActiveAt',
@@ -64,7 +61,6 @@ class EventServiceProvider extends ServiceProvider
             'Forum\Listeners\User\UpdateUserLastActiveAt',
         ],
         'Forum\Events\Forum\Topic\TopicWasDeleted' => [
-            'Forum\Listeners\Forum\Section\DecrementTopicsCount',
             'Forum\Listeners\Forum\Topic\ReindexWithAlgolia',
             'Forum\Listeners\User\UpdateUserLastActiveAt',
         ],
@@ -83,12 +79,10 @@ class EventServiceProvider extends ServiceProvider
          * Posts
          */
         'Forum\Events\Forum\Post\PostWasCreated' => [
-            'Forum\Listeners\Forum\Topic\IncrementRepliesCount',
             'Forum\Listeners\Forum\Topic\ReindexWithAlgolia',
             'Forum\Listeners\User\UpdateUserLastActiveAt',
         ],
         'Forum\Events\Forum\Post\PostWasDeleted' => [
-            'Forum\Listeners\Forum\Topic\DecrementRepliesCount',
             'Forum\Listeners\Forum\Topic\ReindexWithAlgolia',
             'Forum\Listeners\User\UpdateUserLastActiveAt',
         ],

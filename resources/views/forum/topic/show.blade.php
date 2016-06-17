@@ -10,10 +10,10 @@
         </div>
         <div class="pull-right">
             <small>
-                @if ($topic->hide && auth()->user()->hasRole(['moderator', 'admin', 'owner']))
+                @if ($topic->is_hidden && auth()->user()->hasRole(['moderator', 'admin', 'owner']))
                     <span class="label label-warning">Hidden</span>
                 @endif
-                @if ($topic->locked)
+                @if ($topic->is_locked)
                     <span class="label label-success">Locked</span>
                 @endif
                 <span><a href="{{ route('forum.section.show', ['slug' => $topic->section->slug, 'id' => $topic->section->id]) }}" class="label label-info">{{ $topic->section->name }}</a></span>
@@ -49,7 +49,7 @@
                     <div class="pull-right">
                         @if (Auth::user()->hasRole(['moderator','admin','owner']))
                             <span class="label label-primary">{{ $topic->reportCountText() }}</span>
-                            @if ($topic->reports)
+                            @if ($topic->reportCount())
                                 <a href="{{ route('forum.topic.report.clear', ['id' => $topic->id]) }}" class="label label-info">Clear</a>
                             @endif
                         @endif
@@ -98,7 +98,7 @@
                             <div class="pull-right">
                                 @if (Auth::user()->hasRole(['moderator','admin','owner']))
                                     <span class="label label-primary">{{ $post->reportCountText() }}</span>
-                                    @if ($post->reports)
+                                    @if ($post->reportCount())
                                         <a href="{{ route('forum.post.report.clear', ['id' => $post->id]) }}" class="label label-info">Clear</a>
                                     @endif
                                 @endif
@@ -110,7 +110,7 @@
             </div>
         @endforeach
     @endif
-    @if (Auth::user() && (!$topic->locked || Auth::user()->hasRole(['moderator', 'admin', 'owner'])))
+    @if (Auth::user() && (!$topic->is_locked || Auth::user()->hasRole(['moderator', 'admin', 'owner'])))
         <div class="general-title">
             Leave a reply
         </div>
@@ -132,7 +132,7 @@
         </div>
     @elseif (!Auth::user())
         <p class="text-muted">To reply to this topic, please <a href="{{ route('auth.login') }}" class="text-muted dark">sign in</a> or <a href="{{ route('auth.register') }}" class="text-muted dark">sign up</a>.</p>
-    @elseif ($topic->locked)
+    @elseif ($topic->is_locked)
         <p class="text-muted">This topic is locked from any further replies.</p>
     @endif
 </div>

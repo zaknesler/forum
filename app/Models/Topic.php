@@ -18,12 +18,12 @@ class Topic extends Model
         'slug',
         'user_id',
         'section_id',
-        'spam', // Implement
-        'locked',
-        'reports',
-        'hide',
-        'posts_count',
+        'is_spam', // Implement: Using third party spam detection.
+        'is_locked',
+        'is_hidden',
+        'reports_count',
         'views_count',
+        'last_post_at',
     ];
 
     protected $dates = [
@@ -43,7 +43,7 @@ class Topic extends Model
 
     public function scopeHasReports($query)
     {
-        return $query->where('reports', '>', 0);
+        return $query->where('reports_count', '>', 0);
     }
 
     public function scopeIsVisible($query)
@@ -51,36 +51,40 @@ class Topic extends Model
         if (auth()->user() && auth()->user()->hasRole(['moderator', 'admin', 'owner'])) {
             return $query;
         } else {
-            return $query->where('hide', false)->where('spam', false);
+            return $query->where('is_hidden', false)->where('is_spam', false);
         }
     }
 
     public function reportCountText()
     {
-        if ($this->reports == 1) {
-            return $this->reports . ' report';
+        $count = $this->reportCount();
+
+        if ($count == 1) {
+            return $count . ' report';
         }
 
-        return $this->reports . ' reports';
+        return $count . ' reports';
     }
 
     public function reportCount()
     {
-        return $this->reports;
+        return $this->reports_count;
     }
 
     public function replyCountText()
     {
-        if ($this->replies_count == 1) {
-            return $this->replies_count . ' reply';
+        $count = $this->replyCount();
+
+        if ($count == 1) {
+            return $count . ' reply';
         }
 
-        return $this->replies_count . ' replies';
+        return $count . ' replies';
     }
 
     public function replyCount()
     {
-        return $this->replies_count;
+        return $this->posts()->count();
     }
 
     public function user()

@@ -28,7 +28,7 @@ class ClearReportsCount
     {
         $post = $event->post;
 
-        $post->reports = 0;
+        $post->reports_count = 0;
         $post->update();
     }
 }
