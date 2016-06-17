@@ -13,6 +13,9 @@
                 @if ($topic->hide && auth()->user()->hasRole(['moderator', 'admin', 'owner']))
                     <span class="label label-warning">Hidden</span>
                 @endif
+                @if ($topic->locked)
+                    <span class="label label-success">Locked</span>
+                @endif
                 <span><a href="{{ route('forum.section.show', ['slug' => $topic->section->slug, 'id' => $topic->section->id]) }}" class="label label-info">{{ $topic->section->name }}</a></span>
             </small>
         </div>
