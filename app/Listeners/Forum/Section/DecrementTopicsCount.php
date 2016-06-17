@@ -20,11 +20,12 @@ class DecrementTopicsCount
     /**
      * Handle the event.
      *
-     * @param  TopicWasDeleted  $event
      * @return void
      */
     public function handle($event)
     {
-        $event->topic->section()->decrement('topics_count');
+        if ($event->topic->section()->first()->topics_count !== 0) {
+            $event->topic->section()->decrement('topics_count');
+        }
     }
 }

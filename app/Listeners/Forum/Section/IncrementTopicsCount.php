@@ -20,7 +20,6 @@ class IncrementTopicsCount
     /**
      * Handle the event.
      *
-     * @param  TopicWasCreated  $event
      * @return void
      */
     public function handle($event)
