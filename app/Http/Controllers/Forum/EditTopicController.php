@@ -25,47 +25,48 @@ class EditTopicController extends Controller
     {
         $topic = $topic->findOrFail($id);
         $user = $request->user();
+        $userIsStaff = $user->hasRole(['moderator', 'admin', 'owner']);
 
-        if (($user->id == $topic->user->id) || ($user->hasRole(['moderator', 'admin', 'owner']))) {
-            $sections = $section->get();
+        if (((!$topic->is_hidden && !$topic->is_locked) || $userIsStaff) && (($user->id == $topic->user->id) || ($userIsStaff))) {
+                $sections = $section->get();
 
-            return view('forum.topic.edit')
-                ->with('topic', $topic)
-                ->with('sections', $sections);
-        } else {
-            return redirect()->route('home');
+                return view('forum.topic.edit')
+                    ->with('topic', $topic)
+                    ->with('sections', $sections);
         }
+
+        return redirect()->route('home');
     }
-
-    // brb (:
-    //
-    // you can leave if you want i am doing boring stuff.
-
-
 
     /**
      * Post section edit.
      *
-     * @param  integer             $id
-     * @param  Forum\Models\Topic  $topic
+     * @param  integer               $id
+     * @param  EditTopicFormRequest  $request
+     * @param  Forum\Models\Topic    $topic
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update($id, EditTopicFormRequest $request, Topic $topic)
     {
         $topic = $topic->findOrFail($id);
+        $user = $request->user();
+        $userIsStaff = $user->hasRole(['moderator', 'admin', 'owner']);
 
-        $topic->update([
-            'name' => $request->input('name'),
-            'slug' => str_slug($request->input('name')),
-            'body' => $request->input('body'),
-        ]);
+        if (((!$topic->is_hidden && !$topic->is_locked) || $userIsStaff) && (($user->id == $topic->user->id) || ($userIsStaff))) {
 
-        event(new TopicWasEdited($topic, $request->user()));
+            $topic->update([
+                'name' => $request->input('name'),
+                'slug' => str_slug($request->input('name')),
+                'body' => $request->input('body'),
+            ]);
 
-        notify()->flash('Success', 'success', [
-            'text' => 'Topic has been updated.',
-            'timer' => 2000,
-        ]);
+            event(new TopicWasEdited($topic, $request->user()));
+
+            notify()->flash('Success', 'success', [
+                'text' => 'Topic has been updated.',
+                'timer' => 2000,
+            ]);
+        }
 
         return redirect()->route('forum.topic.show', [
             'slug' => $topic->slug,

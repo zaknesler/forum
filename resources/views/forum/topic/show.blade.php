@@ -30,7 +30,7 @@
             <div class="body">
                 {!! Markdown::convertToHtml($topic->body) !!}
             </div>
-            @if (Auth::user())
+            @if (Auth::user() && ((!$topic->is_hidden && !$topic->is_locked) || Auth::user()->hasRole(['moderator','admin','owner'])))
                 <div class="foot">
                     <div class="pull-left">
                         <ul class="list-inline list-inline-no-margin">
@@ -133,7 +133,7 @@
     @elseif (!Auth::user())
         <p class="text-muted">To reply to this topic, please <a href="{{ route('auth.login') }}" class="text-muted dark">sign in</a> or <a href="{{ route('auth.register') }}" class="text-muted dark">sign up</a>.</p>
     @elseif ($topic->is_locked)
-        <p class="text-muted">This topic is locked from any further replies.</p>
+        <p class="text-muted">This topic is locked from any further replies or editing.</p>
     @endif
 </div>
 @endsection
