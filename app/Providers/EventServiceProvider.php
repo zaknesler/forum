@@ -34,6 +34,7 @@ class EventServiceProvider extends ServiceProvider
          * Topics
          */
         'Forum\Events\Forum\Topic\TopicWasCreated' => [
+            'Forum\Listeners\Forum\Section\UpdateLastTopicAt',
             'Forum\Listeners\Forum\Topic\ReindexWithAlgolia',
             'Forum\Listeners\Forum\Section\ReindexWithAlgolia',
             'Forum\Listeners\User\UpdateLastActiveAt',

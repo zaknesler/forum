@@ -23,9 +23,9 @@ class UserController extends Controller
     {
         if ($request->search) {
             $users = $user->whereIn('id', collect($user->search($request->search)['hits'])
-                   ->lists('id')
-                   ->all())
-                   ->paginate(config('forum.pagination'));
+                          ->lists('id')
+                          ->all())
+                          ->paginate(config('forum.pagination'));
         } else {
             $users = $user->paginate(config('forum.pagination'));
         }

@@ -1,11 +1,11 @@
 <?php
 
-namespace Forum\Listeners\Forum\Topic;
+namespace Forum\Listeners\Forum\Section;
 
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class UpdateLastPostAt
+class UpdateLastTopicAt
 {
     /**
      * Create the event listener.
@@ -25,9 +25,9 @@ class UpdateLastPostAt
      */
     public function handle($event)
     {
-        $topic = $event->topic;
+        $section = $event->section;
 
-        $topic->last_post_at = $event->post->created_at;
-        $topic->save();
+        $section->last_topic_at = $event->topic->created_at;
+        $section->save();
     }
 }

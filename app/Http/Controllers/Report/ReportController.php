@@ -18,8 +18,11 @@ class ReportController extends Controller
      */
     public function index(Post $post, Topic $topic)
     {
-        $topics = $topic->hasReports()->get();
-        $posts = $post->hasReports()->get();
+        $topics = $topic->hasReports()
+                        ->get();
+
+        $posts = $post->hasReports()
+                      ->get();
 
         return view('report.reports')
             ->with('topics', $topics)
