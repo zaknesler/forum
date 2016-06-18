@@ -25,9 +25,9 @@ class UserController extends Controller
             $users = $user->whereIn('id', collect($user->search($request->search)['hits'])
                    ->lists('id')
                    ->all())
-                   ->paginate(25);
+                   ->paginate(config('forum.pagination'));
         } else {
-            $users = $user->paginate(25);
+            $users = $user->paginate(config('forum.pagination'));
         }
 
         return view('user.list')

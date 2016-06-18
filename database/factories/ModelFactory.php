@@ -28,7 +28,7 @@ $factory->define(Forum\Models\Topic::class, function (Faker\Generator $faker) {
     $name = $faker->sentence(7);
 
     return [
-        'section_id' => $faker->numberBetween(3, 5),
+        'section_id' => $faker->numberBetween(1, 6),
         'user_id' => $faker->numberBetween(1, 2),
         'name' => $name,
         'slug' => str_slug($name),

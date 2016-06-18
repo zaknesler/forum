@@ -22,7 +22,7 @@ class SectionController extends Controller
      */
     public function all(Section $section)
     {
-        $sections = $section->paginate(10);
+        $sections = $section->paginate(config('forum.pagination'));
 
         return view('forum.section.all')
             ->with('sections', $sections);
@@ -50,13 +50,13 @@ class SectionController extends Controller
                     ->with('user')
                     ->latestLast()
                     ->isVisible()
-                    ->paginate(25);
+                    ->paginate(config('forum.pagination'));
         } else {
             $topics = $section->topics()
                     ->with('user')
                     ->latestLast()
                     ->isVisible()
-                    ->paginate(25);
+                    ->paginate(config('forum.pagination'));
         }
 
         return view('forum.section.show')

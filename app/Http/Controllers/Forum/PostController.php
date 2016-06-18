@@ -79,7 +79,7 @@ class PostController extends Controller
                 'user_id' => $user->id,
             ]);
 
-            event(new PostWasCreated($topic, $user));
+            event(new PostWasCreated($post, $topic, $user));
 
             notify()->flash('Success', 'success', [
                 'text' => 'Your post has been added.',
@@ -110,9 +110,7 @@ class PostController extends Controller
             'timer' => 2000,
         ]);
 
-        event(new PostWasDeleted($topic, $request->user()));
-
-        $topic = $post->topic()->first();
+        event(new PostWasDeleted($request->user()));
 
         $post->delete();
 

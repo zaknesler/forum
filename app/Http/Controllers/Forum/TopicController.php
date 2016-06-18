@@ -103,7 +103,7 @@ class TopicController extends Controller
      */
     public function all(Topic $topic)
     {
-        $topics = $topic->latestFirst()->paginate(10);
+        $topics = $topic->latestFirst()->paginate(config('forum.pagination'));
 
         return view('moderation.topic.all')
             ->with('topics', $topics);

@@ -6,7 +6,7 @@ use Illuminate\Auth\Events\Login;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class UpdateUserLastActiveAt
+class UpdateLastLoggedInAt
 {
     /**
      * Create the event listener.
@@ -21,11 +21,12 @@ class UpdateUserLastActiveAt
     /**
      * Handle the event.
      *
+     * @param  Illuminate\Auth\Events\Login  $event
      * @return void
      */
-    public function handle($event)
+    public function handle(Login $event)
     {
-        $event->user->last_active_at = \Carbon\Carbon::now();
+        $event->user->last_login_at = \Carbon\Carbon::now();
         $event->user->save();
     }
 }

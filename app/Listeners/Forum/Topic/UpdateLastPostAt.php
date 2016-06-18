@@ -1,12 +1,11 @@
 <?php
 
-namespace Forum\Listeners\User;
+namespace Forum\Listeners\Forum\Topic;
 
-use Illuminate\Auth\Events\Login;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class UpdateUserLastLoggedInAt
+class UpdateLastPostAt
 {
     /**
      * Create the event listener.
@@ -21,12 +20,12 @@ class UpdateUserLastLoggedInAt
     /**
      * Handle the event.
      *
-     * @param  Illuminate\Auth\Events\Login  $event
+     * @param  Event  $event
      * @return void
      */
-    public function handle(Login $event)
+    public function handle($event)
     {
-        $event->user->last_login_at = \Carbon\Carbon::now();
-        $event->user->save();
+        $event->topic->last_post_at = $event->post->created_at;
+        $event->topic->save();
     }
 }

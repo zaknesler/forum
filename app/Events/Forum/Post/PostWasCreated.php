@@ -2,6 +2,7 @@
 
 namespace Forum\Events\Forum\Post;
 
+use Forum\Models\Post;
 use Forum\Models\User;
 use Forum\Events\Event;
 use Forum\Models\Topic;
@@ -12,6 +13,7 @@ class PostWasCreated extends Event
 {
     use SerializesModels;
 
+    public $post;
     public $topic;
     public $user;
 
@@ -20,8 +22,9 @@ class PostWasCreated extends Event
      *
      * @return void
      */
-    public function __construct(Topic $topic, User $user)
+    public function __construct(Post $post, Topic $topic, User $user)
     {
+        $this->post = $post;
         $this->topic = $topic;
         $this->user = $user;
     }

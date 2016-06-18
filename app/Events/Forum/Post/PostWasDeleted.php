@@ -4,7 +4,6 @@ namespace Forum\Events\Forum\Post;
 
 use Forum\Models\User;
 use Forum\Events\Event;
-use Forum\Models\Topic;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
@@ -12,7 +11,6 @@ class PostWasDeleted extends Event
 {
     use SerializesModels;
 
-    public $topic;
     public $user;
 
     /**
@@ -20,9 +18,8 @@ class PostWasDeleted extends Event
      *
      * @return void
      */
-    public function __construct(Topic $topic, User $user)
+    public function __construct(User $user)
     {
-        $this->topic = $topic;
         $this->user = $user;
     }
 
