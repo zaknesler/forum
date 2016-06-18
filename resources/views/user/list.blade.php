@@ -26,7 +26,7 @@
                         </h4></li>
                     @endforeach
                 </ul>
-                {!! $users->render() !!}
+                {!! $users->appends(['search' => request()->get('search')])->render() !!}
             @else
                 <div class="box">
                     <p>No registered users.</p>

@@ -48,13 +48,13 @@ class SectionController extends Controller
                               ->lists('id')
                               ->all())
                               ->with('user')
-                              ->latestLast()
+                              ->latestFirst()
                               ->isVisible()
                               ->paginate(config('forum.pagination'));
         } else {
             $topics = $section->topics()
                               ->with('user')
-                              ->latestLast()
+                              ->latestFirst()
                               ->isVisible()
                               ->paginate(config('forum.pagination'));
         }

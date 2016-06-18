@@ -33,12 +33,19 @@ class Topic extends Model
 
     public function scopeLatestFirst($query)
     {
-        return $query->orderBy('created_at', 'desc');
+        return $query->orderBy('last_post_at', 'desc')
+                     ->orderBy('created_at', 'desc');
     }
 
     public function scopeLatestLast($query)
     {
-        return $query->orderBy('created_at', 'asc');
+        return $query->orderBy('last_post_at', 'asc')
+                     ->orderBy('created_at', 'asc');
+    }
+
+    public function getLatestPost($id)
+    {
+        return $this->findOrFail($id)->posts()->latestFirst()->first();
     }
 
     public function scopeHasReports($query)

@@ -25,12 +25,15 @@
                             <a href="{{ route('forum.topic.show', ['slug' => $topic->slug, 'id' => $topic->id]) }}">{{ $topic->name }}</a>
                             <br />
                             <small>
-                                {{ $topic->created_at->diffForHumans() }} by <a href="{{ route('user.profile', ['username' => $topic->user->username]) }}" class="text-muted dark">{{ $topic->user->getFullNameOrUsername() }}</a>
+                                {{ $topic->created_at->diffForHumans() }} by <a href="{{ route('user.profile', ['username' => $topic->user->username]) }}" class="text-muted dark">{{ $topic->user->getFullNameOrUsername() }}</a>.
+                                @if ($topic->posts->count())
+                                    Last reply <a href="{{ route('forum.topic.show', ['id' => $topic->id, 'slug' => $topic->slug]) }}#post-{{ $topic->getLatestPost($topic->id)->id }}" class="text-muted dark">{{ $topic->last_post_at->diffForHumans() }}</a>.
+                                @endif
                             </small>
                         </h4></li>
                     @endforeach
                 </ul>
-                {{ $topics->render() }}
+                {{ $topics->appends(['search' => request()->get('search')])->render() }}
             @else
                 <div class="box">
                     <p>No topics under this section.</p>

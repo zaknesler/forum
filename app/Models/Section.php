@@ -23,6 +23,11 @@ class Section extends Model
         'deleted_at',
     ];
 
+    public function getLatestTopic($id)
+    {
+        return $this->findOrFail($id)->topics()->latestFirst()->first();
+    }
+
     public function topicCountText()
     {
         $count = $this->topicCount();

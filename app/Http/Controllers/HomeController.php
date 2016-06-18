@@ -16,7 +16,7 @@ class HomeController extends Controller
      */
     public function index(Section $section)
     {
-        $sections = $section->paginate(10);
+        $sections = $section->paginate(config('forum.pagination'));
 
         return view('home')
             ->with('sections', $sections)

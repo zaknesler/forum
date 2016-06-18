@@ -15,9 +15,16 @@
                         <li class="list-group-item"><h4>
                             <span class="label label-primary pull-right">{{ $section->topicCountText() }}</span>
                             <a href="{{ route('forum.section.show', ['slug' => $section->slug, 'id' => $section->id]) }}">{{ $section->name }}</a>
-                            @if ($section->description)
+                            @if ($section->description || $section->topics->count())
                                 <br />
-                                <small>{{ $section->description }}</small>
+                                <small>
+                                    @if ($section->description)
+                                        {{ $section->description }}
+                                    @endif
+                                    @if ($section->topics->count())
+                                        Last topic <a href="{{ route('forum.topic.show', ['id' => $section->getLatestTopic($section->id)->id, 'slug' => $section->getLatestTopic($section->id)->slug]) }}" class="text-muted dark">{{ $section->last_topic_at->diffForHumans() }}</a>.
+                                    @endif
+                                </small>
                             @endif
                         </h4></li>
                     @endforeach
