@@ -67,10 +67,10 @@ class Topic extends Model
         $count = $this->reportCount();
 
         if ($count == 1) {
-            return $count . ' report';
+            return number_format($count) . ' report';
         }
 
-        return $count . ' reports';
+        return number_format($count) . ' reports';
     }
 
     public function reportCount()
@@ -83,10 +83,10 @@ class Topic extends Model
         $count = $this->replyCount();
 
         if ($count == 1) {
-            return $count . ' reply';
+            return number_format($count) . ' reply';
         }
 
-        return $count . ' replies';
+        return number_format($count) . ' replies';
     }
 
     public function replyCount()

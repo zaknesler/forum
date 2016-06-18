@@ -33,10 +33,10 @@ class Section extends Model
         $count = $this->topicCount();
 
         if ($count == 1) {
-            return $count . ' topic';
+            return number_format($count) . ' topic';
         }
 
-        return $count . ' topics';
+        return number_format($count) . ' topics';
     }
 
     public function topicCount()
