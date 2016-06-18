@@ -19,6 +19,8 @@ So far you need the following third party services (All offer good enough free s
 - [Uploadcare](https://uploadcare.com/) (user profile images)
 - [Mailgun](https://www.mailgun.com/) (Email management. If you're developing, I'd use [Mailtrap](https://mailtrap.io/) instead)
 
+There is also a configuration file that is located in `config/forum.php`. Feel free to change anything in that file to suit your needs.
+
 Next, run the migrations (Make sure you pass the seed option into this command; it adds the default roles into your database.
 ```
 php artisan migrate --seed

@@ -16,6 +16,10 @@ pre, code {
     border: 0;
 }
 
+ol, ul {
+    margin-left: -1.25rem;
+}
+
 a.text-muted.dark {
     color: darken(#b4bcc2, 15%);
     transition: color 150ms ease-in-out;
