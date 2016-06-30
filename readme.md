@@ -2,6 +2,10 @@
 
 This is a very simple Laravel 5.2 forum that I am working on. I started Laravel about a month ago and I think I've progressed far!
 
+## Update:
+
+> I honestly do not see myself updating this repository in the future. It was an absolute joy to create. Looking through the code it is extremely unorganised and needs improvement. I wish I knew about Authorisation before I made this. If you want to add it, go ahead. Feel free to make any pull requests.
+
 ## Installation
 
 First, clone repository to your machine.

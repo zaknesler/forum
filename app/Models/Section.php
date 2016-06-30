@@ -25,7 +25,13 @@ class Section extends Model
 
     public function getLatestTopic($id)
     {
-        return $this->findOrFail($id)->topics()->latestFirst()->first();
+        if (auth()->user()) {
+            if (auth()->user()->hasRole(['moderator', 'admin', 'owner'])) {
+                return $this->findOrFail($id)->topics()->latestFirst()->first();
+            }
+        }
+
+        return $this->findOrFail($id)->topics()->isVisible()->latestFirst()->first();
     }
 
     public function topicCountText()

@@ -121,8 +121,14 @@ class TopicController extends Controller
     {
         $topic = $topic->findOrFail($id);
 
-        if ($topic->is_hidden && !auth()->user()->hasRole(['moderator', 'admin', 'owner'])) {
-            return abort(404);
+        if ($topic->is_hidden) {
+            if (auth()->user()) {
+                if (!auth()->user()->hasRole(['moderator', 'admin', 'owner'])) {
+                    return abort(404);
+                }
+            } else {
+                return abort(404);
+            }
         }
 
         event(new TopicWasViewed($topic));
@@ -173,8 +179,6 @@ class TopicController extends Controller
      */
     public function hide($id, Request $request, Topic $topic)
     {
-        // TODO: Add event listener for this functionality.
-
         $topic = $topic->findOrFail($id);
 
         $topic->is_hidden = true;
@@ -200,8 +204,6 @@ class TopicController extends Controller
      */
     public function unhide($id, Request $request, Topic $topic)
     {
-        // TODO: Add event listener for this functionality.
-
         $topic = $topic->findOrFail($id);
 
         $topic->is_hidden = false;
@@ -227,8 +229,6 @@ class TopicController extends Controller
      */
     public function lock($id, Request $request, Topic $topic)
     {
-        // TODO: Add event listener for this functionality.
-
         $topic = $topic->findOrFail($id);
 
         $topic->is_locked = true;

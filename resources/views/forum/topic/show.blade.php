@@ -10,7 +10,7 @@
         </div>
         <div class="pull-right">
             <small>
-                @if ($topic->is_hidden && auth()->user()->hasRole(['moderator', 'admin', 'owner']))
+                @if ($topic->is_hidden)
                     <span class="label label-warning">Hidden</span>
                 @endif
                 @if ($topic->is_locked)
