@@ -2,9 +2,9 @@
 
 This is a very simple Laravel 5.2 forum that I am working on. I started Laravel about a month ago and I think I've progressed far!
 
-## Update:
+## Good news—if you care:
 
-> I honestly do not see myself updating this repository in the future. It was an absolute joy to create. Looking through the code it is extremely unorganised and needs improvement. I wish I knew about Authorisation before I made this. If you want to add it, go ahead. Feel free to make any pull requests.
+While I am not going to be updating anything for the current version of this forum, Laravel 5.2, once Laravel 5.3 is released—and I re-read all of the documentation—I am going to be completely re-doing this. I'm going to start from scratch again; now that I know a little bit more about the framework.
 
 ## Installation
 
@@ -25,7 +25,7 @@ So far you need the following third party services (All offer good enough free s
 
 There is also a configuration file that is located in `config/forum.php`. Feel free to change anything in that file to suit your needs.
 
-Next, run the migrations (Make sure you pass the seed option into this command; it adds the default roles into your database.
+Next, run the migrations (Make sure you pass the seed option into this command, as it adds the default roles into your database.
 ```
 php artisan migrate --seed
 ```
