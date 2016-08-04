@@ -2,8 +2,8 @@
 
 namespace Forum\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use AlgoliaSearch\Laravel\AlgoliaEloquentTrait;
+use Illuminate\Database\Eloquent\Model;
 
 class Topic extends Model
 {
@@ -67,10 +67,10 @@ class Topic extends Model
         $count = $this->reportCount();
 
         if ($count == 1) {
-            return number_format($count) . ' report';
+            return number_format($count).' report';
         }
 
-        return number_format($count) . ' reports';
+        return number_format($count).' reports';
     }
 
     public function reportCount()
@@ -83,10 +83,10 @@ class Topic extends Model
         $count = $this->replyCount();
 
         if ($count == 1) {
-            return number_format($count) . ' reply';
+            return number_format($count).' reply';
         }
 
-        return number_format($count) . ' replies';
+        return number_format($count).' replies';
     }
 
     public function replyCount()

@@ -2,9 +2,6 @@
 
 namespace Forum\Listeners\Forum\Section;
 
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
-
 class UpdateLastTopicAt
 {
     /**
@@ -20,7 +17,8 @@ class UpdateLastTopicAt
     /**
      * Handle the event.
      *
-     * @param  Event  $event
+     * @param Event $event
+     *
      * @return void
      */
     public function handle($event)

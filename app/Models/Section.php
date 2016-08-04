@@ -2,8 +2,8 @@
 
 namespace Forum\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use AlgoliaSearch\Laravel\AlgoliaEloquentTrait;
+use Illuminate\Database\Eloquent\Model;
 
 class Section extends Model
 {
@@ -39,10 +39,10 @@ class Section extends Model
         $count = $this->topicCount();
 
         if ($count == 1) {
-            return number_format($count) . ' topic';
+            return number_format($count).' topic';
         }
 
-        return number_format($count) . ' topics';
+        return number_format($count).' topics';
     }
 
     public function topicCount()

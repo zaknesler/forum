@@ -2,21 +2,18 @@
 
 namespace Forum\Http\Controllers\User;
 
-use Forum\Models\Role;
-use Forum\Models\User;
-use Forum\Http\Requests;
-use Illuminate\Http\Request;
 use Forum\Http\Controllers\Controller;
-use Forum\Http\Requests\User\EditUserFormRequest;
-use Forum\Http\Requests\User\UpdateUserRoleFormRequest;
+use Forum\Models\User;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     /**
      * Get all users.
      *
-     * @param  Illuminate\Http\Request  $request
-     * @param  Forum\Models\User        $user
+     * @param Illuminate\Http\Request $request
+     * @param Forum\Models\User       $user
+     *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request, User $user)
@@ -36,8 +33,10 @@ class UserController extends Controller
 
     /**
      * Display user's profile page.
-     * @param  string             $username
-     * @param  Forum\Models\User  $user
+     *
+     * @param string            $username
+     * @param Forum\Models\User $user
+     *
      * @return \Illuminate\Http\Response
      */
     public function profile($username, User $user)
@@ -49,5 +48,4 @@ class UserController extends Controller
             'user' => $user,
         ]);
     }
-
 }

@@ -2,11 +2,10 @@
 
 namespace Forum\Events\Forum\Topic;
 
-use Forum\Models\User;
 use Forum\Events\Event;
 use Forum\Models\Topic;
+use Forum\Models\User;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 class TopicWasEdited extends Event
 {

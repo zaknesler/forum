@@ -2,7 +2,6 @@
 
 namespace Forum\Providers;
 
-use Validator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

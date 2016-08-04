@@ -2,10 +2,9 @@
 
 namespace Forum\Events\Forum\Post;
 
-use Forum\Models\User;
 use Forum\Events\Event;
+use Forum\Models\User;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 class PostWasDeleted extends Event
 {

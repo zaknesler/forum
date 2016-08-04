@@ -2,11 +2,10 @@
 
 namespace Forum\Events\Forum\Section;
 
-use Forum\Models\User;
 use Forum\Events\Event;
 use Forum\Models\Section;
+use Forum\Models\User;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 class SectionWasCreated extends Event
 {

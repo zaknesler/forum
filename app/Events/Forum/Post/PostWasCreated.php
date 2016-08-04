@@ -2,12 +2,11 @@
 
 namespace Forum\Events\Forum\Post;
 
-use Forum\Models\Post;
-use Forum\Models\User;
 use Forum\Events\Event;
+use Forum\Models\Post;
 use Forum\Models\Topic;
+use Forum\Models\User;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 class PostWasCreated extends Event
 {

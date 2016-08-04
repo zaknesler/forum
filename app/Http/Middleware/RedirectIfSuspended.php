@@ -10,8 +10,9 @@ class RedirectIfSuspended
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
+     *
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -20,7 +21,7 @@ class RedirectIfSuspended
             Auth::logout();
 
             notify()->flash('Uh oh..', 'error', [
-                'text' => 'Your account has been suspended.',
+                'text'  => 'Your account has been suspended.',
                 'timer' => 2000,
             ]);
 

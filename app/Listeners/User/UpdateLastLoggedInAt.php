@@ -3,8 +3,6 @@
 namespace Forum\Listeners\User;
 
 use Illuminate\Auth\Events\Login;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class UpdateLastLoggedInAt
 {
@@ -21,7 +19,8 @@ class UpdateLastLoggedInAt
     /**
      * Handle the event.
      *
-     * @param  Illuminate\Auth\Events\Login  $event
+     * @param Illuminate\Auth\Events\Login $event
+     *
      * @return void
      */
     public function handle(Login $event)
