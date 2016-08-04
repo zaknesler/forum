@@ -38,8 +38,8 @@ return [
     'connections' => [
 
         'main' => [
-            'id' => 'FWFGJVZAV0',
-            'key' => '29dbdd38947a46ba285b7b6502250ed2',
+            'id' => env('ALGOLIA_ID'),
+            'key' => env('ALGOLIA_KEY'),
         ],
 
         'alternative' => [
