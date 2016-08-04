@@ -2,8 +2,6 @@
 
 namespace Forum\Listeners\Forum\Topic;
 
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Forum\Events\Forum\Topic\TopicReportsWereCleared;
 
 class ClearReportsCount
@@ -21,7 +19,8 @@ class ClearReportsCount
     /**
      * Handle the event.
      *
-     * @param  TopicReportsWereCleared  $event
+     * @param TopicReportsWereCleared $event
+     *
      * @return void
      */
     public function handle(TopicReportsWereCleared $event)

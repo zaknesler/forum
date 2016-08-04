@@ -2,12 +2,11 @@
 
 namespace Forum\Http\Controllers\Account;
 
-use Forum\Models\User;
-use Forum\Http\Requests;
-use Illuminate\Http\Request;
 use Forum\Events\User\UserWasEdited;
 use Forum\Http\Controllers\Controller;
 use Forum\Http\Requests\Account\UpdateProfileFormRequest;
+use Forum\Models\User;
+use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
@@ -27,8 +26,9 @@ class ProfileController extends Controller
     /**
      * Post request to update the user's profile settings.
      *
-     * @param  UpdateProfileFormRequest  $request
-     * @param  Forum\Models\User         $user
+     * @param UpdateProfileFormRequest $request
+     * @param Forum\Models\User        $user
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdateProfileFormRequest $request, User $user)
@@ -37,7 +37,7 @@ class ProfileController extends Controller
 
         if (!$request->input('first_name') && $request->input('last_name')) {
             notify()->flash('Error', 'error', [
-                'text' => 'A first name is required if the last name is set.',
+                'text'  => 'A first name is required if the last name is set.',
                 'timer' => 5000,
             ]);
 
@@ -59,7 +59,7 @@ class ProfileController extends Controller
         event(new UserWasEdited($user));
 
         notify()->flash('Success', 'success', [
-            'text' => 'Your profile settings have been updated.',
+            'text'  => 'Your profile settings have been updated.',
             'timer' => 2000,
         ]);
 

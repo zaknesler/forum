@@ -5,7 +5,6 @@ namespace Forum\Events\Forum\Topic;
 use Forum\Events\Event;
 use Forum\Models\Topic;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 class TopicWasViewed extends Event
 {

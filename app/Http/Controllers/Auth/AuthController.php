@@ -2,13 +2,13 @@
 
 namespace Forum\Http\Controllers\Auth;
 
-use Validator;
-use Forum\Models\Role;
-use Forum\Models\User;
 use Forum\Events\User\UserWasCreated;
 use Forum\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Forum\Models\Role;
+use Forum\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Validator;
 
 class AuthController extends Controller
 {
@@ -32,24 +32,26 @@ class AuthController extends Controller
     /**
      * Validation rules for registering a new user.
      *
-     * @param  array  $data
+     * @param array $data
+     *
      * @return Validator
      */
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'username' => 'required|max:32|unique:users',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6',
+            'username'   => 'required|max:32|unique:users',
+            'email'      => 'required|email|max:255|unique:users',
+            'password'   => 'required|min:6',
             'first_name' => 'max:255',
-            'last_name' => 'max:255',
+            'last_name'  => 'max:255',
         ]);
     }
 
     /**
      * Create new user with data.
      *
-     * @param  array  $data
+     * @param array $data
+     *
      * @return Forum\Models\User
      */
     protected function create(array $data)
@@ -57,21 +59,21 @@ class AuthController extends Controller
         $options = json_encode([
             'privacy' => [
                 'profile' => [
-                    'view' => true,
+                    'view'       => true,
                     'view_email' => false,
                 ],
             ],
         ]);
 
         $user = User::create([
-            'username' => $data['username'],
-            'email' => $data['email'],
+            'username'   => $data['username'],
+            'email'      => $data['email'],
             'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'password' => bcrypt($data['password']),
+            'last_name'  => $data['last_name'],
+            'password'   => bcrypt($data['password']),
         ]);
 
-        /**
+        /*
          * If user is first in database, give them the 'owner' role.
          * Otherwise, give them the 'user' role.
          */

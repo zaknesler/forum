@@ -1,19 +1,19 @@
 <?php
 
 return [
-    
-    'name' => 'Forum',
+
+    'name'    => 'Forum',
     'welcome' => [
         'message' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, suscipit.',
     ],
 
     'form' => [
         'title' => [
-            'login' => 'Sign in',
+            'login'    => 'Sign in',
             'register' => 'Sign up',
         ],
         'submit' => [
-            'login' => 'Sign in',
+            'login'    => 'Sign in',
             'register' => 'Create account',
         ],
         'name' => [
@@ -21,20 +21,20 @@ return [
                 'text' => 'Username',
             ],
             'first' => [
-                'text' => 'First name',
+                'text'    => 'First name',
                 'example' => 'Alex',
             ],
             'last' => [
-                'text' => 'Last name',
+                'text'    => 'Last name',
                 'example' => 'Smith',
             ],
         ],
         'email' => [
-            'text' => 'Email',
+            'text'    => 'Email',
             'example' => 'you@domain.com',
         ],
         'password' => [
-            'text' => 'Password',
+            'text'   => 'Password',
             'forgot' => 'Forgot password',
         ],
         'remember' => [

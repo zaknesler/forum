@@ -2,20 +2,20 @@
 
 namespace Forum\Http\Controllers\User;
 
-use Forum\Models\User;
-use Forum\Http\Requests;
-use Illuminate\Http\Request;
 use Forum\Events\User\UserWasEdited;
 use Forum\Http\Controllers\Controller;
+use Forum\Models\User;
+use Illuminate\Http\Request;
 
 class SuspensionController extends Controller
 {
     /**
      * Suspend the user.
      *
-     * @param  integer            $id
-     * @param  Request            $request
-     * @param  Forum\Models\User  $user
+     * @param int               $id
+     * @param Request           $request
+     * @param Forum\Models\User $user
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function suspend($id, Request $request, User $user)
@@ -31,7 +31,7 @@ class SuspensionController extends Controller
                 event(new UserWasEdited($user));
 
                 notify()->flash('Success', 'success', [
-                    'text' => 'User has been suspended.',
+                    'text'  => 'User has been suspended.',
                     'timer' => 2000,
                 ]);
             }
@@ -43,9 +43,10 @@ class SuspensionController extends Controller
     /**
      * Unsuspend the user.
      *
-     * @param  integer            $id
-     * @param  Request            $request
-     * @param  Forum\Models\User  $user
+     * @param int               $id
+     * @param Request           $request
+     * @param Forum\Models\User $user
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function unsuspend($id, Request $request, User $user)
@@ -61,7 +62,7 @@ class SuspensionController extends Controller
                 event(new UserWasEdited($user));
 
                 notify()->flash('Success', 'success', [
-                    'text' => 'User has been unsuspended.',
+                    'text'  => 'User has been unsuspended.',
                     'timer' => 2000,
                 ]);
             }

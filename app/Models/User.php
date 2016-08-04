@@ -2,9 +2,9 @@
 
 namespace Forum\Models;
 
-use Zizaco\Entrust\Traits\EntrustUserTrait;
 use AlgoliaSearch\Laravel\AlgoliaEloquentTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class User extends Authenticatable
 {
@@ -45,8 +45,8 @@ class User extends Authenticatable
     public function getNameOrUsername()
     {
         if ($this->first_name && $this->last_name) {
-            return $this->first_name . ' ' . $this->last_name;
-        } else if ($this->first_name && !$this->last_name) {
+            return $this->first_name.' '.$this->last_name;
+        } elseif ($this->first_name && !$this->last_name) {
             return $this->first_name;
         } else {
             return $this->username;
@@ -56,7 +56,7 @@ class User extends Authenticatable
     public function getFullNameOrUsername()
     {
         if ($this->first_name && $this->last_name) {
-            return $this->first_name . ' ' . $this->last_name;
+            return $this->first_name.' '.$this->last_name;
         } else {
             return $this->username;
         }
@@ -65,15 +65,15 @@ class User extends Authenticatable
     public function getFullName()
     {
         if ($this->first_name && $this->last_name) {
-            return $this->first_name . ' ' . $this->last_name;
+            return $this->first_name.' '.$this->last_name;
         }
     }
 
     public function getName()
     {
         if ($this->first_name && $this->last_name) {
-            return $this->first_name . ' ' . $this->last_name;
-        } else if ($this->first_name && !$this->last_name) {
+            return $this->first_name.' '.$this->last_name;
+        } elseif ($this->first_name && !$this->last_name) {
             return $this->first_name;
         }
     }
@@ -88,10 +88,10 @@ class User extends Authenticatable
         $size = array_get($options, 'size', 45);
 
         if ($this->image_uuid) {
-            return 'https://ucarecdn.com/' . $this->image_uuid . '/-/scale_crop/1024x1024/center/-/quality/lighter/-/progressive/yes/-/resize/' . $size . '/';
+            return 'https://ucarecdn.com/'.$this->image_uuid.'/-/scale_crop/1024x1024/center/-/quality/lighter/-/progressive/yes/-/resize/'.$size.'/';
         }
 
-        return 'https://www.gravatar.com/avatar/' . md5(strtolower($this->email)) . '?s=' . $size . '&d=mm';
+        return 'https://www.gravatar.com/avatar/'.md5(strtolower($this->email)).'?s='.$size.'&d=mm';
     }
 
     public function profileIsPrivate()

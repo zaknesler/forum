@@ -2,9 +2,6 @@
 
 namespace Forum\Listeners\Forum\Section;
 
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
-
 class ReindexWithAlgolia
 {
     /**
@@ -21,6 +18,7 @@ class ReindexWithAlgolia
      * Handle the event.
      *
      * @param  $event
+     *
      * @return void
      */
     public function handle($event)

@@ -24,12 +24,12 @@ class EditUserFormRequest extends Request
     public function rules()
     {
         return [
-            'username' => 'required|max:32|unique:users,username,' . $this->id,
-            'about' => 'max:300',
+            'username'   => 'required|max:32|unique:users,username,'.$this->id,
+            'about'      => 'max:300',
             'first_name' => 'max:32',
-            'last_name' => 'max:32',
-            'location' => 'max:64',
-            'website' => 'url',
+            'last_name'  => 'max:32',
+            'location'   => 'max:64',
+            'website'    => 'url',
         ];
     }
 }

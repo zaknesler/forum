@@ -2,22 +2,21 @@
 
 namespace Forum\Http\Controllers\Forum;
 
-use Forum\Models\Topic;
-use Forum\Http\Requests;
-use Forum\Models\Section;
-use Illuminate\Http\Request;
-use Forum\Http\Controllers\Controller;
 use Forum\Events\Forum\Section\SectionWasCreated;
 use Forum\Events\Forum\Section\SectionWasDeleted;
-use Forum\Http\Requests\Forum\Section\EditSectionFormRequest;
+use Forum\Http\Controllers\Controller;
 use Forum\Http\Requests\Forum\Section\CreateSectionFormRequest;
+use Forum\Models\Section;
+use Forum\Models\Topic;
+use Illuminate\Http\Request;
 
 class SectionController extends Controller
 {
     /**
      * Get the view to show all sections.
      *
-     * @param  Forum\Models\Section  $section
+     * @param Forum\Models\Section $section
+     *
      * @return \Illuminate\Http\Response
      */
     public function all(Section $section)
@@ -31,11 +30,12 @@ class SectionController extends Controller
     /**
      * Get the view to show all topics under a specific section.
      *
-     * @param  string                   $slug
-     * @param  integer                  $id
-     * @param  Illuminate\Http\Request  $request
-     * @param  Forum\Models\Section     $section
-     * @param  Forum\Models\Topic       $topic
+     * @param string                  $slug
+     * @param int                     $id
+     * @param Illuminate\Http\Request $request
+     * @param Forum\Models\Section    $section
+     * @param Forum\Models\Topic      $topic
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($slug, $id, Request $request, Section $section, Topic $topic)
@@ -77,20 +77,21 @@ class SectionController extends Controller
     /**
      * Create new section.
      *
-     * @param  CreateSectionFormRequest  $request
-     * @param  Forum\Models\Section      $section
+     * @param CreateSectionFormRequest $request
+     * @param Forum\Models\Section     $section
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(CreateSectionFormRequest $request, Section $section)
     {
         $section->create([
-            'name' => $request->input('name'),
-            'slug' => str_slug($request->input('name')),
+            'name'        => $request->input('name'),
+            'slug'        => str_slug($request->input('name')),
             'description' => $request->input('description'),
         ]);
 
         notify()->flash('Success', 'success', [
-            'text' => 'Section has been created.',
+            'text'  => 'Section has been created.',
             'timer' => 2000,
         ]);
 
@@ -102,10 +103,11 @@ class SectionController extends Controller
     /**
      * Mark section as deleted.
      *
-     * @param  integer                  $id
-     * @param  Illuminate\Http\Request  $request
-     * @param  Forum\Models\Section     $section
-     * @param  Forum\Models\Topic       $topic
+     * @param int                     $id
+     * @param Illuminate\Http\Request $request
+     * @param Forum\Models\Section    $section
+     * @param Forum\Models\Topic      $topic
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id, Request $request, Section $section, Topic $topic)
@@ -115,7 +117,7 @@ class SectionController extends Controller
         $section->delete();
 
         notify()->flash('Success', 'success', [
-            'text' => 'Section has been deleted.',
+            'text'  => 'Section has been deleted.',
             'timer' => 2000,
         ]);
 

@@ -2,25 +2,23 @@
 
 namespace Forum\Http\Controllers\User;
 
-use Forum\Models\Role;
-use Forum\Models\User;
-use Forum\Http\Requests;
-use Illuminate\Http\Request;
 use Forum\Events\User\UserWasEdited;
 use Forum\Http\Controllers\Controller;
 use Forum\Http\Requests\User\EditUserFormRequest;
-use Forum\Http\Requests\User\UpdateUserRoleFormRequest;
+use Forum\Models\Role;
+use Forum\Models\User;
 
 class EditController extends Controller
 {
     /**
-       * Get the view to edit a user.
-       *
-       * @param  integer            $id
-       * @param  Forum\Models\User  $user
-       * @param  Forum\Models\Role  $role
-       * @return \Illuminate\Http\Response
-       */
+     * Get the view to edit a user.
+     *
+     * @param int               $id
+     * @param Forum\Models\User $user
+     * @param Forum\Models\Role $role
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index($id, User $user, Role $role)
     {
         $user = $user->with('roles')
@@ -36,8 +34,9 @@ class EditController extends Controller
     /**
      * Post user edit.
      *
-     * @param  integer            $id
-     * @param  Forum\Models\User  $user
+     * @param int               $id
+     * @param Forum\Models\User $user
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update($id, EditUserFormRequest $request, User $user, Role $role)
@@ -46,7 +45,7 @@ class EditController extends Controller
 
         if (!$request->input('first_name') && $request->input('last_name')) {
             notify()->flash('Error', 'error', [
-                'text' => 'A first name is required if the last name is set.',
+                'text'  => 'A first name is required if the last name is set.',
                 'timer' => 5000,
             ]);
 
@@ -68,7 +67,7 @@ class EditController extends Controller
         event(new UserWasEdited($user));
 
         notify()->flash('Success', 'success', [
-            'text' => 'User has been updated.',
+            'text'  => 'User has been updated.',
             'timer' => 2000,
         ]);
 

@@ -2,8 +2,6 @@
 
 namespace Forum\Listeners\Forum\Post;
 
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Forum\Events\Forum\Post\PostReportsWereCleared;
 
 class ClearReportsCount
@@ -21,7 +19,8 @@ class ClearReportsCount
     /**
      * Handle the event.
      *
-     * @param  PostReportsWereCleared  $event
+     * @param PostReportsWereCleared $event
+     *
      * @return void
      */
     public function handle(PostReportsWereCleared $event)

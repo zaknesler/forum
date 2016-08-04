@@ -2,8 +2,6 @@
 
 namespace Forum\Listeners\Forum\Topic;
 
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Forum\Events\Forum\Topic\TopicWasReported;
 
 class IncrementReportsCount
@@ -21,7 +19,8 @@ class IncrementReportsCount
     /**
      * Handle the event.
      *
-     * @param  TopicWasReported  $event
+     * @param TopicWasReported $event
+     *
      * @return void
      */
     public function handle(TopicWasReported $event)

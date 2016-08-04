@@ -11,7 +11,7 @@ class PasswordController extends Controller
 
     /**
      * Path to redirect to after successful password reset.
-     * 
+     *
      * @var string
      */
     protected $redirectTo = '/';
@@ -39,13 +39,14 @@ class PasswordController extends Controller
     /**
      * Get the response for after the reset link has been successfully sent.
      *
-     * @param  string  $response
+     * @param string $response
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     protected function getSendResetLinkEmailSuccessResponse($response)
     {
         notify()->flash('Success', 'success', [
-            'text' => 'Please check your email for your password reset link.',
+            'text'  => 'Please check your email for your password reset link.',
             'timer' => 5000,
         ]);
 
