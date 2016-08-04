@@ -2,19 +2,18 @@
 
 namespace Forum\Http\Controllers\Forum;
 
-use Forum\Models\Post;
-use Forum\Http\Requests;
-use Illuminate\Http\Request;
 use Forum\Http\Controllers\Controller;
 use Forum\Http\Requests\Forum\Post\EditPostFormRequest;
+use Forum\Models\Post;
 
 class EditPostController extends Controller
 {
     /**
      * Get the view to edit an existing post.
      *
-     * @param  integer            $id
-     * @param  Forum\Models\Post  $post
+     * @param int               $id
+     * @param Forum\Models\Post $post
+     *
      * @return \Illuminate\Http\Response
      */
     public function index($id, Post $post)
@@ -33,8 +32,9 @@ class EditPostController extends Controller
     /**
      * Post section edit.
      *
-     * @param  integer            $id
-     * @param  Forum\Models\Post  $post
+     * @param int               $id
+     * @param Forum\Models\Post $post
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update($id, EditPostFormRequest $request, Post $post)
@@ -47,13 +47,13 @@ class EditPostController extends Controller
         ]);
 
         notify()->flash('Success', 'success', [
-            'text' => 'Post has been updated.',
+            'text'  => 'Post has been updated.',
             'timer' => 2000,
         ]);
 
         return redirect()->route('forum.topic.show', [
             'slug' => $topic->slug,
-            'id' => $topic->id,
+            'id'   => $topic->id,
         ]);
     }
 }

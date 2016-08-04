@@ -13,31 +13,31 @@ class RolesTableSeeder extends Seeder
     public function run()
     {
         factory(Role::class)->create([
-            'id' => 1,
-            'name' => 'owner',
+            'id'           => 1,
+            'name'         => 'owner',
             'display_name' => 'Owner',
-            'description' => null,
+            'description'  => null,
         ]);
 
         factory(Role::class)->create([
-            'id' => 2,
-            'name' => 'admin',
+            'id'           => 2,
+            'name'         => 'admin',
             'display_name' => 'Admin',
-            'description' => null,
+            'description'  => null,
         ]);
 
         factory(Role::class)->create([
-            'id' => 3,
-            'name' => 'moderator',
+            'id'           => 3,
+            'name'         => 'moderator',
             'display_name' => 'Moderator',
-            'description' => null,
+            'description'  => null,
         ]);
 
         factory(Role::class)->create([
-            'id' => 4,
-            'name' => 'user',
+            'id'           => 4,
+            'name'         => 'user',
             'display_name' => 'User',
-            'description' => null,
+            'description'  => null,
         ]);
     }
 }

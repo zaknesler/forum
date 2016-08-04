@@ -26,7 +26,7 @@ class CreateTopicFormRequest extends Request
         return [
             'name' => 'required|min:8',
             'body' => 'required|min:8',
-            'id' => 'required|exists:sections,id',
+            'id'   => 'required|exists:sections,id',
         ];
     }
 }

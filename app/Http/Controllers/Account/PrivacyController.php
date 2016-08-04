@@ -2,11 +2,10 @@
 
 namespace Forum\Http\Controllers\Account;
 
-use Forum\Models\User;
-use Forum\Http\Requests;
-use Illuminate\Http\Request;
 use Forum\Events\User\UserWasEdited;
 use Forum\Http\Controllers\Controller;
+use Forum\Models\User;
+use Illuminate\Http\Request;
 
 class PrivacyController extends Controller
 {
@@ -26,7 +25,8 @@ class PrivacyController extends Controller
     /**
      * Update the user's privacy settings.
      *
-     * @param  Forum\Models\User          $user
+     * @param Forum\Models\User $user
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, User $user)
@@ -41,7 +41,7 @@ class PrivacyController extends Controller
         event(new UserWasEdited($user));
 
         notify()->flash('Success', 'success', [
-            'text' => 'Your privacy settings have been updated.',
+            'text'  => 'Your privacy settings have been updated.',
             'timer' => 2000,
         ]);
 

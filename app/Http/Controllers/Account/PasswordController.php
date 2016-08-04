@@ -2,12 +2,10 @@
 
 namespace Forum\Http\Controllers\Account;
 
-use Forum\Models\User;
-use Forum\Http\Requests;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Forum\Http\Controllers\Controller;
 use Forum\Http\Requests\Account\Password\UpdatePasswordFormRequest;
+use Forum\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class PasswordController extends Controller
 {
@@ -27,8 +25,9 @@ class PasswordController extends Controller
     /**
      * Update the user's password.
      *
-     * @param  UpdatePasswordFormRequest  $request
-     * @param  Forum\Models\User          $user
+     * @param UpdatePasswordFormRequest $request
+     * @param Forum\Models\User         $user
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdatePasswordFormRequest $request, User $user)
@@ -40,13 +39,13 @@ class PasswordController extends Controller
             $user->update();
 
             notify()->flash('Success', 'success', [
-                'text' => 'Your password has been changed.',
+                'text'  => 'Your password has been changed.',
                 'timer' => 2000,
             ]);
         }
 
         notify()->flash('Error', 'error', [
-            'text' => 'Your old password is incorrect.',
+            'text'  => 'Your old password is incorrect.',
             'timer' => 2000,
         ]);
 

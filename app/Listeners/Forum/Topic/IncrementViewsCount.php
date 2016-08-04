@@ -2,8 +2,6 @@
 
 namespace Forum\Listeners\Forum\Topic;
 
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Forum\Events\Forum\Topic\TopicWasViewed;
 
 class IncrementViewsCount
@@ -21,7 +19,8 @@ class IncrementViewsCount
     /**
      * Handle the event.
      *
-     * @param  TopicWasViewed  $event
+     * @param TopicWasViewed $event
+     *
      * @return void
      */
     public function handle(TopicWasViewed $event)

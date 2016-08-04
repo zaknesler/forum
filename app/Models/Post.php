@@ -37,10 +37,10 @@ class Post extends Model
         $count = $this->reportCount();
 
         if ($count == 1) {
-            return number_format($count) . ' report';
+            return number_format($count).' report';
         }
 
-        return number_format($count) . ' reports';
+        return number_format($count).' reports';
     }
 
     public function reportCount()

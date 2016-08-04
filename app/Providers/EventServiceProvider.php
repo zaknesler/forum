@@ -13,7 +13,7 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        /**
+        /*
          * Sections
          */
         'Forum\Events\Forum\Section\SectionWasCreated' => [
@@ -30,7 +30,7 @@ class EventServiceProvider extends ServiceProvider
             'Forum\Listeners\User\UpdateLastActiveAt',
         ],
 
-        /**
+        /*
          * Topics
          */
         'Forum\Events\Forum\Topic\TopicWasCreated' => [
@@ -76,7 +76,7 @@ class EventServiceProvider extends ServiceProvider
             'Forum\Listeners\User\UpdateLastActiveAt',
         ],
 
-        /**
+        /*
          * Posts
          */
         'Forum\Events\Forum\Post\PostWasCreated' => [
@@ -95,7 +95,7 @@ class EventServiceProvider extends ServiceProvider
             'Forum\Listeners\User\UpdateLastActiveAt',
         ],
 
-        /**
+        /*
          * User
          */
         'Illuminate\Auth\Events\Login' => [
@@ -113,7 +113,8 @@ class EventServiceProvider extends ServiceProvider
     /**
      * Register any other events for your application.
      *
-     * @param  \Illuminate\Contracts\Events\Dispatcher  $events
+     * @param \Illuminate\Contracts\Events\Dispatcher $events
+     *
      * @return void
      */
     public function boot(DispatcherContract $events)

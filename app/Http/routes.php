@@ -2,7 +2,7 @@
 
 Route::get('', 'HomeController@index')->name('home');
 
-/**
+/*
  * Guest routes
  */
 Route::group(['middleware' => ['guest']], function () {
@@ -19,7 +19,7 @@ Route::group(['middleware' => ['guest']], function () {
     Route::post('password/reset/{token}', 'Auth\PasswordController@postReset');
 });
 
-/**
+/*
  * Authenticated routes
  */
 Route::group(['middleware' => ['auth']], function () {
@@ -51,7 +51,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('topic/{topic}/post', 'Forum\PostController@store')->name('forum.topic.post');
 });
 
-/**
+/*
  * Moderation routes for moderators, administrators, and owners.
  */
 Route::group(['middleware' => ['role:moderator|admin|owner']], function () {
@@ -75,7 +75,7 @@ Route::group(['middleware' => ['role:moderator|admin|owner']], function () {
     Route::post('topic/{id}/unlock', 'Forum\TopicController@unlock')->name('forum.topic.unlock');
 });
 
-/**
+/*
  * Moderation routes for administrators and owners.
  */
 Route::group(['middleware' => ['role:owner|admin']], function () {
@@ -93,7 +93,7 @@ Route::group(['middleware' => ['role:owner|admin']], function () {
     Route::post('section/{id}/destroy', 'Forum\SectionController@destroy')->name('forum.section.destroy');
 });
 
-/**
+/*
  * Moderation routes for owners.
  */
 Route::group(['middleware' => ['role:owner']], function () {

@@ -2,11 +2,10 @@
 
 namespace Forum\Events\Forum\Post;
 
+use Forum\Events\Event;
 use Forum\Models\Post;
 use Forum\Models\User;
-use Forum\Events\Event;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 class PostReportsWereCleared extends Event
 {
