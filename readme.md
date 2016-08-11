@@ -1,3 +1,5 @@
+[![StyleCI](https://styleci.io/repos/58971150/shield)](https://styleci.io/repos/58971150)
+
 # Laravel 5.2 Forum
 
 This is a very simple Laravel 5.2 forum that I am working on. I started Laravel about a month ago and I think I've progressed far!
