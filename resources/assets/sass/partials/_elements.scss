@@ -1,0 +1,19 @@
+body {
+    -webkit-font-smoothing: antialiased;
+}
+
+textarea {
+    resize: vertical;
+}
+
+label {
+    font-weight: normal;
+}
+
+p {
+    margin: 0 0 15px 0;
+
+    &:last-child {
+        margin: 0;
+    }
+}

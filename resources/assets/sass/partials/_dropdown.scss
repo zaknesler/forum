@@ -1,0 +1,18 @@
+.dropdown-menu {
+    & .dropdown-header {
+        color: $dropdown-header-color;
+    }
+
+    & .divider {
+        margin: 5px 0;
+    }
+
+    & > li > a {
+        color: $dropdown-anchor-color;
+
+        &:hover,
+        &:focus {
+            color: $dropdown-anchor-hover-color;
+        }
+    }
+}

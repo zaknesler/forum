@@ -11,7 +11,7 @@
     <title>@yield('title', 'Home') &middot; {{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
+    <link href="{{ elixir('assets/css/app.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -80,6 +80,6 @@
     @yield('content')
 
     <!-- Scripts -->
-    <script src="/js/app.js"></script>
+    <script src="{{ elixir('assets/js/app.js') }}"></script>
 </body>
 </html>

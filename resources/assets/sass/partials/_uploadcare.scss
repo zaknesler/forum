@@ -1,0 +1,22 @@
+.uploadcare-widget :focus {
+    outline: -webkit-focus-ring-color auto 5px;
+}
+
+.uploadcare-widget-button-open {
+    background: $brand-primary;
+    border: 1px solid darken($brand-primary, 5%);
+}
+
+.uploadcare-widget-button-open:hover {
+    background: darken($brand-primary, 10%);
+    border-color: darken($brand-primary, 17%);
+}
+
+.uploadcare-widget,
+.uploadcare-widget-button {
+    width: 100%;
+}
+
+.uploadcare-widget-button {
+    text-align: center;
+}
