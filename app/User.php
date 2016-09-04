@@ -2,6 +2,7 @@
 
 namespace Forum;
 
+use App\Topic;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -15,7 +16,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'username',
+        'email',
+        'group',
+        'password',
     ];
 
     /**
@@ -24,6 +29,44 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
+
+    /**
+     * If the user has a name set, return it; otherwise, return the username.
+     *
+     * @return mixed
+     */
+    public function getNameOrUsername()
+    {
+        if (!$this->name) {
+            return $this->username;
+        }
+
+        return $this->name;
+    }
+
+    /**
+     * Check if the user's group is that of the argument.
+     *
+     * @param  mixed  $group
+     * @return boolean
+     */
+    public function isGroup($group)
+    {
+        if (is_array($group)) {
+            return in_array($this->group, $group);
+        }
+
+        return $this->group === $group;
+    }
+
+    /**
+     * Get the topics that the user owns.
+     */
+    public function topics()
+    {
+        $this->hasMany(Topic::class);
+    }
 }
