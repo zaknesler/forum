@@ -39,7 +39,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapApiRoutes();
 
-        //
+        $this->mapAuthRoutes();
     }
 
     /**
@@ -74,6 +74,23 @@ class RouteServiceProvider extends ServiceProvider
             'prefix' => 'api',
         ], function ($router) {
             require base_path('routes/api.php');
+        });
+    }
+
+    /**
+     * Define the "auth" routes for the application.
+     *
+     * User must be authenticated.
+     *
+     * @return void
+     */
+    protected function mapAuthRoutes()
+    {
+        Route::group([
+            'middleware' => ['web', 'auth'],
+            'namespace' => $this->namespace,
+        ], function ($router) {
+            require base_path('routes/auth.php');
         });
     }
 }

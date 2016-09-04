@@ -166,8 +166,9 @@ return [
         /*
          * Package Service Providers...
          */
-
-        //
+        Laracasts\Flash\FlashServiceProvider::class,
+        Laravel\Scout\ScoutServiceProvider::class,
+        PedZed\LaravelUploadcare\UploadcareServiceProvider::class,
 
         /*
          * Application Service Providers...

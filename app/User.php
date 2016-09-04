@@ -19,6 +19,7 @@ class User extends Authenticatable
         'name',
         'username',
         'email',
+        'avatar',
         'group',
         'password',
     ];
@@ -45,6 +46,22 @@ class User extends Authenticatable
         }
 
         return $this->name;
+    }
+
+    /**
+     * Get the path to the user's avatar. Use Gravatar as a fall-back.
+     *
+     * @param  integer  $size
+     *
+     * @return string
+     */
+    public function getAvatar(int $size = 100)
+    {
+        if (!$this->avatar) {
+            return 'https://www.gravatar.com/avatar/' . md5(strtolower($this->email)) . '?s=' . $size . '&d=mm';
+        }
+
+        return 'https://ucarecdn.com/' . $this->avatar . '/-/scale_crop/1024x1024/center/-/quality/lighter/-/progressive/yes/-/resize/' . $size . '/';
     }
 
     /**
