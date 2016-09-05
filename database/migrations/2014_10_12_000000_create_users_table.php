@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->enum('group', ['user', 'moderator', 'administrator']);
             $table->string('password');
             $table->rememberToken();
+            $table->timestamp('last_login_at')->nullable();
             $table->timestamps();
         });
     }

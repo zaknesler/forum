@@ -2,6 +2,9 @@
 
 namespace Forum\Http\Controllers\Auth;
 
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Forum\Jobs\Users\UpdateLastLogin;
 use Forum\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -35,5 +38,17 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'logout']);
+    }
+
+    /**
+     * The user has been authenticated.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function authenticated(Request $request, $user)
+    {
+        $this->dispatch(new UpdateLastLogin($user, Carbon::now()));
     }
 }
