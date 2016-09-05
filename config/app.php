@@ -167,6 +167,8 @@ return [
          * Package Service Providers...
          */
         Laracasts\Flash\FlashServiceProvider::class,
+        Indal\Markdown\MarkdownServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
         Laravel\Scout\ScoutServiceProvider::class,
         PedZed\LaravelUploadcare\UploadcareServiceProvider::class,
 

@@ -22,3 +22,13 @@ $factory->define(Forum\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(Forum\Topic::class, function (Faker\Generator $faker) {
+    return [
+        'user_id' => function () {
+            return factory(Forum\User::class)->create()->id;
+        },
+        'title' => $faker->sentence,
+        'body' => $faker->paragraph,
+    ];
+});

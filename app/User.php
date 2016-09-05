@@ -2,7 +2,7 @@
 
 namespace Forum;
 
-use App\Topic;
+use Forum\Topic;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -94,6 +94,6 @@ class User extends Authenticatable
      */
     public function topics()
     {
-        $this->hasMany(Topic::class);
+        return $this->hasMany(Topic::class);
     }
 }

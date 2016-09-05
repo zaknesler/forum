@@ -7,7 +7,13 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Profile Settings</div>
+                    <div class="panel-heading">
+                        Profile Settings
+
+                        <div class="pull-right text-muted">
+                            {{ '@' . $user->username }}
+                        </div>
+                    </div>
 
                     <div class="panel-body">
                         <form role="form" method="POST" action="{{ route('settings.profile.update') }}" class="form-horizontal">
@@ -21,9 +27,9 @@
                                     <input type="text" name="name" id="name" class="form-control" value="{{ old('name') ?? $user->name }}" autofocus />
 
                                     @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('name') }}</strong>
+                                        </span>
                                     @endif
                                 </div>
                             </div>
@@ -35,9 +41,9 @@
                                     <input type="email" name="email" id="email" class="form-control" value="{{ old('email') ?? $user->email }}" autofocus />
 
                                     @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
                                     @endif
                                 </div>
                             </div>
@@ -49,12 +55,10 @@
                                     </button>
                                 </div>
                             </div>
-
                         </form>
                     </div>
                 </div>
             </div>
-
             <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">Avatar Settings</div>
@@ -103,7 +107,6 @@
                                     <a href="#" onclick="event.preventDefault();document.getElementById('avatar-delete-form').submit();" class="btn btn-danger pull-right" title="Delete current avatar and revert back to Gravatar.">
                                         Delete
                                     </a>
-
                                 @endif
                             </div>
                         </form>

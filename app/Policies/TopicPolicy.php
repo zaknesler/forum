@@ -11,6 +11,20 @@ class TopicPolicy
     use HandlesAuthorization;
 
     /**
+     * Method to be called before all others.
+     *
+     * @param  Forum\User  $user
+     * @param  void  $ability
+     * @return boolean
+     */
+    public function before(User $user, $ability)
+    {
+        if ($user->isGroup('administrator')) {
+            return true;
+        }
+    }
+
+    /**
      * Determine whether the user can view the topic.
      *
      * @param  Forum\User  $user
@@ -19,7 +33,7 @@ class TopicPolicy
      */
     public function view(User $user, Topic $topic)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,7 +44,7 @@ class TopicPolicy
      */
     public function create(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -42,7 +56,7 @@ class TopicPolicy
      */
     public function update(User $user, Topic $topic)
     {
-        //
+        return $user->id === $topic->id;
     }
 
     /**
@@ -54,6 +68,6 @@ class TopicPolicy
      */
     public function delete(User $user, Topic $topic)
     {
-        //
+        return $user->id === $topic->id;
     }
 }

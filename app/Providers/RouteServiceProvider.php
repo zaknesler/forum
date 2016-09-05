@@ -2,6 +2,8 @@
 
 namespace Forum\Providers;
 
+use Forum\User;
+use Forum\Topic;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -23,7 +25,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Route::model('topic', Topic::class);
+
+        Route::model('user', User::class);
 
         parent::boot();
     }

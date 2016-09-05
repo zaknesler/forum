@@ -14,14 +14,20 @@ class Topic extends Model
      */
     protected $fillable = [
         'title',
+        'slug',
         'body',
     ];
+
+    public function scopeLatestFirst($query)
+    {
+        return $query->orderBy('created_at', 'desc');
+    }
 
     /**
      * Get the user that owns the topic.
      */
     public function user()
     {
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 }
