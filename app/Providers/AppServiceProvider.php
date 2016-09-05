@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->app['request']->server->set('HTTPS', (bool) env('USE_HTTPS'));
     }
 
     /**
