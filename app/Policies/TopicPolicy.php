@@ -56,7 +56,7 @@ class TopicPolicy
      */
     public function update(User $user, Topic $topic)
     {
-        return $user->id === $topic->id;
+        return $user->id === $topic->user_id;
     }
 
     /**
@@ -68,6 +68,6 @@ class TopicPolicy
      */
     public function delete(User $user, Topic $topic)
     {
-        return $user->id === $topic->id;
+        return $user->id === $topic->user_id;
     }
 }

@@ -6,6 +6,7 @@ use Forum\Topic;
 use Forum\Http\Requests;
 use Illuminate\Http\Request;
 use Forum\Http\Requests\Topic\CreateTopicFormRequest;
+use Forum\Http\Requests\Topic\UpdateTopicFormRequest;
 
 class TopicController extends Controller
 {
@@ -55,6 +56,8 @@ class TopicController extends Controller
             'body' => $request->input('body'),
         ]);
 
+        flash('Topic has been created.');
+
         return redirect()->route('topics.show', $topic->id);
     }
 
@@ -80,19 +83,32 @@ class TopicController extends Controller
      */
     public function edit(Topic $topic)
     {
-        $this->authorize('edit', $topic);
+        $this->authorize('update', $topic);
+
+        return view('topics.edit')
+            ->with('topic', $topic);
     }
 
     /**
      * Update the topic in the database.
      *
      * @param  Forum\Topic  $topic
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  Forum\Http\Requests\Topic\UpdateTopicFormRequest  $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Topic $topic, Request $request)
+    public function update(Topic $topic, UpdateTopicFormRequest $request)
     {
-        $this->authorize('edit', $topic);
+        $this->authorize('update', $topic);
+
+        $topic->update([
+            'title' => $request->input('title'),
+            'slug' => str_slug($request->input('title')),
+            'body' => $request->input('body'),
+        ]);
+
+        flash('Topic has been updated.');
+
+        return redirect()->route('topics.show', $topic->id);
     }
 
     /**
@@ -104,5 +120,11 @@ class TopicController extends Controller
     public function destroy(Topic $topic)
     {
         $this->authorize('delete', $topic);
+
+        $topic->delete();
+
+        flash('Topic has been deleted.');
+
+        return redirect()->route('topics.index');
     }
 }

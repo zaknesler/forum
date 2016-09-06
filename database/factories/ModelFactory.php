@@ -24,11 +24,14 @@ $factory->define(Forum\User::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(Forum\Topic::class, function (Faker\Generator $faker) {
+    $title = $faker->sentence;
+
     return [
         'user_id' => function () {
             return factory(Forum\User::class)->create()->id;
         },
-        'title' => $faker->sentence,
+        'title' => $title,
+        'slug' => str_slug($title),
         'body' => $faker->paragraph,
     ];
 });
