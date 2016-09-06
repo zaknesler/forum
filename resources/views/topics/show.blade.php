@@ -13,7 +13,7 @@
                     @markdown($topic->body)
                 </div>
 
-                @can (['update', 'delete'], $topic)
+                @if (auth()->user()->can('update', $topic) || auth()->user()->can('delete', $topic))
                     <div class="panel-footer clearfix">
                         @can ('update', $topic)
                             <a href="{{ route('topics.edit', $topic->id) }}" class="pull-left btn btn-primary">
@@ -33,7 +33,7 @@
                             </form>
                         @endcan
                     </div>
-                @endcan
+                @endif
             </div>
         </div>
     </div>
