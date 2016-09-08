@@ -10,15 +10,15 @@
         "laravel/scout": "^1.1",
         "laracasts/flash": "^2.0",
         "pedzed/laravel-uploadcare": "^0.2.0",
-        "barryvdh/laravel-debugbar": "^2.2",
-        "cviebrock/eloquent-sluggable": "^4.0"
+        "andreasindal/laravel-markdown": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~5.0",
         "symfony/css-selector": "3.1.*",
-        "symfony/dom-crawler": "3.1.*"
+        "symfony/dom-crawler": "3.1.*",
+        "barryvdh/laravel-debugbar": "^2.2"
     },
     "autoload": {
         "classmap": [
