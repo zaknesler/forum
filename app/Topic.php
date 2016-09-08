@@ -18,20 +18,6 @@ class Topic extends Model
         'body',
     ];
 
-    /**
-     * Return the sluggable configuration array for this model.
-     *
-     * @return array
-     */
-    public function sluggable()
-    {
-        return [
-            'slug' => [
-                'source' => 'title'
-            ]
-        ];
-    }
-
     public function scopeLatestFirst($query)
     {
         return $query->orderBy('created_at', 'desc');
