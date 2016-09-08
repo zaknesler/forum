@@ -1,5 +1,5 @@
 <li class="list-group-item">
-    <a href="{{ route('topics.show', $topic->id) }}">{{ $topic->title }}</a>
+    <a href="{{ route('topics.show', [$topic->slug, $topic->id]) }}">{{ $topic->title }}</a>
 
     <br />
     <small>

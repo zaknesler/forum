@@ -10,7 +10,8 @@
         "laravel/scout": "^1.1",
         "laracasts/flash": "^2.0",
         "pedzed/laravel-uploadcare": "^0.2.0",
-        "barryvdh/laravel-debugbar": "^2.2"
+        "barryvdh/laravel-debugbar": "^2.2",
+        "cviebrock/eloquent-sluggable": "^4.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

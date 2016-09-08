@@ -50,7 +50,7 @@ class TopicController extends Controller
 
         $user = $request->user();
 
-        $topic = $user->topics()->create([
+        $user->topics()->create([
             'title' => $request->input('title'),
             'slug' => str_slug($request->input('title')),
             'body' => $request->input('body'),
@@ -58,17 +58,24 @@ class TopicController extends Controller
 
         flash('Topic has been created.');
 
-        return redirect()->route('topics.show', $topic->id);
+        return redirect()->route('topics.show', [$topic->slug, $topic->id]);
     }
 
     /**
      * Display the topic.
      *
+     * @param  string  $slug
      * @param  Forum\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function show(Topic $topic)
+    public function show($slug, Topic $topic)
     {
+        $topic = $topic;
+
+        if ($topic->slug !== $slug) {
+            abort(404);
+        }
+
         $this->authorize('view', $topic);
 
         return view('topics.show')
@@ -102,13 +109,12 @@ class TopicController extends Controller
 
         $topic->update([
             'title' => $request->input('title'),
-            'slug' => str_slug($request->input('title')),
             'body' => $request->input('body'),
         ]);
 
         flash('Topic has been updated.');
 
-        return redirect()->route('topics.show', $topic->id);
+        return redirect()->route('topics.show', [$topic->slug, $topic->id]);
     }
 
     /**

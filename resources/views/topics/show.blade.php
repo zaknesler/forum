@@ -5,10 +5,16 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">{{ $topic->title }}</div>
+        <div class="col-md-12">
+            <h4 class="clearfix">
+                {{ $topic->title }}
 
+                <small class="pull-right">
+                    {{ $topic->created_at->diffForHumans() }} by <a href="#">{{ $topic->user->getNameOrUsername() }}</a>
+                </small>
+            </h4>
+
+            <div class="panel panel-default">
                 <div class="panel-body">
                     @markdown($topic->body)
                 </div>
