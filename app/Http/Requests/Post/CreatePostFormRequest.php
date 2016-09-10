@@ -1,11 +1,11 @@
 <?php
 
-namespace Forum\Http\Requests\Topic;
+namespace Forum\Http\Requests\Post;
 
-use Forum\Topic;
+use Forum\Post;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateTopicFormRequest extends FormRequest
+class CreatePostFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +14,7 @@ class CreateTopicFormRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('create', Topic::class);
+        return $this->user()->can('create', Post::class);
     }
 
     /**
@@ -25,7 +25,6 @@ class CreateTopicFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|min:8|max:64',
             'body' => 'required|min:16',
         ];
     }

@@ -26,3 +26,7 @@ Route::group([], function () {
 
     Route::get('topics/{slug}/{topic}', 'TopicController@show')->name('topics.show');
 });
+
+Route::group([], function () {
+    Route::post('topics/{topic}/posts', 'PostController@store')->name('posts.store');
+});

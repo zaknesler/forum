@@ -70,16 +70,17 @@ class TopicController extends Controller
      */
     public function show($slug, Topic $topic)
     {
-        $topic = $topic;
-
         if ($topic->slug !== $slug) {
             abort(404);
         }
 
         $this->authorize('view', $topic);
 
+        $posts = $topic->posts()->get();
+
         return view('topics.show')
-            ->with('topic', $topic);
+            ->with('topic', $topic)
+            ->with('posts', $posts);
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace Forum;
 
+use Forum\Post;
 use Forum\Topic;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -62,7 +63,6 @@ class User extends Authenticatable
      * Get the path to the user's avatar. Use Gravatar as a fall-back.
      *
      * @param  integer  $size
-     *
      * @return string
      */
     public function getAvatar(int $size = 100)
@@ -91,9 +91,21 @@ class User extends Authenticatable
 
     /**
      * Get the topics that the user owns.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function topics()
     {
         return $this->hasMany(Topic::class);
+    }
+
+    /**
+     * Get the posts that the user owns.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
     }
 }
