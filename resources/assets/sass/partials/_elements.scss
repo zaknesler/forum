@@ -17,3 +17,12 @@ p {
         margin: 0;
     }
 }
+
+pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', Menlo, "Courier New", monospace;
+}
+
+code[class*=language-] ::selection, code[class*=language-]::selection, pre[class*=language-] ::selection, pre[class*=language-]::selection {
+    text-shadow: none;
+    background: #b3d4fc;
+}

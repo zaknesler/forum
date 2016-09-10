@@ -18,3 +18,8 @@
     @include('posts.partials.create', $topic)
 </div>
 @endsection
+
+@section('scripts')
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+@endsection
