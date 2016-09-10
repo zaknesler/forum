@@ -76,7 +76,7 @@ class TopicController extends Controller
 
         $this->authorize('view', $topic);
 
-        $posts = $topic->posts()->get();
+        $posts = $topic->posts()->with('user')->get();
 
         return view('topics.show')
             ->with('topic', $topic)

@@ -11,22 +11,31 @@ Route::delete('settings/avatar', 'Settings\AvatarSettingsController@destroy')->n
  * Topic routes
  */
 
-Route::group([], function () {
-    Route::get('topics', 'TopicController@index')->name('topics.index');
+Route::group(['prefix' => 'topics'], function () {
+    Route::get('/', 'TopicController@index')->name('topics.index');
 
-    Route::get('topics/create', 'TopicController@create')->name('topics.create');
+    Route::get('create', 'TopicController@create')->name('topics.create');
 
-    Route::post('topics', 'TopicController@store')->name('topics.store');
+    Route::post('/', 'TopicController@store')->name('topics.store');
 
-    Route::get('topics/{topic}/edit', 'TopicController@edit')->name('topics.edit');
+    Route::get('{topic}/edit', 'TopicController@edit')->name('topics.edit');
 
-    Route::put('topics/{topic}', 'TopicController@update')->name('topics.update');
+    Route::put('{topic}', 'TopicController@update')->name('topics.update');
 
-    Route::delete('topics/{topic}', 'TopicController@destroy')->name('topics.destroy');
+    Route::delete('{topic}', 'TopicController@destroy')->name('topics.destroy');
 
-    Route::get('topics/{slug}/{topic}', 'TopicController@show')->name('topics.show');
-});
+    Route::get('{slug}/{topic}', 'TopicController@show')->name('topics.show');
 
-Route::group([], function () {
-    Route::post('topics/{topic}/posts', 'PostController@store')->name('posts.store');
+    /**
+     * Post routes
+     */
+    Route::post('{topic}/posts', 'PostController@store')->name('posts.store');
+
+    Route::group(['prefix' => 'posts'], function () {
+        Route::get('{post}/edit', 'PostController@edit')->name('posts.edit');
+
+        Route::put('{post}', 'PostController@update')->name('posts.update');
+
+        Route::delete('{post}', 'PostController@destroy')->name('posts.destroy');
+    });
 });
