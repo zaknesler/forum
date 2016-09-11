@@ -10,7 +10,7 @@
 
         <h4>
             <small>
-                {{ $topic->created_at->diffForHumans() }} by <a href="#">{{ $topic->user->getNameOrUsername() }}</a>
+                {{ $topic->created_at->diffForHumans() }} by <a href="{{ route('users.show', $topic->user->username) }}">{{ $topic->user->getNameOrUsername() }}</a>
             </small>
         </h4>
 

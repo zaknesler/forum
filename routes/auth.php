@@ -39,3 +39,5 @@ Route::group(['prefix' => 'topics'], function () {
         Route::delete('{post}', 'PostController@destroy')->name('posts.destroy');
     });
 });
+
+Route::get('@{username}', 'UserController@show')->name('users.show');

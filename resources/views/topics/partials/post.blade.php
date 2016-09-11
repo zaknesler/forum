@@ -8,7 +8,7 @@
     <div class="col-md-11">
         <h4>
             <small>
-                {{ $post->created_at->diffForHumans() }} by <a href="#">{{ $post->user->getNameOrUsername() }}</a>
+                {{ $post->created_at->diffForHumans() }} by <a href="{{ route('users.show', $post->user->username) }}">{{ $post->user->getNameOrUsername() }}</a>
             </small>
         </h4>
 
