@@ -11,7 +11,7 @@
                         Profile Settings
 
                         <div class="pull-right text-muted">
-                            {{ '@' . $user->username }}
+                            <a href="{{ route('users.show', $user->username) }}">{{ '@' . $user->username }}</a>
                         </div>
                     </div>
 
