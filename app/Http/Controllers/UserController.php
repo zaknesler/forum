@@ -12,7 +12,7 @@ class UserController extends Controller
      * Show the user's profile.
      *
      * @param  string  $username
-     * @param  User  $user
+     * @param  Forum\User  $user
      * @return \Illuminate\Http\Response
      */
     public function show($username, User $user)
