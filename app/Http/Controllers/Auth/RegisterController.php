@@ -4,6 +4,7 @@ namespace Forum\Http\Controllers\Auth;
 
 use Validator;
 use Forum\User;
+use Illuminate\Http\Request;
 use Forum\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -48,7 +49,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'username' => 'required|max:16|unique:users',
+            'username' => 'required|alpha_dash|max:16|unique:users',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
         ]);
@@ -67,5 +68,22 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        $this->create($request->all());
+
+        flash('You have been registered. You may now sign in.');
+
+        return redirect()->route('login');
     }
 }
