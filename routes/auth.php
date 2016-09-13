@@ -4,6 +4,8 @@ Route::get('settings', 'Settings\SettingsController@index')->name('settings.inde
 
 Route::post('settings/profile', 'Settings\ProfileSettingsController@update')->name('settings.profile.update');
 
+Route::post('settings/password', 'Settings\PasswordSettingsController@update')->name('settings.password.update');
+
 Route::post('settings/avatar', 'Settings\AvatarSettingsController@update')->name('settings.avatar.update');
 Route::delete('settings/avatar', 'Settings\AvatarSettingsController@destroy')->name('settings.avatar.destroy');
 
