@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => 'hello@example.com',
-        'name' => 'Example',
+        'address' => 'do-not-reply@example.com',
+        'name' => config('app.name'),
     ],
 
     /*
