@@ -11,7 +11,7 @@
         "laracasts/flash": "^2.0",
         "pedzed/laravel-uploadcare": "^0.2.0",
         "andreasindal/laravel-markdown": "^1.1",
-        "guzzlehttp/guzzle": "~4.0"
+        "guzzlehttp/guzzle": "^6.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
