@@ -79,10 +79,12 @@ class PostController extends Controller
     {
         $this->authorize('delete', $post);
 
+        $topic = $post->topic;
+
         $post->delete();
 
         flash('Post has been deleted.');
 
-        return redirect()->route('topics.index');
+        return redirect()->route('topics.show', [$topic->slug, $topic->id]);
     }
 }

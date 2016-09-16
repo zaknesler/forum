@@ -39,11 +39,23 @@
                             @endif
                         </div>
 
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary">
+                        <div class="form-group clearfix">
+                            <button type="submit" class="pull-left btn btn-primary">
                                 Update
                             </button>
+
+                            @can ('delete', $topic)
+                                <a href="#" onclick="event.preventDefault();document.getElementById('topic-delete-form').submit();" class="pull-right btn btn-danger">
+                                    Delete
+                                </a>
+                            @endcan
                         </div>
+                    </form>
+
+                    <form method="POST" action="{{ route('topics.destroy', $topic->id) }}" id="topic-delete-form" style="display: none;">
+                        {{ csrf_field() }}
+
+                        {{ method_field('DELETE') }}
                     </form>
                 </div>
             </div>

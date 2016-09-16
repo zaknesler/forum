@@ -17,27 +17,13 @@
                 @markdown($post->body)
             </div>
 
-            @if (auth()->user()->can('update', $post) || auth()->user()->can('delete', $post))
-                <div class="panel-footer clearfix">
-                    @can ('update', $post)
-                        <a href="{{ route('posts.edit', $post->id) }}" class="pull-left btn btn-sm btn-default">
-                            Edit
-                        </a>
-                    @endcan
-
-                    @can ('delete', $post)
-                        <a href="#" onclick="event.preventDefault();document.getElementById('post-delete-form').submit();" class="pull-right btn btn-sm btn-danger">
-                            Delete
-                        </a>
-
-                        <form method="POST" action="{{ route('posts.destroy', $post->id) }}" id="post-delete-form" style="display: none;">
-                            {{ csrf_field() }}
-
-                            {{ method_field('DELETE') }}
-                        </form>
-                    @endcan
+            @can ('update', $post)
+                <div class="panel-footer">
+                    <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-default">
+                        Edit
+                    </a>
                 </div>
-            @endif
+            @endcan
         </div>
     </div>
 </div>
