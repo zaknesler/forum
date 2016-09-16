@@ -3,20 +3,22 @@
 @section('title', 'Topic')
 
 @section('content')
-<div class="container">
-    {{-- Display the actual topic. --}}
-    @include('topics.partials.topic', $topic)
+    <div class="container">
+        {{-- Display the actual topic. --}}
+        @include('topics.partials.topic', $topic)
 
-    {{-- Loop through each post and display it. --}}
-    @foreach ($posts as $post)
-        @include('topics.partials.post', $post)
-    @endforeach
+        {{-- Loop through each post and display it. --}}
+        @foreach ($posts as $post)
+            @include('topics.partials.post', $post)
+        @endforeach
 
-    <h4>Reply to this topic</h4>
+        {{-- Show the form to create a new post in reply to the current topic. --}}
+        @can ('create', \Forum\Post::class)
+            <h4>Reply to this topic</h4>
 
-    {{-- Show the form to create a new post in reply to the current topic. --}}
-    @include('posts.partials.create', $topic)
-</div>
+            @include('posts.partials.create', $topic)
+        @endcan
+    </div>
 @endsection
 
 @section('scripts')

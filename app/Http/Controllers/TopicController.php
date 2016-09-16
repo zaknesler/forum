@@ -74,8 +74,6 @@ class TopicController extends Controller
             abort(404);
         }
 
-        $this->authorize('view', $topic);
-
         $posts = $topic->posts()->with('user')->get();
 
         return view('topics.show')

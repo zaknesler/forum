@@ -7,15 +7,13 @@ Route::post('settings/profile', 'Settings\ProfileSettingsController@update')->na
 Route::post('settings/password', 'Settings\PasswordSettingsController@update')->name('settings.password.update');
 
 Route::post('settings/avatar', 'Settings\AvatarSettingsController@update')->name('settings.avatar.update');
+
 Route::delete('settings/avatar', 'Settings\AvatarSettingsController@destroy')->name('settings.avatar.destroy');
 
 /**
  * Topic routes
  */
-
 Route::group(['prefix' => 'topics'], function () {
-    Route::get('/', 'TopicController@index')->name('topics.index');
-
     Route::get('create', 'TopicController@create')->name('topics.create');
 
     Route::post('/', 'TopicController@store')->name('topics.store');
@@ -25,8 +23,6 @@ Route::group(['prefix' => 'topics'], function () {
     Route::put('{topic}', 'TopicController@update')->name('topics.update');
 
     Route::delete('{topic}', 'TopicController@destroy')->name('topics.destroy');
-
-    Route::get('{slug}/{topic}', 'TopicController@show')->name('topics.show');
 
     /**
      * Post routes

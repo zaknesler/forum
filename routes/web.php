@@ -14,3 +14,9 @@
 Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
+
+Route::group(['prefix' => 'topics'], function () {
+    Route::get('/', 'TopicController@index')->name('topics.index');
+
+    Route::get('{slug}/{topic}', 'TopicController@show')->name('topics.show');
+});
