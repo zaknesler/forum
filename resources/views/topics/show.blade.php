@@ -17,6 +17,12 @@
             <h4>Reply to this topic</h4>
 
             @include('posts.partials.create', $topic)
+        @else
+            <div class="row">
+                <div class="col-md-11 col-md-offset-1">
+                    <p>You must be <a href="{{ route('auth.login') }}">signed in</a> to post a reply.</p>
+                </div>
+            </div>
         @endcan
     </div>
 @endsection
