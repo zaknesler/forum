@@ -4,10 +4,14 @@ namespace Forum;
 
 use Forum\User;
 use Forum\Topic;
+use Forum\Report;
+use Forum\Traits\Reportable;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    use Reportable;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -20,7 +24,7 @@ class Post extends Model
     ];
 
     /**
-     * The owner of the post.
+     * The post belongs to a user.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -30,7 +34,7 @@ class Post extends Model
     }
 
     /**
-     * The topic that the belongs to.
+     * The post belongs to a topic.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

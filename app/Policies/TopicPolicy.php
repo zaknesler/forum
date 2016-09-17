@@ -70,4 +70,17 @@ class TopicPolicy
     {
         return $user->id === $topic->user_id;
     }
+
+    /**
+     * Determine whether the user can report the topic.
+     *
+     * @param  Forum\User  $user
+     * @param  Forum\Topic  $topic
+     * @return mixed
+     */
+    public function report(User $user, Topic $topic)
+    {
+        return $user->id !== $topic->user_id
+            || !$user->isGroup(['moderator', 'administrator']);
+    }
 }

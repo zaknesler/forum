@@ -4,10 +4,14 @@ namespace Forum;
 
 use Forum\Post;
 use Forum\User;
+use Forum\Report;
+use Forum\Traits\Reportable;
 use Illuminate\Database\Eloquent\Model;
 
 class Topic extends Model
 {
+    use Reportable;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -23,7 +27,7 @@ class Topic extends Model
     /**
      * Fetch the most recently created topics.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeLatestFirst($query)
@@ -32,7 +36,7 @@ class Topic extends Model
     }
 
     /**
-     * Get the user that owns the topic.
+     * A topic belongs to a user.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -42,9 +46,9 @@ class Topic extends Model
     }
 
     /**
-     * The posts that belong to a topic.
+     * A topic can have many posts.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function posts()
     {

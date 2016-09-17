@@ -70,4 +70,17 @@ class PostPolicy
     {
         return $user->id === $post->user_id;
     }
+
+    /**
+     * Determine whether the user can report the post.
+     *
+     * @param  Forum\User  $user
+     * @param  Forum\Post  $post
+     * @return mixed
+     */
+    public function report(User $user, Post $post)
+    {
+        return $user->id !== $post->user_id
+            || !$user->isGroup(['moderator', 'administrator']);
+    }
 }
