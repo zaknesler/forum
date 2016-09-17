@@ -46,14 +46,17 @@ trait Reportable
     }
 
     /**
-     * Report using the authenticated user.
+     * Report a model with an optional user argument.
      *
+     * If no user was passed, use the currently authenticated user.
+     *
+     * @param  Forum\User|null  $user
      * @return null
      */
-    public function report()
+    public function report(User $user = null)
     {
         $this->reports()->save(
-            new Report(['user_id' => Auth::id()])
+            new Report(['user_id' => $user ? $user->id : Auth::id()])
         );
     }
 }

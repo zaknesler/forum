@@ -18,7 +18,7 @@
 
             @include('posts.partials.create', $topic)
         @else
-            <div class="row">
+            <div class="row row-mgn-btm">
                 <div class="col-md-11 col-md-offset-1">
                     <p>You must be <a href="{{ route('login') }}">signed in</a> to post a reply.</p>
                 </div>
