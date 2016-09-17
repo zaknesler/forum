@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => 'do-not-reply@example.com',
-        'name' => config('app.name'),
+        'address' => env('MAIL_FROM_ADDRESS', 'do-not-reply@example.com'),
+        'name' => env ('MAIL_FROM_NAME', config('app.name')),
     ],
 
     /*
