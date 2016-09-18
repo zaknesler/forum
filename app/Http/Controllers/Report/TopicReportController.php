@@ -18,9 +18,31 @@ class TopicReportController extends Controller
      */
     public function update(Topic $topic, Request $request)
     {
+        $this->authorize('report', $topic);
+
         $topic->toggleReport($request->user());
 
         flash('Topic has been ' . $topic->reportStatus() . '.');
+
+        return redirect()->back();
+    }
+
+    /**
+     * Delete all reports for specified topic.
+     *
+     * @param  Forum\Topic  $topic
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy(Topic $topic, Request $request)
+    {
+        if (!$request->user()->isGroup(['moderator', 'administrator'])) {
+            abort(404);
+        }
+
+        $topic->reports()->delete();
+
+        flash('Reports for this topic have been cleared.');
 
         return redirect()->back();
     }

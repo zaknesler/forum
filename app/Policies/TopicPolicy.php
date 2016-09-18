@@ -24,7 +24,7 @@ class TopicPolicy
     public function before(User $user, $ability)
     {
         if ($user->isGroup(['moderator', 'administrator']) && in_array($ability, $this->staffIgnoredAbilities)) {
-            return;
+            return false;
         }
 
         if ($user->isGroup('administrator')) {

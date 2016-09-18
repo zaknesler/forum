@@ -26,6 +26,8 @@ Route::group(['prefix' => 'topics'], function () {
 
     Route::put('{topic}/report', 'Report\TopicReportController@update')->name('topics.report.update');
 
+    Route::delete('{topic}/report', 'Report\TopicReportController@destroy')->name('topics.report.destroy');
+
     /**
      * Post routes
      */
@@ -39,6 +41,8 @@ Route::group(['prefix' => 'topics'], function () {
         Route::delete('{post}', 'PostController@destroy')->name('posts.destroy');
 
         Route::put('{post}/report', 'Report\PostReportController@update')->name('posts.report.update');
+
+        Route::delete('{post}/report', 'Report\PostReportController@destroy')->name('posts.report.destroy');
     });
 });
 

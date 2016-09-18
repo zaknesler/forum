@@ -13,6 +13,20 @@
         </h4>
 
         <div class="panel panel-default">
+            @if (auth()->user()->isGroup(['moderator', 'administrator']) && $post->reports->count())
+                <div class="panel-heading clearfix">
+                    <a href="#" onclick="event.preventDefault();document.getElementById('clear-post-reports-form').submit();" class="pull-right btn btn-xs btn-primary">
+                        Clear {{ ucwords(str_plural_text('report', $post->reports->count())) }}
+                    </a>
+
+                    <form method="POST" action="{{ route('posts.report.destroy', $post->id) }}" id="clear-post-reports-form" style="display: none;">
+                        {{ csrf_field() }}
+
+                        {{ method_field('DELETE') }}
+                    </form>
+                </div>
+            @endif
+
             <div class="panel-body">
                 @markdown($post->body)
             </div>

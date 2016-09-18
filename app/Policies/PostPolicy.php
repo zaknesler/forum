@@ -10,7 +10,7 @@ class PostPolicy
 {
     use HandlesAuthorization;
 
-    protected $ignoredAbilities = [
+    protected $staffIgnoredAbilities = [
         'report',
     ];
 
@@ -23,8 +23,8 @@ class PostPolicy
      */
     public function before(User $user, $ability)
     {
-        if ($user->isGroup('administrator') && in_array($ability, $this->ignoredAbilities)) {
-            return;
+        if ($user->isGroup(['moderator', 'administrator']) && in_array($ability, $this->staffIgnoredAbilities)) {
+            return false;
         }
 
         if ($user->isGroup('administrator')) {

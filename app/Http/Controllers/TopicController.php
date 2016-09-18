@@ -2,6 +2,7 @@
 
 namespace Forum\Http\Controllers;
 
+use Auth;
 use Forum\Topic;
 use Forum\Http\Requests;
 use Illuminate\Http\Request;
@@ -74,7 +75,14 @@ class TopicController extends Controller
             abort(404);
         }
 
-        $posts = $topic->posts()->with('user')->get();
+        if (Auth::user()->isGroup(['moderator', 'administrator'])) {
+            $topic = $topic->with('reports')->first();
+            $posts = $topic->posts()->with(['user', 'reports'])->get();
+        }
+
+        if (!Auth::user()->isGroup(['moderator', 'administrator'])) {
+            $posts = $topic->posts()->with('user')->get();
+        }
 
         return view('topics.show')
             ->with('topic', $topic)
