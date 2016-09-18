@@ -13,7 +13,7 @@
         </h4>
 
         <div class="panel panel-default">
-            @if (auth()->user()->isGroup(['moderator', 'administrator']) && $post->reports->count())
+            @if (auth()->check() && auth()->user()->isGroup(['moderator', 'administrator']) && $post->reports->count())
                 <div class="panel-heading clearfix">
                     <a href="#" onclick="event.preventDefault();document.getElementById('clear-post-reports-form').submit();" class="pull-right btn btn-xs btn-primary">
                         Clear {{ ucwords(str_plural_text('report', $post->reports->count())) }}
