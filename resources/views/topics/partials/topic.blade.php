@@ -21,7 +21,7 @@
                         Clear {{ ucwords(str_plural_text('report', $topic->reports->count())) }}
                     </a>
 
-                    <form method="POST" action="{{ route('topic.report.destroy', $topic->id) }}" id="clear-topic-reports-form" style="display: none;">
+                    <form method="POST" action="{{ route('topics.report.destroy', $topic->id) }}" id="clear-topic-reports-form" style="display: none;">
                         {{ csrf_field() }}
 
                         {{ method_field('DELETE') }}
