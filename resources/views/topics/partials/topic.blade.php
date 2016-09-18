@@ -19,13 +19,27 @@
                 @markdown($topic->body)
             </div>
 
-            @can ('update', $topic)
-                <div class="panel-footer">
-                    <a href="{{ route('topics.edit', $topic->id) }}" class="btn btn-sm btn-default">
-                        Edit
-                    </a>
+            @if (auth()->check() && (auth()->user()->can('update', $topic) || auth()->user()->can('report', $topic)))
+                <div class="panel-footer clearfix">
+                    @can ('update', $topic)
+                        <a href="{{ route('topics.edit', $topic->id) }}" class="pull-left btn btn-sm btn-default">
+                            Edit
+                        </a>
+                    @endcan
+
+                    @can ('report', $topic)
+                        <a href="#" onclick="event.preventDefault();document.getElementById('topic-report-form').submit();" class="pull-right btn btn-sm btn-primary">
+                            {{ $topic->isReportedBy(auth()->user()) ? 'Unreport' : 'Report' }}
+                        </a>
+
+                        <form method="POST" action="{{ route('topics.report.update', $topic->id) }}" id="topic-report-form" style="display: none;">
+                            {{ csrf_field() }}
+
+                            {{ method_field('PUT') }}
+                        </form>
+                    @endcan
                 </div>
-            @endcan
+            @endif
         </div>
     </div>
 </div>

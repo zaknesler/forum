@@ -10,6 +10,10 @@ class PostPolicy
 {
     use HandlesAuthorization;
 
+    protected $ignoredAbilities = [
+        'report',
+    ];
+
     /**
      * Method to be called before all others.
      *
@@ -19,6 +23,10 @@ class PostPolicy
      */
     public function before(User $user, $ability)
     {
+        if ($user->isGroup('administrator') && in_array($ability, $this->ignoredAbilities)) {
+            return;
+        }
+
         if ($user->isGroup('administrator')) {
             return true;
         }
@@ -56,7 +64,7 @@ class PostPolicy
      */
     public function update(User $user, Post $post)
     {
-        return $user->id === $post->user_id;
+        return $user->id == $post->user_id;
     }
 
     /**
@@ -68,7 +76,7 @@ class PostPolicy
      */
     public function delete(User $user, Post $post)
     {
-        return $user->id === $post->user_id;
+        return $user->id == $post->user_id;
     }
 
     /**
@@ -80,7 +88,6 @@ class PostPolicy
      */
     public function report(User $user, Post $post)
     {
-        return $user->id !== $post->user_id
-            || !$user->isGroup(['moderator', 'administrator']);
+        return $user->id !== $post->user_id;
     }
 }

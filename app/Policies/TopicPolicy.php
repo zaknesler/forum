@@ -10,6 +10,10 @@ class TopicPolicy
 {
     use HandlesAuthorization;
 
+    protected $staffIgnoredAbilities = [
+        'report',
+    ];
+
     /**
      * Method to be called before all others.
      *
@@ -19,6 +23,10 @@ class TopicPolicy
      */
     public function before(User $user, $ability)
     {
+        if ($user->isGroup(['moderator', 'administrator']) && in_array($ability, $this->staffIgnoredAbilities)) {
+            return;
+        }
+
         if ($user->isGroup('administrator')) {
             return true;
         }
@@ -56,7 +64,7 @@ class TopicPolicy
      */
     public function update(User $user, Topic $topic)
     {
-        return $user->id === $topic->user_id;
+        return $user->id == $topic->user_id;
     }
 
     /**
@@ -68,7 +76,7 @@ class TopicPolicy
      */
     public function delete(User $user, Topic $topic)
     {
-        return $user->id === $topic->user_id;
+        return $user->id == $topic->user_id;
     }
 
     /**
@@ -80,7 +88,6 @@ class TopicPolicy
      */
     public function report(User $user, Topic $topic)
     {
-        return $user->id !== $topic->user_id
-            || !$user->isGroup(['moderator', 'administrator']);
+        return $user->id !== $topic->user_id;
     }
 }
