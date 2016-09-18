@@ -76,7 +76,6 @@ class TopicController extends Controller
         }
 
         if (Auth::user()->isGroup(['moderator', 'administrator'])) {
-            $topic = $topic->with('reports')->first();
             $posts = $topic->posts()->with(['user', 'reports'])->get();
         }
 
