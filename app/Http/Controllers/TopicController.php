@@ -75,11 +75,9 @@ class TopicController extends Controller
             abort(404);
         }
 
-        if (Auth::user()->isGroup(['moderator', 'administrator'])) {
+        if (Auth::check() && Auth::user()->isGroup(['moderator', 'administrator'])) {
             $posts = $topic->posts()->with(['user', 'reports'])->get();
-        }
-
-        if (!Auth::user()->isGroup(['moderator', 'administrator'])) {
+        } else {
             $posts = $topic->posts()->with('user')->get();
         }
 
