@@ -113,6 +113,7 @@ class TopicController extends Controller
 
         $topic->update([
             'title' => $request->input('title'),
+            'slug' => str_slug($request->input('title')),
             'body' => $request->input('body'),
         ]);
 
