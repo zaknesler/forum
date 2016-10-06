@@ -28,7 +28,7 @@
             @endif
 
             <div class="panel-body">
-                @markdown($post->body)
+                {!! Markdown::convertToHtml($post->body) !!}
             </div>
 
             @if (auth()->check() && (auth()->user()->can('update', $post) || auth()->user()->can('report', $post)))

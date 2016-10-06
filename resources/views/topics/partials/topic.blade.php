@@ -30,7 +30,7 @@
             @endif
 
             <div class="panel-body">
-                @markdown($topic->body)
+                {!! Markdown::convertToHtml($topic->body) !!}
             </div>
 
             @if (auth()->check() && (auth()->user()->can('update', $topic) || auth()->user()->can('report', $topic)))

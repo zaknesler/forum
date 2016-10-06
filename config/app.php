@@ -168,7 +168,7 @@ return [
          */
         Barryvdh\Debugbar\ServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
-        Indal\Markdown\MarkdownServiceProvider::class,
+        GrahamCampbell\Markdown\MarkdownServiceProvider::class,
         Laravel\Scout\ScoutServiceProvider::class,
         PedZed\LaravelUploadcare\UploadcareServiceProvider::class,
 
@@ -227,6 +227,11 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        /**
+         * Package Class Aliases
+         */
+        'Markdown' => GrahamCampbell\Markdown\Facades\Markdown::class,
 
     ],
 
