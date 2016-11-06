@@ -3,7 +3,7 @@
 namespace Forum\Http\Controllers;
 
 use Auth;
-use Forum\Topic;
+use Forum\Models\Topic;
 use Forum\Http\Requests;
 use Illuminate\Http\Request;
 use Forum\Http\Requests\Topic\CreateTopicFormRequest;
@@ -14,7 +14,7 @@ class TopicController extends Controller
     /**
      * Display all topics.
      *
-     * @param  Forum\Topic  $topic
+     * @param  Forum\Models\Topic  $topic
      * @return \Illuminate\Http\Response
      */
     public function index(Topic $topic)
@@ -28,7 +28,7 @@ class TopicController extends Controller
     /**
      * Show the form for creating a new topic.
      *
-     * @param  Forum\Topic  $topic
+     * @param  Forum\Models\Topic  $topic
      * @return \Illuminate\Http\Response
      */
     public function create(Topic $topic)
@@ -42,7 +42,7 @@ class TopicController extends Controller
      * Store a newly created topic in the database.
      *
      * @param  Forum\Http\Requests\Topic\CreateTopicFormRequest  $request
-     * @param  Forum\Topic  $topic
+     * @param  Forum\Models\Topic  $topic
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(CreateTopicFormRequest $request, Topic $topic)
@@ -66,7 +66,7 @@ class TopicController extends Controller
      * Display the topic.
      *
      * @param  string  $slug
-     * @param  Forum\Topic  $topic
+     * @param  Forum\Models\Topic  $topic
      * @return \Illuminate\Http\Response
      */
     public function show($slug, Topic $topic)
@@ -89,7 +89,7 @@ class TopicController extends Controller
     /**
      * Show the form for editing the topic.
      *
-     * @param  Forum\Topic  $topic
+     * @param  Forum\Models\Topic  $topic
      * @return \Illuminate\Http\Response
      */
     public function edit(Topic $topic)
@@ -103,7 +103,7 @@ class TopicController extends Controller
     /**
      * Update the topic in the database.
      *
-     * @param  Forum\Topic  $topic
+     * @param  Forum\Models\Topic  $topic
      * @param  Forum\Http\Requests\Topic\UpdateTopicFormRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -125,7 +125,7 @@ class TopicController extends Controller
     /**
      * Remove the topic from the database.
      *
-     * @param  Forum\Topic  $topic
+     * @param  Forum\Models\Topic  $topic
      * @return \Illuminate\Http\Response
      */
     public function destroy(Topic $topic)

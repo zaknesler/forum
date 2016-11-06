@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(Forum\User::class, function (Faker\Generator $faker) {
+$factory->define(Forum\Models\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
@@ -23,12 +23,12 @@ $factory->define(Forum\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(Forum\Topic::class, function (Faker\Generator $faker) {
+$factory->define(Forum\Models\Topic::class, function (Faker\Generator $faker) {
     $title = $faker->sentence;
 
     return [
         'user_id' => function () {
-            return factory(Forum\User::class)->create()->id;
+            return factory(Forum\Models\User::class)->create()->id;
         },
         'title' => $title,
         'slug' => str_slug($title),

@@ -2,8 +2,8 @@
 
 namespace Forum\Providers;
 
-use Forum\Post;
-use Forum\Topic;
+use Forum\Models\Post;
+use Forum\Models\Topic;
 use Forum\Policies\PostPolicy;
 use Forum\Policies\TopicPolicy;
 use Illuminate\Support\Facades\Gate;

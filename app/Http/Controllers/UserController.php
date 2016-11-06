@@ -2,7 +2,7 @@
 
 namespace Forum\Http\Controllers;
 
-use Forum\User;
+use Forum\Models\User;
 use Forum\Http\Requests;
 use Illuminate\Http\Request;
 
@@ -12,7 +12,7 @@ class UserController extends Controller
      * Show the user's profile.
      *
      * @param  string  $username
-     * @param  Forum\User  $user
+     * @param  Forum\Models\User  $user
      * @return \Illuminate\Http\Response
      */
     public function show($username, User $user)

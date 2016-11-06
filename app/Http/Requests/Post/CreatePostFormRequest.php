@@ -2,7 +2,7 @@
 
 namespace Forum\Http\Requests\Post;
 
-use Forum\Post;
+use Forum\Models\Post;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreatePostFormRequest extends FormRequest

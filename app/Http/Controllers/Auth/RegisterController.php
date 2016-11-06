@@ -3,9 +3,10 @@
 namespace Forum\Http\Controllers\Auth;
 
 use Validator;
-use Forum\User;
+use Forum\Models\User;
 use Illuminate\Http\Request;
 use Forum\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
@@ -80,10 +81,10 @@ class RegisterController extends Controller
     {
         $this->validator($request->all())->validate();
 
-        $this->create($request->all());
+        event(new Registered($user = $this->create($request->all())));
 
-        flash('You have been registered. You may now sign in.');
+        flash('Your account has been created. You may now sign in.');
 
-        return redirect()->route('login');
+        return redirect('/login');
     }
 }

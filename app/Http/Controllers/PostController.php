@@ -2,8 +2,8 @@
 
 namespace Forum\Http\Controllers;
 
-use Forum\Post;
-use Forum\Topic;
+use Forum\Models\Post;
+use Forum\Models\Topic;
 use Forum\Http\Requests;
 use Illuminate\Http\Request;
 use Forum\Http\Requests\Post\CreatePostFormRequest;
@@ -15,8 +15,8 @@ class PostController extends Controller
      * Store the post in the database.
      *
      * @param  CreatePostFormRequest  $request
-     * @param  Topic  $topic
-     * @param  Post  $post
+     * @param  Forum\Models\Topic  $topic
+     * @param  Forum\Models\Post  $post
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(CreatePostFormRequest $request, Topic $topic, Post $post)
@@ -36,7 +36,7 @@ class PostController extends Controller
     /**
      * Show the form for editing the post.
      *
-     * @param  Forum\Post  $post
+     * @param  Forum\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
     public function edit(Post $post)
@@ -50,7 +50,7 @@ class PostController extends Controller
     /**
      * Update the post in the database.
      *
-     * @param  Forum\Post  $post
+     * @param  Forum\Models\Post  $post
      * @param  Forum\Http\Requests\Post\UpdatePostFormRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -72,7 +72,7 @@ class PostController extends Controller
     /**
      * Remove the post from the database.
      *
-     * @param  Forum\Post  $post
+     * @param  Forum\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
     public function destroy(Post $post)

@@ -13,7 +13,7 @@
         @endforeach
 
         {{-- Show the form to create a new post in reply to the current topic. --}}
-        @can ('create', \Forum\Post::class)
+        @can ('create', \Forum\Models\Post::class)
             <h4>Reply to this topic</h4>
 
             @include('posts.partials.create', $topic)

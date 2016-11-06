@@ -32,7 +32,7 @@
                 </div>
             </div>
             <div class="col-md-2">
-                @can ('create', Forum\Topic::class)
+                @can ('create', Forum\Models\Topic::class)
                     <a href="{{ route('topics.create') }}" class="btn btn-block btn-primary">
                         Create Topic
                     </a>

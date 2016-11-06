@@ -1,10 +1,10 @@
 <?php
 
-namespace Forum;
+namespace Forum\Models;
 
-use Forum\Post;
-use Forum\User;
-use Forum\Report;
+use Forum\Models\Post;
+use Forum\Models\User;
+use Forum\Models\Report;
 use Forum\Traits\Reportable;
 use Illuminate\Database\Eloquent\Model;
 

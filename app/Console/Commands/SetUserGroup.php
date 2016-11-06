@@ -2,7 +2,7 @@
 
 namespace Forum\Console\Commands;
 
-use Forum\User;
+use Forum\Models\User;
 use Illuminate\Console\Command;
 
 class SetUserGroup extends Command

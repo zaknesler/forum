@@ -1,9 +1,9 @@
 <?php
 
-namespace Forum;
+namespace Forum\Models;
 
-use Forum\Post;
-use Forum\Topic;
+use Forum\Models\Post;
+use Forum\Models\Topic;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 

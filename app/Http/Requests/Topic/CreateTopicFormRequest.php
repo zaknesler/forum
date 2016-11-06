@@ -2,7 +2,7 @@
 
 namespace Forum\Http\Requests\Topic;
 
-use Forum\Topic;
+use Forum\Models\Topic;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateTopicFormRequest extends FormRequest

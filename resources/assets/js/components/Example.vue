@@ -6,7 +6,7 @@
                     <div class="panel-heading">Example Component</div>
 
                     <div class="panel-body">
-                        I'm an example component!
+                        <p>I'm an example component!</p>
                     </div>
                 </div>
             </div>
@@ -16,7 +16,7 @@
 
 <script>
     export default {
-        ready() {
+        mounted() {
             console.log('Component ready.')
         }
     }

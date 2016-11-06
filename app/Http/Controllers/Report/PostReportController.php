@@ -2,7 +2,7 @@
 
 namespace Forum\Http\Controllers\Report;
 
-use Forum\Post;
+use Forum\Models\Post;
 use Forum\Http\Requests;
 use Illuminate\Http\Request;
 use Forum\Http\Controllers\Controller;
@@ -12,7 +12,7 @@ class PostReportController extends Controller
     /**
      * Toggle the report status of the post.
      *
-     * @param  Forum\Post  $post
+     * @param  Forum\Models\Post  $post
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -30,7 +30,7 @@ class PostReportController extends Controller
     /**
      * Delete all reports for specified post.
      *
-     * @param  Forum\Post  $post
+     * @param  Forum\Models\Post  $post
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */

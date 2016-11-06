@@ -2,9 +2,9 @@
 
 namespace Forum\Providers;
 
-use Forum\Post;
-use Forum\User;
-use Forum\Topic;
+use Forum\Models\Post;
+use Forum\Models\User;
+use Forum\Models\Topic;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 

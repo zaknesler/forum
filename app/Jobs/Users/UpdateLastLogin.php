@@ -2,8 +2,8 @@
 
 namespace Forum\Jobs\Users;
 
-use Forum\User;
 use Carbon\Carbon;
+use Forum\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -16,7 +16,7 @@ class UpdateLastLogin implements ShouldQueue
     /**
      * User to update.
      *
-     * @var Forum\User
+     * @var Forum\Models\User
      */
     protected $user;
 

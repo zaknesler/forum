@@ -2,8 +2,8 @@
 
 namespace Forum\Policies;
 
-use Forum\User;
-use Forum\Topic;
+use Forum\Models\User;
+use Forum\Models\Topic;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class TopicPolicy
@@ -17,7 +17,7 @@ class TopicPolicy
     /**
      * Method to be called before all others.
      *
-     * @param  Forum\User  $user
+     * @param  Forum\Models\User  $user
      * @param  void  $ability
      * @return boolean
      */
@@ -35,8 +35,8 @@ class TopicPolicy
     /**
      * Determine whether the user can view the topic.
      *
-     * @param  Forum\User  $user
-     * @param  Forum\Topic  $topic
+     * @param  Forum\Models\User  $user
+     * @param  Forum\Models\Topic  $topic
      * @return mixed
      */
     public function view(User $user, Topic $topic)
@@ -47,7 +47,7 @@ class TopicPolicy
     /**
      * Determine whether the user can create topics.
      *
-     * @param  Forum\User  $user
+     * @param  Forum\Models\User  $user
      * @return mixed
      */
     public function create(User $user)
@@ -58,8 +58,8 @@ class TopicPolicy
     /**
      * Determine whether the user can update the topic.
      *
-     * @param  Forum\User  $user
-     * @param  Forum\Topic  $topic
+     * @param  Forum\Models\User  $user
+     * @param  Forum\Models\Topic  $topic
      * @return mixed
      */
     public function update(User $user, Topic $topic)
@@ -70,8 +70,8 @@ class TopicPolicy
     /**
      * Determine whether the user can delete the topic.
      *
-     * @param  Forum\User  $user
-     * @param  Forum\Topic  $topic
+     * @param  Forum\Models\User  $user
+     * @param  Forum\Models\Topic  $topic
      * @return mixed
      */
     public function delete(User $user, Topic $topic)
@@ -82,8 +82,8 @@ class TopicPolicy
     /**
      * Determine whether the user can report the topic.
      *
-     * @param  Forum\User  $user
-     * @param  Forum\Topic  $topic
+     * @param  Forum\Models\User  $user
+     * @param  Forum\Models\Topic  $topic
      * @return mixed
      */
     public function report(User $user, Topic $topic)

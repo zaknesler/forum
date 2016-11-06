@@ -17,11 +17,13 @@
         </script>
     </head>
     <body>
-        @include('layouts.partials.navbar')
+        <div id="app">
+            @include('layouts.partials.navbar')
 
-        @include('layouts.partials.flash')
+            @include('layouts.partials.flash')
 
-        @yield('content')
+            @yield('content')
+        </div>
 
         <script src="{{ elixir('assets/js/app.js') }}"></script>
 
