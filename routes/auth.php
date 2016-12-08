@@ -10,6 +10,8 @@ Route::post('settings/avatar', 'Settings\AvatarSettingsController@update')->name
 
 Route::delete('settings/avatar', 'Settings\AvatarSettingsController@destroy')->name('settings.avatar.destroy');
 
+Route::delete('reports/{report}', 'Report\\ReportController@destroy')->name('reports.destroy');
+
 /**
  * Topic routes
  */
@@ -24,9 +26,9 @@ Route::group(['prefix' => 'topics'], function () {
 
     Route::delete('{topic}', 'TopicController@destroy')->name('topics.destroy');
 
-    Route::put('{topic}/report', 'Report\TopicReportController@update')->name('topics.report.update');
+    Route::put('{topic}/report', 'Report\TopicReportController@update')->name('topics.reports.update');
 
-    Route::delete('{topic}/report', 'Report\TopicReportController@destroy')->name('topics.report.destroy');
+    Route::get('{topic}/reports', 'Report\TopicReportController@show')->name('topics.reports.show');
 
     /**
      * Post routes
@@ -40,9 +42,9 @@ Route::group(['prefix' => 'topics'], function () {
 
         Route::delete('{post}', 'PostController@destroy')->name('posts.destroy');
 
-        Route::put('{post}/report', 'Report\PostReportController@update')->name('posts.report.update');
+        Route::put('{post}/report', 'Report\PostReportController@update')->name('posts.reports.update');
 
-        Route::delete('{post}/report', 'Report\PostReportController@destroy')->name('posts.report.destroy');
+        Route::get('{post}/reports', 'Report\PostReportController@show')->name('posts.reports.show');
     });
 });
 

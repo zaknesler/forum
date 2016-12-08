@@ -19,7 +19,7 @@ class TopicController extends Controller
      */
     public function index(Topic $topic)
     {
-        $topics = $topic->with('user')->latestFirst()->paginate(25);
+        $topics = $topic->with('user')->latest()->paginate(25);
 
         return view('topics.index')
             ->with('topics', $topics);
@@ -75,11 +75,7 @@ class TopicController extends Controller
             abort(404);
         }
 
-        if (Auth::check() && Auth::user()->isGroup(['moderator', 'administrator'])) {
-            $posts = $topic->posts()->with(['user', 'reports'])->get();
-        } else {
-            $posts = $topic->posts()->with('user')->get();
-        }
+        $posts = $topic->posts()->with('user')->get();
 
         return view('topics.show')
             ->with('topic', $topic)

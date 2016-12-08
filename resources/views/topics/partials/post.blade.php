@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" id="post-{{ $post->id }}">
     <div class="col-md-1 hidden-xs hidden-sm col-no-pad clearfix">
         <div class="user-avatar user-avatar--forum pull-right">
             <img src="{{ $post->user->getAvatar(40) }}" alt="User Avatar" class="user-avatar__image">
@@ -13,18 +13,14 @@
         </h4>
 
         <div class="panel panel-default">
-            @if (auth()->check() && auth()->user()->isGroup(['moderator', 'administrator']) && $post->reports->count())
-                <div class="panel-heading clearfix">
-                    <a href="#" onclick="event.preventDefault();document.getElementById('clear-post-reports-form').submit();" class="pull-right btn btn-xs btn-primary">
-                        Clear {{ ucwords(str_plural_text('report', $post->reports->count())) }}
-                    </a>
-
-                    <form method="POST" action="{{ route('posts.report.destroy', $post->id) }}" id="clear-post-reports-form" style="display: none;">
-                        {{ csrf_field() }}
-
-                        {{ method_field('DELETE') }}
-                    </form>
-                </div>
+            @if (auth()->check() && auth()->user()->isGroup(['moderator', 'administrator']))
+                @if ($post->reports_count)
+                    <div class="panel-heading text-right">
+                        <a href="{{ route('posts.reports.show', $post) }}" class="btn btn-xs btn-primary">
+                            View {{ ucwords(str_plural_text('report', $post->reports_count)) }}
+                        </a>
+                    </div>
+                @endif
             @endif
 
             <div class="panel-body">
@@ -44,7 +40,7 @@
                             {{ $post->isReportedBy(auth()->user()) ? 'Unreport' : 'Report' }}
                         </a>
 
-                        <form method="POST" action="{{ route('posts.report.update', $post->id) }}" id="post-report-form" style="display: none;">
+                        <form method="POST" action="{{ route('posts.reports.update', $post->id) }}" id="post-report-form" style="display: none;">
                             {{ csrf_field() }}
 
                             {{ method_field('PUT') }}

@@ -5,6 +5,7 @@ namespace Forum\Providers;
 use Forum\Models\Post;
 use Forum\Models\User;
 use Forum\Models\Topic;
+use Forum\Models\Report;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -31,6 +32,8 @@ class RouteServiceProvider extends ServiceProvider
         Route::model('user', User::class);
 
         Route::model('topic', Topic::class);
+
+        Route::model('report', Report::class);
 
         parent::boot();
     }
