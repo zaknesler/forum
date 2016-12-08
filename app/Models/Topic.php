@@ -13,20 +13,27 @@ class Topic extends Model
     use Reportable;
 
     /**
-     * The attributes that aren't mass assignable.
+     * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $guarded = [];
+    protected $fillable = [
+        'title',
+        'slug',
+        'body',
+        'user_id',
+    ];
 
     /**
-     * The accessors to append to the model's array form.
+     * Fetch the most recently created topics.
      *
-     * @var array
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
      */
-    protected $appends = [
-        'reports_count',
-    ];
+    public function scopeLatestFirst($query)
+    {
+        return $query->orderBy('created_at', 'desc');
+    }
 
     /**
      * A topic belongs to a user.
@@ -39,7 +46,7 @@ class Topic extends Model
     }
 
     /**
-     * A topic has many posts.
+     * A topic can have many posts.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

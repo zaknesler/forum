@@ -12,11 +12,19 @@ class User extends Authenticatable
     use Notifiable;
 
     /**
-     * The attributes that aren't mass assignable.
+     * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $guarded = [];
+    protected $fillable = [
+        'name',
+        'username',
+        'email',
+        'avatar',
+        'group',
+        'password',
+        'last_login_at',
+    ];
 
     /**
      * The attributes that should be mutated to dates.
@@ -82,7 +90,7 @@ class User extends Authenticatable
     }
 
     /**
-     * A user has many topics.
+     * Get the topics that the user owns.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -92,7 +100,7 @@ class User extends Authenticatable
     }
 
     /**
-     * A user has many posts.
+     * Get the posts that the user owns.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

@@ -13,19 +13,14 @@ class Post extends Model
     use Reportable;
 
     /**
-     * The attributes that aren't mass assignable.
+     * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $guarded = [];
 
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array
-     */
-    protected $appends = [
-        'reports_count',
+    protected $fillable = [
+        'body',
+        'user_id',
     ];
 
     /**
