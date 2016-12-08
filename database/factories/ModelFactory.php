@@ -35,3 +35,15 @@ $factory->define(Forum\Models\Topic::class, function (Faker\Generator $faker) {
         'body' => $faker->paragraph,
     ];
 });
+
+$factory->define(Forum\Models\Post::class, function (Faker\Generator $faker) {
+    return [
+        'user_id' => function () {
+            return factory(Forum\Models\User::class)->create()->id;
+        },
+        'topic_id' => function () {
+            return factory(Forum\Models\Topic::class)->create()->id;
+        },
+        'body' => $faker->paragraph,
+    ];
+});

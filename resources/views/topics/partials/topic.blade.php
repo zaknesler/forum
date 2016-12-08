@@ -15,18 +15,14 @@
         </h4>
 
         <div class="panel panel-default">
-            @if (auth()->check() && auth()->user()->isGroup(['moderator', 'administrator']) && $topic->reports->count())
-                <div class="panel-heading clearfix">
-                    <a href="#" onclick="event.preventDefault();document.getElementById('clear-topic-reports-form').submit();" class="pull-right btn btn-xs btn-primary">
-                        Clear {{ ucwords(str_plural_text('report', $topic->reports->count())) }}
-                    </a>
-
-                    <form method="POST" action="{{ route('topics.report.destroy', $topic->id) }}" id="clear-topic-reports-form" style="display: none;">
-                        {{ csrf_field() }}
-
-                        {{ method_field('DELETE') }}
-                    </form>
-                </div>
+            @if (auth()->check() && auth()->user()->isGroup(['moderator', 'administrator']))
+                @if ($topic->reports_count)
+                    <div class="panel-heading text-right">
+                        <a href="{{ route('topics.reports.show', $topic) }}" class="btn btn-xs btn-primary">
+                            View {{ ucwords(str_plural_text('report', $topic->reports_count)) }}
+                        </a>
+                    </div>
+                @endif
             @endif
 
             <div class="panel-body">
@@ -46,7 +42,7 @@
                             {{ $topic->isReportedBy(auth()->user()) ? 'Unreport' : 'Report' }}
                         </a>
 
-                        <form method="POST" action="{{ route('topics.report.update', $topic->id) }}" id="topic-report-form" style="display: none;">
+                        <form method="POST" action="{{ route('topics.reports.update', $topic->id) }}" id="topic-report-form" style="display: none;">
                             {{ csrf_field() }}
 
                             {{ method_field('PUT') }}
