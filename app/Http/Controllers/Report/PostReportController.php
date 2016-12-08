@@ -9,6 +9,17 @@ use Forum\Http\Controllers\Controller;
 
 class PostReportController extends Controller
 {
+    public function show(Post $post, Request $request) {
+        if (!$request->user()->isGroup(['moderator', 'administrator'])) {
+            abort(404);
+        }
+
+        $reports = $post->reports()->with('user')->get();
+
+        return view('reports.show')
+            ->with('reports', $reports);
+    }
+
     /**
      * Toggle the report status of the post.
      *
@@ -28,7 +39,7 @@ class PostReportController extends Controller
     }
 
     /**
-     * Delete all reports for specified post.
+     * Delete a report for a specified post.
      *
      * @param  Forum\Models\Post  $post
      * @param  \Illuminate\Http\Request  $request
@@ -42,7 +53,7 @@ class PostReportController extends Controller
 
         $post->reports()->delete();
 
-        flash('Reports for this post have been cleared.');
+        flash('That report has been cleared.');
 
         return redirect()->back();
     }

@@ -8,6 +8,11 @@ use Forum\Models\Report;
 
 trait Reportable
 {
+    public function getReportsCountAttribute()
+    {
+        return $this->reports()->count();
+    }
+
     /**
      * A model with the reportable trait morphs to many reports.
      *
