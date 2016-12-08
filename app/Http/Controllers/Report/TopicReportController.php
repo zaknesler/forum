@@ -9,17 +9,6 @@ use Forum\Http\Controllers\Controller;
 
 class TopicReportController extends Controller
 {
-    public function show(Topic $topic, Request $request) {
-        if (!$request->user()->isGroup(['moderator', 'administrator'])) {
-            abort(404);
-        }
-
-        $reports = $topic->reports()->with('user')->get();
-
-        return view('reports.show')
-            ->with('reports', $reports);
-    }
-
     /**
      * Toggle the report status of the topic.
      *
@@ -34,6 +23,26 @@ class TopicReportController extends Controller
         $topic->toggleReport($request->user());
 
         flash('Topic has been ' . $topic->reportStatus() . '.');
+
+        return redirect()->back();
+    }
+
+    /**
+     * Delete all reports for specified topic.
+     *
+     * @param  Forum\Models\Topic  $topic
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy(Topic $topic, Request $request)
+    {
+        if (!$request->user()->isGroup(['moderator', 'administrator'])) {
+            abort(404);
+        }
+
+        $topic->reports()->delete();
+
+        flash('Reports for this topic have been cleared.');
 
         return redirect()->back();
     }
