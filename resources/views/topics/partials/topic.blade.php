@@ -16,10 +16,10 @@
 
         <div class="panel panel-default">
             @if (auth()->check() && auth()->user()->isGroup(['moderator', 'administrator']))
-                @if ($topic->reports_count)
+                @if ($topic->reports->count())
                     <div class="panel-heading text-right">
                         <a href="{{ route('topics.reports.show', $topic) }}" class="btn btn-xs btn-primary">
-                            View {{ ucwords(str_plural_text('report', $topic->reports_count)) }}
+                            View {{ ucwords(str_plural_text('report', $topic->reports->count())) }}
                         </a>
                     </div>
                 @endif
@@ -38,11 +38,11 @@
                     @endcan
 
                     @can ('report', $topic)
-                        <a href="#" onclick="event.preventDefault();document.getElementById('topic-report-form').submit();" class="pull-right btn btn-sm btn-primary">
+                        <a href="#" onclick="event.preventDefault();document.getElementById('topic-report-form-{{ $topic->id }}').submit();" class="pull-right btn btn-sm btn-primary">
                             {{ $topic->isReportedBy(auth()->user()) ? 'Unreport' : 'Report' }}
                         </a>
 
-                        <form method="POST" action="{{ route('topics.reports.update', $topic->id) }}" id="topic-report-form" style="display: none;">
+                        <form method="POST" action="{{ route('topics.reports.update', $topic->id) }}" id="topic-report-form-{{ $topic->id }}" style="display: none;">
                             {{ csrf_field() }}
 
                             {{ method_field('PUT') }}

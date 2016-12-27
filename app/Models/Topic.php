@@ -20,15 +20,6 @@ class Topic extends Model
     protected $guarded = [];
 
     /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array
-     */
-    protected $appends = [
-        'reports_count',
-    ];
-
-    /**
      * A topic belongs to a user.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

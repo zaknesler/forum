@@ -12,11 +12,11 @@
     </div>
 
     <div class="pull-right text-right">
-        <a href="{{ route('reports.destroy', $report->id) }}" onclick="event.preventDefault();document.getElementById('report-delete-form').submit();" class="btn btn-sm btn-danger">
+        <a href="{{ route('reports.destroy', $report->id) }}" onclick="event.preventDefault();document.getElementById('report-delete-form-{{ $report->id }}').submit();" class="btn btn-sm btn-danger">
             Delete
         </a>
 
-        <form method="POST" action="{{ route('reports.destroy', $report->id) }}" id="report-delete-form" style="display: none;">
+        <form method="POST" action="{{ route('reports.destroy', $report->id) }}" id="report-delete-form-{{ $report->id }}" style="display: none;">
             {{ csrf_field() }}
 
             {{ method_field('DELETE') }}

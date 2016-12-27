@@ -19,7 +19,7 @@ class TopicController extends Controller
      */
     public function index(Topic $topic)
     {
-        $topics = $topic->with('user')->latest()->paginate(25);
+        $topics = $topic->with(['user', 'posts'])->latest()->paginate(25);
 
         return view('topics.index')
             ->with('topics', $topics);
@@ -75,10 +75,10 @@ class TopicController extends Controller
             abort(404);
         }
 
-        $posts = $topic->posts()->with('user')->get();
+        $posts = $topic->posts()->with(['user', 'reports'])->get();
 
         return view('topics.show')
-            ->with('topic', $topic)
+            ->with('topic', $topic->load('reports'))
             ->with('posts', $posts);
     }
 
