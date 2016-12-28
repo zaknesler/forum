@@ -196,5 +196,5 @@
         UPLOADCARE_TABS = "file url";
         UPLOADCARE_PUBLIC_KEY = "{{ config('uploadcare.public_key') }}";
     </script>
-    <script src="//ucarecdn.com/widget/2.9.0/uploadcare/uploadcare.full.min.js"></script>
+    <script src="//ucarecdn.com/widget/2.10.2/uploadcare/uploadcare.full.min.js"></script>
 @endsection
