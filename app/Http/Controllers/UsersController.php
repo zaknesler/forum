@@ -6,7 +6,7 @@ use Forum\Models\User;
 use Forum\Http\Requests;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class UsersController extends Controller
 {
     /**
      * Show the user's profile.

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Forum\Http\Requests\Topic\CreateTopicFormRequest;
 use Forum\Http\Requests\Topic\UpdateTopicFormRequest;
 
-class TopicController extends Controller
+class TopicsController extends Controller
 {
     /**
      * Display all topics.
@@ -49,9 +49,7 @@ class TopicController extends Controller
     {
         $this->authorize('create', $topic);
 
-        $user = $request->user();
-
-        $user->topics()->create([
+        $request->user()->topics()->create([
             'title' => $request->input('title'),
             'slug' => str_slug($request->input('title')),
             'body' => $request->input('body'),

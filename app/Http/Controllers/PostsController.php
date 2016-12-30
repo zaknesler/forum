@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Forum\Http\Requests\Post\CreatePostFormRequest;
 use Forum\Http\Requests\Post\UpdatePostFormRequest;
 
-class PostController extends Controller
+class PostsController extends Controller
 {
     /**
      * Store the post in the database.

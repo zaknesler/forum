@@ -6,7 +6,7 @@ use Forum\Models\Report;
 use Illuminate\Http\Request;
 use Forum\Http\Controllers\Controller;
 
-class ReportController extends Controller
+class ReportsController extends Controller
 {
     /**
      * Delete the report.

@@ -10,42 +10,42 @@ Route::post('settings/avatar', 'Settings\AvatarSettingsController@update')->name
 
 Route::delete('settings/avatar', 'Settings\AvatarSettingsController@destroy')->name('settings.avatar.destroy');
 
-Route::delete('reports/{report}', 'Report\\ReportController@destroy')->name('reports.destroy');
+Route::delete('reports/{report}', 'Report\\ReportsController@destroy')->name('reports.destroy');
 
 /**
  * Topic routes
  */
 Route::group(['prefix' => 'topics'], function () {
-    Route::get('create', 'TopicController@create')->name('topics.create');
+    Route::get('create', 'TopicsController@create')->name('topics.create');
 
-    Route::post('/', 'TopicController@store')->name('topics.store');
+    Route::post('/', 'TopicsController@store')->name('topics.store');
 
-    Route::get('{topic}/edit', 'TopicController@edit')->name('topics.edit');
+    Route::get('{topic}/edit', 'TopicsController@edit')->name('topics.edit');
 
-    Route::put('{topic}', 'TopicController@update')->name('topics.update');
+    Route::put('{topic}', 'TopicsController@update')->name('topics.update');
 
-    Route::delete('{topic}', 'TopicController@destroy')->name('topics.destroy');
+    Route::delete('{topic}', 'TopicsController@destroy')->name('topics.destroy');
 
-    Route::put('{topic}/report', 'Report\TopicReportController@update')->name('topics.reports.update');
+    Route::put('{topic}/report', 'Report\TopicReportsController@update')->name('topics.reports.update');
 
-    Route::get('{topic}/reports', 'Report\TopicReportController@show')->name('topics.reports.show');
+    Route::get('{topic}/reports', 'Report\TopicReportsController@show')->name('topics.reports.show');
 
     /**
      * Post routes
      */
-    Route::post('{topic}/posts', 'PostController@store')->name('posts.store');
+    Route::post('{topic}/posts', 'PostsController@store')->name('posts.store');
 
     Route::group(['prefix' => 'posts'], function () {
-        Route::get('{post}/edit', 'PostController@edit')->name('posts.edit');
+        Route::get('{post}/edit', 'PostsController@edit')->name('posts.edit');
 
-        Route::put('{post}', 'PostController@update')->name('posts.update');
+        Route::put('{post}', 'PostsController@update')->name('posts.update');
 
-        Route::delete('{post}', 'PostController@destroy')->name('posts.destroy');
+        Route::delete('{post}', 'PostsController@destroy')->name('posts.destroy');
 
-        Route::put('{post}/report', 'Report\PostReportController@update')->name('posts.reports.update');
+        Route::put('{post}/report', 'Report\PostReportsController@update')->name('posts.reports.update');
 
-        Route::get('{post}/reports', 'Report\PostReportController@show')->name('posts.reports.show');
+        Route::get('{post}/reports', 'Report\PostReportsController@show')->name('posts.reports.show');
     });
 });
 
-Route::get('@{username}', 'UserController@show')->name('users.show');
+Route::get('@{username}', 'UsersController@show')->name('users.show');

@@ -16,7 +16,7 @@
                     </div>
 
                     <div class="panel-body">
-                        @if ($topics->count())
+                        @if ($topics->total())
                             <ul class="list-group">
                                 {{-- Loop through each topic and display a list item for it. --}}
                                 @foreach ($topics as $topic)
@@ -24,13 +24,14 @@
                                 @endforeach
                             </ul>
 
-                            {{ $topics->links() }}
+                            {{ $topics->render() }}
                         @else
                             <p>There are no topics to display.</p>
                         @endif
                     </div>
                 </div>
             </div>
+
             <div class="col-md-2">
                 @can ('create', Forum\Models\Topic::class)
                     <a href="{{ route('topics.create') }}" class="btn btn-block btn-primary">
