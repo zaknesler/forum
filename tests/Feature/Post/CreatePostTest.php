@@ -7,27 +7,12 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class CreateTopicTest extends TestCase
+class CreatePostTest extends TestCase
 {
     use DatabaseMigrations;
 
     /** @test */
-    function user_can_create_a_topic()
-    {
-        $user = factory(User::class)->create();
-        $this->actingAs($user);
-
-        $this->post('/topics/', [
-            'title' => 'An example topic',
-            'body' => 'A body for the example topic',
-        ]);
-
-        $this->assertResponseStatus(302);
-        $this->assertEquals(1, Topic::count());
-    }
-
-    /** @test */
-    function a_topic_can_be_replied_to()
+    function a_post_can_be_created()
     {
         $user = factory(User::class)->create();
         $topic = factory(Topic::class)->create();
@@ -37,8 +22,11 @@ class CreateTopicTest extends TestCase
             ->type('This is just a test reply to the topic.', 'body')
             ->press('Post');
 
+        $post = Post::first();
+
         $this->assertResponseStatus(200);
         $this->assertEquals(1, Post::count());
-        $this->assertEquals($topic->id, Post::first()->id);
+        $this->assertEquals('This is just a test reply to the topic.', $post->body);
+        $this->assertEquals($topic->id, $post->topic_id);
     }
 }
