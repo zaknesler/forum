@@ -27,6 +27,12 @@
 
                                 <strong>Email</strong>
                                 <p>{{ $user->email }}</p>
+
+                                <strong>Joined</strong>
+                                <p title="{{ $user->created_at }}">{{ $user->created_at->diffForHumans() }}</p>
+
+                                <strong>Last Login</strong>
+                                <p title="{{ $user->last_login_at }}">{{ $user->last_login_at->diffForHumans() }}</p>
                             </div>
                         </div>
                     </div>
