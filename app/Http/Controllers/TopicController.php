@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Topic;
 use Illuminate\Http\Request;
+use App\Transformers\TopicTransformer;
+use App\Http\Requests\Topic\StoreTopicFormRequest;
+use App\Http\Requests\Topic\UpdateTopicFormRequest;
 
 class TopicController extends Controller
 {
@@ -14,7 +17,9 @@ class TopicController extends Controller
      */
     public function index()
     {
-        //
+        $topics = Topic::latest()->paginate(15);
+
+        return fractal($topics, new TopicTransformer);
     }
 
     /**
@@ -30,28 +35,29 @@ class TopicController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\Topic\StoreTopicFormRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTopicFormRequest $request)
     {
         $topic = $request->user()->topics()->create($request->only([
             'title',
             'body',
         ]));
 
-        return $topic;
+        return fractal($topic, new TopicTransformer)->toArray();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function show(Topic $topic)
+    public function show($slug)
     {
-        //
+        $topic = Topic::where('slug', $slug)->first();
+
+        return fractal($topic, new TopicTransformer)->toArray();
     }
 
     /**
@@ -68,23 +74,27 @@ class TopicController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\Topic\UpdateTopicFormRequest  $request
      * @param  \App\Models\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Topic $topic)
+    public function update(UpdateTopicFormRequest $request, Topic $topic)
     {
-        //
+        $topic->update($request->only([
+            'title',
+            'body',
+        ]));
+
+        return fractal($topic, new TopicTransformer)->toArray();
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Topic  $topic
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Topic $topic)
     {
-        //
+        $topic->delete();
     }
 }
