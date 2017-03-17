@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Topic;
 use Illuminate\Http\Request;
 use App\Transformers\TopicTransformer;
-use App\Http\Requests\Topic\StoreTopicFormRequest;
-use App\Http\Requests\Topic\UpdateTopicFormRequest;
+use App\Http\Requests\Topic\StoreTopic;
+use App\Http\Requests\Topic\UpdateTopic;
 
 class TopicController extends Controller
 {
@@ -35,10 +35,10 @@ class TopicController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  App\Http\Requests\Topic\StoreTopicFormRequest  $request
+     * @param  App\Http\Requests\Topic\StoreTopic  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTopicFormRequest $request)
+    public function store(StoreTopic $request)
     {
         $topic = $request->user()->topics()->create($request->only([
             'title',
@@ -74,11 +74,11 @@ class TopicController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  App\Http\Requests\Topic\UpdateTopicFormRequest  $request
+     * @param  App\Http\Requests\Topic\UpdateTopic  $request
      * @param  \App\Models\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTopicFormRequest $request, Topic $topic)
+    public function update(UpdateTopic $request, Topic $topic)
     {
         $topic->update($request->only([
             'title',
