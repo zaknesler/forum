@@ -1,0 +1,33 @@
+// Transition
+@mixin transition($transition...) {
+    -moz-transition: $transition;
+    -o-transition: $transition;
+    -webkit-transition: $transition;
+    transition: $transition;
+}
+
+// Light Anchor
+@mixin lightAnchor {
+    a {
+        color: $color-light;
+
+        &:hover,
+        &:active,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
+}
+
+// Dark Anchor
+@mixin darkAnchor {
+    a {
+        color: $color-dark;
+
+        &:hover,
+        &:active,
+        &:focus {
+            color: lighten($color-dark, 20%);
+        }
+    }
+}

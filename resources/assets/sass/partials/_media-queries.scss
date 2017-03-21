@@ -1,0 +1,53 @@
+@media screen and (max-width: 1040px) {
+    .post .post-author_image {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .post .post-body {
+        ol,
+        ul {
+            margin-left: 20px;
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .header {
+        .header-wrap {
+            display: block;
+        }
+
+        .header-top {
+            width: 100%;
+        }
+
+        .header-brand {
+            margin-right: 0;
+        }
+
+        .header-toggle {
+            display: block;
+        }
+
+        .header-nav {
+            display: none;
+            text-align: center;
+            margin: 20px 0 -20px 0;
+
+            &.visible {
+                display: block;
+            }
+
+            .left,
+            .right {
+                li {
+                    display: block;
+                    width: 100%;
+                    margin: 0 0 20px 0;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,58 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $font-family-sans-serif;
+    font-weight: 400;
+    font-size: $font-size-base;
+    line-height: 1.7;
+    color: $body-text-color;
+    background-color: $body-background-color;
+    overflow-wrap: break-word;
+}
+
+a {
+    text-decoration: none;
+    color: $color-theme;
+
+    &:hover,
+    &:active,
+    &:focus {
+        outline: 0;
+        color: darken($color-theme, 20%);
+        @include transition(color 150ms ease-in);
+    }
+}
+
+b, strong {
+    font-weight: $font-weight-bold;
+}
+
+h1 {
+    font-size: $font-size-base * 2;
+}
+
+h2 {
+    font-size: $font-size-base * 1.5;
+}
+
+h3 {
+    font-size: $font-size-base * 1.17;
+}
+
+h4 {
+    font-size: $font-size-base;
+}
+
+h5 {
+    font-size: $font-size-base * 0.83;
+}
+
+h6 {
+    font-size: $font-size-base * 0.67;
+}

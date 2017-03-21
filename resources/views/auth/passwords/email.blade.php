@@ -1,46 +1,41 @@
 @extends('layouts.app')
 
+@section('banner')
+    @component('layouts.components.banner')
+        Reset Password
+    @endcomponent
+@endsection
+
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
-                <div class="panel-body">
+    <div class="content">
+        <div class="content-wrap container">
+            <form action="{{ route('password.email') }}" method="POST">
+                {{ csrf_field() }}
+
+                <input type="hidden" name="token" value="{{ $token }}" />
+
+                <div class="form">
                     @if (session('status'))
-                        <div class="alert alert-success">
+                        <div class="form-title">
                             {{ session('status') }}
                         </div>
                     @endif
 
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('password.email') }}">
-                        {{ csrf_field() }}
+                    <div class="form-group{{ $errors->first('email', ' has-error') }}">
+                        <div class="form-label">E-mail</div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                        <input type="email" name="email" value="{{ $email or old('email') }}" required autofocus class="form-input" />
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                        @if ($errors->has('email'))
+                            <div class="form-message">{{ $errors->first('email') }}</div>
+                        @endif
+                    </div>
 
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Send Password Reset Link
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    <div class="form-group text-right">
+                        <input type="submit" value="Send Reset Link" class="button button-large" />
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
-</div>
 @endsection

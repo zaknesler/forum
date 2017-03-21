@@ -55,9 +55,9 @@ class TopicController extends Controller
      */
     public function show($slug)
     {
-        $topic = Topic::where('slug', $slug)->first();
+        $topic = Topic::where('slug', $slug)->with('user')->first();
 
-        return fractal($topic, new TopicTransformer)->toArray();
+        return view('topics.show', compact('topic'));
     }
 
     /**

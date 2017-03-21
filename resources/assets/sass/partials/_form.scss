@@ -1,0 +1,68 @@
+.form {
+    margin-bottom: 20px;
+}
+
+.form-group,
+.form-title,
+.form-label,
+.form-input {
+    display: block;
+}
+
+.form-group {
+    &:not(:last-child) {
+        margin-bottom: 20px;
+    }
+
+    &.has-error {
+        & .form-label {
+            color: $color-danger;
+        }
+
+        & .form-input {
+            border-color: $color-danger;
+
+            &:focus {
+                border-color: darken($color-danger, 15%);
+            }
+        }
+
+        & .form-message {
+            color: $color-danger;
+        }
+    }
+}
+
+.form-title {
+    font-weight: $font-weight-bold;
+    margin-bottom: 20px;
+    font-size: $font-size-base * 1.25;
+}
+
+.form-label {
+    margin-bottom: 10px;
+    font-weight: $font-weight-bold;
+}
+
+.form-input {
+    background-color: $body-background-color;
+    color: $body-text-color;
+    border: 1px solid darken($body-background-color, 10%);
+    border-radius: $global-border-radius;
+    padding: 15px;
+    width: 100%;
+    font-size: $font-size-base;
+    font-family: $font-family-sans-serif;
+    resize: vertical;
+
+    &:focus {
+        outline: 0;
+        border: 1px solid darken($body-background-color, 30%);
+        @include transition(border 150ms ease-in);
+    }
+}
+
+.form-message {
+    margin-top: 10px;
+    color: lighten($body-text-color, 25%);
+}

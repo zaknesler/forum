@@ -1,0 +1,70 @@
+.container {
+    padding: 20px;
+}
+
+.post {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+
+    &:not(:last-child) {
+        border-bottom: 1px solid darken($body-background-color, 10%);
+    }
+
+    .post-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .post-author {
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+    }
+
+    .post-author_image,
+    .post-author_info {
+        display: inline-block;
+    }
+
+    .post-author_image {
+        width: 50px;
+        height: 50px;
+        margin-right: 20px;
+        margin-left: -70px;
+        margin-bottom: 0 !important;
+        background-image: url(https://www.gravatar.com/avatar/?s=50&d=identicon);
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        border-radius: $global-border-radius;
+    }
+
+    .post-author_info {
+        @include darkAnchor;
+        color: lighten($body-text-color, 25%);
+
+        a {
+            font-weight: $font-weight-bold;
+        }
+    }
+}
+
+.text-right {
+    text-align: right;
+}
+
+.list-group {
+    list-style: none;
+    border: 1px solid darken($body-background-color, 10%);
+    border-radius: $global-border-radius;
+}
+
+.list-group-item {
+    padding: 20px;
+    border-bottom: 1px solid darken($body-background-color, 10%);
+
+    &:last-child {
+        border-bottom: 0;
+    }
+}

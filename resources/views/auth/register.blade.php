@@ -1,76 +1,63 @@
 @extends('layouts.app')
 
+@section('banner')
+    @component('layouts.components.banner')
+        Register
+    @endcomponent
+@endsection
+
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
-                        {{ csrf_field() }}
+    <div class="content">
+        <div class="content-wrap container">
+            <form action="{{ route('register') }}" method="POST">
+                {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-                            <label for="username" class="col-md-4 control-label">Username</label>
+                <div class="form">
+                    <div class="form-group{{ $errors->first('username', ' has-error') }}">
+                        <div class="form-label">Username</div>
 
-                            <div class="col-md-6">
-                                <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" required autofocus>
+                        <input type="text" name="username" value="{{ old('username') }}" required autofocus class="form-input" />
 
-                                @if ($errors->has('username'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('username') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                        @if ($errors->has('username'))
+                            <div class="form-message">{{ $errors->first('username') }}</div>
+                        @endif
+                    </div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                    <div class="form-group{{ $errors->first('email', ' has-error') }}">
+                        <div class="form-label">E-mail</div>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                        <input type="email" name="email" value="{{ old('email') }}" required class="form-input" />
 
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                        @if ($errors->has('email'))
+                            <div class="form-message">{{ $errors->first('email') }}</div>
+                        @endif
+                    </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
+                    <div class="form-group{{ $errors->first('password', ' has-error') }}">
+                        <div class="form-label">Password</div>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+                        <input type="password" name="password" required class="form-input" />
 
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                        @if ($errors->has('password'))
+                            <div class="form-message">{{ $errors->first('password') }}</div>
+                        @endif
+                    </div>
 
-                        <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+                    <div class="form-group{{ $errors->first('password_confirmation', ' has-error') }}">
+                        <div class="form-label">Confrim Password</div>
 
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
+                        <input type="password" name="password_confirmation" required class="form-input" />
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                        @if ($errors->has('password_confirmation'))
+                            <div class="form-message">{{ $errors->first('password_confirmation') }}</div>
+                        @endif
+                    </div>
+
+                    <div class="form-group text-right">
+                        <input type="submit" value="Register" class="button button-large" />
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
-</div>
 @endsection

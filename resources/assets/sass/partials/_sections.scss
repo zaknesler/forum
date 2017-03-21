@@ -1,0 +1,144 @@
+// Header
+.header {
+    background-color: $header-background-color;
+    border-bottom: 1px solid $header-border-color;
+
+    .header-wrap {
+        max-width: $header-max-width;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .header-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .header-brand {
+        font-size: $font-size-base * 1.4;
+        font-weight: $font-weight-bold;
+        margin-right: 40px;
+    }
+
+    .header-toggle {
+        display: none;
+
+        a {
+            span {
+                width: 20px;
+                height: 3px;
+                background-color: $color-theme;
+                display: block;
+
+                &:not(:last-child) {
+                    margin-bottom: 3px;
+                }
+            }
+
+            &:hover span {
+                background-color: darken($color-theme, 20%);
+                @include transition(background-color 150ms ease-in);
+            }
+        }
+    }
+
+    .header-nav {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        ul {
+            list-style: none;
+        }
+
+        .left {
+            margin-right: auto;
+        }
+
+        .left,
+        .right {
+            li {
+                display: inline;
+
+                &:not(:last-child) {
+                    margin-right: 20px;
+                }
+            }
+        }
+    }
+}
+
+// Banner
+.banner {
+    background-color: $color-theme;
+    color: $color-light;
+
+    &.banner-centered {
+        text-align: center;
+    }
+
+    .banner-wrap {
+        max-width: $banner-max-width;
+        margin: 0 auto;
+    }
+
+    .banner-title {
+        font-size: $font-size-base * 1.25;
+    }
+
+    @include lightAnchor;
+}
+
+// Content
+.content {
+    .content-wrap {
+        max-width: $content-max-width;
+        margin: 0 auto;
+    }
+
+    blockquote {
+        border-left: 3px solid darken($body-background-color, 10%);
+        padding-left: 20px;
+    }
+
+    pre {
+        overflow: auto;
+        padding: 20px;
+    }
+
+    code {
+        padding: 5px;
+    }
+
+    pre, code {
+        background: darken($body-background-color, 3.5%);
+        border-radius: $global-border-radius;
+        font-size: $font-size-base * 0.9;
+    }
+
+    a, p, h1, h2, h3, h4, h5, h6, ol, ul, img, pre, code, blockquote {
+        margin-bottom: 20px;
+    }
+
+    ol,
+    ul {
+        margin-left: 40px;
+    }
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
+
+// Footer
+.footer {
+    .footer-wrap {
+        max-width: $footer-max-width;
+        margin: 0 auto;
+    }
+}

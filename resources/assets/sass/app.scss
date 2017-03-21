@@ -1,5 +1,10 @@
-// Variables
-@import "variables";
 
-// Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import 'variables';
+
+@import 'partials/mixins';
+@import 'partials/elements';
+@import 'partials/sections';
+@import 'partials/classes';
+@import 'partials/buttons';
+@import 'partials/form';
+@import 'partials/media-queries';

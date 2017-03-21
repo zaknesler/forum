@@ -1,0 +1,80 @@
+// Buttons
+.button {
+    background-color: $button-background-color;
+    border: 1px solid $button-background-color;
+    color: $button-text-color;
+    padding: 3px 8px;
+    font-family: $font-family-sans-serif;
+    font-size: $font-size-base;
+    border-radius: $global-border-radius;
+    cursor: pointer;
+
+    &:hover,
+    &:active,
+    &:focus {
+        outline: 0;
+        text-decoration: none;
+        color: $button-text-color;
+        border-color: darken($button-background-color, 7%);
+        background-color: darken($button-background-color, 7%);
+        @include transition(all 150ms ease-in);
+    }
+
+    &.button-inversed {
+        color: $button-background-color;
+        border-color: $button-background-color;
+        background-color: $button-text-color;
+
+        &:hover,
+        &:active,
+        &:focus {
+            color: darken($button-background-color, 7%);
+            border-color: darken($button-background-color, 7%);
+        }
+    }
+
+    &.button-info {
+        background-color: $color-info;
+
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: darken($color-info, 7%);
+        }
+    }
+
+    &.button-success {
+        background-color: $color-success;
+
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: darken($color-success, 7%);
+        }
+    }
+
+    &.button-danger {
+        background-color: $color-danger;
+
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: darken($color-danger, 7%);
+        }
+    }
+
+    &.button-light {
+        background-color: $color-light;
+        color: $color-theme;
+
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: darken($color-light, 5%);
+        }
+    }
+
+    &.button-large {
+        padding: 10px 20px;
+    }
+}
