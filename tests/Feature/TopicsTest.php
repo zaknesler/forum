@@ -112,4 +112,26 @@ class CreateTopicsTest extends TestCase
                 'slug' => 'such-a-cool-topic',
             ]);
     }
+
+    /** @test */
+    function user_can_view_topic()
+    {
+        $this->actingAs(factory(User::class)->create([
+            'name' => 'Test User',
+        ]));
+
+        $response = $this->json('POST', '/api/topics', [
+            'title' => 'Such a cool topic!!',
+            'body' => 'This topic is not about anything important.',
+        ]);
+
+        $response->assertStatus(200);
+
+        $response = $this->get('/topics/such-a-cool-topic');
+
+        $response->assertStatus(200);
+        $response->assertSee('Such a cool topic!!');
+        $response->assertSee('Test User');
+        $response->assertSee('This topic is not about anything important.');
+    }
 }
