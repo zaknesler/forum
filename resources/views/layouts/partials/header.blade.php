@@ -3,12 +3,12 @@
         <div class="header-top">
             <div class="header-brand">{{ config('app.name', 'Forum') }}</div>
 
-            <div class="header-toggle" id="toggle">
-                <a href="#"><span></span><span></span><span></span></a>
+            <div class="header-toggle">
+                <a href="#" @click.prevent="responsiveNavVisible = !responsiveNavVisible"><span></span><span></span><span></span></a>
             </div>
         </div>
 
-        <div class="header-nav" id="nav">
+        <div class="header-nav" :class="{ visible: responsiveNavVisible }">
             <ul class="left">
                 <li><a href="/">Home</a></li>
             </ul>

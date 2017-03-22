@@ -3,6 +3,10 @@ import './bootstrap';
 const app = new Vue({
     el: '#root',
 
+    data: {
+        responsiveNavVisible: false,
+    },
+
     methods: {
         logout() {
             this.$http
