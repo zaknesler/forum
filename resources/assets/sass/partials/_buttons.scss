@@ -71,6 +71,7 @@
         &:active,
         &:focus {
             background-color: darken($color-light, 5%);
+            text-decoration: none;
         }
     }
 

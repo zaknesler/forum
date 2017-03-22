@@ -2,7 +2,9 @@
 
 @section('banner')
     @component('layouts.components.banner')
-        Login
+        <div class="banner-title">
+            Login
+        </div>
     @endcomponent
 @endsection
 

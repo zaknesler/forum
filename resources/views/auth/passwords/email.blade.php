@@ -2,7 +2,9 @@
 
 @section('banner')
     @component('layouts.components.banner')
-        Reset Password
+        <div class="banner-title">
+            Reset Password
+        </div>
     @endcomponent
 @endsection
 

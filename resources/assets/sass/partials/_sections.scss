@@ -84,6 +84,9 @@
     .banner-wrap {
         max-width: $banner-max-width;
         margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 
     .banner-title {

@@ -2,7 +2,9 @@
 
 @section('banner')
     @component('layouts.components.banner')
-        Register
+        <div class="banner-title">
+            Register
+        </div>
     @endcomponent
 @endsection
 

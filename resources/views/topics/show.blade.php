@@ -2,7 +2,9 @@
 
 @section('banner')
     @component('layouts.components.banner')
-        {{ $topic->title }}
+        <div class="banner-title">
+            {{ $topic->title }}
+        </div>
     @endcomponent
 @endsection
 

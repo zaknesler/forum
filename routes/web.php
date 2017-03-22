@@ -11,8 +11,9 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'TopicController@index');
+
+Route::resource('/topics', 'TopicController', ['except' => ['show']]);
+Route::get('/topics/{slug}', 'TopicController@show')->name('topics.show');
 
 Auth::routes();
-
-Route::get('/topics/{slug}', 'TopicController@show')->name('topics.show');

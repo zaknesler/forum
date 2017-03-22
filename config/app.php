@@ -166,7 +166,6 @@ return [
         /*
          * Package Service Providers...
          */
-        Spatie\Fractal\FractalServiceProvider::class,
         Cviebrock\EloquentSluggable\ServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,
 

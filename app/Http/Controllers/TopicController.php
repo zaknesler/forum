@@ -11,6 +11,22 @@ use App\Http\Requests\Topic\UpdateTopic;
 class TopicController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth')->only([
+            'create',
+            'store',
+            'edit',
+            'update',
+            'destroy',
+        ]);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -19,7 +35,7 @@ class TopicController extends Controller
     {
         $topics = Topic::latest()->paginate(15);
 
-        return fractal($topics, new TopicTransformer);
+        return view('topics.index', compact('topics'));
     }
 
     /**
@@ -29,7 +45,7 @@ class TopicController extends Controller
      */
     public function create()
     {
-        //
+        return view('topics.create');
     }
 
     /**
@@ -45,7 +61,7 @@ class TopicController extends Controller
             'body',
         ]));
 
-        return fractal($topic, new TopicTransformer)->toArray();
+        return redirect()->route('topics.show', $topic->slug);
     }
 
     /**
@@ -68,7 +84,7 @@ class TopicController extends Controller
      */
     public function edit(Topic $topic)
     {
-        //
+        return view('topics.edit');
     }
 
     /**
@@ -85,7 +101,7 @@ class TopicController extends Controller
             'body',
         ]));
 
-        return fractal($topic, new TopicTransformer)->toArray();
+        return redirect()->back();
     }
 
     /**
@@ -96,5 +112,7 @@ class TopicController extends Controller
     public function destroy(Topic $topic)
     {
         $topic->delete();
+
+        return redirect()->back();
     }
 }

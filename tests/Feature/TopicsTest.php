@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Models\User;
+use App\Models\Topic;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -18,25 +19,13 @@ class CreateTopicsTest extends TestCase
     {
         $this->actingAs(factory(User::class)->create());
 
-        $response = $this->json('POST', '/api/topics', [
+        $response = $this->json('POST', '/topics', [
             'title' => 'Such a cool topic!!',
             'body' => 'This topic is not about anything important.',
         ]);
 
-        $response
-            ->assertStatus(200)
-            ->assertJsonStructure([
-                'data' => [
-                    'id',
-                    'title',
-                    'slug',
-                    'body',
-                    'uri',
-                    'created_at',
-                    'created_at_human',
-                    'user',
-                ],
-            ]);
+        $response->assertStatus(302);
+        $this->assertEquals(1, Topic::count());
     }
 
     /** @test */
@@ -44,27 +33,21 @@ class CreateTopicsTest extends TestCase
     {
         $this->actingAs(factory(User::class)->create());
 
-        $response = $this->json('POST', '/api/topics', [
+        $response = $this->json('POST', '/topics', [
             'title' => 'Such a cool topic!!',
             'body' => 'This topic is not about anything important.',
         ]);
 
-        $response
-            ->assertStatus(200)
-            ->assertJsonFragment([
-                'body' => 'This topic is not about anything important.',
-            ]);
+        $response->assertStatus(302);
+        $this->assertEquals('This topic is not about anything important.', Topic::first()->body);
 
-        $response = $this->json('PATCH', '/api/topics/1', [
+        $response = $this->json('PATCH', '/topics/1', [
             'title' => 'Such a cool topic!!',
             'body' => 'This is the updated body.'
         ]);
 
-        $response
-            ->assertStatus(200)
-            ->assertJsonFragment([
-                'body' => 'This is the updated body.'
-            ]);
+        $response->assertStatus(302);
+        $this->assertEquals('This is the updated body.', Topic::first()->body);
     }
 
     /** @test */
@@ -72,16 +55,18 @@ class CreateTopicsTest extends TestCase
     {
         $this->actingAs(factory(User::class)->create());
 
-        $response = $this->json('POST', '/api/topics', [
+        $response = $this->json('POST', '/topics', [
             'title' => 'Such a cool topic!!',
             'body' => 'This topic is not about anything important.',
         ]);
 
-        $response->assertStatus(200);
+        $response->assertStatus(302);
+        $this->assertEquals(1, Topic::count());
 
-        $response = $this->json('DELETE', '/api/topics/1');
+        $response = $this->json('DELETE', '/topics/1');
 
-        $response->assertStatus(200);
+        $response->assertStatus(302);
+        $this->assertEquals(0, Topic::count());
     }
 
     /** @test */
@@ -89,49 +74,22 @@ class CreateTopicsTest extends TestCase
     {
         $this->actingAs(factory(User::class)->create());
 
-        $response = $this->json('POST', '/api/topics', [
+        $response = $this->json('POST', '/topics', [
             'title' => 'Such a cool topic!!',
             'body' => 'This topic is not about anything important.',
         ]);
 
-        $response
-            ->assertStatus(200)
-            ->assertJsonFragment([
-                'body' => 'This topic is not about anything important.',
-            ]);
+        $response->assertStatus(302);
+        $this->assertEquals(1, Topic::count());
+        $this->assertEquals('such-a-cool-topic', Topic::first()->slug);
 
-        $response = $this->json('PATCH', '/api/topics/1', [
+        $response = $this->json('PATCH', '/topics/1', [
             'title' => 'a different title woah!!',
             'body' => 'This topic is not about anything important.',
         ]);
 
-        $response
-            ->assertStatus(200)
-            ->assertJsonFragment([
-                'title' => 'a different title woah!!',
-                'slug' => 'such-a-cool-topic',
-            ]);
-    }
-
-    /** @test */
-    function user_can_view_topic()
-    {
-        $this->actingAs(factory(User::class)->create([
-            'name' => 'Test User',
-        ]));
-
-        $response = $this->json('POST', '/api/topics', [
-            'title' => 'Such a cool topic!!',
-            'body' => 'This topic is not about anything important.',
-        ]);
-
-        $response->assertStatus(200);
-
-        $response = $this->get('/topics/such-a-cool-topic');
-
-        $response->assertStatus(200);
-        $response->assertSee('Such a cool topic!!');
-        $response->assertSee('Test User');
-        $response->assertSee('This topic is not about anything important.');
+        $response->assertStatus(302);
+        $this->assertEquals(1, Topic::count());
+        $this->assertEquals('such-a-cool-topic', Topic::first()->slug);
     }
 }
