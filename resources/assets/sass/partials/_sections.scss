@@ -26,20 +26,21 @@
     .header-toggle {
         display: none;
 
-        a {
-            span {
-                width: 20px;
-                height: 3px;
-                background-color: $color-theme;
-                display: block;
+        a span {
+            width: 20px;
+            height: 3px;
+            background-color: $color-dark;
+            display: block;
 
-                &:not(:last-child) {
-                    margin-bottom: 3px;
-                }
+            &:not(:last-child) {
+                margin-bottom: 3px;
             }
+        }
 
-            &:hover span {
-                background-color: darken($color-theme, 20%);
+        &:active {
+            span {
+                cursor: pointer;
+                background-color: $color-theme;
                 @include transition(background-color 150ms ease-in);
             }
         }
@@ -111,6 +112,10 @@
     pre {
         overflow: auto;
         padding: 20px;
+
+        code {
+            padding: 0;
+        }
     }
 
     code {
@@ -120,7 +125,8 @@
     pre, code {
         background: darken($body-background-color, 3.5%);
         border-radius: $global-border-radius;
-        font-size: $font-size-base * 0.9;
+        font-size: $font-size-base * 0.85;
+        font-family: $font-family-monospace;
     }
 
     a, p, h1, h2, h3, h4, h5, h6, ol, ul, img, pre, code, blockquote {

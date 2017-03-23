@@ -35,31 +35,37 @@
 
     &.button-info {
         background-color: $color-info;
+        border-color: $color-info;
 
         &:hover,
         &:active,
         &:focus {
             background-color: darken($color-info, 7%);
+            border-color: darken($color-info, 7%);
         }
     }
 
     &.button-success {
         background-color: $color-success;
+        border-color: $color-success;
 
         &:hover,
         &:active,
         &:focus {
             background-color: darken($color-success, 7%);
+            border-color: darken($color-success, 7%);
         }
     }
 
     &.button-danger {
         background-color: $color-danger;
+        border-color: $color-danger;
 
         &:hover,
         &:active,
         &:focus {
             background-color: darken($color-danger, 7%);
+            border-color: darken($color-danger, 7%);
         }
     }
 

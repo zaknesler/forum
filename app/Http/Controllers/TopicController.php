@@ -84,7 +84,9 @@ class TopicController extends Controller
      */
     public function edit(Topic $topic)
     {
-        return view('topics.edit');
+        $this->authorize('update', $topic);
+
+        return view('topics.edit', compact('topic'));
     }
 
     /**
@@ -101,7 +103,7 @@ class TopicController extends Controller
             'body',
         ]));
 
-        return redirect()->back();
+        return redirect()->route('topics.show', $topic->slug);
     }
 
     /**

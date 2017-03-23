@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Topic;
+namespace App\Http\Requests\Settings;
 
-use App\Models\Topic;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateTopic extends FormRequest
+class UpdateProfile extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,9 +13,7 @@ class UpdateTopic extends FormRequest
      */
     public function authorize()
     {
-        $topic = Topic::find($this->route('topic'));
-
-        return $topic && request()->user()->can('update', $topic);
+        return true;
     }
 
     /**
@@ -27,8 +24,8 @@ class UpdateTopic extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|min:8|max:64',
-            'body' => 'required|min:16',
+            'name' => 'min:3|max:16',
+            'email' => 'required|email|unique:users,id,' . $this->id,
         ];
     }
 }

@@ -13,6 +13,9 @@
 
 Route::get('/', 'TopicController@index');
 
+Route::get('/settings', 'Settings\SettingsController@index')->name('settings.index');
+Route::patch('/settings/profile', 'Settings\ProfileSettingsController@update')->name('settings.profile.update');
+
 Route::resource('/topics', 'TopicController', ['except' => ['show']]);
 Route::get('/topics/{slug}', 'TopicController@show')->name('topics.show');
 

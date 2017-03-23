@@ -20,10 +20,14 @@
             </div>
         </div>
 
-        <div class="post-body">{!! $topic->body !!}</div>
+        <div class="post-body">{!! Markdown::text($topic->body) !!}</div>
 
         <div class="post-footer text-right">
-            <a href="#" class="button">Report</a>
+            @can('update', $topic)
+                <a href="{{ route('topics.edit', $topic) }}" class="button">Edit</a>
+            @endcan
+
+            {{-- <a href="#" class="button">Report</a> --}}
         </div>
     </div>
 @endsection

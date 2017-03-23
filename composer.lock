@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "18f540dcfff84fcd55875809cd8599e1",
+    "content-hash": "1aa2446a85fd397d9841870d5619d880",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -263,6 +263,63 @@
                 "parser"
             ],
             "time": "2016-11-02T15:56:58+00:00"
+        },
+        {
+            "name": "faustbrian/laravel-parsedown",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/faustbrian/Laravel-Parsedown.git",
+                "reference": "bc4fb0b8773dbe45de5e6b7f478fa75b8546d394"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/faustbrian/Laravel-Parsedown/zipball/bc4fb0b8773dbe45de5e6b7f478fa75b8546d394",
+                "reference": "bc4fb0b8773dbe45de5e6b7f478fa75b8546d394",
+                "shasum": ""
+            },
+            "require": {
+                "erusev/parsedown": "^1.6",
+                "illuminate/support": "5.3.* || 5.4.*",
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "graham-campbell/testbench": "^3.2",
+                "mockery/mockery": "^0.9.5",
+                "phpunit/phpunit": "^5.6"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "BrianFaust\\Parsedown\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brian Faust",
+                    "email": "hello@brianfaust.de",
+                    "homepage": "https://brianfaust.de"
+                }
+            ],
+            "description": "Parsedown Wrapper for Laravel 5",
+            "keywords": [
+                "Brian Faust",
+                "Laravel Parsedown",
+                "faustbrian",
+                "framework",
+                "laravel",
+                "laravel-parsedown"
+            ],
+            "time": "2017-01-20T12:23:31+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",

@@ -166,6 +166,7 @@ return [
         /*
          * Package Service Providers...
          */
+        BrianFaust\Parsedown\ParsedownServiceProvider::class,
         Cviebrock\EloquentSluggable\ServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,
 
@@ -226,6 +227,11 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        /**
+         * Package Aliases
+         */
+        'Markdown' => BrianFaust\Parsedown\Facades\Parsedown::class,
 
     ],
 
