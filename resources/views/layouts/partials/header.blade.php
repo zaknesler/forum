@@ -18,6 +18,7 @@
                     <li><a href="{{ route('login') }}">Login</a></li>
                     <li><a href="{{ route('register') }}">Register</a></li>
                 @else
+                    <li>{{ auth()->user()->getNameOrUsername() }}</li>
                     <li><a href="{{ route('settings.index') }}">Settings</a></li>
                     <li><a href="#" @click.prevent="logout">Logout</a></li>
                 @endif

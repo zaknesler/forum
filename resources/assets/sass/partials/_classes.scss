@@ -2,6 +2,13 @@
     padding: 20px;
 }
 
+.box {
+    border: 1px solid darken($body-background-color, 10%);
+    border-radius: $global-border-radius;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
 .post {
     padding-bottom: 20px;
     margin-bottom: 20px;

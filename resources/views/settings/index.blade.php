@@ -11,11 +11,15 @@
 @section('content')
     <div class="row">
         <div class="col-md-6 col-xs-12">
-            @include('settings.partials.profile')
+            <div class="box">
+                @include('settings.partials.profile')
+            </div>
         </div>
 
         <div class="col-md-6 col-xs-12">
-            @include('settings.partials.password')
+            <div class="box">
+                @include('settings.partials.password')
+            </div>
         </div>
     </div>
 @endsection

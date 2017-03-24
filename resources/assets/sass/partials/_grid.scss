@@ -10,3 +10,7 @@ $breakpoints:
   lg 900px 900px;
 
 @import "~flexboxgrid-sass/flexboxgrid";
+
+.row:not(:last-child) {
+    margin-bottom: 20px;
+}

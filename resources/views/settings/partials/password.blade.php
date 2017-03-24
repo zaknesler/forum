@@ -10,7 +10,7 @@
         <div class="form-group{{ $errors->first('old_password', ' has-error') }}">
             <div class="form-label">Old Password</div>
 
-            <input type="password" name="old_password" required autofocus class="form-input" />
+            <input type="password" name="old_password" required class="form-input" />
 
             @if ($errors->has('old_password'))
                 <div class="form-message">{{ $errors->first('old_password') }}</div>
