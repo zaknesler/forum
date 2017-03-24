@@ -8,6 +8,7 @@
   },
   "devDependencies": {
     "axios": "^0.15.3",
+    "flexboxgrid-sass": "^8.0.5",
     "laravel-mix": "^0.7.2",
     "vue": "^2.1.10"
   }
