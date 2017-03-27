@@ -8,6 +8,8 @@
     font-size: $font-size-base;
     border-radius: $global-border-radius;
     cursor: pointer;
+    overflow: hidden;
+    background-clip: padding-box;
 
     &:hover,
     &:active,
