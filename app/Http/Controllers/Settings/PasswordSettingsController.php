@@ -21,6 +21,8 @@ class PasswordSettingsController extends Controller
             'password' => bcrypt($request->input('password')),
         ]);
 
+        flash('Password has been updated.');
+
         return redirect()->route('settings.index');
     }
 }

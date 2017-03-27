@@ -3,7 +3,7 @@
 @section('banner')
     @component('layouts.components.banner')
         <div class="banner-title">
-            {{ number_format($topics->total()) }} {{ str_plural('Topics', $topics->total()) }}
+            {{ number_format($topics->total()) }} {{ str_plural('Topic', $topics->total()) }}
         </div>
 
         <div class="banner-action">

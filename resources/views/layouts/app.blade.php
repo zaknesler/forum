@@ -23,6 +23,8 @@
 
         @yield('banner')
 
+        @include('flash::message')
+
         @include('layouts.partials.content')
     </div>
 </body>

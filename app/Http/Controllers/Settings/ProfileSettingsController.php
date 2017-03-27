@@ -21,6 +21,8 @@ class ProfileSettingsController extends Controller
             'email',
         ]));
 
+        flash('Profile has been updated.');
+
         return redirect()->route('settings.index');
     }
 }

@@ -166,6 +166,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Laracasts\Flash\FlashServiceProvider::class,
         BrianFaust\Parsedown\ParsedownServiceProvider::class,
         Cviebrock\EloquentSluggable\ServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,

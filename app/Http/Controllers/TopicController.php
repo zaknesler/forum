@@ -61,6 +61,8 @@ class TopicController extends Controller
             'body',
         ]));
 
+        flash('Topic has been created.');
+
         return redirect()->route('topics.show', $topic->slug);
     }
 
@@ -71,7 +73,7 @@ class TopicController extends Controller
      */
     public function show($slug)
     {
-        $topic = Topic::where('slug', $slug)->with('user')->first();
+        $topic = Topic::where('slug', $slug)->with('user')->firstOrFail();
 
         return view('topics.show', compact('topic'));
     }
@@ -103,6 +105,8 @@ class TopicController extends Controller
             'body',
         ]));
 
+        flash('Topic has been updated.');
+
         return redirect()->route('topics.show', $topic->slug);
     }
 
@@ -114,6 +118,8 @@ class TopicController extends Controller
     public function destroy(Topic $topic)
     {
         $topic->delete();
+
+        flash('Topic has been removed.');
 
         return redirect()->back();
     }

@@ -99,3 +99,10 @@
         border-bottom: 0;
     }
 }
+
+.alert {
+    padding: 15px;
+    background-color: darken($body-background-color, 3.5%);
+    border: 1px solid darken($body-background-color, 10%);
+    border-radius: $global-border-radius;
+}

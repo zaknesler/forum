@@ -8,6 +8,7 @@
         "php": ">=5.6.4",
         "cviebrock/eloquent-sluggable": "^4.2",
         "faustbrian/laravel-parsedown": "^1.1",
+        "laracasts/flash": "^2.0",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0"
     },

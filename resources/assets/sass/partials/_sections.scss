@@ -21,6 +21,8 @@
         font-size: $font-size-base * 1.4;
         font-weight: $font-weight-bold;
         margin-right: 40px;
+
+        @include darkAnchor;
     }
 
     .header-toggle {
@@ -95,6 +97,15 @@
     }
 
     @include lightAnchor;
+}
+
+// Flash
+.flash {
+    .flash-wrap {
+        max-width: $flash-max-width;
+        margin: 0 auto;
+        padding-bottom: 0;
+    }
 }
 
 // Content
