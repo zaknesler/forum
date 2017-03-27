@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="row center-md">
-        <div class="col-md-8 col-xs-12">
+        <div class="col col-md-10 col-xs-12">
             <form action="{{ route('topics.store') }}" method="POST">
                 {{ csrf_field() }}
 

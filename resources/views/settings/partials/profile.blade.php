@@ -3,10 +3,6 @@
     {{ method_field('PATCH') }}
 
     <div class="form">
-        <div class="form-title">
-            Profile Settings
-        </div>
-
         <div class="form-group{{ $errors->first('name', ' has-error') }}">
             <div class="form-label">Name</div>
 
@@ -18,7 +14,7 @@
         </div>
 
         <div class="form-group{{ $errors->first('email', ' has-error') }}">
-            <div class="form-label">E-Mail</div>
+            <div class="form-label">E-mail</div>
 
             <input type="email" name="email" value="{{ old('email') ?? $user->email }}" required autofocus class="form-input" />
 

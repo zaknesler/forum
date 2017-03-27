@@ -3,10 +3,6 @@
     {{ method_field('PATCH') }}
 
     <div class="form">
-        <div class="form-title">
-            Password Settings
-        </div>
-
         <div class="form-group{{ $errors->first('old_password', ' has-error') }}">
             <div class="form-label">Old Password</div>
 

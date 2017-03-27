@@ -56,3 +56,43 @@ h5 {
 h6 {
     font-size: $font-size-base * 0.67;
 }
+
+ul.pagination {
+    margin-top: 20px;
+    margin-left: 0 !important;
+    list-style: none;
+    display: block;
+
+    & .page-item {
+        display: inline-block;
+        margin-right: 5px;
+
+        &.disabled a {
+            cursor: default;
+            pointer-events: none;
+            opacity: 0.75;
+        }
+
+        &.active a {
+            background-color: $color-theme;
+            color: $color-light;
+        }
+
+        &:not(.active):not(.disabled):hover a {
+            background-color: lighten($color-theme, 35%);
+        }
+
+        & a {
+            border-radius: 2px;
+            display: inline-block;
+            padding: 2.5px 15px;
+            text-decoration: none;
+            background-color: transparent;
+            color: $body-text-color;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}

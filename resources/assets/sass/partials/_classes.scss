@@ -5,16 +5,28 @@
 .box {
     border: 1px solid darken($body-background-color, 10%);
     border-radius: $global-border-radius;
-    padding: 20px;
-    margin-bottom: 20px;
+
+    .box-header {
+        border-bottom: 1px solid darken($body-background-color, 10%);
+        font-weight: $font-weight-bold;
+        background-color: darken($body-background-color, 3.5%);
+        padding: 15px 20px;
+    }
+
+    .box-body {
+        padding: 20px;
+    }
+
+    &:not(:last-child) {
+        margin-bottom: 20px;
+    }
 }
 
 .post {
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-
     &:not(:last-child) {
+        padding-bottom: 20px;
         border-bottom: 1px solid darken($body-background-color, 10%);
+        margin-bottom: 20px;
     }
 
     .post-header {
@@ -56,13 +68,21 @@
         }
     }
 
+    .post-body {
+        margin-bottom: -20px;
+    }
+
     .post-footer {
-        margin-top: 20px;
+        margin-top: 40px;
     }
 }
 
 .text-right {
     text-align: right !important;
+}
+
+.text-light {
+    color: lighten($body-text-color, 20%);
 }
 
 .list-group {

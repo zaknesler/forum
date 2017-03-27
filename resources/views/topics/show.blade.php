@@ -9,6 +9,7 @@
 @endsection
 
 @section('content')
+    @for ($i = 0; $i < 5; $i++)
     <div class="post">
         <div class="post-header">
             <div class="post-author">
@@ -16,18 +17,15 @@
 
                 <div class="post-author_info">
                     <a href="#">{{ $topic->user->getNameOrUsername() }}</a> <br /> {{ $topic->created_at->diffForHumans() }}
+
+                    @can('update', $topic)
+                        &mdash; <a href="{{ route('topics.edit', $topic) }}">Edit</a>
+                    @endcan
                 </div>
             </div>
         </div>
 
         <div class="post-body">{!! Markdown::text($topic->body) !!}</div>
-
-        <div class="post-footer text-right">
-            @can('update', $topic)
-                <a href="{{ route('topics.edit', $topic) }}" class="button">Edit</a>
-            @endcan
-
-            {{-- <a href="#" class="button">Report</a> --}}
-        </div>
     </div>
+    @endfor
 @endsection

@@ -14,3 +14,7 @@ $breakpoints:
 .row:not(:last-child) {
     margin-bottom: 20px;
 }
+
+.col:not(:last-child) {
+    margin-bottom: 20px;
+}

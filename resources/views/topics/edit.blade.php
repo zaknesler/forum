@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="row center-md">
-        <div class="col-md-8 col-xs-12">
+        <div class="col col-md-10 col-xs-12">
             <form action="{{ route('topics.update', $topic->id) }}" method="POST">
                 {{ csrf_field() }}
                 {{ method_field('PATCH') }}
@@ -37,7 +37,7 @@
                     </div>
 
                     <div class="form-group text-right">
-                        <input type="submit" value="Edit Topic" class="button button-large" />
+                        <input type="submit" value="Update Topic" class="button button-large" />
                     </div>
                 </div>
             </form>

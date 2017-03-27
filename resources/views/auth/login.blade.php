@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="row center-md">
-        <div class="col-md-8 col-xs-12">
+        <div class="col col-md-8 col-xs-12">
             <form action="{{ route('login') }}" method="POST">
                 {{ csrf_field() }}
 
@@ -36,7 +36,9 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                        <label class="form-checkbox">
+                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }} /> Stay Signed In
+                        </label>
                     </div>
 
                     <div class="form-group text-right">

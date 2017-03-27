@@ -3,7 +3,7 @@
 @section('banner')
     @component('layouts.components.banner')
         <div class="banner-title">
-            Topics
+            {{ number_format($topics->total()) }} {{ str_plural('Topics', $topics->total()) }}
         </div>
 
         <div class="banner-action">
@@ -21,10 +21,12 @@
                 <div class="list-group-item">
                     <strong><a href="/topics/{{ $topic->slug }}">{{ $topic->title }}</a></strong>
                     <br />
-                    by <a href="#">{{ $topic->user->getNameOrUsername() }}</a>
+                    by <a href="#">{{ $topic->user->getNameOrUsername() }}</a> <span class="text-light">({{ $topic->created_at->diffForHumans() }})</span>
                 </div>
             @endforeach
         </div>
+
+        {{ $topics->render() }}
     @else
         <p>There are no topics to show.</p>
     @endif
