@@ -9,7 +9,6 @@
 @endsection
 
 @section('content')
-    @for ($i = 0; $i < 5; $i++)
     <div class="post">
         <div class="post-header">
             <div class="post-author">
@@ -27,5 +26,4 @@
 
         <div class="post-body">{!! Markdown::text($topic->body) !!}</div>
     </div>
-    @endfor
 @endsection
