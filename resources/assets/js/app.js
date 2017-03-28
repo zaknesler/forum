@@ -1,6 +1,9 @@
 import './bootstrap';
+import VueAutosize from './classes/vue-autosize';
 
 Vue.component('topic-delete', require('./components/TopicDelete.vue'));
+
+Vue.use(VueAutosize);
 
 const app = new Vue({
     el: '#root',

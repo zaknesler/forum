@@ -5,9 +5,9 @@ $outer-margin: 20px;
 
 $breakpoints:
   xs 500px 200px,
-  sm 500px 500px,
-  md 700px 700px,
-  lg 900px 900px;
+  sm 500px 480px,
+  md 700px 680px,
+  lg 900px 880px;
 
 @import "~flexboxgrid-sass/flexboxgrid";
 

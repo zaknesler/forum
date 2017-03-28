@@ -9,42 +9,38 @@
 @endsection
 
 @section('content')
-    <div class="row center-md">
-        <div class="col col-md-10 col-xs-12">
-            <form action="{{ route('topics.update', $topic->id) }}" method="POST">
-                {{ csrf_field() }}
-                {{ method_field('PATCH') }}
+    <form action="{{ route('topics.update', $topic->id) }}" method="POST">
+        {{ csrf_field() }}
+        {{ method_field('PATCH') }}
 
-                <div class="form">
-                    <div class="form-group{{ $errors->first('title', ' has-error') }}">
-                        <div class="form-label">Title</div>
+        <div class="form">
+            <div class="form-group{{ $errors->first('title', ' has-error') }}">
+                <div class="form-label">Title</div>
 
-                        <input type="text" name="title" value="{{ old('title') ?? $topic->title }}" required autofocus class="form-input" />
+                <input type="text" name="title" value="{{ old('title') ?? $topic->title }}" required autofocus class="form-input" />
 
-                        @if ($errors->has('title'))
-                            <div class="form-message">{{ $errors->first('title') }}</div>
-                        @endif
-                    </div>
+                @if ($errors->has('title'))
+                    <div class="form-message">{{ $errors->first('title') }}</div>
+                @endif
+            </div>
 
-                    <div class="form-group{{ $errors->first('body', ' has-error') }}">
-                        <div class="form-label">Body</div>
+            <div class="form-group{{ $errors->first('body', ' has-error') }}">
+                <div class="form-label">Body</div>
 
-                        <textarea name="body" rows="10" class="form-input">{{ old('body') ?? $topic->body }}</textarea>
+                <textarea name="body" rows="10" class="form-input" v-autosize>{{ old('body') ?? $topic->body }}</textarea>
 
-                        @if ($errors->has('body'))
-                            <div class="form-message">{{ $errors->first('body') }}</div>
-                        @endif
-                    </div>
+                @if ($errors->has('body'))
+                    <div class="form-message">{{ $errors->first('body') }}</div>
+                @endif
+            </div>
 
-                    <div class="form-group text-right form-flex">
-                        @can ('delete', $topic)
-                            <topic-delete topic="{{ $topic->id }}"></topic-delete>
-                        @endcan
+            <div class="form-group text-right form-flex">
+                @can ('delete', $topic)
+                    <topic-delete topic="{{ $topic->id }}"></topic-delete>
+                @endcan
 
-                        <input type="submit" value="Update" class="button button-large" />
-                    </div>
-                </div>
-            </form>
+                <input type="submit" value="Update" class="button button-large" />
+            </div>
         </div>
-    </div>
+    </form>
 @endsection
