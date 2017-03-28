@@ -41,7 +41,7 @@
                             <topic-delete topic="{{ $topic->id }}"></topic-delete>
                         @endcan
 
-                        <input type="submit" value="Update Topic" class="button button-large" />
+                        <input type="submit" value="Update" class="button button-large" />
                     </div>
                 </div>
             </form>
