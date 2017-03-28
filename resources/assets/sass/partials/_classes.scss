@@ -105,4 +105,19 @@
     background-color: darken($body-background-color, 3.5%);
     border: 1px solid darken($body-background-color, 10%);
     border-radius: $global-border-radius;
+
+    &.alert-info {
+        background-color: lighten($color-info, 40%);
+        border-color: lighten($color-info, 20%);
+    }
+
+    &.alert-success {
+        background-color: lighten($color-success, 55%);
+        border-color: lighten($color-success, 40%);
+    }
+
+    &.alert-danger {
+        background-color: lighten($color-danger, 40%);
+        border-color: lighten($color-danger, 20%);
+    }
 }

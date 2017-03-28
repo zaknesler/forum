@@ -117,10 +117,12 @@ class TopicController extends Controller
      */
     public function destroy(Topic $topic)
     {
+        $this->authorize('delete', $topic);
+
         $topic->delete();
 
         flash('Topic has been removed.');
 
-        return redirect()->back();
+        return response(200);
     }
 }

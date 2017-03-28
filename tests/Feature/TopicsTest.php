@@ -65,7 +65,7 @@ class CreateTopicsTest extends TestCase
 
         $response = $this->json('DELETE', '/topics/1');
 
-        $response->assertStatus(302);
+        $response->assertStatus(200);
         $this->assertEquals(0, Topic::count());
     }
 

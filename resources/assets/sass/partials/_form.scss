@@ -11,6 +11,12 @@
         margin-bottom: 20px;
     }
 
+    &.form-flex {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
     & .form-checkbox {
         display: flex;
         align-items: center;

@@ -36,7 +36,11 @@
                         @endif
                     </div>
 
-                    <div class="form-group text-right">
+                    <div class="form-group text-right form-flex">
+                        @can ('delete', $topic)
+                            <topic-delete topic="{{ $topic->id }}"></topic-delete>
+                        @endcan
+
                         <input type="submit" value="Update Topic" class="button button-large" />
                     </div>
                 </div>
