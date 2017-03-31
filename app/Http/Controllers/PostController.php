@@ -42,10 +42,11 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
+     * @param  App\Models\Topic  $topic
      * @param  App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Topic $topic, Post $post)
     {
         $this->authorize('update', $post);
 
@@ -56,15 +57,16 @@ class PostController extends Controller
      * Update the specified resource in storage.
      *
      * @param  App\Http\Requests\Post\UpdatePost  $request
+     * @param  App\Models\Topic  $topic
      * @param  App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePost $request, Post $post)
+    public function update(UpdatePost $request, Topic $topic, Post $post)
     {
         $post->update($request->only(['body']));
 
         flash('Post has been updated.');
 
-        return redirect()->route('topics.show', $post->topic()->slug);
+        return redirect()->route('topics.show', $topic->slug);
     }
 }
