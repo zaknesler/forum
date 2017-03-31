@@ -50,7 +50,7 @@ class PostController extends Controller
     {
         $this->authorize('update', $post);
 
-        return view('posts.edit', compact('post'));
+        return view('posts.edit', compact(['topic', 'post']));
     }
 
     /**

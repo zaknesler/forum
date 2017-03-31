@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-    <form action="{{ route('posts.update', $post->id) }}" method="POST">
+    <form action="{{ route('posts.update', [$topic->id, $post->id]) }}" method="POST">
         {{ csrf_field() }}
         {{ method_field('PATCH') }}
 
