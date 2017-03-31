@@ -7,7 +7,7 @@
                 <a href="#">{{ $post->user->getNameOrUsername() }}</a> <br /> {{ $post->created_at->diffForHumans() }}
 
                 @can('update', $post)
-                    &mdash; <a href="{{ route('posts.edit', $post) }}">Edit</a>
+                    &mdash; <a href="{{ route('posts.edit', [$post->topic, $post]) }}">Edit</a>
                 @endcan
             </div>
         </div>

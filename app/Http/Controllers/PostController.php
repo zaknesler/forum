@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\Topic;
 use Illuminate\Http\Request;
 use App\Http\Requests\Post\StorePost;
