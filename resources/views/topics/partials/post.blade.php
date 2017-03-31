@@ -1,0 +1,17 @@
+<div class="post">
+    <div class="post-header">
+        <div class="post-author">
+            <a href="#" class="post-author_image" style="background-image: url({{ $post->user->getAvatar(50) }})"></a>
+
+            <div class="post-author_info">
+                <a href="#">{{ $post->user->getNameOrUsername() }}</a> <br /> {{ $post->created_at->diffForHumans() }}
+
+                {{-- @can('update', $post)
+                    &mdash; <a href="{{ route('posts.edit', $post) }}">Edit</a>
+                @endcan --}}
+            </div>
+        </div>
+    </div>
+
+    <div class="post-body">{!! Markdown::text($post->body) !!}</div>
+</div>

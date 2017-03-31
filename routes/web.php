@@ -13,11 +13,17 @@
 
 Route::get('/', 'TopicController@index');
 
-Route::get('/settings', 'Settings\SettingsController@index')->name('settings.index');
-Route::patch('/settings/profile', 'Settings\ProfileSettingsController@update')->name('settings.profile.update');
-Route::patch('/settings/password', 'Settings\PasswordSettingsController@update')->name('settings.password.update');
+Route::get('settings', 'Settings\SettingsController@index')->name('settings.index');
+Route::patch('settings/profile', 'Settings\ProfileSettingsController@update')->name('settings.profile.update');
+Route::patch('settings/password', 'Settings\PasswordSettingsController@update')->name('settings.password.update');
 
-Route::resource('/topics', 'TopicController', ['except' => ['show']]);
-Route::get('/topics/{slug}', 'TopicController@show')->name('topics.show');
+Route::resource('topics', 'TopicController', ['except' => ['show']]);
+
+Route::group(['prefix' => 'topics'], function() {
+    Route::get('{slug}', 'TopicController@show')->name('topics.show');
+
+    Route::resource('{topic}/posts', 'PostController', ['except' => ['show', 'index']]);
+});
+
 
 Auth::routes();

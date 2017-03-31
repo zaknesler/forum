@@ -9,21 +9,13 @@
 @endsection
 
 @section('content')
-    <div class="post">
-        <div class="post-header">
-            <div class="post-author">
-                <a href="#" class="post-author_image" style="background-image: url({{ $topic->user->getAvatar(50) }})"></a>
+    @include('topics.partials.topic', $topic)
 
-                <div class="post-author_info">
-                    <a href="#">{{ $topic->user->getNameOrUsername() }}</a> <br /> {{ $topic->created_at->diffForHumans() }}
+    @each('topics.partials.post', $topic->posts, 'post')
 
-                    @can('update', $topic)
-                        &mdash; <a href="{{ route('topics.edit', $topic) }}">Edit</a>
-                    @endcan
-                </div>
-            </div>
-        </div>
-
-        <div class="post-body">{!! Markdown::text($topic->body) !!}</div>
-    </div>
+    @if (auth()->check())
+        @include('posts.partials.create')
+    @else
+        <p class="text-light">To reply to this topic, you must <a href="{{ route('login') }}">login</a>.</p>
+    @endif
 @endsection

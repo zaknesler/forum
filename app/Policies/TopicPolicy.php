@@ -11,29 +11,6 @@ class TopicPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view the topic.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\Topic  $topic
-     * @return mixed
-     */
-    public function view(User $user, Topic $topic)
-    {
-        return true;
-    }
-
-    /**
-     * Determine whether the user can create topics.
-     *
-     * @param  App\Models\User  $user
-     * @return mixed
-     */
-    public function create(User $user)
-    {
-        return true;
-    }
-
-    /**
      * Determine whether the user can update the topic.
      *
      * @param  App\Models\User  $user
