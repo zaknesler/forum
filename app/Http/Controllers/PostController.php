@@ -69,4 +69,21 @@ class PostController extends Controller
 
         return redirect()->route('topics.show', $topic->slug);
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  App\Models\Topic  $topic
+     * @param  App\Models\Post  $post
+     */
+    public function destroy(Topic $topic, Post $post)
+    {
+        $this->authorize('delete', $post);
+
+        $post->delete();
+
+        flash('Post has been removed.');
+
+        return response(200);
+    }
 }

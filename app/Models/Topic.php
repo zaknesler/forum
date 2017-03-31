@@ -33,6 +33,16 @@ class Topic extends Model
     }
 
     /**
+     * Get the amount of posts that a topic has.
+     *
+     * @return int
+     */
+    public function getPostsCountAttribute()
+    {
+        return $this->posts()->count();
+    }
+
+    /**
      * A topic has many posts.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

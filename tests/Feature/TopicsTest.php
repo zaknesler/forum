@@ -5,16 +5,13 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Topic;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class CreateTopicsTest extends TestCase
 {
     use DatabaseMigrations;
 
     /** @test */
-
     function can_create_topic()
     {
         $this->actingAs(factory(User::class)->create());
@@ -53,16 +50,10 @@ class CreateTopicsTest extends TestCase
     /** @test */
     function can_delete_topic()
     {
-        $this->actingAs(factory(User::class)->create());
+        $user = factory(User::class)->create();
+        $topic = factory(Topic::class)->create(['user_id' => $user->id]);
 
-        $response = $this->json('POST', '/topics', [
-            'title' => 'Such a cool topic!!',
-            'body' => 'This topic is not about anything important.',
-        ]);
-
-        $response->assertStatus(302);
-        $this->assertEquals(1, Topic::count());
-
+        $this->actingAs($user);
         $response = $this->json('DELETE', '/topics/1');
 
         $response->assertStatus(200);
