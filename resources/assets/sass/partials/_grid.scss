@@ -1,13 +1,13 @@
-$flexboxgrid-max-width: 900px;
+$flexboxgrid-max-width: 1000px;
 $grid-columns: 12;
 $gutter-width: 20px;
 $outer-margin: 20px;
 
 $breakpoints:
-  xs 500px 200px,
-  sm 500px 480px,
-  md 700px 680px,
-  lg 900px 880px;
+  xs 500px 100%,
+  sm 768px 728px,
+  md 992px 952px,
+  lg 1200px 1000px;
 
 @import "~flexboxgrid-sass/flexboxgrid";
 
