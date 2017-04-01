@@ -1,15 +1,15 @@
 <template>
-    <input type="button" class="button button-large button-danger button-inverse" @click.prevent="deleteTopic" value="Delete" />
+    <input type="button" class="button button-large button-danger button-inverse" @click.prevent="deletePost" value="Delete" />
 </template>
 
 <script>
     export default {
-        props: ['topic'],
+        props: ['topic', 'post'],
 
         methods: {
-            deleteTopic() {
+            deletePost() {
                 this.$http
-                    .delete('/topics/' + this.topic)
+                    .delete('/topics/' + this.topic + '/posts/' + this.post)
                     .then((response) => {
                         window.location.replace(response.data.redirect_url);
                     });

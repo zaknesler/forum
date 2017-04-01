@@ -2,6 +2,7 @@ import './bootstrap';
 import VueAutosize from './classes/vue-autosize';
 
 Vue.component('topic-delete', require('./components/TopicDelete.vue'));
+Vue.component('post-delete', require('./components/PostDelete.vue'));
 
 Vue.use(VueAutosize);
 
@@ -17,7 +18,7 @@ const app = new Vue({
             this.$http
                 .post('/logout')
                 .then((response) => {
-                    location.reload();
+                    window.location.replace(response.data.redirect_url);
                 });
         }
     }

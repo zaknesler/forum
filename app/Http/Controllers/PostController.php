@@ -84,6 +84,8 @@ class PostController extends Controller
 
         flash('Post has been removed.');
 
-        return response(200);
+        return response()->json([
+            'redirect_url' => route('topics.show', $topic->slug),
+        ]);
     }
 }

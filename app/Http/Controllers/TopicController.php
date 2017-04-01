@@ -123,6 +123,8 @@ class TopicController extends Controller
 
         flash('Topic has been removed.');
 
-        return response(200);
+        return response()->json([
+            'redirect_url' => route('home'),
+        ]);
     }
 }

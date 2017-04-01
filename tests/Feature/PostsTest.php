@@ -55,6 +55,7 @@ class PostsTest extends TestCase
         $response = $this->json('DELETE', '/topics/1/posts/1');
 
         $response->assertStatus(200);
+        $response->assertJsonStructure(['redirect_url']);
         $this->assertEquals(0, Post::count());
     }
 }

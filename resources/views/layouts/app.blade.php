@@ -10,11 +10,7 @@
 
     <link href="{{ mix('/css/app.css') }}" rel="stylesheet" />
 
-    <script>
-        window.Laravel = {!! json_encode([
-            'csrfToken' => csrf_token(),
-        ]) !!};
-    </script>
+    <script>window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};</script>
     <script defer src="{{ mix('/js/app.js') }}"></script>
 </head>
 <body>

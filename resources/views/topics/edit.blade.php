@@ -34,7 +34,7 @@
                 @endif
             </div>
 
-            <div class="form-group text-right form-flex">
+            <div class="form-group form-flex text-right">
                 @can ('delete', $topic)
                     <topic-delete topic="{{ $topic->id }}"></topic-delete>
                 @endcan

@@ -57,6 +57,7 @@ class CreateTopicsTest extends TestCase
         $response = $this->json('DELETE', '/topics/1');
 
         $response->assertStatus(200);
+        $response->assertJsonStructure(['redirect_url']);
         $this->assertEquals(0, Topic::count());
     }
 
