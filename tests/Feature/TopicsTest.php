@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
+use App\Models\Post;
 use App\Models\User;
 use App\Models\Topic;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -83,5 +84,22 @@ class CreateTopicsTest extends TestCase
         $response->assertStatus(302);
         $this->assertEquals(1, Topic::count());
         $this->assertEquals('such-a-cool-topic', Topic::first()->slug);
+    }
+
+    /** @test */
+    function when_a_topic_is_deleted_so_are_its_posts()
+    {
+        $user = factory(User::class)->create();
+        $topic = factory(Topic::class)->create(['user_id' => $user->id]);
+        factory(Post::class, 5)->create(['topic_id' => $topic->id]);
+
+        $this->assertEquals(1, Topic::count());
+        $this->assertEquals(5, Post::count());
+
+        $this->actingAs($user);
+        $response = $this->json('DELETE', '/topics/1');
+
+        $this->assertEquals(0, Topic::count());
+        $this->assertEquals(0, Post::count());
     }
 }
