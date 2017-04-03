@@ -167,6 +167,7 @@ return [
          * Package Service Providers...
          */
         Laracasts\Flash\FlashServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
         BrianFaust\Parsedown\ParsedownServiceProvider::class,
         Cviebrock\EloquentSluggable\ServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,
@@ -232,6 +233,7 @@ return [
         /**
          * Package Aliases
          */
+        'Image' => Intervention\Image\Facades\Image::class,
         'Markdown' => BrianFaust\Parsedown\Facades\Parsedown::class,
 
     ],

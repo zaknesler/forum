@@ -43,6 +43,20 @@ class Topic extends Model
     }
 
     /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($topic) {
+            $topic->posts()->delete();
+        });
+    }
+
+    /**
      * A topic has many posts.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

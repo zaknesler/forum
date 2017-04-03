@@ -30,9 +30,7 @@
             <div class="box">
                 <div class="box-header">Avatar</div>
                 <div class="box-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita consequuntur quisquam aperiam velit, distinctio consectetur quos placeat nihil ad, ea aspernatur voluptas eaque consequatur. Eos asperiores deleniti, animi itaque nobis!</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita consequuntur quisquam aperiam velit, distinctio consectetur quos placeat nihil ad, ea aspernatur voluptas eaque consequatur. Eos asperiores deleniti, animi itaque nobis!</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita consequuntur quisquam aperiam velit, distinctio consectetur quos placeat nihil ad, ea aspernatur voluptas eaque consequatur. Eos asperiores deleniti, animi itaque nobis!</p>
+                    @include('settings.partials.avatar')
                 </div>
             </div>
         </div>

@@ -3,9 +3,7 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use App\Models\Post;
-use App\Models\User;
-use App\Models\Topic;
+use App\Models\{Post, Topic, User};
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class PostsTest extends TestCase

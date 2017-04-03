@@ -2,7 +2,10 @@
 
 namespace App\Models;
 
+use Storage;
 use App\Models\Post;
+use App\Models\Avatar;
+use App\Jobs\DeleteAvatar;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -47,9 +50,13 @@ class User extends Authenticatable
      * @param  integer  $size
      * @return string
      */
-    public function getAvatar(int $size = 100)
+    public function getAvatar(int $size = 150)
     {
-        return 'https://www.gravatar.com/avatar/' . md5(strtolower($this->email)) . '?s=' . $size . '&d=mm';
+        if (!$this->avatar) {
+            return 'https://www.gravatar.com/avatar/' . md5(strtolower($this->email)) . '?s=' . $size . '&d=mm';
+        }
+
+        return Storage::disk('avatars')->url($this->avatar);
     }
 
     /**

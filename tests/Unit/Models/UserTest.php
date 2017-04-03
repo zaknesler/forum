@@ -29,7 +29,7 @@ class UserTest extends TestCase
         $user = factory(User::class)->make(['email' => 'user@example.com']);
 
         $this->assertEquals(
-            'https://www.gravatar.com/avatar/b58996c504c5638798eb6b511e6f49af?s=100&d=mm',
+            'https://www.gravatar.com/avatar/b58996c504c5638798eb6b511e6f49af?s=150&d=mm',
             $user->getAvatar()
         );
     }

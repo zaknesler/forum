@@ -13,17 +13,20 @@
 
 Route::get('/', 'TopicController@index')->name('home');
 
-Route::get('settings', 'Settings\SettingsController@index')->name('settings.index');
-Route::patch('settings/profile', 'Settings\ProfileSettingsController@update')->name('settings.profile.update');
-Route::patch('settings/password', 'Settings\PasswordSettingsController@update')->name('settings.password.update');
+Route::group(['prefix' => 'settings'], function () {
+    Route::get('/', 'Settings\SettingsController@index')->name('settings.index');
+
+    Route::patch('profile', 'Settings\ProfileController@update')->name('settings.profile.update');
+    Route::patch('password', 'Settings\PasswordController@update')->name('settings.password.update');
+    Route::patch('avatar', 'Settings\AvatarController@update')->name('settings.avatar.update');
+});
 
 Route::resource('topics', 'TopicController', ['except' => ['show', 'index']]);
 
-Route::group(['prefix' => 'topics'], function() {
-    Route::get('{slug}', 'TopicController@show')->name('topics.show');
-
+Route::group(['prefix' => 'topics'], function () {
     Route::resource('{topic}/posts', 'PostController', ['except' => ['show', 'index', 'create']]);
-});
 
+    Route::get('{slug}', 'TopicController@show')->name('topics.show');
+});
 
 Auth::routes();

@@ -17,6 +17,18 @@
         justify-content: space-between;
     }
 
+    & .form-image {
+        display: block;
+        width: 150px;
+        height: 150px;
+        background-image: url(https://www.gravatar.com/avatar/?s=50&d=identicon);
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        border-radius: $global-border-radius;
+        margin: 0 auto 20px auto;
+    }
+
     & .form-checkbox {
         display: flex;
         align-items: center;

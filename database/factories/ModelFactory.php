@@ -29,7 +29,7 @@ $factory->define(App\Models\Topic::class, function (Faker\Generator $faker) {
             return factory(App\Models\User::class)->create()->id;
         },
         'title' => $faker->sentence,
-        'body' => $faker->paragraph,
+        'body' => $faker->paragraphs(5, true),
     ];
 });
 
@@ -41,6 +41,6 @@ $factory->define(App\Models\Post::class, function (Faker\Generator $faker) {
         'topic_id' => function () {
             return factory(App\Models\Topic::class)->create()->id;
         },
-        'body' => $faker->paragraph,
+        'body' => $faker->paragraphs(5, true),
     ];
 });
