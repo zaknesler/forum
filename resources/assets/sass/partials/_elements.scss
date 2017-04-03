@@ -29,8 +29,12 @@ a {
     }
 }
 
-b, strong {
+b, strong, .text-strong, h1, h2, h3, h4, h5, h6 {
     font-weight: $font-weight-bold;
+}
+
+small {
+    font-size: 65%;
 }
 
 h1 {

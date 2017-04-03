@@ -29,4 +29,6 @@ Route::group(['prefix' => 'topics'], function () {
     Route::get('{slug}', 'TopicController@show')->name('topics.show');
 });
 
+Route::get('@{username}', 'UserController@show')->name('users.show');
+
 Auth::routes();

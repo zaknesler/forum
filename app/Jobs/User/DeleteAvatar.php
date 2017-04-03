@@ -12,6 +12,8 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class DeleteAvatar implements ShouldQueue
 {
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
     /**
      * User to verify avatar.
      *
@@ -25,8 +27,6 @@ class DeleteAvatar implements ShouldQueue
      * @var string
      */
     protected $avatar;
-
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
      * Create a new job instance.

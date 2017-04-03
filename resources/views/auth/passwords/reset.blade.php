@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Reset Password')
+
 @section('banner')
     @component('layouts.components.banner')
         <div class="banner-title">

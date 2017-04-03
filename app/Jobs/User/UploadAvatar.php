@@ -14,6 +14,8 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class UploadAvatar implements ShouldQueue
 {
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
     /**
      * The user to save the avatar to.
      *
@@ -27,8 +29,6 @@ class UploadAvatar implements ShouldQueue
      * @var string
      */
     protected $file;
-
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
      * Create a new job instance.

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Topics')
+
 @section('banner')
     @component('layouts.components.banner')
         <div class="banner-title">
@@ -27,7 +29,7 @@
 
                     <div class="text-light">
                         by
-                        <a href="#">
+                        <a href="{{ route('users.show', $topic->user->username) }}">
                             {{ $topic->user->getNameOrUsername() }}
                         </a>
                         &mdash; {{ $topic->created_at->diffForHumans() }}

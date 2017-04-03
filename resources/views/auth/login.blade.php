@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Login')
+
 @section('banner')
     @component('layouts.components.banner')
         <div class="banner-title">
