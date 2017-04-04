@@ -16,6 +16,7 @@ class AvatarTest extends TestCase
     function can_upload_avatar()
     {
         Storage::fake('avatars');
+        Storage::fake('avatars-temp');
 
         $user = factory(User::class)->create();
         $this->actingAs($user);
@@ -33,6 +34,7 @@ class AvatarTest extends TestCase
     function when_new_avatar_is_uploaded_the_previous_one_gets_deleted()
     {
         Storage::fake('avatars');
+        Storage::fake('avatars-temp');
 
         $user = factory(User::class)->create();
         $this->actingAs($user);
@@ -46,7 +48,7 @@ class AvatarTest extends TestCase
         $this->assertEquals(1, count(Storage::disk('avatars')->files()));
 
         $response = $this->json('PATCH', '/settings/avatar', [
-            'avatar' => UploadedFile::fake()->image('avatar.jpg', 200, 200),
+            'avatar' => UploadedFile::fake()->image('avatar2.jpg', 200, 200),
         ]);
 
         $response->assertStatus(302);

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Settings;
 
+use Storage;
 use Illuminate\Http\Request;
+use App\Jobs\User\DeleteAvatar;
 use App\Jobs\User\UploadAvatar;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\UpdateAvatar;
@@ -27,7 +29,9 @@ class AvatarController extends Controller
      */
     public function update(UpdateAvatar $request)
     {
-        $this->dispatch(new UploadAvatar($request->user(), $request->file('avatar')->getRealPath()));
+        Storage::disk('avatars-temp')->putFileAs('', $request->file('avatar'), $file = uniqid(true));
+
+        $this->dispatch(new UploadAvatar($request->user(), $file));
 
         flash('Avatar has been updated. Changes will take effect briefly.');
 

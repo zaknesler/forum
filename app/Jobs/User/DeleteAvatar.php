@@ -15,13 +15,6 @@ class DeleteAvatar implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
-     * User to verify avatar.
-     *
-     * @var App\Models\User
-     */
-    protected $user;
-
-    /**
      * The avatar to be deleted.
      *
      * @var string
@@ -31,13 +24,10 @@ class DeleteAvatar implements ShouldQueue
     /**
      * Create a new job instance.
      *
-     * @param  App\Models\User  $user
      * @param  string  $avatar
      */
-    public function __construct(User $user, $avatar)
+    public function __construct($avatar)
     {
-        $this->user = $user;
-
         $this->avatar = $avatar;
     }
 
@@ -48,10 +38,8 @@ class DeleteAvatar implements ShouldQueue
      */
     public function handle()
     {
-        if ($this->user->avatar == $this->avatar) {
-            Storage::disk('avatars')->delete($this->user->avatar);
-
-            $this->user->update(['avatar' => null]);
+        if (!is_null($this->avatar)) {
+            Storage::disk('avatars')->delete($this->avatar);
         }
     }
 }

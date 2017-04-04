@@ -48,16 +48,16 @@ class UploadAvatar implements ShouldQueue
      */
     public function handle()
     {
-        if ($avatar = $this->user->avatar) {
-            dispatch(new DeleteAvatar($this->user, $avatar));
-        }
+        dispatch(new DeleteAvatar($this->user->avatar));
 
-        $fileName = uniqid(true) . '.png';
+        $fileName = uniqid(true) . '.jpg';
 
-        Storage::disk('avatars')->put($fileName, Image::make($this->file)
+        Storage::disk('avatars')->put($fileName, Image::make(Storage::disk('avatars-temp')->get($this->file))
             ->fit(150, 150, function ($constraint) {
                 $constraint->aspectRatio();
-            })->encode('png'));
+            })->encode('jpg'));
+
+        Storage::disk('avatars-temp')->delete($this->file);
 
         $this->user->update(['avatar' => $fileName]);
     }

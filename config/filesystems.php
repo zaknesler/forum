@@ -70,6 +70,11 @@ return [
             'visibility' => 'public',
         ],
 
+        'avatars-temp' => [
+            'driver' => 'local',
+            'root' => storage_path('app/temp/images/avatars'),
+        ],
+
     ],
 
 ];
