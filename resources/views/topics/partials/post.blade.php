@@ -1,7 +1,7 @@
 <div class="post">
     <div class="post-header">
         <div class="post-author">
-            <a href="#" class="post-author_image" style="background-image: url({{ $post->user->getAvatar(50) }})"></a>
+            <a href="{{ route('users.show', $post->user->username) }}" class="post-author_image" style="background-image: url({{ $post->user->getAvatar(50) }})"></a>
 
             <div class="post-author_info">
                 <a href="{{ route('users.show', $post->user->username) }}">
