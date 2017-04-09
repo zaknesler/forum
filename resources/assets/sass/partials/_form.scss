@@ -33,6 +33,7 @@
         display: flex;
         align-items: center;
         justify-content: flex-start;
+        user-select: none;
 
         & input {
             margin-right: 5px;

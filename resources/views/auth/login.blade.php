@@ -39,7 +39,9 @@
 
                     <div class="form-group">
                         <label class="form-checkbox">
-                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }} /> Stay Signed In
+                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }} />
+
+                            <span>Keep me signed in</span>
                         </label>
                     </div>
 
