@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     /**
-     * Display the profile for a specified username.
+     * Display the user profile for the specified username.
      *
      * @param  string  $username
      * @return \Illuminate\Http\Response

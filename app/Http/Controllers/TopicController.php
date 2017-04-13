@@ -27,19 +27,19 @@ class TopicController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of all of the topics.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $topics = Topic::latest()->paginate(15);
+        $topics = Topic::latest()->with('user')->paginate(15);
 
         return view('topics.index', compact('topics'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new topic.
      *
      * @return \Illuminate\Http\Response
      */
@@ -49,7 +49,7 @@ class TopicController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created topic.
      *
      * @param  App\Http\Requests\Topic\StoreTopic  $request
      * @return \Illuminate\Http\Response
@@ -67,19 +67,20 @@ class TopicController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the topic with its replies.
      *
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
     public function show($slug)
     {
-        $topic = Topic::where('slug', $slug)->with(['user', 'posts'])->firstOrFail();
+        $topic = Topic::where('slug', $slug)->with(['user', 'posts.user'])->firstOrFail();
 
         return view('topics.show', compact('topic'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified topic.
      *
      * @param  App\Models\Topic  $topic
      * @return \Illuminate\Http\Response
@@ -92,7 +93,7 @@ class TopicController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified topic.
      *
      * @param  App\Http\Requests\Topic\UpdateTopic  $request
      * @param  App\Models\Topic  $topic
@@ -111,7 +112,7 @@ class TopicController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified topic.
      *
      * @param  App\Models\Topic  $topic
      */

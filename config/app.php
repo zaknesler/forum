@@ -166,6 +166,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Barryvdh\Debugbar\ServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         BrianFaust\Parsedown\ParsedownServiceProvider::class,

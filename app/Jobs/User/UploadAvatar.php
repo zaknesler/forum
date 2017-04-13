@@ -53,7 +53,7 @@ class UploadAvatar implements ShouldQueue
         $fileName = uniqid(true) . '.jpg';
 
         Storage::disk('avatars')->put($fileName, Image::make(Storage::disk('avatars-temp')->get($this->file))
-            ->fit(150, 150, function ($constraint) {
+            ->fit(250, 250, function ($constraint) {
                 $constraint->aspectRatio();
             })->encode('jpg'));
 

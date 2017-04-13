@@ -21,7 +21,7 @@ class PostController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created post.
      *
      * @param  App\Http\Requests\Post\StorePost  $request
      * @param  App\Models\Topic  $topic
@@ -40,7 +40,7 @@ class PostController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified post.
      *
      * @param  App\Models\Topic  $topic
      * @param  App\Models\Post  $post
@@ -54,7 +54,7 @@ class PostController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified post.
      *
      * @param  App\Http\Requests\Post\UpdatePost  $request
      * @param  App\Models\Topic  $topic
@@ -71,7 +71,7 @@ class PostController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified post.
      *
      * @param  App\Models\Topic  $topic
      * @param  App\Models\Post  $post

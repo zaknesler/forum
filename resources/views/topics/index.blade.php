@@ -23,8 +23,6 @@
                 <div class="list-group-item">
                     <strong>
                         <a href="{{ route('topics.show', $topic->slug) }}">{{ $topic->title }}</a>
-
-                        <span>({{ $topic->posts_count }} {{ str_plural('reply', $topic->posts_count) }})</span>
                     </strong>
 
                     <div class="text-light">
