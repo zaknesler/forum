@@ -50,12 +50,12 @@ class UploadAvatar implements ShouldQueue
     {
         dispatch(new DeleteAvatar($this->user->avatar));
 
-        $fileName = uniqid(true) . '.jpg';
+        $fileName = uniqid(true) . '.png';
 
         Storage::disk('avatars')->put($fileName, Image::make(Storage::disk('avatars-temp')->get($this->file))
             ->fit(250, 250, function ($constraint) {
                 $constraint->aspectRatio();
-            })->encode('jpg'));
+            })->encode('png'));
 
         Storage::disk('avatars-temp')->delete($this->file);
 
