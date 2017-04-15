@@ -13,7 +13,9 @@
 @section('content')
     @include('topics.partials.topic', $topic)
 
-    @each('topics.partials.post', $topic->posts, 'post')
+    @foreach($topic->posts as $post)
+        @include('topics.partials.post', [$post, $topic])
+    @endforeach
 
     @if (auth()->check())
         @include('posts.partials.create')

@@ -9,7 +9,7 @@
                 </a> <br /> {{ $post->created_at->diffForHumans() }}
 
                 @can('update', $post)
-                    &mdash; <a href="{{ route('posts.edit', [$post->topic->id, $post->id]) }}">Edit</a>
+                    &mdash; <a href="{{ route('posts.edit', [$topic->id, $post->id]) }}">Edit</a>
                 @endcan
             </div>
         </div>
