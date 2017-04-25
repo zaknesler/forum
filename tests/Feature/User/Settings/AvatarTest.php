@@ -18,15 +18,14 @@ class AvatarTest extends TestCase
         Storage::fake('avatars');
         Storage::fake('avatars-temp');
 
-        $user = factory(User::class)->create();
-        $this->actingAs($user);
+        $this->authenticate();
 
         $response = $this->json('PATCH', '/settings/avatar', [
             'avatar' => UploadedFile::fake()->image('avatar.jpg', 200, 200),
         ]);
 
-        $response->assertStatus(302);
-        $this->assertNotNull($user->fresh()->avatar);
+        $response->assertRedirect('/settings');
+        $this->assertNotNull(User::first()->avatar);
         $this->assertEquals(1, count(Storage::disk('avatars')->files()));
     }
 
@@ -36,23 +35,22 @@ class AvatarTest extends TestCase
         Storage::fake('avatars');
         Storage::fake('avatars-temp');
 
-        $user = factory(User::class)->create();
-        $this->actingAs($user);
+        $this->authenticate();
 
         $response = $this->json('PATCH', '/settings/avatar', [
             'avatar' => UploadedFile::fake()->image('avatar.jpg', 200, 200),
         ]);
 
-        $response->assertStatus(302);
-        $this->assertNotNull($user->fresh()->avatar);
+        $response->assertRedirect('/settings');
+        $this->assertNotNull(User::first()->avatar);
         $this->assertEquals(1, count(Storage::disk('avatars')->files()));
 
         $response = $this->json('PATCH', '/settings/avatar', [
             'avatar' => UploadedFile::fake()->image('avatar2.jpg', 200, 200),
         ]);
 
-        $response->assertStatus(302);
-        $this->assertNotNull($user->fresh()->avatar);
+        $response->assertRedirect('/settings');
+        $this->assertNotNull(User::first()->avatar);
         $this->assertEquals(1, count(Storage::disk('avatars')->files()));
     }
 }

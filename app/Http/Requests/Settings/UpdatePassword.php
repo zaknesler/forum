@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Settings;
 
-use Hash;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdatePassword extends FormRequest

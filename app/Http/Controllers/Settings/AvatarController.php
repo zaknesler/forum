@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Settings;
 
-use Storage;
 use Illuminate\Http\Request;
 use App\Jobs\User\DeleteAvatar;
 use App\Jobs\User\UploadAvatar;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Settings\UpdateAvatar;
 
 class AvatarController extends Controller

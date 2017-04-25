@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Settings;
 
-use Hash;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Settings\UpdatePassword;
 
 class PasswordController extends Controller
@@ -28,7 +28,7 @@ class PasswordController extends Controller
     public function update(UpdatePassword $request)
     {
         $request->user()->update([
-            'password' => bcrypt($request->input('password')),
+            'password' => Hash::make($request->input('password')),
         ]);
 
         flash('Password has been updated.');

@@ -13,14 +13,14 @@ class PostsTest extends TestCase
     /** @test */
     function can_create_post()
     {
-        $this->actingAs(factory(User::class)->create());
+        $this->authenticate();
         $topic = factory(Topic::class)->create();
 
         $response = $this->json('POST', '/topics/1/posts', [
             'body' => 'This is the body of the post.',
         ]);
 
-        $response->assertStatus(302);
+        $response->assertRedirect('/topics/' . Topic::first()->slug);
         $this->assertEquals(1, Post::count());
         $this->assertSame('This is the body of the post.', Post::first()->body);
     }
@@ -28,7 +28,7 @@ class PostsTest extends TestCase
     /** @test */
     function can_update_post()
     {
-        $this->actingAs(factory(User::class)->create());
+        $this->authenticate();
         $post = factory(Post::class)->create([
             'body' => 'This is the original body of the post.',
         ]);
@@ -39,7 +39,7 @@ class PostsTest extends TestCase
             'body' => 'This is the updated body of the post.',
         ]);
 
-        $response->assertStatus(302);
+        $response->assertRedirect('/topics/' . Topic::first()->slug);
         $this->assertSame('This is the updated body of the post.', Post::first()->body);
     }
 

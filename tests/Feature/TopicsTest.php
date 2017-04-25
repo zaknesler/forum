@@ -13,36 +13,35 @@ class CreateTopicsTest extends TestCase
     /** @test */
     function can_create_topic()
     {
-        $this->actingAs(factory(User::class)->create());
+        $this->authenticate();
 
         $response = $this->json('POST', '/topics', [
             'title' => 'Such a cool topic!!',
             'body' => 'This topic is not about anything important.',
         ]);
 
-        $response->assertStatus(302);
+        $response->assertRedirect('/topics/' . Topic::first()->slug);
         $this->assertEquals(1, Topic::count());
     }
 
     /** @test */
     function can_update_topic()
     {
-        $this->actingAs(factory(User::class)->create());
+        $this->authenticate();
 
         $response = $this->json('POST', '/topics', [
             'title' => 'Such a cool topic!!',
             'body' => 'This topic is not about anything important.',
         ]);
 
-        $response->assertStatus(302);
-        $this->assertEquals('This topic is not about anything important.', Topic::first()->body);
+        $this->assertEquals(1, Topic::count());
 
         $response = $this->json('PATCH', '/topics/1', [
             'title' => 'Such a cool topic!!',
             'body' => 'This is the updated body.'
         ]);
 
-        $response->assertStatus(302);
+        $response->assertRedirect('/topics/' . Topic::first()->slug);
         $this->assertEquals('This is the updated body.', Topic::first()->body);
     }
 
@@ -63,14 +62,14 @@ class CreateTopicsTest extends TestCase
     /** @test */
     function when_a_topic_title_is_updated_the_slug_stays_the_same()
     {
-        $this->actingAs(factory(User::class)->create());
+        $this->authenticate();
 
         $response = $this->json('POST', '/topics', [
             'title' => 'Such a cool topic!!',
             'body' => 'This topic is not about anything important.',
         ]);
 
-        $response->assertStatus(302);
+        $response->assertRedirect('/topics/' . Topic::first()->slug);
         $this->assertEquals(1, Topic::count());
         $this->assertEquals('such-a-cool-topic', Topic::first()->slug);
 
@@ -79,7 +78,7 @@ class CreateTopicsTest extends TestCase
             'body' => 'This topic is not about anything important.',
         ]);
 
-        $response->assertStatus(302);
+        $response->assertRedirect('/topics/' . Topic::first()->slug);
         $this->assertEquals(1, Topic::count());
         $this->assertEquals('such-a-cool-topic', Topic::first()->slug);
     }
