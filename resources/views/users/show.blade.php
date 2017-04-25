@@ -11,9 +11,13 @@
 @endsection
 
 @section('content')
-    <h2>{{ $user->name ?? $user->username }} <small class="text-light">joined {{ $user->created_at->diffForHumans() }}</small></h2>
+    <h2>{{ $user->name ?? $user->username }} <small class="text-light">(joined {{ $user->created_at->diffForHumans() }})</small></h2>
 
-    <div class="avatar avatar-huge">
-        <div style="background-image: url({{ $user->getAvatar() }})"></div>
-    </div>
+    @if ($topics->total())
+        @include('topics.partials.topic-list', [$topics, 'user' => $user])
+
+        {{ $topics->render() }}
+    @else
+        <p class="text-light">This user has not posted any topics.</p>
+    @endif
 @endsection
