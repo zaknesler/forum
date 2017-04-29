@@ -29,6 +29,16 @@ a {
     }
 }
 
+.anchor-dark {
+    color: $color-dark;
+
+    &:hover,
+    &:active,
+    &:focus {
+        color: lighten($color-dark, 20%);
+    }
+}
+
 b, strong, .text-strong, h1, h2, h3, h4, h5, h6 {
     font-weight: $font-weight-bold;
 }
