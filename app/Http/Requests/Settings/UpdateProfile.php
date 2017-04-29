@@ -24,7 +24,7 @@ class UpdateProfile extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'nullable|min:3|max:16|alpha_spaces',
+            'name' => 'nullable|min:3|max:32|alpha_spaces',
             'email' => 'required|email|unique:users,id,' . $this->id,
         ];
     }
