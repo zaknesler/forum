@@ -14,7 +14,7 @@ class PasswordTest extends TestCase
     /** @test */
     function can_update_password()
     {
-        $this->authenticate(null, [
+        $user = $this->authenticate(null, [
             'password' => Hash::make('secret'),
         ]);
 
@@ -25,6 +25,6 @@ class PasswordTest extends TestCase
         ]);
 
         $response->assertRedirect('/settings');
-        $this->assertTrue(Hash::check('updated-password', User::first()->password));
+        $this->assertTrue(Hash::check('updated-password', $user->fresh()->password));
     }
 }

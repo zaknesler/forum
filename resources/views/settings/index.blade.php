@@ -17,7 +17,7 @@
                 <div class="box-header display-flex">
                     <span>Profile</span>
 
-                    <span><a href="{{ route('users.show', $user->username) }}" class="button button-small">View Profile</a></span>
+                    <span><a href="{{ route('users.show', $user->username) }}">View Profile</a></span>
                 </div>
 
                 <div class="box-body">

@@ -46,10 +46,9 @@ class PostsTest extends TestCase
     /** @test */
     function can_delete_post()
     {
-        $user = factory(User::class)->create();
+        $user = $this->authenticate();
         $post = factory(Post::class)->create(['user_id' => $user->id]);
 
-        $this->actingAs($user);
         $response = $this->json('DELETE', '/topics/1/posts/1');
 
         $response->assertStatus(200);

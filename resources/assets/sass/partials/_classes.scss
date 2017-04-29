@@ -21,6 +21,11 @@
         width: 250px;
         height: 250px;
     }
+
+    &.avatar-small {
+        width: 75px;
+        height: 75px;
+    }
 }
 
 .box {
@@ -103,7 +108,7 @@
 }
 
 .text-light {
-    color: lighten($body-text-color, 20%);
+    color: lighten($body-text-color, 25%);
 }
 
 .display-flex {
@@ -147,4 +152,16 @@
         background-color: lighten($color-danger, 40%);
         border-color: lighten($color-danger, 20%);
     }
+}
+
+.profile {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profile-name {
+    font-size: 24px;
+    font-weight: 500;
 }

@@ -13,7 +13,7 @@ class ProfileTest extends TestCase
     /** @test */
     function can_update_profile()
     {
-        $this->authenticate(null, [
+        $user = $this->authenticate(null, [
             'name' => 'Test User',
             'email' => 'text@example.com',
         ]);
@@ -24,7 +24,7 @@ class ProfileTest extends TestCase
         ]);
 
         $response->assertRedirect('/settings');
-        $this->assertEquals('Updated Name', User::first()->name);
-        $this->assertEquals('updated-email@example.com', User::first()->email);
+        $this->assertEquals('Updated Name', $user->fresh()->name);
+        $this->assertEquals('updated-email@example.com', $user->fresh()->email);
     }
 }

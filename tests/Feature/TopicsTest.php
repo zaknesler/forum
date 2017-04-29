@@ -48,10 +48,9 @@ class CreateTopicsTest extends TestCase
     /** @test */
     function can_delete_topic()
     {
-        $user = factory(User::class)->create();
+        $user = $this->authenticate();
         $topic = factory(Topic::class)->create(['user_id' => $user->id]);
 
-        $this->actingAs($user);
         $response = $this->json('DELETE', '/topics/1');
 
         $response->assertStatus(200);
@@ -86,14 +85,13 @@ class CreateTopicsTest extends TestCase
     /** @test */
     function when_a_topic_is_deleted_so_are_its_posts()
     {
-        $user = factory(User::class)->create();
+        $user = $this->authenticate();
         $topic = factory(Topic::class)->create(['user_id' => $user->id]);
         factory(Post::class, 5)->create(['topic_id' => $topic->id]);
 
         $this->assertEquals(1, Topic::count());
         $this->assertEquals(5, Post::count());
 
-        $this->actingAs($user);
         $response = $this->json('DELETE', '/topics/1');
 
         $this->assertEquals(0, Topic::count());
