@@ -139,8 +139,8 @@
     border-radius: $global-border-radius;
 
     &.alert-info {
-        background-color: lighten($color-info, 40%);
-        border-color: lighten($color-info, 20%);
+        background-color: lighten($color-info, 35%);
+        border-color: lighten($color-info, 25%);
     }
 
     &.alert-success {
@@ -150,7 +150,7 @@
 
     &.alert-danger {
         background-color: lighten($color-danger, 40%);
-        border-color: lighten($color-danger, 20%);
+        border-color: lighten($color-danger, 25%);
     }
 }
 

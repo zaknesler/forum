@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="form-group{{ $errors->first('password_confirmation', ' has-error') }}">
-                        <div class="form-label">Confrim Password</div>
+                        <div class="form-label">Confirm Password</div>
 
                         <input type="password" name="password_confirmation" required class="form-input" />
 
