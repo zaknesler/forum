@@ -14,7 +14,7 @@
     <div class="profile">
         <div class="profile-info">
             <div class="profile-name">{{ $user->name ?? $user->username }}</div>
-            <div class="profile-date text-light">joined {{ $user->created_at->diffForHumans() }}</div>
+            <div class="profile-date text-light">Joined {{ $user->created_at->diffForHumans() }}</div>
         </div>
 
         <div class="profile-image">

@@ -12,6 +12,7 @@ body {
     font-size: $font-size-base;
     line-height: 1.7;
     color: $body-text-color;
+    font-weight: $font-weight-normal;
     background-color: $body-background-color;
     overflow-wrap: break-word;
 }
@@ -19,6 +20,7 @@ body {
 a {
     text-decoration: none;
     color: $color-theme;
+    font-weight: $font-weight-normal;
 
     &:hover,
     &:active,
