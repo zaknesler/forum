@@ -10,6 +10,7 @@
 
     <link href="{{ mix('/css/app.css') }}" rel="stylesheet" />
     <script defer src="{{ mix('/js/app.js') }}"></script>
+    <script>window.Forum = {!! json_encode(['csrfToken' => csrf_token()]) !!};</script>
 </head>
 <body>
     <div id="root">

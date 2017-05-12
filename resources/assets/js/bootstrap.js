@@ -6,6 +6,6 @@ window.Vue = Vue;
 Vue.prototype.$http = axios;
 
 Vue.prototype.$http.defaults.headers.common = {
-    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]'),
+    'X-CSRF-TOKEN': window.Forum.csrfToken,
     'X-Requested-With': 'XMLHttpRequest'
 };
