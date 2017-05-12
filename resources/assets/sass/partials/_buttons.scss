@@ -123,6 +123,21 @@
         }
     }
 
+    &.button-link {
+        background-color: transparent;
+        border-color: transparent;
+        color: $color-theme;
+
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: transparent;
+            border-color: transparent;
+            color: darken($color-theme, 20%);
+            text-decoration: none;
+        }
+    }
+
     &.button-large {
         padding: 10px 20px;
     }

@@ -46,6 +46,7 @@
                     </div>
 
                     <div class="form-group text-right">
+                        <a href="{{ route('password.request') }}" class="button button-large button-link">Forgot password?</a>
                         <input type="submit" value="Login" class="button button-large" />
                     </div>
                 </div>
