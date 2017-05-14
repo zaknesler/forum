@@ -37,6 +37,8 @@
         font-weight: $font-weight-bold;
         background-color: darken($body-background-color, 3.5%);
         padding: 15px 20px;
+        border-top-left-radius: $global-border-radius - 1;
+        border-top-right-radius: $global-border-radius - 1;
     }
 
     .box-body {
