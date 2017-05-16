@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Topic;
 use Illuminate\Http\Request;
-use App\Transformers\TopicTransformer;
 use App\Http\Requests\Topic\StoreTopic;
 use App\Http\Requests\Topic\UpdateTopic;
 

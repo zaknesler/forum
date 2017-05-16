@@ -170,6 +170,7 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         BrianFaust\Parsedown\ParsedownServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
         Cviebrock\EloquentSluggable\ServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,
 

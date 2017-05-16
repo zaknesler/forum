@@ -11,6 +11,20 @@ class TopicPolicy
     use HandlesAuthorization;
 
     /**
+     * Override all other authorization methods.
+     *
+     * @param  App\Models\User  $user
+     * @param  string  $ability
+     * @return boolean
+     */
+    public function before($user, $ability)
+    {
+        if ($user->hasRole(['moderator', 'admin'])) {
+            return true;
+        }
+    }
+
+    /**
      * Determine whether the user can update the topic.
      *
      * @param  App\Models\User  $user

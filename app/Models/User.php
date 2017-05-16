@@ -2,16 +2,17 @@
 
 namespace App\Models;
 
-use Storage;
 use App\Models\Post;
 use App\Models\Avatar;
 use App\Jobs\DeleteAvatar;
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasRoles;
 
     /**
      * The attributes that aren't mass assignable.
