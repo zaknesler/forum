@@ -1,16 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', 'TopicController@index')->name('home');
 
 Route::group(['prefix' => 'settings'], function () {
@@ -19,6 +8,7 @@ Route::group(['prefix' => 'settings'], function () {
     Route::patch('profile', 'Settings\ProfileController@update')->name('settings.profile.update');
     Route::patch('password', 'Settings\PasswordController@update')->name('settings.password.update');
     Route::patch('avatar', 'Settings\AvatarController@update')->name('settings.avatar.update');
+    Route::delete('avatar', 'Settings\AvatarController@destroy')->name('settings.avatar.destroy');
 });
 
 Route::resource('topics', 'TopicController', ['except' => ['show', 'index']]);

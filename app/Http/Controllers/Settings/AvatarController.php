@@ -37,4 +37,24 @@ class AvatarController extends Controller
 
         return redirect()->route('settings.index');
     }
+
+    /**
+     * Remove the user's avatar.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy()
+    {
+        $user = request()->user()->fresh();
+
+        $this->dispatch(new DeleteAvatar($user->avatar));
+
+        $user->update(['avatar' => null]);
+
+        flash('Avatar has been removed.');
+
+        return response()->json([
+            'redirect_url' => route('settings.index'),
+        ]);
+    }
 }

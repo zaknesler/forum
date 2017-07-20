@@ -1,6 +1,7 @@
 import './bootstrap';
 import VueAutosize from './classes/vue-autosize';
 
+Vue.component('avatar-delete', require('./components/AvatarDelete.vue'));
 Vue.component('topic-delete', require('./components/TopicDelete.vue'));
 Vue.component('post-delete', require('./components/PostDelete.vue'));
 

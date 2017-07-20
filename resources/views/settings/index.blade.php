@@ -36,7 +36,13 @@
 
         <div class="col col-md-5 col-xs-12">
             <div class="box">
-                <div class="box-header">Avatar</div>
+                <div class="box-header display-flex">
+                    <span>Avatar</span>
+
+                    @if (auth()->user()->avatar)
+                        <span><avatar-delete></avatar-delete></span>
+                    @endif
+                </div>
 
                 <div class="box-body">
                     @include('settings.partials.avatar')
