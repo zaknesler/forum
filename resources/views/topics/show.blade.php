@@ -17,9 +17,9 @@
         @include('topics.partials.post', [$post, $topic])
     @endforeach
 
-    @if (auth()->check())
+    @auth
         @include('posts.partials.create')
     @else
         <p class="text-light">To reply to this topic, you must <a href="{{ route('login') }}">login</a>.</p>
-    @endif
+    @endauth
 @endsection

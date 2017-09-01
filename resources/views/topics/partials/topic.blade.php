@@ -15,5 +15,5 @@
         </div>
     </div>
 
-    <div class="post-body">{!! Markdown::text($topic->body) !!}</div>
+    <div class="post-body">@parsedown($topic->body)</div>
 </div>

@@ -6,6 +6,14 @@
     box-sizing: border-box;
 }
 
+::selection {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+[v-cloak] {
+    display: none;
+}
+
 body {
     font-family: $font-family-sans-serif;
     font-size: $font-size-base;
@@ -25,7 +33,7 @@ a {
     &:active,
     &:focus {
         outline: 0;
-        color: darken($color-theme, 20%);
+        color: darken($color-theme, 10%);
         @include transition(color 150ms ease-in);
     }
 }

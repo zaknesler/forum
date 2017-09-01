@@ -2,6 +2,8 @@
 
 Route::get('/', 'TopicController@index')->name('home');
 
+Route::redirect('/home', '/');
+
 Route::group(['prefix' => 'settings'], function () {
     Route::get('/', 'Settings\SettingsController@index')->name('settings.index');
 

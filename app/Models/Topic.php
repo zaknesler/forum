@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;

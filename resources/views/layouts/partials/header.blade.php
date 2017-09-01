@@ -14,14 +14,14 @@
             <ul class="left"></ul>
 
             <ul class="right">
-                @if (auth()->guest())
-                    <li><a href="{{ route('login') }}">Login</a></li>
-                    <li><a href="{{ route('register') }}">Register</a></li>
-                @else
+                @auth
                     <li>{{ auth()->user()->getNameOrUsername() }}</li>
                     <li><a href="{{ route('settings.index') }}">Settings</a></li>
-                    <li><a href="#" @click.prevent="logout">Logout</a></li>
-                @endif
+                    <li><logout path="{{ route('logout') }}"></logout></li>
+                @else
+                    <li><a href="{{ route('login') }}">Login</a></li>
+                    <li><a href="{{ route('register') }}">Register</a></li>
+                @endauth
             </ul>
         </div>
     </div>

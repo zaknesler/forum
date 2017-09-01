@@ -8,12 +8,12 @@
                     {{ $post->user->getNameOrUsername() }}
                 </a> <br /> {{ $post->created_at->diffForHumans() }}
 
-                @can('update', $post)
+                @can ('update', $post)
                     &mdash; <a href="{{ route('posts.edit', [$topic->id, $post->id]) }}">Edit</a>
                 @endcan
             </div>
         </div>
     </div>
 
-    <div class="post-body">{!! Markdown::text($post->body) !!}</div>
+    <div class="post-body">@parsedown($post->body)</div>
 </div>

@@ -4,11 +4,11 @@ namespace Tests\Unit\Models;
 
 use Tests\TestCase;
 use App\Models\Topic;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class TopicTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     function creating_a_topic_generates_a_slug()

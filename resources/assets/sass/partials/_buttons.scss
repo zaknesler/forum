@@ -115,12 +115,14 @@
 
     &.button-light {
         background-color: $color-light;
+        border-color: $color-light;
         color: $color-theme;
 
         &:hover,
         &:active,
         &:focus {
             background-color: darken($color-light, 5%);
+            border-color: darken($color-light, 5%);
             text-decoration: none;
         }
     }

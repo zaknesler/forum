@@ -8,7 +8,7 @@
             <div class="text-light">
                 by
 
-                @if (isset($user))
+                @isset($user)
                     <a href="{{ route('users.show', $user->username) }}">
                         {{ $user->getNameOrUsername() }}
                     </a>
@@ -16,7 +16,7 @@
                     <a href="{{ route('users.show', $topic->user->username) }}">
                         {{ $topic->user->getNameOrUsername() }}
                     </a>
-                @endif
+                @endisset
 
                 &mdash; {{ $topic->created_at->diffForHumans() }}
             </div>

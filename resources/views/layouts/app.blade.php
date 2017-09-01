@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="{{ config('app.locale') }}">
+<!doctype html>
+<html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -8,12 +8,13 @@
 
     <title>@yield('title', 'Home') &middot; {{ config('app.name') }}</title>
 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500" />
     <link href="{{ mix('/css/app.css') }}" rel="stylesheet" />
     <script defer src="{{ mix('/js/app.js') }}"></script>
     <script>window.Forum = {!! json_encode(['csrfToken' => csrf_token()]) !!};</script>
 </head>
 <body>
-    <div id="root">
+    <div id="root" v-cloak>
         @include('layouts.partials.header')
 
         @yield('banner')

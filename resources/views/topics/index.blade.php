@@ -9,9 +9,9 @@
         </div>
 
         <div class="banner-action">
-            @if (auth()->check())
+            @auth
                 <a href="{{ route('topics.create') }}" class="button button-large button-light">Create Topic</a>
-            @endif
+            @endauth
         </div>
     @endcomponent
 @endsection
