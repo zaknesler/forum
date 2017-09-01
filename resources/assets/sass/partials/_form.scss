@@ -72,13 +72,13 @@
 
 .form-input {
     background-color: $body-background-color;
-    color: $body-text-color;
+    color: lighten($body-text-color, 15%);
     border: 1px solid darken($body-background-color, 10%);
     border-radius: $global-border-radius;
     padding: 10px;
     width: 100%;
     font-size: $font-size-base;
-    line-height: 1.7;
+    line-height: $body-line-height;
     font-family: $font-family-sans-serif;
     resize: vertical;
 

@@ -17,7 +17,7 @@
 body {
     font-family: $font-family-sans-serif;
     font-size: $font-size-base;
-    line-height: 1.5;
+    line-height: $body-line-height;
     color: $body-text-color;
     font-weight: $font-weight-normal;
     background-color: $body-background-color;
@@ -44,7 +44,7 @@ a {
     &:hover,
     &:active,
     &:focus {
-        color: lighten($color-dark, 20%);
+        color: lighten($color-dark, 10%);
     }
 }
 
