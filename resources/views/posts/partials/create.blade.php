@@ -1,19 +1,15 @@
 <form action="{{ route('posts.store', $topic) }}" method="POST">
     {{ csrf_field() }}
 
-    <div class="form">
-        <div class="form-title">Leave a reply</div>
+    <div class="font-medium mb-4 text-lg">Leave a reply</div>
 
-        <div class="form-group{{ $errors->first('body', ' has-error') }}">
-            <textarea name="body" rows="5" class="form-input" placeholder="I have something to say..." v-autosize>{{ old('body') }}</textarea>
+    <div class="mb-4">
+        <textarea class="bg-white border border-grey-lighter {{ $errors->first('body', ' border-red') }} shadow rounded p-4 appearance-none w-full" name="body" rows="5" placeholder="I have something to say..." v-autosize>{{ old('body') }}</textarea>
 
-            @if ($errors->has('body'))
-                <div class="form-message">{{ $errors->first('body') }}</div>
-            @endif
-        </div>
-
-        <div class="form-group text-right">
-            <input type="submit" value="Create Post" class="button button-large" />
-        </div>
+        @if ($errors->has('body'))
+            <div class="text-red font-medium">{{ $errors->first('body') }}</div>
+        @endif
     </div>
+
+    <input type="submit" value="Create Post" class="appearance-none border-none bg-indigo hover:bg-indigo-dark text-white rounded py-3 px-6 text-center font-medium text-lg cursor-pointer shadow" />
 </form>

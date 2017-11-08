@@ -2,55 +2,56 @@
 
 @section('title', 'Login')
 
-@section('banner')
-    @component('layouts.components.banner')
-        <div class="banner-title">
-            Login
-        </div>
-    @endcomponent
-@endsection
-
 @section('content')
-    <div class="row center-md">
-        <div class="col col-md-8 col-xs-12">
-            <form action="{{ route('login') }}" method="POST">
-                {{ csrf_field() }}
+    <div class="bg-grey-lighter text-grey-darker">
+        <div class="container mx-auto px-4 pt-0">
+            <div class="mx-auto w-full md:w-2/3 lg:w-1/3">
+                <div class="mb-4 font-medium text-lg">Login</div>
 
-                <div class="form">
-                    <div class="form-group{{ $errors->first('email', ' has-error') }}">
-                        <div class="form-label">E-mail</div>
+                <div class="bg-white border border-grey-lighter shadow rounded p-4 mb-4">
+                    <form action="{{ route('login') }}" method="POST">
+                        {{ csrf_field() }}
 
-                        <input type="email" name="email" value="{{ old('email') }}" required autofocus class="form-input" />
+                        <div class="mb-4">
+                            <label class="block uppercase tracking-wide text-grey-darker text-xs font-medium mb-2" for="email">
+                                E-Mail Address
+                            </label>
 
-                        @if ($errors->has('email'))
-                            <div class="form-message">{{ $errors->first('email') }}</div>
-                        @endif
-                    </div>
+                            <input required autofocus tabindex="1" class="appearance-none block w-full rounded p-3 bg-grey-lighter text-grey-darker border border-grey-light {{ $errors->first('email', ' border-red') }}" id="email" type="email" name="email" placeholder="example@domain.com" value="{{ old('email') }}" />
 
-                    <div class="form-group{{ $errors->first('password', ' has-error') }}">
-                        <div class="form-label">Password</div>
+                            @if ($errors->has('email'))
+                                <div class="text-red font-medium mt-2">{{ $errors->first('email') }}</div>
+                            @endif
+                        </div>
 
-                        <input type="password" name="password" required class="form-input" />
+                        <div class="mb-4">
+                            <label class="block uppercase tracking-wide text-grey-darker text-xs font-medium mb-2" for="password">
+                                Password
+                            </label>
 
-                        @if ($errors->has('password'))
-                            <div class="form-message">{{ $errors->first('password') }}</div>
-                        @endif
-                    </div>
+                            <input required tabindex="2" class="appearance-none block w-full rounded p-3 bg-grey-lighter text-grey-darker border border-grey-light {{ $errors->first('password', ' border-red') }}" id="password" type="password" name="password" />
 
-                    <div class="form-group">
-                        <label class="form-checkbox">
-                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }} />
+                            @if ($errors->has('password'))
+                                <div class="text-red font-medium mt-2">{{ $errors->first('password') }}</div>
+                            @endif
+                        </div>
 
-                            <span>Keep me signed in</span>
-                        </label>
-                    </div>
+                        <div class="flex justify-between items-center">
+                            <label for="remember" class="flex items-center select-none">
+                                <input tabindex="3" type="checkbox" id="remember" name="remember" {{ old('remember') ? 'checked' : '' }} />
 
-                    <div class="form-group text-right">
-                        <a href="{{ route('password.request') }}" class="button button-large button-link">Forgot password?</a>
-                        <input type="submit" value="Login" class="button button-large" />
-                    </div>
+                                <span class="ml-2">Keep me signed in</span>
+                            </label>
+
+                            <button tabindex="4" type="submit" class="cursor-pointer bg-indigo hover:bg-indigo-dark border-none text-white font-medium py-3 px-6 rounded shadow">Login</button>
+                        </div>
+                    </form>
                 </div>
-            </form>
+
+                <div class="text-center">
+                    <a href="{{ route('password.request') }}" class="text-indigo hover:text-indigo-dark no-underline">Forgot password?</a>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

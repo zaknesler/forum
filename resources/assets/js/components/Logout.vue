@@ -1,11 +1,12 @@
 <template>
-    <a :href="path" @click.prevent="logout"><slot>Logout</slot></a>
+    <a :href="path" :class="classes" @click.prevent="logout"><slot>Logout</slot></a>
 </template>
 
 <script>
     export default {
         props: [
-            'path'
+            'path',
+            'classes'
         ],
 
         methods: {
@@ -13,7 +14,7 @@
                 this.$http
                     .post(this.path)
                     .then((response) => {
-                        window.location.replace(response.data.redirect_uri);
+                        window.location.replace(response.data.redirect_url);
                     });
             }
         }

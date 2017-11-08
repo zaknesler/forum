@@ -2,24 +2,24 @@
 
 @section('title', $topic->title)
 
-@section('banner')
-    @component('layouts.components.banner')
-        <div class="banner-title">
-            {{ $topic->title }}
-        </div>
-    @endcomponent
-@endsection
-
 @section('content')
-    @include('topics.partials.topic', $topic)
+    <div class="container mx-auto px-4 font-medium text-lg">{{ $topic->title }}</div>
 
-    @foreach($topic->posts as $post)
-        @include('topics.partials.post', [$post, $topic])
-    @endforeach
+    <div class="bg-grey-lighter text-grey-darker">
+        <div class="container mx-auto p-4">
+            @include('topics.partials.topic', $topic)
 
-    @auth
-        @include('posts.partials.create')
-    @else
-        <p class="text-light">To reply to this topic, you must <a href="{{ route('login') }}">login</a>.</p>
-    @endauth
+            @foreach($topic->posts as $post)
+                @include('topics.partials.post', [$post, $topic])
+            @endforeach
+
+            @auth
+                @include('posts.partials.create')
+            @else
+                <div class="text-grey-dark">
+                    <a href="{{ route('login') }}" class="text-indigo hover:text-indigo-dark no-underline">Sign in</a> to reply to this topic.
+                </div>
+            @endauth
+        </div>
+    </div>
 @endsection
