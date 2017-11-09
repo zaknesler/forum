@@ -17,7 +17,7 @@
                                 E-Mail
                             </label>
 
-                            <input required autofocus tabindex="1" class="appearance-none block w-full rounded p-3 bg-grey-lighter text-grey-darker border border-grey-light {{ $errors->first('email', ' border-red') }}" id="email" type="email" name="email" value="{{ old('email') }}" />
+                            <input required autofocus tabindex="1" class="appearance-none leading-normal block w-full rounded p-3 bg-grey-lighter text-grey-darker border border-grey-light {{ $errors->first('email', ' border-red') }}" id="email" type="email" name="email" value="{{ old('email') }}" />
 
                             @if ($errors->has('email'))
                                 <div class="text-red font-medium mt-2">{{ $errors->first('email') }}</div>
@@ -29,7 +29,7 @@
                                 Password
                             </label>
 
-                            <input required tabindex="2" class="appearance-none block w-full rounded p-3 bg-grey-lighter text-grey-darker border border-grey-light {{ $errors->first('password', ' border-red') }}" id="password" type="password" name="password" />
+                            <input required tabindex="2" class="appearance-none leading-normal block w-full rounded p-3 bg-grey-lighter text-grey-darker border border-grey-light {{ $errors->first('password', ' border-red') }}" id="password" type="password" name="password" />
 
                             @if ($errors->has('password'))
                                 <div class="text-red font-medium mt-2">{{ $errors->first('password') }}</div>

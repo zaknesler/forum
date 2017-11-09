@@ -19,6 +19,6 @@
     </div>
 
     <div>
-        @parsedown($post->body)
+        {!! Markdown::convertToHtml($post->body) !!}
     </div>
 </div>

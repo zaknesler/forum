@@ -2,47 +2,51 @@
 
 @section('title', 'Edit Topic')
 
-@section('banner')
-    @component('layouts.components.banner')
-        <div class="banner-title">
-            Edit Topic
-        </div>
-    @endcomponent
-@endsection
-
 @section('content')
-    <form action="{{ route('topics.update', $topic->id) }}" method="POST">
-        {{ csrf_field() }}
-        {{ method_field('PATCH') }}
+    <div class="bg-grey-lighter text-grey-darker">
+        <div class="container mx-auto px-4 pt-0">
+            <div class="mx-auto w-full md:w-4/5 lg:w-2/3">
+                <div class="mb-4 font-medium text-lg">Edit Topic</div>
 
-        <div class="form">
-            <div class="form-group{{ $errors->first('title', ' has-error') }}">
-                <div class="form-label">Title</div>
+                <div class="bg-white border border-grey-lighter shadow rounded p-4">
+                    <form action="{{ route('topics.update', $topic->id) }}" method="POST">
+                        {{ csrf_field() }}
+                        {{ method_field('PATCH') }}
 
-                <input type="text" name="title" value="{{ old('title') ?? $topic->title }}" required autofocus class="form-input" />
+                        <div class="mb-4">
+                            <label class="block uppercase tracking-wide text-grey-darker text-xs font-medium mb-2" for="title">
+                                Title
+                            </label>
 
-                @if ($errors->has('title'))
-                    <div class="form-message">{{ $errors->first('title') }}</div>
-                @endif
-            </div>
+                            <input required autofocus tabindex="1" class="appearance-none leading-normal block w-full rounded p-3 bg-grey-lighter text-grey-darker border border-grey-light {{ $errors->first('title', ' border-red') }}" id="title" type="text" name="title" value="{{ old('title') ?? $topic->title }}" />
 
-            <div class="form-group{{ $errors->first('body', ' has-error') }}">
-                <div class="form-label">Body</div>
+                            @if ($errors->has('title'))
+                                <div class="text-red font-medium mt-2">{{ $errors->first('title') }}</div>
+                            @endif
+                        </div>
 
-                <textarea name="body" rows="10" class="form-input" v-autosize>{{ old('body') ?? $topic->body }}</textarea>
+                        <div class="mb-4">
+                            <label class="block uppercase tracking-wide text-grey-darker text-xs font-medium mb-2" for="body">
+                                Body
+                            </label>
 
-                @if ($errors->has('body'))
-                    <div class="form-message">{{ $errors->first('body') }}</div>
-                @endif
-            </div>
+                            <textarea required tabindex="2" class="appearance-none leading-normal resize-y block w-full rounded p-3 bg-grey-lighter text-grey-darker border border-grey-light {{ $errors->first('body', ' border-red') }}" id="body" type="text" name="body" rows="10" v-autosize>{{ old('body') ?? $topic->body }}</textarea>
 
-            <div class="form-group form-flex text-right">
-                @can ('delete', $topic)
-                    <topic-delete topic="{{ $topic->id }}"></topic-delete>
-                @endcan
+                            @if ($errors->has('body'))
+                                <div class="text-red font-medium mt-2">{{ $errors->first('body') }}</div>
+                            @endif
+                        </div>
 
-                <input type="submit" value="Update" class="button button-large" />
+                        <div class="text-right">
+                            @can ('delete', $topic)
+                                <topic-delete topic="{{ $topic->id }}" classes="no-underline text-indigo hover:text-indigo-dark font-medium mr-4"></topic-delete>
+                            @endcan
+
+                            <button tabindex="3" type="submit" class="cursor-pointer bg-indigo hover:bg-indigo-dark border-none text-white font-medium py-3 px-6 rounded shadow">Update</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </form>
+    </div>
 @endsection

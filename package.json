@@ -16,7 +16,7 @@
         "laravel-mix": "^1.5",
         "less": "^2.7.3",
         "less-loader": "^4.0.5",
-        "tailwindcss": "^0.1",
+        "tailwindcss": "^0.1.5",
         "vue": "^2.5"
     }
 }
