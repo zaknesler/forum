@@ -2,16 +2,24 @@
 
 @section('title', 'Settings')
 
-@section('banner')
-    @component('layouts.components.banner')
-        <div class="banner-title">
-            Settings
-        </div>
-    @endcomponent
-@endsection
-
 @section('content')
-    <div class="row">
+    <div class="container mx-auto">
+        <div class="flex flex-wrap flex-col-reverse md:flex-row -mx-4">
+            <div class="w-full md:w-1/2 lg:w-1/3 px-4">
+                @include('settings.partials.profile')
+            </div>
+
+            <div class="w-full md:w-1/2 lg:w-1/3 px-4">
+                @include('settings.partials.password')
+            </div>
+
+            <div class="w-full md:w-1/2 lg:w-1/3 px-4">
+                @include('settings.partials.avatar')
+            </div>
+        </div>
+    </div>
+
+    <div class="hidden row">
         <div class="col col-md-7 col-xs-12">
             <div class="box">
                 <div class="box-header display-flex">

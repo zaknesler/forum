@@ -1,40 +1,50 @@
-<form action="{{ route('settings.password.update') }}" method="POST">
-    {{ csrf_field() }}
-    {{ method_field('PATCH') }}
+<div class="bg-grey-lighter text-grey-darker">
+    <div class="mb-4 font-medium text-lg">Password</div>
 
-    <div class="form">
-        <div class="form-group{{ $errors->first('old_password', ' has-error') }}">
-            <div class="form-label">Old Password</div>
+    <div class="bg-white border border-grey-lighter shadow rounded p-4">
+        <form action="{{ route('settings.password.update') }}" method="POST">
+            {{ csrf_field() }}
+            {{ method_field('PATCH') }}
 
-            <input type="password" name="old_password" required class="form-input" />
+            <div class="mb-4">
+                <label class="block uppercase tracking-wide text-grey-darker text-xs font-medium mb-2" for="old_password">
+                    Old Password
+                </label>
 
-            @if ($errors->has('old_password'))
-                <div class="form-message">{{ $errors->first('old_password') }}</div>
-            @endif
-        </div>
+                <input required autocomplete="off" class="appearance-none leading-normal block w-full rounded p-3 bg-grey-lighter text-grey-darker border border-grey-light {{ $errors->first('old_password', ' border-red') }}" id="old_password" type="password" name="old_password" />
 
-        <div class="form-group{{ $errors->first('password', ' has-error') }}">
-            <div class="form-label">New Password</div>
+                @if ($errors->has('old_password'))
+                    <div class="text-red font-medium mt-2">{{ $errors->first('old_password') }}</div>
+                @endif
+            </div>
 
-            <input type="password" name="password" required class="form-input" />
+            <div class="mb-4">
+                <label class="block uppercase tracking-wide text-grey-darker text-xs font-medium mb-2" for="password">
+                    New Password
+                </label>
 
-            @if ($errors->has('password'))
-                <div class="form-message">{{ $errors->first('password') }}</div>
-            @endif
-        </div>
+                <input required autocomplete="off" class="appearance-none leading-normal block w-full rounded p-3 bg-grey-lighter text-grey-darker border border-grey-light {{ $errors->first('password', ' border-red') }}" id="password" type="password" name="password" />
 
-        <div class="form-group{{ $errors->first('password_confirmation', ' has-error') }}">
-            <div class="form-label">Confirm New Password</div>
+                @if ($errors->has('password'))
+                    <div class="text-red font-medium mt-2">{{ $errors->first('password') }}</div>
+                @endif
+            </div>
 
-            <input type="password" name="password_confirmation" required class="form-input" />
+            <div class="mb-4">
+                <label class="block uppercase tracking-wide text-grey-darker text-xs font-medium mb-2" for="password_confirmation">
+                    Confirm New Password
+                </label>
 
-            @if ($errors->has('password_confirmation'))
-                <div class="form-message">{{ $errors->first('password_confirmation') }}</div>
-            @endif
-        </div>
+                <input required autocomplete="off" class="appearance-none leading-normal block w-full rounded p-3 bg-grey-lighter text-grey-darker border border-grey-light {{ $errors->first('password_confirmation', ' border-red') }}" id="password_confirmation" type="password" name="password_confirmation" />
 
-        <div class="form-group">
-            <input type="submit" value="Update Password" class="button button-large" />
-        </div>
+                @if ($errors->has('password_confirmation'))
+                    <div class="text-red font-medium mt-2">{{ $errors->first('password_confirmation') }}</div>
+                @endif
+            </div>
+
+            <div class="text-right">
+                <button type="submit" class="cursor-pointer bg-indigo hover:bg-indigo-dark border-none text-white font-medium py-3 px-6 rounded shadow">Update</button>
+            </div>
+        </form>
     </div>
-</form>
+</div>

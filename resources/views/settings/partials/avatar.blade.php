@@ -1,20 +1,26 @@
-<form action="{{ route('settings.avatar.update') }}" method="POST" enctype="multipart/form-data">
-    {{ csrf_field() }}
-    {{ method_field('PATCH') }}
+<div class="bg-grey-lighter text-grey-darker">
+    <div class="mb-4 font-medium text-lg">Avatar</div>
 
-    <div class="form">
-        <div class="form-group{{ $errors->first('avatar', ' has-error') }}">
-            <div class="form-image" style="background-image: url({{ $user->getAvatar() }})"></div>
+    <div class="bg-white border border-grey-lighter shadow rounded p-4">
+        <form action="{{ route('settings.avatar.update') }}" method="POST" enctype="multipart/form-data">
+            {{ csrf_field() }}
+            {{ method_field('PATCH') }}
 
-            <input type="file" name="avatar" required />
+            <div class="mb-4">
+                <div class="text-center">
+                    <img src="{{ $user->getAvatar() }}" alt="Avatar" class="w-1/2 select-none h-auto mb-4 pointer-events-none" />
+                </div>
 
-            @if ($errors->has('avatar'))
-                <div class="form-message">{{ $errors->first('avatar') }}</div>
-            @endif
-        </div>
+                <input required type="file" name="avatar" />
 
-        <div class="form-group">
-            <input type="submit" value="Update Avatar" class="button button-large" />
-        </div>
+                @if ($errors->has('avatar'))
+                    <div class="text-red font-medium mt-2">{{ $errors->first('avatar') }}</div>
+                @endif
+            </div>
+
+            <div class="text-right">
+                <button tabindex="3" type="submit" class="cursor-pointer bg-indigo hover:bg-indigo-dark border-none text-white font-medium py-3 px-6 rounded shadow">Update</button>
+            </div>
+        </form>
     </div>
-</form>
+</div>

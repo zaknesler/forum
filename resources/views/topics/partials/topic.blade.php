@@ -1,6 +1,6 @@
 <div class="bg-white border border-grey-lighter shadow rounded p-4 mb-4">
     <div class="flex items-center mb-4">
-        <img src="{{ $topic->user->getAvatar(50) }}" alt="Avatar" class="w-12 h-12 rounded-full border border-grey-lighter">
+        <img src="{{ $topic->user->getAvatar(50) }}" alt="Avatar" class="w-12 h-12 rounded-full border border-grey-lighter pointer-events-none">
 
         <div class="ml-2 text-grey-dark">
             <a href="{{ route('users.show', $topic->user->username) }}" class="text-indigo-dark hover:text-indigo-darkest no-underline">
