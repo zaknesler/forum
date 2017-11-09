@@ -14,7 +14,7 @@
                             @include('topics.partials.topic-list', $topics)
                         </div>
 
-                        <div class="w-full md:w-1/5 px-4 md:pl-0">
+                        <div class="w-full md:w-1/5 px-4">
                             <a href="{{ route('topics.create') }}" class="block no-underline bg-indigo hover:bg-indigo-dark text-white rounded py-3 px-6 text-center font-medium text-lg w-full cursor-pointer shadow mb-4">Create Topic</a>
                         </div>
                     @else

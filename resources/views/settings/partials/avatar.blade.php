@@ -19,6 +19,10 @@
             </div>
 
             <div class="text-right">
+                @if (auth()->user()->avatar)
+                    <avatar-delete classes="no-underline text-indigo hover:text-indigo-dark font-medium mr-4"></avatar-delete>
+                @endif
+
                 <button tabindex="3" type="submit" class="cursor-pointer bg-indigo hover:bg-indigo-dark border-none text-white font-medium py-3 px-6 rounded shadow">Update</button>
             </div>
         </form>
