@@ -2,66 +2,60 @@
 
 @section('title', 'Reset Password')
 
-@section('banner')
-    @component('layouts.components.banner')
-        <div class="banner-title">
-            Reset Password
-        </div>
-    @endcomponent
-@endsection
-
 @section('content')
-    <div class="row center-md">
-        <div class="col col-md-8 col-xs-12">
-            <form action="{{ route('password.request') }}" method="POST">
-                {{ csrf_field() }}
+    <div class="bg-grey-lighter text-grey-darker">
+        <div class="container mx-auto px-4 pt-0">
+            <div class="mx-auto w-full md:w-2/3 lg:w-1/3">
+                <div class="mb-4 font-medium text-lg">Reset Password</div>
 
-                @if ($token)
-                    <input type="hidden" name="token" value="{{ $token }}" />
-                @endif
+                <div class="bg-white border border-grey-lighter shadow rounded p-4 mb-4">
+                    <form action="{{ route('password.request') }}" method="POST">
+                        {{ csrf_field() }}
 
-                <div class="form">
-                    @if (session('status'))
-                        <div class="form-title">
-                            {{ session('status') }}
+                        <input type="hidden" name="token" value="{{ $token }}">
+
+                        <div class="mb-4">
+                            <label class="block uppercase tracking-wide text-grey-darker text-xs font-medium mb-2" for="email">
+                                E-Mail
+                            </label>
+
+                            <input required tabindex="1" class="appearance-none block w-full rounded p-3 bg-grey-lighter text-grey-darker border border-grey-light {{ $errors->first('email', ' border-red') }}" id="email" type="email" name="email" value="{{ $email or old('email') }}" />
+
+                            @if ($errors->has('email'))
+                                <div class="text-red font-medium mt-2">{{ $errors->first('email') }}</div>
+                            @endif
                         </div>
-                    @endif
 
-                    <div class="form-group{{ $errors->first('email', ' has-error') }}">
-                        <div class="form-label">E-mail</div>
+                        <div class="mb-4">
+                            <label class="block uppercase tracking-wide text-grey-darker text-xs font-medium mb-2" for="password">
+                                New Password
+                            </label>
 
-                        <input type="email" name="email" value="{{ $email or old('email') }}" required autofocus class="form-input" />
+                            <input required tabindex="2" class="appearance-none block w-full rounded p-3 bg-grey-lighter text-grey-darker border border-grey-light {{ $errors->first('password', ' border-red') }}" id="password" type="password" name="password" />
 
-                        @if ($errors->has('email'))
-                            <div class="form-message">{{ $errors->first('email') }}</div>
-                        @endif
-                    </div>
+                            @if ($errors->has('password'))
+                                <div class="text-red font-medium mt-2">{{ $errors->first('password') }}</div>
+                            @endif
+                        </div>
 
-                    <div class="form-group{{ $errors->first('password', ' has-error') }}">
-                        <div class="form-label">New Password</div>
+                        <div class="mb-4">
+                            <label class="block uppercase tracking-wide text-grey-darker text-xs font-medium mb-2" for="password_confirmation">
+                                Confirm New Password
+                            </label>
 
-                        <input type="password" name="password" required class="form-input" />
+                            <input required tabindex="3" class="appearance-none block w-full rounded p-3 bg-grey-lighter text-grey-darker border border-grey-light {{ $errors->first('password_confirmation', ' border-red') }}" id="password_confirmation" type="password" name="password_confirmation" />
 
-                        @if ($errors->has('password'))
-                            <div class="form-message">{{ $errors->first('password') }}</div>
-                        @endif
-                    </div>
+                            @if ($errors->has('password_confirmation'))
+                                <div class="text-red font-medium mt-2">{{ $errors->first('password_confirmation') }}</div>
+                            @endif
+                        </div>
 
-                    <div class="form-group{{ $errors->first('password_confirmation', ' has-error') }}">
-                        <div class="form-label">Confirm New Password</div>
-
-                        <input type="password" name="password_confirmation" required class="form-input" />
-
-                        @if ($errors->has('password_confirmation'))
-                            <div class="form-message">{{ $errors->first('password_confirmation') }}</div>
-                        @endif
-                    </div>
-
-                    <div class="form-group text-right">
-                        <input type="submit" value="Reset Password" class="button button-large" />
-                    </div>
+                        <div class="text-right">
+                            <button tabindex="4" type="submit" class="cursor-pointer bg-indigo hover:bg-indigo-dark border-none text-white font-medium py-3 px-6 rounded shadow">Reset Password</button>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 @endsection

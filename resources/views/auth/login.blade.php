@@ -14,10 +14,10 @@
 
                         <div class="mb-4">
                             <label class="block uppercase tracking-wide text-grey-darker text-xs font-medium mb-2" for="email">
-                                E-Mail Address
+                                E-Mail
                             </label>
 
-                            <input required autofocus tabindex="1" class="appearance-none block w-full rounded p-3 bg-grey-lighter text-grey-darker border border-grey-light {{ $errors->first('email', ' border-red') }}" id="email" type="email" name="email" placeholder="example@domain.com" value="{{ old('email') }}" />
+                            <input required autofocus tabindex="1" class="appearance-none block w-full rounded p-3 bg-grey-lighter text-grey-darker border border-grey-light {{ $errors->first('email', ' border-red') }}" id="email" type="email" name="email" value="{{ old('email') }}" />
 
                             @if ($errors->has('email'))
                                 <div class="text-red font-medium mt-2">{{ $errors->first('email') }}</div>
