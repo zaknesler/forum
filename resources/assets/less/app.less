@@ -1,37 +1,5 @@
 @tailwind preflight;
+
+@import "custom";
+
 @tailwind utilities;
-
-.markdown {
-    blockquote {
-        @apply .pl-2 .border-l-2 .border-grey-light;
-    }
-
-    pre {
-        @apply .p-2 .overflow-auto;
-
-        code {
-            @apply .p-0;
-        }
-    }
-
-    code {
-        @apply .p-1;
-    }
-
-    pre, code {
-        @apply .font-mono .bg-grey-lighter .rounded .text-sm;
-    }
-
-    a, p, h1, h2, h3, h4, h5, h6, ol, ul, img, pre, code, blockquote {
-        @apply .mb-2;
-    }
-
-    ol,
-    ul {
-        @apply .ml-2;
-    }
-
-    img {
-        @apply .max-h-full .max-w-full;
-    }
-}
