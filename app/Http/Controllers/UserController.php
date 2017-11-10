@@ -15,9 +15,9 @@ class UserController extends Controller
      */
     public function show($username)
     {
-        $user = User::where('username', $username)->firstOrFail();
-        $topics = $user->topics()->latest()->paginate(15);
+        $user = User::whereUsername($username)->firstOrFail();
+        $topics = $user->topics()->with(['posts', 'user'])->latest()->paginate(15);
 
-        return view('users.show', compact('user', 'topics'));
+        return view('users.show', compact('topics', 'user'));
     }
 }

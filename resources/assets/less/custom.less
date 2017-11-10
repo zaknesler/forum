@@ -1,0 +1,54 @@
+.pagination-item {
+    @apply .inline-block .mr-1 .no-underline .rounded .px-3 .py-1 .bg-indigo .bg-transparent .text-indigo;
+}
+
+.pagination-item:hover {
+    @apply .text-indigo-darker;
+}
+
+.pagination-disabled {
+    @apply .opacity-50 .pointer-events-none .select-none;
+}
+
+.pagination-active {
+    @apply .bg-indigo .text-white .shadow;
+}
+
+.pagination-active:hover {
+    @apply .bg-indigo-dark .text-white;
+}
+
+.markdown {
+    blockquote {
+        @apply .pl-2 .border-l-2 .border-grey-light;
+    }
+
+    pre {
+        @apply .p-2 .overflow-auto;
+
+        code {
+            @apply .p-0;
+        }
+    }
+
+    code {
+        @apply .p-1;
+    }
+
+    pre, code {
+        @apply .font-mono .bg-grey-lighter .rounded .text-sm;
+    }
+
+    a, p, h1, h2, h3, h4, h5, h6, ol, ul, img, pre, code, blockquote {
+        @apply .mb-2;
+    }
+
+    ol,
+    ul {
+        @apply .ml-2;
+    }
+
+    img {
+        @apply .max-h-full .max-w-full;
+    }
+}

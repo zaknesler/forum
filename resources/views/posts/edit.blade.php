@@ -2,37 +2,37 @@
 
 @section('title', 'Edit Post')
 
-@section('banner')
-    @component('layouts.components.banner')
-        <div class="banner-title">
-            Edit Post
-        </div>
-    @endcomponent
-@endsection
-
 @section('content')
-    <form action="{{ route('posts.update', [$topic->id, $post->id]) }}" method="POST">
-        {{ csrf_field() }}
-        {{ method_field('PATCH') }}
+    <div class="container mx-auto p-4">
+        <div class="mx-auto w-full md:w-4/5 lg:w-2/3">
+            <div class="font-medium text-lg mb-4">Edit Post</div>
 
-        <div class="form">
-            <div class="form-group{{ $errors->first('body', ' has-error') }}">
-                <div class="form-label">Body</div>
+            <div class="bg-white border border-grey-lighter shadow rounded p-4">
+                <form action="{{ route('posts.update', [$topic->id, $post->id]) }}" method="POST">
+                    {{ csrf_field() }}
+                    {{ method_field('PATCH') }}
 
-                <textarea name="body" rows="10" class="form-input" v-autosize>{{ old('body') ?? $post->body }}</textarea>
+                    <div class="mb-4">
+                        <label class="block uppercase tracking-wide text-grey-darker text-xs font-medium mb-2" for="body">
+                            Body
+                        </label>
 
-                @if ($errors->has('body'))
-                    <div class="form-message">{{ $errors->first('body') }}</div>
-                @endif
-            </div>
+                        <textarea required tabindex="1" class="appearance-none leading-normal resize-y block w-full rounded p-3 bg-grey-lighter text-grey-darker border border-grey-light {{ $errors->first('body', ' border-red') }}" id="body" type="text" name="body" rows="10" v-autosize>{{ old('body') ?? $post->body }}</textarea>
 
-            <div class="form-group form-flex text-right">
-                @can ('delete', $post)
-                    <post-delete topic="{{ $topic->id }}" post="{{ $post->id }}"></post-delete>
-                @endcan
+                        @if ($errors->has('body'))
+                            <div class="text-red font-medium mt-2">{{ $errors->first('body') }}</div>
+                        @endif
+                    </div>
 
-                <input type="submit" value="Update" class="button button-large" />
+                    <div class="text-right">
+                        @can ('delete', $post)
+                            <post-delete topic="{{ $topic->id }}" post="{{ $post->id }}" classes="no-underline text-indigo hover:text-indigo-dark font-medium mr-4"></post-delete>
+                        @endcan
+
+                        <button tabindex="2" type="submit" class="cursor-pointer bg-indigo hover:bg-indigo-dark border-none text-white font-medium py-3 px-6 rounded shadow">Update</button>
+                    </div>
+                </form>
             </div>
         </div>
-    </form>
+    </div>
 @endsection

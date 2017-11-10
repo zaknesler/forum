@@ -1,30 +1,36 @@
-<form action="{{ route('settings.profile.update') }}" method="POST">
-    {{ csrf_field() }}
-    {{ method_field('PATCH') }}
+<div class="font-medium text-lg mb-4">Profile</div>
 
-    <div class="form">
-        <div class="form-group{{ $errors->first('name', ' has-error') }}">
-            <div class="form-label">Name</div>
+<div class="bg-white border border-grey-lighter shadow rounded p-4">
+    <form action="{{ route('settings.profile.update') }}" method="POST">
+        {{ csrf_field() }}
+        {{ method_field('PATCH') }}
 
-            <input type="text" name="name" value="{{ old('name') ?? $user->name }}" autofocus class="form-input" />
+        <div class="mb-4">
+            <label class="block uppercase tracking-wide text-grey-darker text-xs font-medium mb-2" for="name">
+                Name
+            </label>
+
+            <input required autofocus tabindex="1" autocomplete="off" class="appearance-none leading-normal block w-full rounded p-3 bg-grey-lighter text-grey-darker border border-grey-light {{ $errors->first('name', ' border-red') }}" id="name" type="text" name="name" value="{{ old('name') ?? $user->name }}" />
 
             @if ($errors->has('name'))
-                <div class="form-message">{{ $errors->first('name') }}</div>
+                <div class="text-red font-medium mt-2">{{ $errors->first('name') }}</div>
             @endif
         </div>
 
-        <div class="form-group{{ $errors->first('email', ' has-error') }}">
-            <div class="form-label">E-mail</div>
+        <div class="mb-4">
+            <label class="block uppercase tracking-wide text-grey-darker text-xs font-medium mb-2" for="email">
+                E-Mail
+            </label>
 
-            <input type="email" name="email" value="{{ old('email') ?? $user->email }}" required class="form-input" />
+            <input required autofocus class="appearance-none leading-normal block w-full rounded p-3 bg-grey-lighter text-grey-darker border border-grey-light {{ $errors->first('email', ' border-red') }}" id="email" type="email" name="email" value="{{ old('email') ?? $user->email }}" />
 
             @if ($errors->has('email'))
-                <div class="form-message">{{ $errors->first('email') }}</div>
+                <div class="text-red font-medium mt-2">{{ $errors->first('email') }}</div>
             @endif
         </div>
 
-        <div class="form-group">
-            <input type="submit" value="Update Profile" class="button button-large" />
+        <div class="text-right">
+            <button type="submit" class="cursor-pointer bg-indigo hover:bg-indigo-dark border-none text-white font-medium py-3 px-6 rounded shadow">Update</button>
         </div>
-    </div>
-</form>
+    </form>
+</div>

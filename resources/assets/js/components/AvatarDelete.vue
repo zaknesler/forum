@@ -1,9 +1,10 @@
 <template>
-    <a href="#" @click.prevent="deleteAvatar">Delete Avatar</a>
+    <a href="#" :class="classes" @click.prevent="deleteAvatar"><slot>Delete Avatar</slot></a>
 </template>
 
 <script>
     export default {
+        props: ['classes'],
         methods: {
             deleteAvatar() {
                 this.$http

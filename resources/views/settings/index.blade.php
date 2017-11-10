@@ -2,51 +2,19 @@
 
 @section('title', 'Settings')
 
-@section('banner')
-    @component('layouts.components.banner')
-        <div class="banner-title">
-            Settings
-        </div>
-    @endcomponent
-@endsection
-
 @section('content')
-    <div class="row">
-        <div class="col col-md-7 col-xs-12">
-            <div class="box">
-                <div class="box-header display-flex">
-                    <span>Profile</span>
-
-                    <span><a href="{{ route('users.show', $user->username) }}">View Profile</a></span>
-                </div>
-
-                <div class="box-body">
-                    @include('settings.partials.profile')
-                </div>
+    <div class="container mx-auto p-4">
+        <div class="flex flex-wrap flex-col lg:flex-row -m-4">
+            <div class="w-full mx-auto lg:w-1/3 p-4">
+                @include('settings.partials.profile')
             </div>
 
-            <div class="box">
-                <div class="box-header">Password</div>
-
-                <div class="box-body">
-                    @include('settings.partials.password')
-                </div>
+            <div class="w-full mx-auto lg:w-1/3 p-4">
+                @include('settings.partials.password')
             </div>
-        </div>
 
-        <div class="col col-md-5 col-xs-12">
-            <div class="box">
-                <div class="box-header display-flex">
-                    <span>Avatar</span>
-
-                    @if (auth()->user()->avatar)
-                        <span><avatar-delete></avatar-delete></span>
-                    @endif
-                </div>
-
-                <div class="box-body">
-                    @include('settings.partials.avatar')
-                </div>
+            <div class="w-full mx-auto lg:w-1/3 p-4">
+                @include('settings.partials.avatar')
             </div>
         </div>
     </div>

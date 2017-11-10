@@ -1,26 +1,27 @@
 @if ($paginator->hasPages())
-    <ul class="pagination">
+
+    <div class="mt-2 -mr-1">
         {{-- Previous Page Link --}}
         @if ($paginator->onFirstPage())
-            <li class="page-item disabled"><a href="#">&laquo;</a></li>
+            <a href="#" class="pagination-item pagination-disabled">&laquo;</a>
         @else
-            <li class="page-item"><a href="{{ $paginator->previousPageUrl() }}" rel="prev">&laquo;</a></li>
+            <a href="{{ $paginator->previousPageUrl() }}" class="pagination-item" rel="prev">&laquo;</a>
         @endif
 
         {{-- Pagination Elements --}}
         @foreach ($elements as $element)
             {{-- "Three Dots" Separator --}}
             @if (is_string($element))
-                <li class="page-item disabled"><span>{{ $element }}</span></li>
+                <a href="#" class="pagination-item pagination-disabled" rel="prev">{{ $element }}</a>
             @endif
 
             {{-- Array Of Links --}}
             @if (is_array($element))
                 @foreach ($element as $page => $url)
                     @if ($page == $paginator->currentPage())
-                        <li class="page-item active"><a href="#">{{ $page }}</a></li>
+                        <a href="#" class="pagination-item pagination-active">{{ $page }}</a>
                     @else
-                        <li class="page-item"><a href="{{ $url }}">{{ $page }}</a></li>
+                        <a href="{{ $url }}" class="pagination-item">{{ $page }}</a>
                     @endif
                 @endforeach
             @endif
@@ -28,9 +29,9 @@
 
         {{-- Next Page Link --}}
         @if ($paginator->hasMorePages())
-            <li class="page-item"><a href="{{ $paginator->nextPageUrl() }}" rel="next">&raquo;</a></li>
+            <a href="{{ $paginator->nextPageUrl() }}" class="pagination-item" rel="next">&raquo;</a>
         @else
-            <li class="page-item disabled"><a href="#">&raquo;</a></li>
+            <a href="#" class="pagination-item pagination-disabled">&raquo;</a>
         @endif
-    </ul>
+    </div>
 @endif

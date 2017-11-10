@@ -1,10 +1,10 @@
 <template>
-    <input type="button" class="button button-large button-danger button-inverse" @click.prevent="deleteTopic" value="Delete" />
+    <a href="#" @click.prevent="deleteTopic" :class="classes"><slot>Delete</slot></a>
 </template>
 
 <script>
     export default {
-        props: ['topic'],
+        props: ['topic', 'classes'],
 
         methods: {
             deleteTopic() {

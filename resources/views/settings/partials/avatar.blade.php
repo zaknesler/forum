@@ -1,20 +1,28 @@
-<form action="{{ route('settings.avatar.update') }}" method="POST" enctype="multipart/form-data">
-    {{ csrf_field() }}
-    {{ method_field('PATCH') }}
+<div class="font-medium text-lg mb-4">Avatar</div>
 
-    <div class="form">
-        <div class="form-group{{ $errors->first('avatar', ' has-error') }}">
-            <div class="form-image" style="background-image: url({{ $user->getAvatar() }})"></div>
+<div class="bg-white border border-grey-lighter shadow rounded p-4">
+    <form action="{{ route('settings.avatar.update') }}" method="POST" enctype="multipart/form-data">
+        {{ csrf_field() }}
+        {{ method_field('PATCH') }}
 
-            <input type="file" name="avatar" required />
+        <div class="mb-4">
+            <div class="text-center">
+                <img src="{{ $user->getAvatar() }}" alt="Avatar" class="w-1/2 h-auto mb-4 pointer-events-none" />
+            </div>
+
+            <input required type="file" name="avatar" />
 
             @if ($errors->has('avatar'))
-                <div class="form-message">{{ $errors->first('avatar') }}</div>
+                <div class="text-red font-medium mt-2">{{ $errors->first('avatar') }}</div>
             @endif
         </div>
 
-        <div class="form-group">
-            <input type="submit" value="Update Avatar" class="button button-large" />
+        <div class="text-right">
+            @if (auth()->user()->avatar)
+                <avatar-delete classes="no-underline text-indigo hover:text-indigo-dark font-medium mr-4"></avatar-delete>
+            @endif
+
+            <button tabindex="3" type="submit" class="cursor-pointer bg-indigo hover:bg-indigo-dark border-none text-white font-medium py-3 px-6 rounded shadow">Update</button>
         </div>
-    </div>
-</form>
+    </form>
+</div>

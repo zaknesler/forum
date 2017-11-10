@@ -32,7 +32,7 @@ class TopicController extends Controller
      */
     public function index()
     {
-        $topics = Topic::latest('updated_at')->with('user')->paginate(15);
+        $topics = Topic::latest('updated_at')->with('user', 'posts')->paginate(15);
 
         return view('topics.index', compact('topics'));
     }
