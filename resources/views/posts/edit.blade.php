@@ -8,7 +8,7 @@
             <div class="mx-auto w-full md:w-4/5 lg:w-2/3">
                 <div class="mb-4 font-medium text-lg">Edit Post</div>
 
-                <div class="bg-white border border-grey-lighter shadow rounded p-4">
+                <div class="bg-white border border-grey-lighter shadow rounded p-4 mb-4">
                     <form action="{{ route('posts.update', [$topic->id, $post->id]) }}" method="POST">
                         {{ csrf_field() }}
                         {{ method_field('PATCH') }}
