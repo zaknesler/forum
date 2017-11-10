@@ -90,7 +90,6 @@ class RegisterController extends Controller
 
         flash(trans('auth.registered'));
 
-        return $this->registered($request, $user)
-                        ?: redirect($this->redirectPath());
+        return redirect($this->redirectPath());
     }
 }
