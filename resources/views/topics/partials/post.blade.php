@@ -18,7 +18,7 @@
         </div>
     </div>
 
-    <div>
+    <div class="markdown">
         {!! Markdown::convertToHtml($post->body) !!}
     </div>
 </div>

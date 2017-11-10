@@ -8,7 +8,7 @@
 
             <div class="mb-4">
                 <div class="text-center">
-                    <img src="{{ $user->getAvatar() }}" alt="Avatar" class="w-1/2 select-none h-auto mb-4 pointer-events-none" />
+                    <img src="{{ $user->getAvatar() }}" alt="Avatar" class="w-1/2 h-auto mb-4 pointer-events-none" />
                 </div>
 
                 <input required type="file" name="avatar" />

@@ -18,7 +18,7 @@
         </div>
     </div>
 
-    <div>
+    <div class="markdown">
         {!! Markdown::convertToHtml($topic->body) !!}
     </div>
 </div>

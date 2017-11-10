@@ -8,13 +8,13 @@
             <div class="mb-4 font-medium text-lg">Topics</div>
 
             @if ($topics->total())
-                <div class="flex flex-wrap flex-col-reverse md:flex-row -mx-4">
+                <div class="flex flex-wrap flex-col-reverse lg:flex-row -mx-4">
                     @auth
-                        <div class="w-full md:w-4/5 px-4">
+                        <div class="w-full lg:w-4/5 px-4">
                             @include('topics.partials.topic-list', $topics)
                         </div>
 
-                        <div class="w-full md:w-1/5 px-4">
+                        <div class="w-full lg:w-1/5 px-4">
                             <a href="{{ route('topics.create') }}" class="block no-underline bg-indigo hover:bg-indigo-dark text-white rounded py-3 px-6 text-center font-medium text-lg w-full cursor-pointer shadow mb-4">Create Topic</a>
                         </div>
                     @else

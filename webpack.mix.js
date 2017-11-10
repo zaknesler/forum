@@ -12,8 +12,11 @@ let tailwindcss = require('tailwindcss');
  |
  */
 
-mix.postCss('resources/assets/css/app.css', 'public/css', [
-      tailwindcss('./tailwind.js'),
-    ])
+mix.less('resources/assets/less/app.less', 'public/css')
+    .options({
+        postCss: [
+            tailwindcss('./tailwind.js'),
+        ]
+    })
     .js('resources/assets/js/app.js', 'public/js')
     .version();
