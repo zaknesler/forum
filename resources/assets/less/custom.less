@@ -19,6 +19,14 @@
 }
 
 .markdown {
+    a {
+        @apply .no-underline .text-indigo;
+
+        &:hover {
+            @apply .text-indigo-darker;
+        }
+    }
+
     blockquote {
         @apply .pl-2 .border-l-2 .border-grey-light;
     }
