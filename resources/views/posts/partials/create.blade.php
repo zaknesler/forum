@@ -1,4 +1,4 @@
-<div class="mt-8 mb-4 font-medium text-lg">Leave a Reply</div>
+<div class="font-medium text-lg mb-4 mt-8">Leave a Reply</div>
 
 <div class="bg-white border border-grey-lighter shadow rounded p-4">
     <form action="{{ route('posts.store', $topic) }}" method="POST">

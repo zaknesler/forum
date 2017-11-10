@@ -3,7 +3,7 @@
 @section('title', 'Settings')
 
 @section('content')
-    <div class="container mx-auto px-4 pt-0">
+    <div class="container mx-auto p-4">
         <div class="flex flex-wrap flex-col lg:flex-row -m-4">
             <div class="w-full mx-auto lg:w-1/3 p-4">
                 @include('settings.partials.profile')
