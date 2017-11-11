@@ -7,9 +7,11 @@ Route::redirect('/home', '/');
 Route::group(['prefix' => 'settings'], function () {
     Route::get('/', 'Settings\SettingsController@index')->name('settings.index');
 
-    Route::patch('profile', 'Settings\ProfileController@update')->name('settings.profile.update');
-    Route::patch('password', 'Settings\PasswordController@update')->name('settings.password.update');
     Route::patch('avatar', 'Settings\AvatarController@update')->name('settings.avatar.update');
+    Route::patch('profile', 'Settings\ProfileController@update')->name('settings.profile.update');
+    Route::patch('privacy', 'Settings\PrivacyController@update')->name('settings.privacy.update');
+    Route::patch('password', 'Settings\PasswordController@update')->name('settings.password.update');
+
     Route::delete('avatar', 'Settings\AvatarController@destroy')->name('settings.avatar.destroy');
 });
 

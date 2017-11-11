@@ -10,7 +10,7 @@
                 Name
             </label>
 
-            <input required autofocus tabindex="1" autocomplete="off" class="appearance-none leading-normal block w-full rounded p-3 bg-grey-lighter text-grey-darker border border-grey-light {{ $errors->first('name', ' border-red') }}" id="name" type="text" name="name" value="{{ old('name') ?? $user->name }}" />
+            <input autofocus autocomplete="off" class="appearance-none leading-normal block w-full rounded p-3 bg-grey-lighter text-grey-darker border border-grey-light {{ $errors->first('name', ' border-red') }}" id="name" type="text" name="name" value="{{ old('name') ?? $user->name }}" />
 
             @if ($errors->has('name'))
                 <div class="text-red font-medium mt-2">{{ $errors->first('name') }}</div>
@@ -22,7 +22,7 @@
                 E-Mail
             </label>
 
-            <input required autofocus class="appearance-none leading-normal block w-full rounded p-3 bg-grey-lighter text-grey-darker border border-grey-light {{ $errors->first('email', ' border-red') }}" id="email" type="email" name="email" value="{{ old('email') ?? $user->email }}" />
+            <input required class="appearance-none leading-normal block w-full rounded p-3 bg-grey-lighter text-grey-darker border border-grey-light {{ $errors->first('email', ' border-red') }}" id="email" type="email" name="email" value="{{ old('email') ?? $user->email }}" />
 
             @if ($errors->has('email'))
                 <div class="text-red font-medium mt-2">{{ $errors->first('email') }}</div>

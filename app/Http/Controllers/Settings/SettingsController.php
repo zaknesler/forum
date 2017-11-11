@@ -23,7 +23,7 @@ class SettingsController extends Controller
      */
     public function index()
     {
-        $user = request()->user();
+        $user = request()->user()->load('privacy');
 
         return view('settings.index', compact('user'));
     }

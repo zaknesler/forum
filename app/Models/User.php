@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Post;
 use App\Models\Avatar;
 use App\Jobs\DeleteAvatar;
+use App\Models\UserPrivacy;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
@@ -68,6 +69,16 @@ class User extends Authenticatable
     public function posts()
     {
         return $this->hasMany(Post::class);
+    }
+
+    /**
+     * A user has privacy settings.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function privacy()
+    {
+        return $this->hasOne(UserPrivacy::class);
     }
 
     /**
