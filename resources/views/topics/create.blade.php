@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="text-right">
-                        <button tabindex="3" type="submit" class="cursor-pointer bg-indigo hover:bg-indigo-dark border-none text-white font-medium py-3 px-6 rounded shadow">Create Topic</button>
+                        <button tabindex="3" type="submit" class="cursor-pointer bg-indigo hover:bg-indigo-dark border-none text-white font-medium py-3 px-6 rounded shadow">Create</button>
                     </div>
                 </form>
             </div>

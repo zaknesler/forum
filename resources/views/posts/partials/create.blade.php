@@ -17,7 +17,7 @@
         </div>
 
         <div class="text-right">
-            <button tabindex="2" type="submit" class="cursor-pointer bg-indigo hover:bg-indigo-dark border-none text-white font-medium py-3 px-6 rounded shadow">Create Post</button>
+            <button tabindex="2" type="submit" class="cursor-pointer bg-indigo hover:bg-indigo-dark border-none text-white font-medium py-3 px-6 rounded shadow">Reply</button>
         </div>
     </form>
 </div>
