@@ -73,9 +73,10 @@ class TopicController extends Controller
      */
     public function show($slug)
     {
-        $topic = Topic::where('slug', $slug)->with(['user', 'posts.user'])->firstOrFail();
+        $topic = Topic::where('slug', $slug)->with('user')->firstOrFail();
+        $posts = $topic->posts()->with('user')->paginate(10);
 
-        return view('topics.show', compact('topic'));
+        return view('topics.show', compact('topic', 'posts'));
     }
 
     /**

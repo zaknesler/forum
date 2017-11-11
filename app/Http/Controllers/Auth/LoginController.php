@@ -39,6 +39,18 @@ class LoginController extends Controller
     }
 
     /**
+     * Show the application's login form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showLoginForm()
+    {
+        session()->put('url.intended', url()->previous());
+
+        return view('auth.login');
+    }
+
+    /**
      * Send the response after the user was authenticated.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -69,7 +81,7 @@ class LoginController extends Controller
         $request->session()->invalidate();
 
         return response()->json([
-            'redirect_url' => route('home'),
+            'redirect_url' => url()->previous(),
         ]);
     }
 }

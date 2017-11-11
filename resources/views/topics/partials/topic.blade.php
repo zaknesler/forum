@@ -1,4 +1,6 @@
 <div class="bg-white border border-grey-lighter shadow rounded p-4 mb-4">
+    <div class="font-medium text-lg mb-4">{{ $topic->title }}</div>
+
     <div class="flex items-center mb-4">
         <img src="{{ $topic->user->getAvatar(50) }}" alt="Avatar" class="w-12 h-12 rounded-full border border-grey-lighter pointer-events-none">
 
