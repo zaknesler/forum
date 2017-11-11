@@ -230,7 +230,6 @@ return [
          * Package Aliases
          */
         'Image' => Intervention\Image\Facades\Image::class,
-        'Markdown' => GrahamCampbell\Markdown\Facades\Markdown::class,
 
     ],
 

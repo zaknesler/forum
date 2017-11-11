@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <div class="markdown">
-        {!! Markdown::convertToHtml($topic->body) !!}
+    <div class="markdown" v-pre>
+        @markdown($topic->body)
     </div>
 </div>

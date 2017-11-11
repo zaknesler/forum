@@ -5,6 +5,7 @@
 <script>
     export default {
         props: ['classes'],
+
         methods: {
             deleteAvatar() {
                 this.$http

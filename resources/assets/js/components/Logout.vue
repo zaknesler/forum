@@ -4,10 +4,7 @@
 
 <script>
     export default {
-        props: [
-            'path',
-            'classes'
-        ],
+        props: ['path', 'classes'],
 
         methods: {
             logout () {

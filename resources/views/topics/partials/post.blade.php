@@ -18,7 +18,7 @@
         </div>
     </div>
 
-    <div class="markdown">
-        {!! Markdown::convertToHtml($post->body) !!}
+    <div class="markdown" v-pre>
+        @markdown($post->body)
     </div>
 </div>

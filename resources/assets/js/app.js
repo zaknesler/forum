@@ -1,4 +1,5 @@
 import './bootstrap';
+
 import VueAutosize from './classes/vue-autosize';
 
 import AvatarDelete from './components/AvatarDelete.vue';
@@ -14,9 +15,5 @@ Vue.component('logout', Logout);
 Vue.use(VueAutosize);
 
 const app = new Vue({
-    el: '#root',
-
-    data: {
-        responsiveNavVisible: false
-    }
+    el: '#root'
 });
