@@ -72,6 +72,7 @@ class RegisterController extends Controller
         ]);
 
         $user->assignRole('user');
+        $user->privacy()->create();
 
         return $user;
     }

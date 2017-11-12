@@ -30,6 +30,6 @@ class CreateUserPrivacyTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_privacies');
+        Schema::dropIfExists('user_privacy');
     }
 }
