@@ -12,9 +12,11 @@ class UserRolesSeeder extends Seeder
      */
     public function run()
     {
+        Role::whereNotIn('name', collect(config('forum.roles')))->delete();
+
         collect(config('forum.roles'))
             ->each(function ($key, $value) {
-                Role::create(['name' => $key]);
+                Role::updateOrCreate(['name' => $key]);
             });
     }
 }
