@@ -71,7 +71,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
-        $user->assignRole('user');
+        $user->assignRole(collect(config('forum.roles'))->first());
         $user->privacy()->create();
 
         return $user;
