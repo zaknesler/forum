@@ -60,7 +60,7 @@ class TopicController extends Controller
             'body',
         ]));
 
-        flash('Topic has been created.');
+        flash(trans('forum.flash.topics.created'));
 
         return redirect()->route('topics.show', $topic->slug);
     }
@@ -106,7 +106,7 @@ class TopicController extends Controller
             'body',
         ]));
 
-        flash('Topic has been updated.');
+        flash(trans('forum.flash.topics.created'));
 
         return redirect()->route('topics.show', $topic->slug);
     }
@@ -122,7 +122,7 @@ class TopicController extends Controller
 
         $topic->delete();
 
-        flash('Topic has been removed.');
+        flash(trans('forum.flash.topics.deleted'));
 
         return response()->json([
             'redirect_url' => route('home'),

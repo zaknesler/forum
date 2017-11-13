@@ -33,7 +33,7 @@ class AvatarController extends Controller
 
         $this->dispatch(new UploadAvatar($request->user(), $file));
 
-        flash('Avatar has been updated. Changes will take effect briefly.');
+        flash(trans('flash.settings.avatar.updated'));
 
         return redirect()->route('settings.index');
     }
@@ -51,7 +51,7 @@ class AvatarController extends Controller
 
         $user->update(['avatar' => null]);
 
-        flash('Avatar has been removed.');
+        flash(trans('flash.settings.avatar.deleted'));
 
         return response()->json([
             'redirect_url' => route('settings.index'),
