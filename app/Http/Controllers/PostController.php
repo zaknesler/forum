@@ -34,7 +34,7 @@ class PostController extends Controller
             'body' => $request->body,
         ]);
 
-        flash('Post has been created.');
+        flash(trans('forum.flash.posts.created'));
 
         return redirect()->route('topics.show', $topic->slug);
     }
@@ -65,7 +65,7 @@ class PostController extends Controller
     {
         $post->update($request->only(['body']));
 
-        flash('Post has been updated.');
+        flash(trans('forum.flash.posts.updated'));
 
         return redirect()->route('topics.show', $topic->slug);
     }
@@ -82,7 +82,7 @@ class PostController extends Controller
 
         $post->delete();
 
-        flash('Post has been removed.');
+        flash(trans('forum.flash.posts.deleted'));
 
         return response()->json([
             'redirect_url' => route('topics.show', $topic->slug),
