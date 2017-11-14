@@ -31,7 +31,7 @@ class PasswordController extends Controller
             'password' => Hash::make($request->input('password')),
         ]);
 
-        flash(trans('flash.settings.password.updated'));
+        flash(trans('forum.flash.settings.password.updated'));
 
         return redirect()->route('settings.index');
     }

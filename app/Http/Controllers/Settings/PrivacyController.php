@@ -30,7 +30,7 @@ class PrivacyController extends Controller
             'show_email' => request()->filled('show_email'),
         ]);
 
-        flash(trans('flash.settings.privacy.updated'));
+        flash(trans('forum.flash.settings.privacy.updated'));
 
         return redirect()->route('settings.index');
     }

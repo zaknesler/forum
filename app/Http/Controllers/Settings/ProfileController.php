@@ -31,7 +31,7 @@ class ProfileController extends Controller
             'email',
         ]));
 
-        flash(trans('flash.settings.profile.updated'));
+        flash(trans('forum.flash.settings.profile.updated'));
 
         return redirect()->route('settings.index');
     }
