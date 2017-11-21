@@ -8,4 +8,12 @@ return [
         'admin',
     ],
 
+    'sections' => [
+        'General',
+        'Laravel',
+        'PHP',
+        'JavaScript',
+        'Vue',
+    ],
+
 ];
