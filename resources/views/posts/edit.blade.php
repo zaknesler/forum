@@ -17,7 +17,7 @@
                             Body
                         </label>
 
-                        <textarea required tabindex="1" class="appearance-none leading-normal resize-y block w-full rounded p-3 bg-grey-lighter text-grey-darker border border-grey-light {{ $errors->first('body', ' border-red') }}" id="body" type="text" name="body" rows="10" v-autosize>{{ old('body') ?? $post->body }}</textarea>
+                        <textarea-autosize v-pre autofocus required tabindex="1" rows="10" id="body" name="body" value="{{ old('body') ?? $post->body }}" classes="appearance-none leading-normal resize-y block w-full rounded p-3 bg-grey-lighter text-grey-darker border border-grey-light {{ $errors->first('body', ' border-red') }}"></textarea-autosize>
 
                         @if ($errors->has('body'))
                             <div class="text-red font-medium mt-2">{{ $errors->first('body') }}</div>

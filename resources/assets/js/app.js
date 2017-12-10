@@ -2,15 +2,17 @@ import './bootstrap';
 
 import VueAutosize from './classes/vue-autosize';
 
-import AvatarDelete from './components/AvatarDelete.vue';
-import TopicDelete from './components/TopicDelete.vue';
-import PostDelete from './components/PostDelete.vue';
-import Logout from './components/Logout.vue';
+import TextAreaAutosizeComponent from './components/TextAreaAutosize.vue';
+import AvatarDeleteComponent from './components/AvatarDelete.vue';
+import TopicDeleteComponent from './components/TopicDelete.vue';
+import PostDeleteComponent from './components/PostDelete.vue';
+import LogoutComponent from './components/Logout.vue';
 
-Vue.component('avatar-delete', AvatarDelete);
-Vue.component('topic-delete', TopicDelete);
-Vue.component('post-delete', PostDelete);
-Vue.component('logout', Logout);
+Vue.component('textarea-autosize', TextAreaAutosizeComponent);
+Vue.component('avatar-delete', AvatarDeleteComponent);
+Vue.component('topic-delete', TopicDeleteComponent);
+Vue.component('post-delete', PostDeleteComponent);
+Vue.component('logout', LogoutComponent);
 
 Vue.use(VueAutosize);
 
