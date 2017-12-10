@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "83803017428f6b16cc0012bcaf5a2e3e",
+    "content-hash": "3b39ea04cf73c5eac9cfad902147329d",
     "packages": [
         {
             "name": "andreasindal/laravel-markdown",
@@ -2884,6 +2884,48 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "dczajkowski/auth-tests",
+            "version": "5.5.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DCzajkowski/auth-tests.git",
+                "reference": "97d2b2f619021027810a8637aa6d56253dc60283"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DCzajkowski/auth-tests/zipball/97d2b2f619021027810a8637aa6d56253dc60283",
+                "reference": "97d2b2f619021027810a8637aa6d56253dc60283",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "DCzajkowski\\AuthTests\\AuthTestsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/AuthTestsServiceProvider.php",
+                    "src/Console/Commands/AuthTestsMakeCommand.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dariusz Czajkowski",
+                    "email": "dare.czajkowski@gmail.com",
+                    "homepage": "http://dczajkowski.com"
+                }
+            ],
+            "description": "Authentication tests for Laravel built-in authentication module.",
+            "time": "2017-11-16T15:18:13+00:00"
+        },
         {
             "name": "doctrine/instantiator",
             "version": "1.1.0",
