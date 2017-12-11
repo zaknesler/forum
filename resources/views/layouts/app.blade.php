@@ -11,6 +11,8 @@
         <link href="{{ mix('/css/app.css') }}" rel="stylesheet" />
         <script defer src="{{ mix('/js/app.js') }}"></script>
         <script>window.Forum = {!! json_encode(['csrfToken' => csrf_token()]) !!};</script>
+
+        @yield('head')
     </head>
     <body class="relative leading-normal font-sans font-normal min-w-full min-h-full text-grey-darker bg-grey-lighter">
         <div id="root">

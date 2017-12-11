@@ -18,7 +18,9 @@
         </div>
     </div>
 
-    <div class="markdown" v-pre>
-        @markdown($post->body)
+    <div v-highlight>
+        <div class="markdown" v-pre>
+            @markdown($post->body)
+        </div>
     </div>
 </div>

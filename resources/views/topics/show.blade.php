@@ -2,6 +2,12 @@
 
 @section('title', $topic->title)
 
+@section('head')
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+@endsection
+
 @section('content')
     <div class="container mx-auto p-4">
         @include('topics.partials.topic', $topic)

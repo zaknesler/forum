@@ -20,7 +20,9 @@
         </div>
     </div>
 
-    <div class="markdown" v-pre>
-        @markdown($topic->body)
+    <div v-highlight>
+        <div class="markdown" v-pre>
+            @markdown($topic->body)
+        </div>
     </div>
 </div>
