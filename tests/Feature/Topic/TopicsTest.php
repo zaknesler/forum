@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Topic;
 
 use Tests\TestCase;
 use App\Models\{Post, Topic, User};

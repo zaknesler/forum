@@ -7,8 +7,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
-use Tests\Feature\MakesRequestsFromPage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Feature\Auth\Traits\MakesRequestsFromPage;
 
 class RegisterTest extends TestCase
 {

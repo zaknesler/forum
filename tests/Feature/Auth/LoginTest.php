@@ -4,8 +4,8 @@ namespace Tests\Feature\Auth;
 
 use Tests\TestCase;
 use App\Models\User;
-use Tests\Feature\MakesRequestsFromPage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Feature\Auth\Traits\MakesRequestsFromPage;
 
 class LoginTest extends TestCase
 {

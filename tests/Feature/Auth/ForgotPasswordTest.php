@@ -6,10 +6,10 @@ use Tests\TestCase;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Tests\Feature\MakesRequestsFromPage;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Feature\Auth\Traits\MakesRequestsFromPage;
 
 class ForgotPasswordTest extends TestCase
 {
