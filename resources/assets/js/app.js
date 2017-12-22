@@ -17,5 +17,9 @@ Vue.component('logout', LogoutComponent);
 Vue.use(VueAutosize);
 
 const app = new Vue({
-    el: '#root'
+    el: '#root',
+
+    data: {
+        responsiveNav: false
+    }
 });
