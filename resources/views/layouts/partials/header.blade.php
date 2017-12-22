@@ -1,4 +1,4 @@
-<div class="bg-white text-indigo shadow mb-4">
+<div class="bg-white text-indigo shadow">
     <div class="container mx-auto p-4 flex flex-wrap justify-between items-center">
         <a href="{{ route('home') }}" class="font-medium text-lg md:mr-4 no-underline text-indigo hover:text-indigo-darker">{{ config('app.name', 'Forum') }}</a>
 
