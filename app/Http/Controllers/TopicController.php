@@ -106,7 +106,7 @@ class TopicController extends Controller
             'body',
         ]));
 
-        flash(trans('forum.flash.topics.created'));
+        flash(trans('forum.flash.topics.updated'));
 
         return redirect()->route('topics.show', $topic->slug);
     }
